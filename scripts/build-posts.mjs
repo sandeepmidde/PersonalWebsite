@@ -6,12 +6,14 @@
 // What gets auto-derived vs. what you write:
 //   - slug        <- the post's folder name
 //   - title       <- the first heading line in your document
-//   - date        <- the git commit date the file first appeared
+//   - date        <- an optional "Date: YYYY-MM-DD" line near the top, if you
+//                     have a real publish date (e.g. backdating a prepared
+//                     post). Omit it and it falls back to the git commit
+//                     date the file first appeared — zero typing required.
 //   - readTime    <- computed from word count
 //   - excerpt     <- computed from the first ~160 characters
-//   - tags        <- ONE optional line near the top of your document:
-//                     "Tags: AI, Project Management"
-//                     Omit it entirely if you don't want the post grouped.
+//   - tags        <- an optional "Tags: AI, Project Management" line near
+//                     the top. Omit it if you don't want the post grouped.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -65,28 +67,57 @@ function gitFirstCommitDate(absPath) {
   return new Date().toISOString().slice(0, 10);
 }
 
-// Pulls a "Tags: A, B, C" line out of the raw source text (before HTML conversion),
-// wherever it appears in the first few lines, and returns { tags, rest }.
-function extractTagsLine(rawText) {
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+// Pulls optional "Tags: A, B, C" and "Date: YYYY-MM-DD" lines out of the raw source
+// text (before HTML conversion), wherever they appear in the first few lines.
+// Either can be omitted — tags default to none, date falls back to the file's
+// git commit history (see gitFirstCommitDate).
+function extractMetaLines(rawText) {
   const lines = rawText.split('\n');
+  let tags = [];
+  let date = null;
+  const drop = new Set();
+
   for (let i = 0; i < Math.min(lines.length, 6); i++) {
-    const match = lines[i].match(/^\s*tags\s*:\s*(.+)$/i);
-    if (match) {
-      const tags = match[1].split(',').map(t => t.trim()).filter(Boolean);
-      lines.splice(i, 1);
-      return { tags, rest: lines.join('\n') };
+    const tagsMatch = lines[i].match(/^\s*tags\s*:\s*(.+)$/i);
+    if (tagsMatch) {
+      tags = tagsMatch[1].split(',').map(t => t.trim()).filter(Boolean);
+      drop.add(i);
+      continue;
+    }
+    const dateMatch = lines[i].match(/^\s*date\s*:\s*(.+)$/i);
+    if (dateMatch) {
+      const candidate = dateMatch[1].trim();
+      if (ISO_DATE.test(candidate)) date = candidate;
+      drop.add(i);
     }
   }
-  return { tags: [], rest: rawText };
+
+  const rest = lines.filter((_, i) => !drop.has(i)).join('\n');
+  return { tags, date, rest };
 }
 
-// Same idea, but applied to already-converted HTML (used for .docx, since mammoth
-// gives us HTML directly) — looks for a <p>Tags: ...</p> in the first couple of paragraphs.
-function extractTagsLineFromHtml(html) {
-  const match = html.match(/<p>\s*tags\s*:\s*([^<]+)<\/p>/i);
-  if (!match) return { tags: [], html };
-  const tags = match[1].split(',').map(t => t.trim()).filter(Boolean);
-  return { tags, html: html.replace(match[0], '') };
+// Same idea, applied to already-converted HTML (used for .docx, since mammoth
+// gives us HTML directly) — looks for <p>Tags: ...</p> / <p>Date: ...</p>.
+function extractMetaLinesFromHtml(html) {
+  let tags = [];
+  let date = null;
+
+  const tagsMatch = html.match(/<p>\s*tags\s*:\s*([^<]+)<\/p>/i);
+  if (tagsMatch) {
+    tags = tagsMatch[1].split(',').map(t => t.trim()).filter(Boolean);
+    html = html.replace(tagsMatch[0], '');
+  }
+
+  const dateMatch = html.match(/<p>\s*date\s*:\s*([^<]+)<\/p>/i);
+  if (dateMatch) {
+    const candidate = dateMatch[1].trim();
+    if (ISO_DATE.test(candidate)) date = candidate;
+    html = html.replace(dateMatch[0], '');
+  }
+
+  return { tags, date, html };
 }
 
 function extractTitleFromHtml(html, fallback) {
@@ -142,20 +173,23 @@ async function buildPost(postFolderName, postDir) {
 
   let html;
   let tags;
+  let explicitDate;
   let sourceFile;
 
   if (fs.existsSync(mdPath)) {
     sourceFile = mdPath;
     const raw = fs.readFileSync(mdPath, 'utf8');
-    const extracted = extractTagsLine(raw);
+    const extracted = extractMetaLines(raw);
     tags = extracted.tags;
+    explicitDate = extracted.date;
     html = marked.parse(extracted.rest);
     html = processMarkdownImages(html, postDir, slug);
   } else if (fs.existsSync(docxPath)) {
     sourceFile = docxPath;
     html = await convertDocx(docxPath, slug);
-    const extracted = extractTagsLineFromHtml(html);
+    const extracted = extractMetaLinesFromHtml(html);
     tags = extracted.tags;
+    explicitDate = extracted.date;
     html = extracted.html;
   } else {
     console.warn(`Skipping /blog/${postFolderName} — no content.md or content.docx found`);
@@ -164,7 +198,7 @@ async function buildPost(postFolderName, postDir) {
 
   const title = extractTitleFromHtml(html, titleCaseFromSlug(slug));
   html = removeFirstH1(html);
-  const date = gitFirstCommitDate(sourceFile);
+  const date = explicitDate || gitFirstCommitDate(sourceFile);
 
   const post = {
     slug,

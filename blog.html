@@ -114,12 +114,15 @@
      - Optional: a line reading "Tags: AI, Project Management" anywhere in
        the first few lines — becomes the topics this post is grouped under.
        Skip it if you don't want the post grouped anywhere yet.
+     - Optional: a line reading "Date: 2026-01-15" (YYYY-MM-DD) anywhere in
+       the first few lines — use this for backdating a post you're publishing
+       later than you wrote it. Skip it and the date defaults to whenever you
+       actually push the file.
      - Just write normally after that. Images: reference them by filename
        (Markdown: "![caption](photo.jpg)") or embed them directly (Word) —
        either way, drop the actual image file in the same folder.
   3. Commit and push. Cloudflare's build step (npm run build) regenerates
-     everything else — title, date (from your commit date), read time,
-     excerpt — with no manual editing.
+     everything else — title, read time, excerpt — with no manual editing.
 
   Filter pills above are generated from the union of every post's tags, so
   a new tag just shows up once you use it — nothing to edit here either.
