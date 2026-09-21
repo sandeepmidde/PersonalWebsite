@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sandeep Midde — Technology &amp; Delivery Leader</title>
+<meta name="description" content="Sandeep Midde — Technology &amp; Delivery Leader specializing in platform modernization and applied AI. 20 years leading mission-critical systems in regulated finance." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-size='26' font-weight='700' fill='%232dd4bf' text-anchor='middle'%3ESM%3C/text%3E%3C/svg%3E" />
+
+<!-- Google Fonts: Manrope (warm, rounded letterforms with generous natural spacing) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- Tailwind CSS (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scrollbar-gutter: stable; }
+  body { font-family: 'Manrope', sans-serif; letter-spacing: 0.01em; word-spacing: 0.1em; }
+  ::selection { background-color: rgba(45, 212, 191, 0.25); color: #99f6e4; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #020617; }
+  ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2dd4bf55; }
+
+  .bg-glow {
+    background:
+      radial-gradient(600px circle at 15% 10%, rgba(45,212,191,0.10), transparent 60%),
+      radial-gradient(500px circle at 85% 30%, rgba(56,189,248,0.08), transparent 60%);
+  }
+
+  /* Soft glow that follows the cursor — purely decorative, sits behind all content */
+  #cursorGlow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1300px;
+    height: 1300px;
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.09), rgba(226,255,250,0.05) 35%, transparent 70%);
+    filter: blur(50px);
+    transform: translate(-9999px, -9999px);
+    will-change: transform;
+  }
+
+  /* Centers the whole two-column layout on very wide screens instead of
+     letting the sidebar pin to the literal browser edge */
+  @media (min-width: 1024px) {
+    #sidebar { left: max(0px, calc((100vw - 1400px) / 2)); }
+    #mainContent { margin-left: calc(400px + max(0px, (100vw - 1400px) / 2)); }
+  }
+  @media (min-width: 1280px) {
+    #mainContent { margin-left: calc(460px + max(0px, (100vw - 1400px) / 2)); }
+  }
+
+  .nav-link.active { color: #2dd4bf; }
+  .nav-link.active .nav-dash { width: 2.5rem; background-color: #2dd4bf; }
+
+  /* Tech tags on each experience card — teal by default, no border, glows on hover */
+  .tag-chip {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 9999px;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: none;
+    color: #5eead4;
+    background-color: rgba(45, 212, 191, 0.08);
+    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
+    cursor: default;
+  }
+  .tag-chip:hover {
+    color: #99f6e4;
+    background-color: rgba(45, 212, 191, 0.18);
+    box-shadow: 0 0 16px rgba(45, 212, 191, 0.25);
+  }
+
+  /* Experience cards — no border/background by default, soft glow on hover */
+  .job-card {
+    border: none;
+    background-color: transparent;
+    transition: background-color .3s ease, box-shadow .3s ease;
+  }
+  .job-card:hover {
+    background-color: rgba(30, 41, 59, 0.4);
+    box-shadow: 0 0 40px -12px rgba(45, 212, 191, 0.2);
+  }
+  .job-card:hover .job-title { color: #5eead4; }
+
+  /* Eye-catching inline highlight for the key number/result inside a bullet.
+     display:inline-block keeps it safely inside the sentence flow (it will
+     never split a bullet into columns, since it isn't a direct flex child). */
+  .stat-highlight {
+    color: #5eead4;
+    font-weight: 700;
+  }
+
+  /* Timeline dot that glows on whichever role you've scrolled to */
+  .timeline-dot { transition: border-color .3s ease, box-shadow .3s ease; }
+  .timeline-dot.active {
+    border-color: #2dd4bf;
+    animation: dotGlow 2s ease-in-out infinite;
+  }
+  @keyframes dotGlow {
+    0%, 100% { box-shadow: 0 0 6px 1px rgba(45,212,191,0.45); }
+    50% { box-shadow: 0 0 14px 4px rgba(45,212,191,0.8); }
+  }
+  .nav-dash { transition: width .2s ease, background-color .2s ease; }
+
+  [data-stack-item], [data-post] { transition: all .25s ease; }
+
+  .fade-up { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .fade-up.in-view { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+
+<!--
+  ============================================================================
+  HOW TO EDIT THIS SITE (read me first!)
+  ============================================================================
+  This is a single plain HTML file — no build tools, no installs needed.
+  Open it in any text editor (Notepad, VS Code, etc.), find the section you
+  want to change using the big comment headers below (e.g. "EDIT: HERO"),
+  and edit the visible text between the tags. Save the file and refresh your
+  browser to see the change.
+
+  Sections you can edit, top to bottom:
+    1. EDIT: SIDEBAR / NAV        — your name, title, socials, resume link
+    2. EDIT: HERO                 — the big intro at the top
+    3. EDIT: EXPERIENCE TIMELINE  — your career history + bullet points
+    4. EDIT: TECH STACK           — your skills grid
+    5. EDIT: CREDENTIALS          — certifications + education
+    6. EDIT: BLOG PREVIEW         — the teaser card that links to blog.html
+    7. EDIT: CONTACT / FOOTER     — closing section + footer text
+
+  Do NOT edit anything inside <script> tags unless you're comfortable with
+  JavaScript — that code only handles menu toggling, scroll highlighting,
+  and the tech-stack filter buttons.
+  ============================================================================
+-->
+
+<body class="bg-slate-950 text-slate-400 antialiased">
+
+  <!-- Decorative background glow (purely visual, safe to ignore) -->
+  <div class="fixed inset-0 bg-glow pointer-events-none"></div>
+  <!-- Soft glow that follows the cursor (purely visual, see #cursorGlow CSS + script at bottom) -->
+  <div id="cursorGlow"></div>
+
+  <!-- =====================================================================
+       MOBILE TOP BAR (shown below lg breakpoint)
+  ====================================================================== -->
+  <header class="lg:hidden sticky top-0 z-40 flex items-center justify-between px-6 py-4 bg-slate-950/90 backdrop-blur border-b border-slate-800/80">
+    <a href="#home" class="text-slate-100 font-bold text-lg tracking-tight">Sandeep<span class="text-teal-300">.</span></a>
+    <button id="menuBtn" aria-label="Toggle menu" class="text-slate-200 p-2">
+      <svg id="iconOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="iconClose" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </header>
+
+  <!-- Mobile full-screen nav overlay -->
+  <div id="mobileMenu" class="lg:hidden fixed inset-0 z-30 bg-slate-950/98 backdrop-blur-sm hidden flex-col items-center justify-center gap-8 px-6">
+    <nav class="flex flex-col items-center gap-6 text-lg">
+      <a href="#home" class="mobile-link text-slate-200 hover:text-teal-300">Home</a>
+      <a href="#experience" class="mobile-link text-slate-200 hover:text-teal-300">Experience</a>
+      <a href="#stack" class="mobile-link text-slate-200 hover:text-teal-300">Tech Stack</a>
+      <a href="#blog" class="mobile-link text-slate-200 hover:text-teal-300">Blog</a>
+      <a href="#contact" class="mobile-link text-slate-200 hover:text-teal-300">Contact</a>
+      <a href="Resume/SandeepMidde.pdf" target="_blank" rel="noopener" class="mobile-link mt-2 px-5 py-2 rounded border border-teal-300/40 text-teal-300 hover:bg-teal-300/10">Résumé</a>
+    </nav>
+    <div class="flex gap-6 mt-4">
+      <!-- EDIT: SOCIAL ICONS (mobile) — keep in sync with the sidebar copies below -->
+      <a href="https://linkedin.com/in/sandeepmidde/" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-slate-400 hover:text-teal-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="mailto:sandeepmidde@gmail.com" aria-label="Email" class="text-slate-400 hover:text-teal-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      </a>
+      <!-- Hidden GitHub icon: add your GitHub URL below then remove the "hidden" class to show it -->
+      <a href="#" target="_blank" rel="noopener" aria-label="GitHub" class="hidden text-slate-400 hover:text-teal-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="relative lg:flex">
+
+    <!-- ===================================================================
+         EDIT: SIDEBAR / NAV (desktop, fixed left column)
+    ==================================================================== -->
+    <aside id="sidebar" class="hidden lg:flex lg:fixed lg:z-10 lg:h-screen lg:w-[400px] xl:w-[460px] flex-col justify-between px-16 py-24">
+      <div>
+        <!-- Your name -->
+        <h1 class="text-4xl font-extrabold text-slate-100 tracking-tight">
+          <a href="#home">Sandeep Midde</a>
+        </h1>
+        <!-- Your title / role -->
+        <p class="mt-3 text-lg font-medium text-slate-200">Technology &amp; Delivery Leader</p>
+        <!-- Short blurb -->
+        <p class="mt-4 text-sm leading-relaxed text-slate-400 max-w-xs">
+          Platform modernization &amp; applied AI for mission-critical, heavily regulated systems.
+        </p>
+
+        <!-- Nav links -->
+        <nav class="mt-16 hidden lg:block" aria-label="In-page navigation">
+          <ul class="space-y-5">
+            <li><a href="#home" class="nav-link active group flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-slate-500 hover:text-teal-300"><span class="nav-dash h-px w-6 bg-slate-600 group-hover:bg-teal-300"></span>Home</a></li>
+            <li><a href="#experience" class="nav-link group flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-slate-500 hover:text-teal-300"><span class="nav-dash h-px w-6 bg-slate-600 group-hover:bg-teal-300"></span>Experience</a></li>
+            <li><a href="#stack" class="nav-link group flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-slate-500 hover:text-teal-300"><span class="nav-dash h-px w-6 bg-slate-600 group-hover:bg-teal-300"></span>Tech Stack</a></li>
+            <li><a href="#blog" class="nav-link group flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-slate-500 hover:text-teal-300"><span class="nav-dash h-px w-6 bg-slate-600 group-hover:bg-teal-300"></span>Blog</a></li>
+            <li><a href="#contact" class="nav-link group flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-slate-500 hover:text-teal-300"><span class="nav-dash h-px w-6 bg-slate-600 group-hover:bg-teal-300"></span>Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Resume button — point this at your resume file if you rename/move it -->
+        <a href="Resume/SandeepMidde.pdf" target="_blank" rel="noopener"
+           class="mt-10 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest px-4 py-2.5 rounded border border-slate-700 text-slate-300 hover:border-teal-300/50 hover:text-teal-300 transition-colors">
+          Résumé
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
+        </a>
+      </div>
+
+      <!-- Social icons (desktop sidebar) -->
+      <div class="flex gap-5">
+        <a href="https://linkedin.com/in/sandeepmidde/" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-slate-500 hover:text-teal-300 hover:-translate-y-0.5 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        </a>
+        <a href="mailto:sandeepmidde@gmail.com" aria-label="Email" class="text-slate-500 hover:text-teal-300 hover:-translate-y-0.5 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </a>
+        <!-- Hidden GitHub icon — fill in your URL + remove "hidden" to activate -->
+        <a href="#" target="_blank" rel="noopener" aria-label="GitHub" class="hidden text-slate-500 hover:text-teal-300 hover:-translate-y-0.5 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.43-2.69 5.4-5.25 5.69.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.8.56A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5z"/></svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- =================================================================
+         MAIN CONTENT (right column)
+    ================================================================== -->
+    <main id="mainContent" class="relative z-10 lg:ml-[400px] xl:ml-[460px] w-full">
+
+      <!-- ===============================================================
+           EDIT: HERO
+      ================================================================ -->
+      <section id="home" class="px-6 sm:px-12 lg:pl-40 lg:pr-20 pt-24 pb-8 max-w-3xl">
+        <div class="fade-up max-w-xl space-y-5 text-base leading-relaxed text-slate-300">
+          <p>
+            Hi there! I'm Sandeep, and I like building things, whether that means creating
+            something new or making an existing system easier to use. I'm a technology and
+            delivery leader with close to twenty years of experience modernizing platforms for
+            large, regulated organizations.
+          </p>
+          <p>
+            I take pride in making sense of complex systems, and I have a sharp eye for the
+            small process gaps that eventually turn into big outages. I enjoy working at the
+            intersection of engineering and delivery, where good architecture meets steady,
+            dependable execution.
+          </p>
+          <p>
+            I build AI products, including RAG based applications and conversational AI systems,
+            and I lead technical strategy for large scale, mission critical platforms in highly
+            regulated environments. I care about pairing hands on technical depth with the kind
+            of delivery discipline that keeps big systems calm under pressure.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           EDIT: EXPERIENCE TIMELINE
+           Each role is one <li> below. Copy an existing <li> block to add
+           a new role, or edit the text inside an existing one.
+      ================================================================ -->
+      <section id="experience" class="px-6 sm:px-12 lg:pl-40 lg:pr-20 pt-8 pb-24 max-w-3xl">
+        <ol class="relative space-y-10">
+
+          <!-- Role: Independent AI Product Management
+               To add a tag: copy a <span class="tag-chip">...</span> line inside the tag row. -->
+          <li class="fade-up">
+            <div class="job-card rounded-xl p-6">
+              <div class="flex items-center gap-2">
+                <span class="timeline-dot active h-3 w-3 rounded-full bg-slate-950 border-2 border-slate-600"></span>
+                <p class="text-xs font-medium tracking-wide text-slate-500">Jul 2026 — Present</p>
+              </div>
+              <h4 class="job-title mt-1 text-lg font-semibold text-slate-100 transition-colors duration-300">AI Product Development</h4>
+              <p class="mt-2 text-sm italic text-slate-500">Krishna Uvacha is a greenfield GenAI conversational platform, architected and shipped solo.</p>
+              <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-400">
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Architected and shipped Krishna Uvacha to production, validating <span class="stat-highlight">88% response accuracy</span> through a structured evaluation harness.</span></li>
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Built the retrieval pipeline end to end using LangChain and ChromaDB, with a dual LLM setup for resilience.</span></li>
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Introduced agentic memory so context and intent persist across multi-turn conversations.</span></li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="tag-chip">LangChain</span>
+                <span class="tag-chip">ChromaDB</span>
+                <span class="tag-chip">RAG</span>
+                <span class="tag-chip">Python</span>
+                <span class="tag-chip">Prompt Engineering</span>
+              </div>
+            </div>
+          </li>
+
+          <!-- Role: Wells Fargo -->
+          <li class="fade-up">
+            <div class="job-card rounded-xl p-6">
+              <div class="flex items-center gap-2">
+                <span class="timeline-dot h-3 w-3 rounded-full bg-slate-950 border-2 border-slate-600"></span>
+                <p class="text-xs font-medium tracking-wide text-slate-500">Oct 2012 — Jun 2026</p>
+              </div>
+              <h4 class="job-title mt-1 text-lg font-semibold text-slate-100 transition-colors duration-300">Vice President <span class="text-teal-300">· Wells Fargo India Pvt Ltd</span></h4>
+              <p class="mt-2 text-sm italic text-slate-500">Technical strategy &amp; platform governance for a $2.5T+ AUM finance ecosystem.</p>
+              <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-400">
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Spearheaded technical strategy and platform governance across finance-critical programs.</span></li>
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Directed a RAG feasibility study for AI agent adoption, reaching <span class="stat-highlight">80 to 85% source grounded responses</span>.</span></li>
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Integrated Bloomberg's BEAP API, retiring a third party intermediary and cutting response time by <span class="stat-highlight">99%</span>.</span></li>
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Automated the GL allocation process for a <span class="stat-highlight">58% faster</span> daily runtime across 2M+ rows, and led a build versus buy analysis that cut projected platform costs from $4M to $1.2M.</span></li>
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Standardized the L2 support model, cutting MTTR by 30 to 60% and lifting availability to <span class="stat-highlight">99.8%</span>.</span></li>
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Directed disaster recovery testing to a consistent 3 to 5 hour recovery window, while restructuring the team into module aligned Agile Scrum pods with a dedicated cloud modernization track.</span></li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="tag-chip">Python</span>
+                <span class="tag-chip">Kafka</span>
+                <span class="tag-chip">PeopleSoft</span>
+                <span class="tag-chip">Apigee</span>
+                <span class="tag-chip">Azure</span>
+                <span class="tag-chip">RAG</span>
+              </div>
+            </div>
+          </li>
+
+          <!-- Role: Oracle -->
+          <li class="fade-up">
+            <div class="job-card rounded-xl p-6">
+              <div class="flex items-center gap-2">
+                <span class="timeline-dot h-3 w-3 rounded-full bg-slate-950 border-2 border-slate-600"></span>
+                <p class="text-xs font-medium tracking-wide text-slate-500">Aug 2011 — Sep 2012</p>
+              </div>
+              <h4 class="job-title mt-1 text-lg font-semibold text-slate-100 transition-colors duration-300">Staff Consultant <span class="text-teal-300">· Oracle India Pvt Ltd</span></h4>
+              <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-400">
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Drove requirements discovery on the PeopleSoft Talent Acquisition Model, improving system performance by about 20%.</span></li>
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Delivered bilingual and multilingual support for Inspira, enabling adoption across <span class="stat-highlight">190+ countries</span>.</span></li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="tag-chip">PeopleSoft</span>
+                <span class="tag-chip">Requirements Analysis</span>
+                <span class="tag-chip">Localization</span>
+              </div>
+            </div>
+          </li>
+
+          <!-- Role: Infosys -->
+          <li class="fade-up">
+            <div class="job-card rounded-xl p-6">
+              <div class="flex items-center gap-2">
+                <span class="timeline-dot h-3 w-3 rounded-full bg-slate-950 border-2 border-slate-600"></span>
+                <p class="text-xs font-medium tracking-wide text-slate-500">Jul 2006 — Jul 2011</p>
+              </div>
+              <h4 class="job-title mt-1 text-lg font-semibold text-slate-100 transition-colors duration-300">Technology Architect <span class="text-teal-300">· Infosys</span></h4>
+              <p class="mt-2 text-sm italic text-slate-500">Charles Schwab &amp; Dow Jones PeopleSoft Finance engagements.</p>
+              <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-400">
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Led a PeopleSoft Finance upgrade, retrofitting <span class="stat-highlight">900+ custom objects</span> into stable production.</span></li>
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Owned delivery governance under CMMI Level 5 standards, cutting the production ticket backlog by 30 to 40%.</span></li>
+                <li class="flex gap-3"><span class="text-teal-300 mt-1">▹</span><span>Led the Dow Jones PeopleSoft re-implementation, clearing the project's final funding blocker.</span></li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="tag-chip">PeopleSoft</span>
+                <span class="tag-chip">SDLC</span>
+                <span class="tag-chip">CMMI Level 5</span>
+              </div>
+            </div>
+          </li>
+
+        </ol>
+      </section>
+
+      <!-- ===============================================================
+           EDIT: TECH STACK (interactive filterable grid)
+           To add a skill: copy a <button> line inside the grid and change
+           its text + data-category. Categories used: leadership, platform, ai
+      ================================================================ -->
+      <section id="stack" class="px-6 sm:px-12 lg:pl-40 lg:pr-20 py-24 max-w-3xl">
+        <h3 class="fade-up flex items-center gap-4 text-2xl font-bold text-slate-100 mb-10">
+          Tech Stack
+        </h3>
+
+        <!-- Filter pills -->
+        <div class="fade-up flex flex-wrap gap-3 mb-8" id="stackFilters">
+          <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-teal-300/15 text-teal-300">All</button>
+          <button data-filter="leadership" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-800/60 text-slate-400 hover:bg-slate-800">Leadership &amp; Delivery</button>
+          <button data-filter="platform" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-800/60 text-slate-400 hover:bg-slate-800">Platform &amp; Engineering</button>
+          <button data-filter="ai" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-800/60 text-slate-400 hover:bg-slate-800">AI &amp; GenAI</button>
+        </div>
+
+        <!-- Skill list — a wrapping row of pills, not a fixed grid, so it stays compact -->
+        <div class="fade-up flex flex-wrap gap-2.5" id="stackGrid">
+
+          <!-- Leadership & Delivery -->
+          <span data-stack-item data-category="leadership" class="tag-chip">Technical Strategy &amp; Architecture</span>
+          <span data-stack-item data-category="leadership" class="tag-chip">Delivery Governance</span>
+          <span data-stack-item data-category="leadership" class="tag-chip">Risk &amp; Compliance (COSO / CMMI L5)</span>
+          <span data-stack-item data-category="leadership" class="tag-chip">Agile / SAFe Delivery</span>
+          <span data-stack-item data-category="leadership" class="tag-chip">Executive &amp; Stakeholder Mgmt</span>
+          <span data-stack-item data-category="leadership" class="tag-chip">Talent Development</span>
+
+          <!-- Platform & Engineering -->
+          <span data-stack-item data-category="platform" class="tag-chip">ERP (PeopleSoft / Oracle / Salesforce)</span>
+          <span data-stack-item data-category="platform" class="tag-chip">REST / Apigee API Integration</span>
+          <span data-stack-item data-category="platform" class="tag-chip">Python</span>
+          <span data-stack-item data-category="platform" class="tag-chip">Test Automation (Playwright)</span>
+          <span data-stack-item data-category="platform" class="tag-chip">Event-Driven Architecture / TOGAF / SOA</span>
+          <span data-stack-item data-category="platform" class="tag-chip">Kafka</span>
+          <span data-stack-item data-category="platform" class="tag-chip">CI/CD (Git / Jenkins / Harness / Jira)</span>
+          <span data-stack-item data-category="platform" class="tag-chip">Cloud Platforms (Azure)</span>
+
+          <!-- AI / GenAI -->
+          <span data-stack-item data-category="ai" class="tag-chip">RAG (Retrieval-Augmented Generation)</span>
+          <span data-stack-item data-category="ai" class="tag-chip">Prompt Engineering</span>
+          <span data-stack-item data-category="ai" class="tag-chip">AI Guardrails &amp; Evaluation</span>
+          <span data-stack-item data-category="ai" class="tag-chip">LangChain</span>
+          <span data-stack-item data-category="ai" class="tag-chip">Vector Retrieval (ChromaDB)</span>
+          <span data-stack-item data-category="ai" class="tag-chip">Responsible AI</span>
+          <span data-stack-item data-category="ai" class="tag-chip">Multi-Model Architecture</span>
+
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           EDIT: CREDENTIALS (Certifications + Education)
+      ================================================================ -->
+      <section id="credentials" class="px-6 sm:px-12 lg:pl-40 lg:pr-20 py-24 max-w-3xl">
+        <h3 class="fade-up flex items-center gap-4 text-2xl font-bold text-slate-100 mb-10">
+          Certifications &amp; Education
+        </h3>
+        <div class="fade-up grid sm:grid-cols-2 gap-10">
+          <div>
+            <h4 class="text-sm font-semibold uppercase tracking-wide text-slate-200 mb-4">Certifications</h4>
+            <ul class="space-y-3 text-sm text-slate-400">
+              <li class="flex gap-3"><span class="text-teal-300">✓</span><span>PMP — Project Management Professional</span></li>
+              <li class="flex gap-3"><span class="text-teal-300">✓</span><span>AI Security &amp; Governance — Securiti</span></li>
+              <li class="flex gap-3"><span class="text-teal-300">✓</span><span>Salesforce Agentblazer Champion 2026</span></li>
+              <li class="flex gap-3"><span class="text-teal-300">✓</span><span>Enterprise Product Mgmt Fundamentals — Microsoft</span></li>
+              <li class="flex gap-3"><span class="text-teal-300">✓</span><span>Microsoft Azure AZ-900: Fundamentals</span></li>
+              <li class="flex gap-3"><span class="text-teal-300">✓</span><span>Oracle Certified PeopleSoft Technical Consultant</span></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold uppercase tracking-wide text-slate-200 mb-4">Education</h4>
+            <ul class="space-y-3 text-sm text-slate-400">
+              <li class="flex gap-3"><span class="text-teal-300">🎓</span><span>Post Graduate, AI &amp; ML — IIIT Bangalore</span></li>
+              <li class="flex gap-3"><span class="text-teal-300">🎓</span><span>MBA, IT &amp; Financial Accounting — ICFAI</span></li>
+              <li class="flex gap-3"><span class="text-teal-300">🎓</span><span>B. Pharmacy (Hons.) — BITS-Pilani, Rajasthan</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================================================
+           EDIT: BLOG PREVIEW
+           Full blog lives on blog.html — this is just a teaser card.
+      ================================================================ -->
+      <section id="blog" class="px-6 sm:px-12 lg:pl-40 lg:pr-20 py-24 max-w-3xl">
+        <h3 class="fade-up flex items-center gap-4 text-2xl font-bold text-slate-100 mb-10">
+          Writing
+        </h3>
+        <p class="fade-up max-w-xl text-slate-300 leading-relaxed">
+          I'm building out a space to share lessons from 20 years in platform modernization,
+          delivery leadership, and applied AI. New posts are on the way.
+        </p>
+        <a href="blog.html" class="fade-up inline-flex items-center gap-2 mt-6 text-teal-300 font-mono text-sm hover:gap-3 transition-all">
+          Visit the blog
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+      </section>
+
+      <!-- ===============================================================
+           EDIT: CONTACT / FOOTER
+      ================================================================ -->
+      <section id="contact" class="px-6 sm:px-12 lg:pl-40 lg:pr-20 py-24 max-w-3xl text-center sm:text-left">
+        <p class="fade-up font-mono text-teal-300 text-sm mb-4">What's Next?</p>
+        <h3 class="fade-up text-3xl sm:text-4xl font-extrabold text-slate-100 mb-6">Get In Touch</h3>
+        <p class="fade-up max-w-lg mx-auto sm:mx-0 text-slate-400 leading-relaxed mb-10">
+          Whether it's platform modernization, delivery leadership, or applied AI,
+          I'd love to hear from you. My inbox is always open.
+        </p>
+        <a href="mailto:sandeepmidde@gmail.com"
+           class="fade-up inline-block px-8 py-4 rounded border border-teal-300 text-teal-300 font-mono text-sm font-medium hover:bg-teal-300/10 transition-colors">
+          Say Hello
+        </a>
+
+        <footer class="mt-32 pb-12 text-center sm:text-left text-xs text-slate-600">
+          <div class="flex sm:hidden justify-center gap-6 mb-6">
+            <a href="https://linkedin.com/in/sandeepmidde/" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-teal-300"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+            <a href="mailto:sandeepmidde@gmail.com" aria-label="Email" class="hover:text-teal-300"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
+          </div>
+          <p>Designed &amp; built by Sandeep Midde.</p>
+        </footer>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // Cursor-following glow — purely decorative, smoothly trails the mouse
+    const cursorGlow = document.getElementById('cursorGlow');
+    const glowRadius = 650; // half of #cursorGlow's 1300px width/height
+    let targetX = -9999, targetY = -9999, glowX = -9999, glowY = -9999;
+
+    window.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    function animateGlow() {
+      glowX += (targetX - glowX) * 0.12;
+      glowY += (targetY - glowY) * 0.12;
+      cursorGlow.style.transform = `translate(${glowX - glowRadius}px, ${glowY - glowRadius}px)`;
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const iconOpen = document.getElementById('iconOpen');
+    const iconClose = document.getElementById('iconClose');
+
+    menuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', !isHidden ? true : false);
+      mobileMenu.classList.toggle('flex', isHidden);
+      iconOpen.classList.toggle('hidden', isHidden);
+      iconClose.classList.toggle('hidden', !isHidden);
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      });
+    });
+
+    // Scrollspy: highlight active nav link based on visible section
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const spyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(sec => spyObserver.observe(sec));
+
+    // Timeline dots: glow whichever role card is currently in view
+    const timelineItems = document.querySelectorAll('#experience ol > li');
+
+    const timelineObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const dot = entry.target.querySelector('.timeline-dot');
+        if (!dot) return;
+        if (entry.isIntersecting) {
+          document.querySelectorAll('#experience .timeline-dot.active').forEach(d => d.classList.remove('active'));
+          dot.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+    timelineItems.forEach(item => timelineObserver.observe(item));
+
+    // Fade-up on scroll
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+    // Tech stack filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const stackItems = document.querySelectorAll('[data-stack-item]');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-teal-300/15', 'text-teal-300');
+          b.classList.add('bg-slate-800/60', 'text-slate-400');
+        });
+        btn.classList.add('bg-teal-300/15', 'text-teal-300');
+        btn.classList.remove('bg-slate-800/60', 'text-slate-400');
+
+        const filter = btn.getAttribute('data-filter');
+        stackItems.forEach(item => {
+          const show = filter === 'all' || item.getAttribute('data-category') === filter;
+          item.style.display = show ? 'inline-block' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

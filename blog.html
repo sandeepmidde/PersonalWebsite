@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Writing — Sandeep Midde</title>
+<meta name="description" content="Articles by Sandeep Midde on platform modernization, delivery leadership, and applied AI." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-size='26' font-weight='700' fill='%232dd4bf' text-anchor='middle'%3ESM%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+        typography: () => ({
+          invert: {
+            css: {
+              '--tw-prose-body': '#cbd5e1',
+              '--tw-prose-headings': '#f1f5f9',
+              '--tw-prose-links': '#2dd4bf',
+              '--tw-prose-bold': '#f1f5f9',
+              '--tw-prose-quotes': '#94a3b8',
+              '--tw-prose-code': '#5eead4',
+            },
+          },
+        }),
+      },
+    },
+  };
+</script>
+
+<style>
+  body { font-family: 'Manrope', sans-serif; letter-spacing: 0.01em; word-spacing: 0.1em; }
+  ::selection { background-color: rgba(45, 212, 191, 0.25); color: #99f6e4; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #020617; }
+  ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+  .bg-glow {
+    background:
+      radial-gradient(600px circle at 15% 10%, rgba(45,212,191,0.10), transparent 60%),
+      radial-gradient(500px circle at 85% 20%, rgba(56,189,248,0.08), transparent 60%);
+  }
+
+  /* Soft glow that follows the cursor — purely decorative, sits behind all content */
+  #cursorGlow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1300px;
+    height: 1300px;
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.09), rgba(226,255,250,0.05) 35%, transparent 70%);
+    filter: blur(50px);
+    transform: translate(-9999px, -9999px);
+    will-change: transform;
+  }
+
+  /* Tech tags on blog post cards — teal by default, no border, glows on hover */
+  .tag-chip {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 9999px;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: none;
+    color: #5eead4;
+    background-color: rgba(45, 212, 191, 0.08);
+    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
+    cursor: default;
+  }
+  .tag-chip:hover {
+    color: #99f6e4;
+    background-color: rgba(45, 212, 191, 0.18);
+    box-shadow: 0 0 16px rgba(45, 212, 191, 0.25);
+  }
+
+  /* Blog post cards — no border/background by default, soft glow on hover */
+  .job-card {
+    border: none;
+    background-color: transparent;
+    transition: background-color .3s ease, box-shadow .3s ease;
+  }
+  .job-card:hover {
+    background-color: rgba(30, 41, 59, 0.4);
+    box-shadow: 0 0 40px -12px rgba(45, 212, 191, 0.2);
+  }
+  .job-card:hover .job-title { color: #5eead4; }
+</style>
+</head>
+
+<!--
+  ============================================================================
+  HOW TO ADD A NEW BLOG POST — read this first!
+  ============================================================================
+  This page no longer contains post HTML directly — it reads everything from
+  /posts/posts-index.json and renders it. Each post's full content lives in
+  its own /posts/<slug>.json file, read by post.html.
+
+  To add a new post:
+  1. Copy /posts/welcome-to-my-blog.json to /posts/your-slug.json and edit
+     title, date, category, categoryLabel, readTime, tags, and body
+     (body is an array of HTML paragraph strings, e.g. "<p>...</p>").
+  2. Add one entry for it to /posts/posts-index.json (same fields, minus
+     "body" — that one stays in the per-post file only).
+  3. Commit and push to GitHub. Cloudflare Pages auto-deploys on push, and
+     this page always fetches the current posts-index.json on load — so the
+     list here updates automatically, no other edits needed.
+
+  Category filter pills below use: genai, platform, leadership, career
+  (rename freely, just keep a pill's data-filter matching a post's category).
+  ============================================================================
+-->
+
+<body class="bg-slate-950 text-slate-400 antialiased">
+
+  <div class="fixed inset-0 bg-glow pointer-events-none"></div>
+  <!-- Soft glow that follows the cursor (purely visual, see #cursorGlow CSS + script at bottom) -->
+  <div id="cursorGlow"></div>
+
+  <!-- Simple top nav shared with the homepage -->
+  <header class="sticky top-0 z-40 flex items-center justify-between px-6 sm:px-12 lg:px-20 py-5 bg-slate-950/90 backdrop-blur border-b border-slate-800/80">
+    <a href="index.html" class="text-slate-100 font-bold text-lg tracking-tight">Sandeep<span class="text-teal-300">.</span></a>
+    <nav class="flex items-center gap-6 text-sm font-medium">
+      <a href="index.html#home" class="hidden sm:inline text-slate-400 hover:text-teal-300">Home</a>
+      <a href="index.html#experience" class="hidden sm:inline text-slate-400 hover:text-teal-300">Experience</a>
+      <a href="index.html#stack" class="hidden sm:inline text-slate-400 hover:text-teal-300">Tech Stack</a>
+      <a href="blog.html" class="text-teal-300">Blog</a>
+      <a href="index.html#contact" class="text-slate-400 hover:text-teal-300">Contact</a>
+    </nav>
+  </header>
+
+  <main class="relative z-10 max-w-4xl mx-auto px-6 sm:px-12 lg:px-20 py-20">
+    <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 hover:text-teal-300 text-sm font-medium mb-10 transition-colors">
+      <span aria-hidden="true">&larr;</span> Back to Home
+    </a>
+    <p class="font-mono text-teal-300 text-sm mb-4">The Blog</p>
+    <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-100 tracking-tight mb-6">Writing</h1>
+    <p class="max-w-xl text-slate-400 leading-relaxed mb-12">
+      Notes on platform modernization, delivery leadership, and applied AI,
+      drawn from years spent building and running mission-critical systems.
+    </p>
+
+    <!-- EDIT: category filter pills — keep data-filter values lowercase, no spaces -->
+    <div class="flex flex-wrap gap-3 mb-14" id="blogFilters">
+      <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-teal-300/15 text-teal-300">All</button>
+      <button data-filter="genai" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-800/60 text-slate-400 hover:bg-slate-800">GenAI &amp; AI Engineering</button>
+      <button data-filter="platform" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-800/60 text-slate-400 hover:bg-slate-800">Platform Modernization</button>
+      <button data-filter="leadership" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-800/60 text-slate-400 hover:bg-slate-800">Leadership &amp; Delivery</button>
+      <button data-filter="career" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-800/60 text-slate-400 hover:bg-slate-800">Career Reflections</button>
+    </div>
+
+    <!-- Posts are fetched from posts/posts-index.json and rendered by the script at
+         the bottom of this file — see the instructions comment near the top. -->
+    <div id="postsGrid" class="grid sm:grid-cols-2 gap-6"></div>
+
+    <!-- Empty state — shown automatically if posts-index.json has no entries, or fails to load -->
+    <div id="emptyState" class="rounded-xl p-14 text-center hidden">
+      <p class="text-slate-300 font-medium">No posts yet. Check back soon.</p>
+      <p class="mt-2 text-sm text-slate-500 max-w-sm mx-auto">
+        I'm working on my first article. In the meantime, see the
+        <a href="index.html#experience" class="text-teal-300 hover:underline">career timeline</a>
+        for the work this blog will be built on.
+      </p>
+    </div>
+  </main>
+
+  <footer class="relative text-center text-xs text-slate-600 pb-12">
+    <p>Designed &amp; built by Sandeep Midde.</p>
+  </footer>
+
+  <script>
+    // Cursor-following glow — purely decorative, smoothly trails the mouse
+    const cursorGlow = document.getElementById('cursorGlow');
+    const glowRadius = 650; // half of #cursorGlow's 1300px width/height
+    let targetX = -9999, targetY = -9999, glowX = -9999, glowY = -9999;
+
+    window.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+    });
+
+    function animateGlow() {
+      glowX += (targetX - glowX) * 0.12;
+      glowY += (targetY - glowY) * 0.12;
+      cursorGlow.style.transform = `translate(${glowX - glowRadius}px, ${glowY - glowRadius}px)`;
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+
+    // Blog index — fetched fresh from posts/posts-index.json on every page load,
+    // so this list always reflects whatever has been pushed to GitHub, with no
+    // separate "rebuild the list" step beyond adding the post itself.
+    const postsGrid = document.getElementById('postsGrid');
+    const emptyState = document.getElementById('emptyState');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    let allPosts = [];
+
+    function formatDate(iso) {
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function renderPosts(posts) {
+      postsGrid.innerHTML = posts.map(post => `
+        <article data-post data-category="${post.category}" class="job-card rounded-xl p-6">
+          <a href="post.html?slug=${encodeURIComponent(post.slug)}" class="block">
+            <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+              <span class="tag-chip">${post.categoryLabel}</span>
+              <span>·</span>
+              <time datetime="${post.date}">${formatDate(post.date)}</time>
+              <span>·</span>
+              <span>${post.readTime}</span>
+            </div>
+            <h2 class="job-title text-lg font-semibold text-slate-100 mb-2 transition-colors duration-300">${post.title}</h2>
+            <p class="text-sm text-slate-400 leading-relaxed">${post.excerpt || ''}</p>
+          </a>
+          <div class="flex flex-wrap gap-2 mt-5">
+            ${(post.tags || []).map(t => `<span class="tag-chip">${t}</span>`).join('')}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function applyFilter(filter) {
+      const visiblePosts = filter === 'all' ? allPosts : allPosts.filter(p => p.category === filter);
+      renderPosts(visiblePosts);
+      emptyState.classList.toggle('hidden', visiblePosts.length !== 0);
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-teal-300/15', 'text-teal-300');
+          b.classList.add('bg-slate-800/60', 'text-slate-400');
+        });
+        btn.classList.add('bg-teal-300/15', 'text-teal-300');
+        btn.classList.remove('bg-slate-800/60', 'text-slate-400');
+        applyFilter(btn.getAttribute('data-filter'));
+      });
+    });
+
+    fetch('posts/posts-index.json')
+      .then(res => res.json())
+      .then(posts => {
+        allPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
+        applyFilter('all');
+      })
+      .catch(() => {
+        allPosts = [];
+        postsGrid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+      });
+  </script>
+</body>
+</html>

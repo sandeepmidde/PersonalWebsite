@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title id="pageTitle">Writing — Sandeep Midde</title>
+<meta name="description" content="Articles by Sandeep Midde on platform modernization, delivery leadership, and applied AI." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-size='26' font-weight='700' fill='%232dd4bf' text-anchor='middle'%3ESM%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+        typography: () => ({
+          invert: {
+            css: {
+              '--tw-prose-body': '#cbd5e1',
+              '--tw-prose-headings': '#f1f5f9',
+              '--tw-prose-links': '#2dd4bf',
+              '--tw-prose-bold': '#f1f5f9',
+              '--tw-prose-quotes': '#94a3b8',
+              '--tw-prose-code': '#5eead4',
+            },
+          },
+        }),
+      },
+    },
+  };
+</script>
+
+<style>
+  body { font-family: 'Manrope', sans-serif; letter-spacing: 0.01em; word-spacing: 0.1em; }
+  ::selection { background-color: rgba(45, 212, 191, 0.25); color: #99f6e4; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #020617; }
+  ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+  .bg-glow {
+    background:
+      radial-gradient(600px circle at 15% 10%, rgba(45,212,191,0.10), transparent 60%),
+      radial-gradient(500px circle at 85% 20%, rgba(56,189,248,0.08), transparent 60%);
+  }
+  #cursorGlow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1300px;
+    height: 1300px;
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.09), rgba(226,255,250,0.05) 35%, transparent 70%);
+    filter: blur(50px);
+    transform: translate(-9999px, -9999px);
+    will-change: transform;
+  }
+  .tag-chip {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    border-radius: 9999px;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: none;
+    color: #5eead4;
+    background-color: rgba(45, 212, 191, 0.08);
+    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
+    cursor: default;
+  }
+  .tag-chip:hover {
+    color: #99f6e4;
+    background-color: rgba(45, 212, 191, 0.18);
+    box-shadow: 0 0 16px rgba(45, 212, 191, 0.25);
+  }
+  #likeBtn {
+    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
+  }
+  #likeBtn.liked {
+    color: #5eead4;
+    background-color: rgba(45, 212, 191, 0.12);
+  }
+</style>
+</head>
+
+<body class="bg-slate-950 text-slate-400 antialiased">
+
+  <div class="fixed inset-0 bg-glow pointer-events-none"></div>
+  <div id="cursorGlow"></div>
+
+  <header class="sticky top-0 z-40 flex items-center justify-between px-6 sm:px-12 lg:px-20 py-5 bg-slate-950/90 backdrop-blur border-b border-slate-800/80">
+    <a href="index.html" class="text-slate-100 font-bold text-lg tracking-tight">Sandeep<span class="text-teal-300">.</span></a>
+    <nav class="flex items-center gap-6 text-sm font-medium">
+      <a href="index.html#home" class="hidden sm:inline text-slate-400 hover:text-teal-300">Home</a>
+      <a href="index.html#experience" class="hidden sm:inline text-slate-400 hover:text-teal-300">Experience</a>
+      <a href="index.html#stack" class="hidden sm:inline text-slate-400 hover:text-teal-300">Tech Stack</a>
+      <a href="blog.html" class="text-teal-300">Blog</a>
+      <a href="index.html#contact" class="text-slate-400 hover:text-teal-300">Contact</a>
+    </nav>
+  </header>
+
+  <main class="relative z-10 max-w-3xl mx-auto px-6 sm:px-12 lg:px-20 py-20">
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mb-10">
+      <a href="blog.html" class="inline-flex items-center gap-2 text-slate-500 hover:text-teal-300 text-sm font-medium transition-colors">
+        <span aria-hidden="true">&larr;</span> Back to Blog
+      </a>
+      <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 hover:text-teal-300 text-sm font-medium transition-colors">
+        <span aria-hidden="true">&larr;</span> Back to Home
+      </a>
+    </div>
+
+    <!-- Loading / not-found state -->
+    <div id="loadingState" class="rounded-xl p-14 text-center">
+      <p class="text-slate-300 font-medium">Loading…</p>
+    </div>
+
+    <!-- Populated once posts/<slug>.json loads -->
+    <article id="postContent" class="hidden">
+      <div class="flex items-center gap-3 text-xs text-slate-500 mb-4">
+        <span id="postCategory" class="tag-chip"></span>
+        <span>·</span>
+        <time id="postDate"></time>
+        <span>·</span>
+        <span id="postReadTime"></span>
+      </div>
+      <h1 id="postTitle" class="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight mb-8"></h1>
+
+      <div id="postBody" class="prose prose-invert prose-sm sm:prose-base max-w-none text-slate-400 mb-6"></div>
+
+      <div id="postTags" class="flex flex-wrap gap-2 mb-10"></div>
+
+      <!-- View / like row -->
+      <div class="flex items-center gap-4 border-y border-slate-800/80 py-4 mb-14 text-sm text-slate-500">
+        <button id="likeBtn" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/60 hover:bg-slate-800 font-medium">
+          <span aria-hidden="true">&#9825;</span>
+          <span id="likeCount">0</span>
+        </button>
+        <span class="flex items-center gap-2">
+          <span aria-hidden="true">&#128065;</span>
+          <span id="viewCount">0</span> views
+        </span>
+      </div>
+
+      <!-- Comments — this post cannot be reshared via built-in share buttons by design;
+           comments are handled by giscus and stored as GitHub Discussions on this repo. -->
+      <div id="giscusContainer"></div>
+    </article>
+  </main>
+
+  <footer class="relative text-center text-xs text-slate-600 pb-12">
+    <p>Designed &amp; built by Sandeep Midde.</p>
+  </footer>
+
+  <script>
+    // Cursor-following glow — purely decorative
+    const cursorGlow = document.getElementById('cursorGlow');
+    const glowRadius = 650;
+    let targetX = -9999, targetY = -9999, glowX = -9999, glowY = -9999;
+    window.addEventListener('mousemove', (e) => { targetX = e.clientX; targetY = e.clientY; });
+    function animateGlow() {
+      glowX += (targetX - glowX) * 0.12;
+      glowY += (targetY - glowY) * 0.12;
+      cursorGlow.style.transform = `translate(${glowX - glowRadius}px, ${glowY - glowRadius}px)`;
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+
+    // ---- Post rendering ----
+    const slug = new URLSearchParams(location.search).get('slug');
+    const loadingState = document.getElementById('loadingState');
+    const postContent = document.getElementById('postContent');
+
+    function formatDate(iso) {
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    }
+
+    function showNotFound() {
+      loadingState.innerHTML = `
+        <p class="text-slate-300 font-medium">Post not found.</p>
+        <p class="mt-2 text-sm text-slate-500">
+          <a href="blog.html" class="text-teal-300 hover:underline">Back to the blog</a>
+        </p>`;
+    }
+
+    if (!slug) {
+      showNotFound();
+    } else {
+      fetch(`posts/${encodeURIComponent(slug)}.json`)
+        .then(res => { if (!res.ok) throw new Error('not found'); return res.json(); })
+        .then(post => {
+          document.title = `${post.title} — Sandeep Midde`;
+          document.getElementById('postCategory').textContent = post.categoryLabel;
+          document.getElementById('postDate').setAttribute('datetime', post.date);
+          document.getElementById('postDate').textContent = formatDate(post.date);
+          document.getElementById('postReadTime').textContent = post.readTime;
+          document.getElementById('postTitle').textContent = post.title;
+          document.getElementById('postBody').innerHTML = (post.body || []).join('');
+          document.getElementById('postTags').innerHTML = (post.tags || [])
+            .map(t => `<span class="tag-chip">${t}</span>`).join('');
+
+          loadingState.classList.add('hidden');
+          postContent.classList.remove('hidden');
+
+          loadStats(post.slug);
+          loadGiscus(post.slug);
+        })
+        .catch(showNotFound);
+    }
+
+    // ---- View + like counters (Cloudflare Pages Functions + Workers KV) ----
+    async function loadStats(slug) {
+      const viewCountEl = document.getElementById('viewCount');
+      const likeCountEl = document.getElementById('likeCount');
+      const likeBtn = document.getElementById('likeBtn');
+
+      // View: increment at most once per 12h per browser, to avoid refresh-spam.
+      const viewedKey = `viewed:${slug}`;
+      const lastViewed = Number(localStorage.getItem(viewedKey)) || 0;
+      const shouldCountView = Date.now() - lastViewed > 12 * 60 * 60 * 1000;
+      try {
+        const res = await fetch(shouldCountView ? '/api/view' : `/api/view?slug=${encodeURIComponent(slug)}`, shouldCountView ? {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug }),
+        } : undefined);
+        const data = await res.json();
+        viewCountEl.textContent = data.views ?? 0;
+        if (shouldCountView) localStorage.setItem(viewedKey, String(Date.now()));
+      } catch (e) { /* counters are non-essential; fail silently */ }
+
+      // Like: one like per browser, tracked via localStorage.
+      const likedKey = `liked:${slug}`;
+      const alreadyLiked = localStorage.getItem(likedKey) === '1';
+      try {
+        const res = await fetch(`/api/like?slug=${encodeURIComponent(slug)}`);
+        const data = await res.json();
+        likeCountEl.textContent = data.likes ?? 0;
+      } catch (e) {}
+      if (alreadyLiked) {
+        likeBtn.classList.add('liked');
+        likeBtn.disabled = true;
+      }
+      likeBtn.addEventListener('click', async () => {
+        if (localStorage.getItem(likedKey) === '1') return;
+        try {
+          const res = await fetch('/api/like', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ slug }),
+          });
+          const data = await res.json();
+          likeCountEl.textContent = data.likes ?? 0;
+          localStorage.setItem(likedKey, '1');
+          likeBtn.classList.add('liked');
+          likeBtn.disabled = true;
+        } catch (e) {}
+      });
+    }
+
+    // ---- Comments (giscus, backed by GitHub Discussions on this repo) ----
+    // TODO before going live: replace the four data-* values below with the
+    // ones giscus.app gives you after you enable Discussions on the GitHub
+    // repo and install the giscus app on it.
+    function loadGiscus(slug) {
+      const script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.setAttribute('data-repo', 'TODO_GITHUB_USERNAME/TODO_REPO_NAME');
+      script.setAttribute('data-repo-id', 'TODO_REPO_ID');
+      script.setAttribute('data-category', 'Comments');
+      script.setAttribute('data-category-id', 'TODO_CATEGORY_ID');
+      script.setAttribute('data-mapping', 'specific');
+      script.setAttribute('data-term', slug);
+      script.setAttribute('data-strict', '0');
+      script.setAttribute('data-reactions-enabled', '1');
+      script.setAttribute('data-emit-metadata', '0');
+      script.setAttribute('data-input-position', 'bottom');
+      script.setAttribute('data-theme', 'dark_dimmed');
+      script.setAttribute('data-lang', 'en');
+      script.crossOrigin = 'anonymous';
+      script.async = true;
+      document.getElementById('giscusContainer').appendChild(script);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Personal/sensitive files that should never be pushed to GitHub
+Resume/Car.pdf
+Resume/TargetResume.pdf
+
+# Design-feedback screenshots, not a site asset
+ref/
+
+# OS junk files
+.DS_Store
+Thumbs.db
+desktop.ini
