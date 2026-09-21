@@ -107,12 +107,25 @@
   To add a new post:
   1. Copy /posts/welcome-to-my-blog.json to /posts/your-slug.json and edit
      title, date, category, categoryLabel, readTime, tags, and body
-     (body is an array of HTML paragraph strings, e.g. "<p>...</p>").
+     (body is an array of HTML fragment strings, e.g. "<p>...</p>").
   2. Add one entry for it to /posts/posts-index.json (same fields, minus
      "body" — that one stays in the per-post file only).
   3. Commit and push to GitHub. Cloudflare Pages auto-deploys on push, and
      this page always fetches the current posts-index.json on load — so the
      list here updates automatically, no other edits needed.
+
+  To add IMAGES inside a post:
+  1. Put the image file in /posts/images/your-slug/whatever.jpg — one
+     subfolder per post keeps things tidy as the blog grows. Compress/resize
+     before uploading (~1600px max width is plenty) since there's no
+     automatic image optimization.
+  2. Drop an <img> tag into the body array at the point you want it to
+     appear, e.g.:
+       "<img src=\"posts/images/your-slug/whatever.jpg\" alt=\"describe it\" />"
+  3. Optional caption — wrap it in a figure instead:
+       "<figure><img src=\"...\" alt=\"...\" /><figcaption>Caption text</figcaption></figure>"
+  Images are styled automatically (rounded corners, spacing) by the CSS in
+  post.html — no extra classes needed.
 
   Category filter pills below use: genai, platform, leadership, career
   (rename freely, just keep a pill's data-filter matching a post's category).
