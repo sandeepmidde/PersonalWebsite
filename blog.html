@@ -100,35 +100,29 @@
   ============================================================================
   HOW TO ADD A NEW BLOG POST — read this first!
   ============================================================================
-  This page no longer contains post HTML directly — it reads everything from
-  /posts/posts-index.json and renders it. Each post's full content lives in
-  its own /posts/<slug>.json file, read by post.html.
+  Writing a post is just: create a folder, drop a text file (with images
+  alongside it if you want them), push to GitHub. Everything on this page —
+  the list below, the filter pills, tag groupings — is generated
+  automatically from that at deploy time. You never touch /posts/ by hand;
+  it's build output (see scripts/build-posts.mjs).
 
   To add a new post:
-  1. Copy /posts/welcome-to-my-blog.json to /posts/your-slug.json and edit
-     title, date, category, categoryLabel, readTime, tags, and body
-     (body is an array of HTML fragment strings, e.g. "<p>...</p>").
-  2. Add one entry for it to /posts/posts-index.json (same fields, minus
-     "body" — that one stays in the per-post file only).
-  3. Commit and push to GitHub. Cloudflare Pages auto-deploys on push, and
-     this page always fetches the current posts-index.json on load — so the
-     list here updates automatically, no other edits needed.
+  1. Create /blog/your-post-slug/ (the folder name becomes the URL slug).
+  2. Put your writing in that folder as either content.md or content.docx.
+     - First line: a heading, e.g. "# My Post Title" (Markdown) or a
+       Heading-1 styled line (Word) — becomes the post title.
+     - Optional: a line reading "Tags: AI, Project Management" anywhere in
+       the first few lines — becomes the topics this post is grouped under.
+       Skip it if you don't want the post grouped anywhere yet.
+     - Just write normally after that. Images: reference them by filename
+       (Markdown: "![caption](photo.jpg)") or embed them directly (Word) —
+       either way, drop the actual image file in the same folder.
+  3. Commit and push. Cloudflare's build step (npm run build) regenerates
+     everything else — title, date (from your commit date), read time,
+     excerpt — with no manual editing.
 
-  To add IMAGES inside a post:
-  1. Put the image file in /posts/images/your-slug/whatever.jpg — one
-     subfolder per post keeps things tidy as the blog grows. Compress/resize
-     before uploading (~1600px max width is plenty) since there's no
-     automatic image optimization.
-  2. Drop an <img> tag into the body array at the point you want it to
-     appear, e.g.:
-       "<img src=\"posts/images/your-slug/whatever.jpg\" alt=\"describe it\" />"
-  3. Optional caption — wrap it in a figure instead:
-       "<figure><img src=\"...\" alt=\"...\" /><figcaption>Caption text</figcaption></figure>"
-  Images are styled automatically (rounded corners, spacing) by the CSS in
-  post.html — no extra classes needed.
-
-  Category filter pills below use: genai, platform, leadership, career
-  (rename freely, just keep a pill's data-filter matching a post's category).
+  Filter pills above are generated from the union of every post's tags, so
+  a new tag just shows up once you use it — nothing to edit here either.
   ============================================================================
 -->
 
@@ -161,14 +155,8 @@
       drawn from years spent building and running mission-critical systems.
     </p>
 
-    <!-- EDIT: category filter pills — keep data-filter values lowercase, no spaces -->
-    <div class="flex flex-wrap gap-3 mb-14" id="blogFilters">
-      <button data-filter="all" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-teal-300/15 text-teal-300">All</button>
-      <button data-filter="genai" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-800/60 text-slate-400 hover:bg-slate-800">GenAI &amp; AI Engineering</button>
-      <button data-filter="platform" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-800/60 text-slate-400 hover:bg-slate-800">Platform Modernization</button>
-      <button data-filter="leadership" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-800/60 text-slate-400 hover:bg-slate-800">Leadership &amp; Delivery</button>
-      <button data-filter="career" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide bg-slate-800/60 text-slate-400 hover:bg-slate-800">Career Reflections</button>
-    </div>
+    <!-- Filter pills are generated in JS from the union of every post's tags -->
+    <div class="flex flex-wrap gap-3 mb-14" id="blogFilters"></div>
 
     <!-- Posts are fetched from posts/posts-index.json and rendered by the script at
          the bottom of this file — see the instructions comment near the top. -->
@@ -213,7 +201,7 @@
     // separate "rebuild the list" step beyond adding the post itself.
     const postsGrid = document.getElementById('postsGrid');
     const emptyState = document.getElementById('emptyState');
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    const filtersContainer = document.getElementById('blogFilters');
     let allPosts = [];
 
     function formatDate(iso) {
@@ -223,11 +211,9 @@
 
     function renderPosts(posts) {
       postsGrid.innerHTML = posts.map(post => `
-        <article data-post data-category="${post.category}" class="job-card rounded-xl p-6">
+        <article data-post class="job-card rounded-xl p-6">
           <a href="post.html?slug=${encodeURIComponent(post.slug)}" class="block">
             <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
-              <span class="tag-chip">${post.categoryLabel}</span>
-              <span>·</span>
               <time datetime="${post.date}">${formatDate(post.date)}</time>
               <span>·</span>
               <span>${post.readTime}</span>
@@ -243,27 +229,42 @@
     }
 
     function applyFilter(filter) {
-      const visiblePosts = filter === 'all' ? allPosts : allPosts.filter(p => p.category === filter);
+      const visiblePosts = filter === 'all' ? allPosts : allPosts.filter(p => (p.tags || []).includes(filter));
       renderPosts(visiblePosts);
       emptyState.classList.toggle('hidden', visiblePosts.length !== 0);
     }
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => {
-          b.classList.remove('bg-teal-300/15', 'text-teal-300');
-          b.classList.add('bg-slate-800/60', 'text-slate-400');
-        });
-        btn.classList.add('bg-teal-300/15', 'text-teal-300');
-        btn.classList.remove('bg-slate-800/60', 'text-slate-400');
-        applyFilter(btn.getAttribute('data-filter'));
+    function setActiveButton(activeBtn) {
+      filtersContainer.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('bg-teal-300/15', 'text-teal-300');
+        b.classList.add('bg-slate-800/60', 'text-slate-400');
       });
-    });
+      activeBtn.classList.add('bg-teal-300/15', 'text-teal-300');
+      activeBtn.classList.remove('bg-slate-800/60', 'text-slate-400');
+    }
+
+    function renderFilters(posts) {
+      const tags = [...new Set(posts.flatMap(p => p.tags || []))].sort();
+      const pills = ['all', ...tags];
+      filtersContainer.innerHTML = pills.map(tag => `
+        <button data-filter="${tag}" class="filter-btn px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide ${tag === 'all' ? 'bg-teal-300/15 text-teal-300' : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800'}">
+          ${tag === 'all' ? 'All' : tag}
+        </button>
+      `).join('');
+
+      filtersContainer.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActiveButton(btn);
+          applyFilter(btn.getAttribute('data-filter'));
+        });
+      });
+    }
 
     fetch('posts/posts-index.json')
       .then(res => res.json())
       .then(posts => {
         allPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
+        renderFilters(allPosts);
         applyFilter('all');
       })
       .catch(() => {
