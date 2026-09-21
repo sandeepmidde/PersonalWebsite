@@ -263,16 +263,13 @@
     }
 
     // ---- Comments (giscus, backed by GitHub Discussions on this repo) ----
-    // TODO before going live: replace the four data-* values below with the
-    // ones giscus.app gives you after you enable Discussions on the GitHub
-    // repo and install the giscus app on it.
     function loadGiscus(slug) {
       const script = document.createElement('script');
       script.src = 'https://giscus.app/client.js';
-      script.setAttribute('data-repo', 'TODO_GITHUB_USERNAME/TODO_REPO_NAME');
-      script.setAttribute('data-repo-id', 'TODO_REPO_ID');
-      script.setAttribute('data-category', 'Comments');
-      script.setAttribute('data-category-id', 'TODO_CATEGORY_ID');
+      script.setAttribute('data-repo', 'sandeepmidde/personalwebsite');
+      script.setAttribute('data-repo-id', 'R_kgDOUjW7gw');
+      script.setAttribute('data-category', 'Announcements');
+      script.setAttribute('data-category-id', 'DIC_kwDOUjW7g84DGElg');
       script.setAttribute('data-mapping', 'specific');
       script.setAttribute('data-term', slug);
       script.setAttribute('data-strict', '0');
