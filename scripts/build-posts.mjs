@@ -74,7 +74,10 @@ const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 // Either can be omitted — tags default to none, date falls back to the file's
 // git commit history (see gitFirstCommitDate).
 function extractMetaLines(rawText) {
-  const lines = rawText.split('\n');
+  // Split on any line-ending style (CRLF from Windows/Word/GitHub's web editor,
+  // or bare LF) — otherwise a trailing \r survives into each line and breaks
+  // the $ anchors below, since "." never matches \r.
+  const lines = rawText.split(/\r\n|\r|\n/);
   let tags = [];
   let date = null;
   const drop = new Set();
