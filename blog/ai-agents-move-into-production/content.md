@@ -1,5 +1,6 @@
 # AI Agents Move Into Production
 Tags: AI
+
 Date: 2026-08-08
 
 This month's AI news made one thing clear: agents are leaving the demo stage and landing inside real workflows. Google shipped its Agent Development Kit for Kotlin with full feature parity to the Python version, adding on-device AI support for Android - a sign that agent tooling is being treated as first-class infrastructure, not a research toy. Meta, meanwhile, expanded its Muse AI agent to macOS, letting it interact directly with a user's files and applications rather than staying sandboxed inside a chat window.
