@@ -14,6 +14,7 @@ desktop.ini
 # on every Cloudflare Pages deploy. Source of truth is /blog, not this.
 /posts/*.json
 /posts/images/
+/posts/*/
 
 # Node dependencies (Cloudflare installs these fresh at build time)
 node_modules/

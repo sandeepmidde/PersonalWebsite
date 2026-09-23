@@ -118,6 +118,10 @@
        the first few lines — use this for backdating a post you're publishing
        later than you wrote it. Skip it and the date defaults to whenever you
        actually push the file.
+     - Optional: a line reading "Summary: one sentence" in the first few lines
+       - shown under the title when the post is shared on LinkedIn etc.
+     - Optional: a cover.png (1200x627) in the folder - the image shown in
+       link previews. Without one, the first PNG/JPG in the post is used.
      - Just write normally after that. Images: reference them by filename
        (Markdown: "![caption](photo.jpg)") or embed them directly (Word) —
        either way, drop the actual image file in the same folder.
@@ -215,7 +219,7 @@
     function renderPosts(posts) {
       postsGrid.innerHTML = posts.map(post => `
         <article data-post class="job-card rounded-xl p-6">
-          <a href="post.html?slug=${encodeURIComponent(post.slug)}" class="block">
+          <a href="posts/${encodeURIComponent(post.slug)}/" class="block">
             <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
               <time datetime="${post.date}">${formatDate(post.date)}</time>
               <span>·</span>

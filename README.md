@@ -8,8 +8,9 @@ like counters.
 - **Repo:** https://github.com/sandeepmidde/PersonalWebsite
 - **Hosting:** Cloudflare Pages. Every push to `main` builds and deploys.
 - **Status (as of 2026-09-23):** Live. The portfolio, blog index, post pages,
-  counters, comments and analytics all work. The Share button on post pages is
-  written but not committed yet (see [Current state](#5-current-state)).
+  counters, comments, analytics, the native Share button and link previews
+  for LinkedIn / WhatsApp / X all work. A custom domain is still to be bought
+  (see [Deployment](#9-deployment-and-configuration)).
 
 ---
 
@@ -69,7 +70,8 @@ in `/posts` is generated and gitignored.
 .
 ├── index.html                 # Portfolio / landing page (single page, anchor-nav)
 ├── blog.html                  # Blog index: tag filter pills + post cards
-├── post.html                  # Shared template for every post (?slug=...)
+├── post.html                  # Template for every post (copied per post by the build)
+├── social-card.png            # Default link-preview image (1200×627)
 │
 ├── blog/                      # ✍️ SOURCE OF TRUTH for posts (hand-edited)
 │   ├── welcome-to-my-blog/content.md
@@ -79,7 +81,8 @@ in `/posts` is generated and gitignored.
 ├── posts/                     # ⚙️ BUILD OUTPUT, gitignored, never edit
 │   ├── posts-index.json       # List of all posts (no bodies), newest first
 │   ├── <slug>.json            # One file per post, with rendered HTML body
-│   └── images/<slug>/...      # Images copied or extracted from the sources
+│   ├── images/<slug>/...      # Images copied or extracted from the sources
+│   └── <slug>/index.html      # Shareable page per post (link-preview tags built in)
 │
 ├── scripts/build-posts.mjs    # Build step: blog/ → posts/
 ├── functions/api/
@@ -137,13 +140,18 @@ in `/posts` is generated and gitignored.
 
    ```markdown
    # The Post Title            ← first H1 becomes the title (then removed from the body)
-   Tags: AI, Project Management  ← optional, within the first ~6 lines
-   Date: 2026-08-08              ← optional, YYYY-MM-DD, within the first ~6 lines
+   Tags: AI, Project Management  ← optional, within the first few lines
+   Date: 2026-08-08              ← optional, YYYY-MM-DD
+   Summary: One-line description ← optional, shown in LinkedIn/WhatsApp link previews
 
    Body text as normal Markdown…
 
    ![Alt text](diagram.png)      ← image file sits in the same folder
    ```
+
+   Optionally add a **`cover.png`** (1200×627) to the folder. It becomes the
+   link-preview image. Without one, the first PNG/JPG in the post is used, then
+   the site-wide `social-card.png`. SVGs can't be used, because LinkedIn won't show them.
 
    For Word files, use a *Heading 1* style for the title and put the
    `Tags:` / `Date:` lines in their own paragraphs. Paste images straight
@@ -163,12 +171,28 @@ Runs on every Cloudflare deploy through `npm run build`. For each folder in `/bl
 | `tags` | `Tags:` line, comma-separated. Otherwise `[]` |
 | `readTime` | Word count ÷ 200, minimum 1 minute |
 | `excerpt` | First ~160 characters of the plain text, cut at a word boundary, with `…` appended |
+| `summary` | `Summary:` line, if present. Used for link previews |
 | `body` | Rendered HTML (as a one-element array) |
 | images | Markdown: local `<img src>` copied to `posts/images/<slug>/`. Word: embedded images extracted as `img-N.<ext>` |
 
 It clears `/posts` first, writes `<slug>.json` for each post, then writes
 `posts-index.json` (every post without `body`, sorted newest first).
 Line-ending handling works with CRLF files from Windows and Word (fixed in `3d6a255`).
+
+**Shareable post pages.** For each post the build also writes
+`posts/<slug>/index.html`. This is a copy of `post.html` with the title,
+description and preview image built into its `<head>`, because LinkedIn,
+WhatsApp and X don't run JavaScript:
+
+- Preview title: `<short title> — by Sandeep Midde`. The short title is the
+  text before any `:` in the post title.
+- Preview description: the `Summary:` line, or the excerpt if there isn't one.
+- Preview image: `cover.*`, then the first raster image, then `social-card.png`.
+- The public URL comes from **`SITE_URL`** (an env var in Cloudflare Pages).
+  Until that's set, image URLs fall back to Cloudflare's own `CF_PAGES_URL`, and
+  no canonical or `og:url` tag is written.
+
+Post URLs are now `/posts/<slug>/`. Old `post.html?slug=…` links redirect there.
 
 ### 4.3 Runtime rendering
 - `blog.html` and `post.html` are static shells. All content comes from
@@ -213,7 +237,7 @@ Line-ending handling works with CRLF files from Windows and Word (fixed in `3d6a
 - Cloudflare Web Analytics
 - 3 posts published (1 is a placeholder "Welcome" post)
 
-### 🚧 Ready to commit (uncommitted in `post.html`)
+### ✅ Share button (live)
 - **Share button.** A single *Share* button in the like/views row.
   - On phones, and on desktop Safari, Edge and Chrome (Windows/macOS), it
     opens the device's **native share sheet** through the Web Share API
@@ -221,8 +245,7 @@ Line-ending handling works with CRLF files from Windows and Word (fixed in `3d6a
     Copy and more. On iPhone it also has Print.
   - Where that isn't supported (for example Firefox desktop), it copies the
     link to the clipboard and shows "Link copied" for 2 s.
-  - Link previews in WhatsApp and LinkedIn will stay generic until item
-    **R1** in the roadmap is done.
+  - Link previews come from the generated `/posts/<slug>/` pages (section 4.2).
 
 ---
 
@@ -230,7 +253,7 @@ Line-ending handling works with CRLF files from Windows and Word (fixed in `3d6a
 
 | # | Issue | Impact | Notes |
 |---|---|---|---|
-| K1 | **Post pages are client-rendered.** Title, description and content only exist after JavaScript runs | SEO is weak for posts, and **shared links show the generic "Writing — Sandeep Midde" title with no image** | Biggest gap now that sharing is being added. See R1 |
+| ~~K1~~ | ✅ Fixed: each post has its own page with link-preview tags built in (section 4.2) | | |
 | K2 | No Open Graph / Twitter meta tags, canonical URL, `sitemap.xml`, `robots.txt` or RSS feed | Poor discoverability and link previews | See R1, R2 |
 | K3 | Tailwind **Play CDN** (`cdn.tailwindcss.com`) in production | Tailwind says the CDN isn't meant for production. It compiles CSS in the browser, which adds weight and a flash of unstyled content | See R5 |
 | K4 | Counters can be inflated. Any client can `POST` repeatedly; dedupe is `localStorage` only | Numbers can be gamed | Low stakes. Add per-IP throttling if it matters (R8) |
@@ -252,19 +275,13 @@ Line-ending handling works with CRLF files from Windows and Word (fixed in `3d6a
 Ordered by value for effort. Items marked ⭐ are recommended next.
 
 ### Phase 1: Finish and polish (short)
-- ⭐ **R0. Commit the share button** once it's been tested on a phone (see section 5).
 - ⭐ **K6.** Fix the mobile column order on `post.html`.
 - **K10, K12, K13.** GitHub link, `404.html`, and the placeholder post.
 - **K14.** Build warnings for invalid metadata.
 
 ### Phase 2: Discoverability (high value)
-- ⭐ **R1. Pre-render post pages at build time.** Change `build-posts.mjs`
-  so it also writes a static `blog/<slug>/index.html` (or `posts/<slug>.html`)
-  for each post. Each page gets the title, meta description, `og:title`,
-  `og:description`, `og:image` (first image in the post, or a default card),
-  `og:url`, a canonical link, `twitter:card`, and ideally the article HTML
-  itself. Keep `post.html?slug=` working with a redirect to the pretty
-  URL. This fixes K1 and K2, and makes LinkedIn / X previews look right.
+- ✅ **R1. Pre-render post pages.** Done: `/posts/<slug>/` pages with link-preview tags, cover images and a `Summary:` line.
+  Still to do: fill the article HTML into those pages for SEO, and set `SITE_URL` once the domain is live.
 - **R2. `sitemap.xml`, `robots.txt`, `rss.xml`/`feed.json`,** generated in
   the same build step from the post index.
 - **R3. "Latest posts" on the home page.** Replace the static teaser with the

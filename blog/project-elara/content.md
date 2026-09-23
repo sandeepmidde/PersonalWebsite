@@ -1,6 +1,7 @@
 # Project Elara: A Personal Tutor That Learns From Everything You Save
 Tags: Projects, AI, Learning
 Date: 2026-09-23
+Summary: An AI tutor that reads everything you save to Google Drive and teaches you from it, with no manual tagging or filing.
 
 Elara is an AI-powered personal learning workspace, best described as NotebookLM combined with a personal tutor. You drop PDFs, screenshots, links, notes, resumes and job descriptions into your own Google Drive. Elara reads them, organises them, and teaches you from them. You never file, tag or categorise anything.
 

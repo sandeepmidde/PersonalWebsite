@@ -223,7 +223,13 @@
     animateGlow();
 
     // ---- Post rendering ----
-    const slug = new URLSearchParams(location.search).get('slug');
+    // Generated pages at /posts/<slug>/ set window.POST_SLUG (see scripts/build-posts.mjs).
+    // Old post.html?slug=... links are forwarded there, so shared links get a proper preview.
+    const querySlug = new URLSearchParams(location.search).get('slug');
+    if (!window.POST_SLUG && querySlug) {
+      location.replace(`posts/${encodeURIComponent(querySlug)}/`);
+    }
+    const slug = window.POST_SLUG || querySlug;
     const loadingState = document.getElementById('loadingState');
     const postContent = document.getElementById('postContent');
 
@@ -293,7 +299,7 @@
       }
 
       container.innerHTML = others.map(p => `
-        <a href="post.html?slug=${encodeURIComponent(p.slug)}" class="related-card rounded-lg p-3 block">
+        <a href="posts/${encodeURIComponent(p.slug)}/" class="related-card rounded-lg p-3 block">
           <div class="text-[11px] text-slate-500 mb-1">${formatDate(p.date)}</div>
           <div class="related-title text-sm font-semibold text-slate-200 transition-colors duration-300">${p.title}</div>
         </a>
@@ -322,7 +328,7 @@
         const items = groups[name].sort((a, b) => b.date.localeCompare(a.date));
         const isCurrentTopic = currentTags.includes(name);
         const links = items.map(p => `
-          <a href="post.html?slug=${encodeURIComponent(p.slug)}"
+          <a href="posts/${encodeURIComponent(p.slug)}/"
              class="topic-link block py-1.5 pl-1 text-sm text-slate-400 hover:text-teal-300 transition-colors ${p.slug === currentSlug ? 'active' : ''}">
             ${p.title}
           </a>

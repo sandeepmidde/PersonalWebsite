@@ -1,6 +1,7 @@
 # Observer Prime: An AI Workbench Where the Creator Stays the Editor
 Tags: Projects, AI, Content Creation
 Date: 2026-09-23
+Summary: A local-first AI workbench that turns one topic into a complete YouTube video plan, with the creator approving every step.
 
 Observer Prime is a local-first web app that helps a YouTube creator turn a single topic into a complete video plan: title, story, hook, key points, full script, visual plan and draft captions. The AI drafts everything; the creator decides everything. Here's what we built, how we built it, and why we threw away the first version.
 
