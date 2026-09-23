@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 240" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#E3B23C"/>
+    </marker>
+  </defs>
+  <rect width="880" height="240" rx="16" fill="#12121A"/>
+  <text x="30" y="40" fill="#E3B23C" font-size="18" font-weight="700">What happens when you ask Krishna a question</text>
+
+  <g text-anchor="middle">
+    <g>
+      <rect x="30" y="70" width="150" height="135" rx="12" fill="#1B1C26" stroke="#E3B23C" stroke-opacity="0.5"/>
+      <circle cx="105" cy="96" r="14" fill="#E3B23C"/><text x="105" y="101" fill="#12121A" font-size="14" font-weight="700">1</text>
+      <text x="105" y="140" fill="#F4F0E6" font-size="16" font-weight="700">Ask</text>
+      <text x="105" y="163" fill="#A6A2B0" font-size="12.5">a real question,</text>
+      <text x="105" y="181" fill="#A6A2B0" font-size="12.5">in plain words</text>
+    </g>
+    <g>
+      <rect x="202" y="70" width="150" height="135" rx="12" fill="#1B1C26" stroke="#E3B23C" stroke-opacity="0.5"/>
+      <circle cx="277" cy="96" r="14" fill="#E3B23C"/><text x="277" y="101" fill="#12121A" font-size="14" font-weight="700">2</text>
+      <text x="277" y="140" fill="#F4F0E6" font-size="16" font-weight="700">Retrieve</text>
+      <text x="277" y="163" fill="#A6A2B0" font-size="12.5">the most relevant</text>
+      <text x="277" y="181" fill="#A6A2B0" font-size="12.5">Gita passages</text>
+    </g>
+    <g>
+      <rect x="374" y="70" width="150" height="135" rx="12" fill="#1B1C26" stroke="#E3B23C" stroke-opacity="0.5"/>
+      <circle cx="449" cy="96" r="14" fill="#E3B23C"/><text x="449" y="101" fill="#12121A" font-size="14" font-weight="700">3</text>
+      <text x="449" y="140" fill="#F4F0E6" font-size="16" font-weight="700">Sense</text>
+      <text x="449" y="163" fill="#A6A2B0" font-size="12.5">the emotional tone</text>
+      <text x="449" y="181" fill="#A6A2B0" font-size="12.5">(best effort)</text>
+    </g>
+    <g>
+      <rect x="546" y="70" width="150" height="135" rx="12" fill="#1B1C26" stroke="#E3B23C" stroke-opacity="0.5"/>
+      <circle cx="621" cy="96" r="14" fill="#E3B23C"/><text x="621" y="101" fill="#12121A" font-size="14" font-weight="700">4</text>
+      <text x="621" y="140" fill="#F4F0E6" font-size="16" font-weight="700">Answer</text>
+      <text x="621" y="163" fill="#A6A2B0" font-size="12.5">grounded in the text,</text>
+      <text x="621" y="181" fill="#A6A2B0" font-size="12.5">with citations</text>
+    </g>
+    <g>
+      <rect x="718" y="70" width="150" height="135" rx="12" fill="#1B1C26" stroke="#E3B23C" stroke-opacity="0.5"/>
+      <circle cx="793" cy="96" r="14" fill="#E3B23C"/><text x="793" y="101" fill="#12121A" font-size="14" font-weight="700">5</text>
+      <text x="793" y="140" fill="#F4F0E6" font-size="16" font-weight="700">Remember</text>
+      <text x="793" y="163" fill="#A6A2B0" font-size="12.5">a few lasting facts</text>
+      <text x="793" y="181" fill="#A6A2B0" font-size="12.5">about you (max 12)</text>
+    </g>
+  </g>
+  <g stroke="#E3B23C" stroke-width="2">
+    <line x1="182" y1="137" x2="199" y2="137" marker-end="url(#arr)"/>
+    <line x1="354" y1="137" x2="371" y2="137" marker-end="url(#arr)"/>
+    <line x1="526" y1="137" x2="543" y2="137" marker-end="url(#arr)"/>
+    <line x1="698" y1="137" x2="715" y2="137" marker-end="url(#arr)"/>
+  </g>
+</svg>

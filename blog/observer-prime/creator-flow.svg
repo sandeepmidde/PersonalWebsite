@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2dd4bf"/>
+    </marker>
+  </defs>
+  <rect width="880" height="360" rx="16" fill="#0f172a"/>
+  <text x="30" y="40" fill="#5eead4" font-size="18" font-weight="700">The creator's path: one decision at a time</text>
+
+  <!-- Row 1: option steps -->
+  <g text-anchor="middle" font-size="15" font-weight="700" fill="#e2e8f0">
+    <rect x="30" y="70" width="140" height="56" rx="10" fill="#1e293b" stroke="#2dd4bf" stroke-opacity="0.7"/><text x="100" y="103">Topic</text>
+    <rect x="200" y="70" width="140" height="56" rx="10" fill="#1e293b" stroke="#334155"/><text x="270" y="103">Title</text>
+    <rect x="370" y="70" width="140" height="56" rx="10" fill="#1e293b" stroke="#334155"/><text x="440" y="103">Story</text>
+    <rect x="540" y="70" width="140" height="56" rx="10" fill="#1e293b" stroke="#334155"/><text x="610" y="103">Hook</text>
+    <rect x="710" y="70" width="140" height="56" rx="10" fill="#1e293b" stroke="#334155"/><text x="780" y="103">Key Points</text>
+  </g>
+  <g stroke="#2dd4bf" stroke-width="2">
+    <line x1="172" y1="98" x2="197" y2="98" marker-end="url(#arr)"/>
+    <line x1="342" y1="98" x2="367" y2="98" marker-end="url(#arr)"/>
+    <line x1="512" y1="98" x2="537" y2="98" marker-end="url(#arr)"/>
+    <line x1="682" y1="98" x2="707" y2="98" marker-end="url(#arr)"/>
+  </g>
+  <text x="440" y="150" fill="#94a3b8" font-size="13" text-anchor="middle">At each step the AI drafts options and you pick one, ask for different ideas, or write your own</text>
+
+  <!-- Branch -->
+  <g stroke="#2dd4bf" stroke-width="2" fill="none">
+    <path d="M780,126 L780,170 L270,170 L270,193" marker-end="url(#arr)"/>
+    <path d="M540,170 L540,193" marker-end="url(#arr)"/>
+    <line x1="612" y1="224" x2="667" y2="224" marker-end="url(#arr)"/>
+  </g>
+
+  <!-- Row 2 -->
+  <g text-anchor="middle">
+    <rect x="150" y="196" width="240" height="56" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="270" y="221" fill="#e2e8f0" font-size="15" font-weight="700">Final Prompt</text>
+    <text x="270" y="241" fill="#94a3b8" font-size="12.5">ready to paste into any AI tool</text>
+
+    <rect x="470" y="196" width="140" height="56" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="540" y="221" fill="#e2e8f0" font-size="15" font-weight="700">Script</text>
+    <text x="540" y="241" fill="#94a3b8" font-size="12.5">approve · edit · rewrite</text>
+
+    <rect x="670" y="196" width="180" height="56" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="760" y="221" fill="#e2e8f0" font-size="15" font-weight="700">Visual Plan</text>
+    <text x="760" y="241" fill="#94a3b8" font-size="12.5">scene by scene</text>
+  </g>
+
+  <!-- Extras -->
+  <g font-size="12.5" fill="#94a3b8" text-anchor="middle">
+    <text x="270" y="276">Saved tool presets · edit · revert · copy</text>
+    <text x="540" y="276">Listen aloud · captions .srt / .vtt</text>
+  </g>
+
+  <rect x="30" y="298" width="820" height="40" rx="10" fill="#2dd4bf" fill-opacity="0.1"/>
+  <text x="440" y="323" fill="#5eead4" font-size="14" font-weight="600" text-anchor="middle">Export: the whole project as a Markdown pack with a pre-publish checklist</text>
+</svg>
