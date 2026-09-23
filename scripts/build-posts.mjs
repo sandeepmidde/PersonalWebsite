@@ -38,11 +38,10 @@ const IMAGES_DIR = path.join(POSTS_DIR, 'images');
 const POST_TEMPLATE = path.join(ROOT, 'post.html');
 
 // The site's public address, used for canonical links and absolute preview-image
-// URLs. Set it once the custom domain is live (e.g. 'https://example.com'), or
-// set a SITE_URL environment variable in Cloudflare Pages. Until then, preview
-// images fall back to this deployment's Cloudflare address (CF_PAGES_URL).
-const SITE_URL = (process.env.SITE_URL || '').replace(/\/+$/, '');
-const ASSET_BASE = SITE_URL || (process.env.CF_PAGES_URL || '').replace(/\/+$/, '');
+// URLs in the generated post pages. A SITE_URL environment variable (e.g. in
+// Cloudflare Pages settings) overrides it.
+const SITE_URL = (process.env.SITE_URL || 'https://sandeepmidde.com').replace(/\/+$/, '');
+const ASSET_BASE = SITE_URL;
 const DEFAULT_SOCIAL_IMAGE = 'social-card.png';
 const AUTHOR = 'Sandeep Midde';
 const RASTER_IMAGE = /\.(png|jpe?g|webp|gif)$/i;

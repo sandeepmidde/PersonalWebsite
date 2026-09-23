@@ -9,8 +9,10 @@ like counters.
 - **Hosting:** Cloudflare Pages. Every push to `main` builds and deploys.
 - **Status (as of 2026-09-23):** Live. The portfolio, blog index, post pages,
   counters, comments, analytics, the native Share button and link previews
-  for LinkedIn / WhatsApp / X all work. A custom domain is still to be bought
-  (see [Deployment](#9-deployment-and-configuration)).
+  for LinkedIn / WhatsApp / X all work.
+- **Domain:** `sandeepmidde.com`, registered at Spaceship. Nameservers point to
+  Cloudflare (`kareem` / `lorna.ns.cloudflare.com`), and it's attached to the Pages
+  project as a custom domain (root + `www`, with `www` redirecting to root).
 
 ---
 
@@ -188,9 +190,8 @@ WhatsApp and X don't run JavaScript:
   text before any `:` in the post title.
 - Preview description: the `Summary:` line, or the excerpt if there isn't one.
 - Preview image: `cover.*`, then the first raster image, then `social-card.png`.
-- The public URL comes from **`SITE_URL`** (an env var in Cloudflare Pages).
-  Until that's set, image URLs fall back to Cloudflare's own `CF_PAGES_URL`, and
-  no canonical or `og:url` tag is written.
+- The public URL is **`https://sandeepmidde.com`**, the `SITE_URL` default in
+  `scripts/build-posts.mjs`. A `SITE_URL` env var in Cloudflare Pages overrides it.
 
 Post URLs are now `/posts/<slug>/`. Old `post.html?slug=…` links redirect there.
 
@@ -281,7 +282,7 @@ Ordered by value for effort. Items marked ⭐ are recommended next.
 
 ### Phase 2: Discoverability (high value)
 - ✅ **R1. Pre-render post pages.** Done: `/posts/<slug>/` pages with link-preview tags, cover images and a `Summary:` line.
-  Still to do: fill the article HTML into those pages for SEO, and set `SITE_URL` once the domain is live.
+  Still to do: fill the article HTML into those pages for SEO.
 - **R2. `sitemap.xml`, `robots.txt`, `rss.xml`/`feed.json`,** generated in
   the same build step from the post index.
 - **R3. "Latest posts" on the home page.** Replace the static teaser with the
