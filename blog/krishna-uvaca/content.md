@@ -1,7 +1,7 @@
-# Krishna Uvaca: Building an AI Companion That Answers From the Gita, Not From Imagination
+# Krishna Uvaca: Ancient Wisdom, Modern Answers
 Tags: Projects, AI, Mobile
 Date: 2026-09-23
-Summary: An Android AI companion that answers life's questions from the Bhagavad Gita itself, citing the verses behind every answer.
+Summary: A RAG system built on the Bhagavad Gita. Ask life's questions and get answers that cite the verse they come from.
 
 Krishna Uvaca is an Android companion for the Bhagavad Gita: a calm, AI-guided space where you can bring a real question and get an answer grounded in the Gita's own text, with the verses cited. This post walks through why we built it, how it works, and the engineering decisions behind it.
 
