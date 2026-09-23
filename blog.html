@@ -151,7 +151,7 @@
     </nav>
   </header>
 
-  <main class="relative z-10 max-w-4xl mx-auto px-6 sm:px-12 lg:px-20 py-20">
+  <main class="relative z-10 px-6 sm:px-12 lg:px-20 py-20">
     <a href="index.html" class="inline-flex items-center gap-2 text-slate-500 hover:text-teal-300 text-sm font-medium mb-10 transition-colors">
       <span aria-hidden="true">&larr;</span> Back to Home
     </a>
@@ -162,21 +162,31 @@
       drawn from years spent building and running mission-critical systems.
     </p>
 
-    <!-- Filter pills are generated in JS from the union of every post's tags -->
-    <div class="flex flex-wrap gap-3 mb-14" id="blogFilters"></div>
+    <!-- Posts on the left, topic filters in a sticky right column (same width as
+         post.html's "Browse by Topic"), so a growing tag list never pushes posts down.
+         On phones the filters come first. -->
+    <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_240px] 2xl:grid-cols-[minmax(0,1fr)_300px] gap-12 lg:gap-10 2xl:gap-16 items-start">
+      <div class="order-2 lg:order-none min-w-0">
+        <!-- Posts are fetched from posts/posts-index.json and rendered by the script at
+             the bottom of this file — see the instructions comment near the top. -->
+        <div id="postsGrid" class="grid sm:grid-cols-2 2xl:grid-cols-3 gap-6"></div>
 
-    <!-- Posts are fetched from posts/posts-index.json and rendered by the script at
-         the bottom of this file — see the instructions comment near the top. -->
-    <div id="postsGrid" class="grid sm:grid-cols-2 gap-6"></div>
+        <!-- Empty state — shown automatically if posts-index.json has no entries, or fails to load -->
+        <div id="emptyState" class="rounded-xl p-14 text-center hidden">
+          <p class="text-slate-300 font-medium">No posts yet. Check back soon.</p>
+          <p class="mt-2 text-sm text-slate-500 max-w-sm mx-auto">
+            I'm working on my first article. In the meantime, see the
+            <a href="index.html#experience" class="text-teal-300 hover:underline">career timeline</a>
+            for the work this blog will be built on.
+          </p>
+        </div>
+      </div>
 
-    <!-- Empty state — shown automatically if posts-index.json has no entries, or fails to load -->
-    <div id="emptyState" class="rounded-xl p-14 text-center hidden">
-      <p class="text-slate-300 font-medium">No posts yet. Check back soon.</p>
-      <p class="mt-2 text-sm text-slate-500 max-w-sm mx-auto">
-        I'm working on my first article. In the meantime, see the
-        <a href="index.html#experience" class="text-teal-300 hover:underline">career timeline</a>
-        for the work this blog will be built on.
-      </p>
+      <aside class="order-1 lg:order-none lg:sticky lg:top-24">
+        <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">Browse by Topic</h2>
+        <!-- Filter pills are generated in JS from the union of every post's tags -->
+        <div class="flex flex-wrap gap-2.5" id="blogFilters"></div>
+      </aside>
     </div>
   </main>
 
