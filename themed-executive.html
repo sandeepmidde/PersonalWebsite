@@ -38,14 +38,13 @@
 
   Sections, top to bottom:
     EDIT: NAV            — top bar links
-    EDIT: HERO           — headline, intro, headline stats, photo
-    EDIT: ABOUT          — story + metric grid (dark band)
-    EDIT: APPLIED AI     — six AI practice cards
-    EDIT: IMPACT (CAR)   — Challenge → Action → Result case studies (filterable)
-    EDIT: HOW I WORK     — operating principles
+    EDIT: HERO           — name, role, tagline, top-3 stats, photo
+    EDIT: ABOUT          — story + 4 key numbers (dark band)
+    EDIT: APPLIED AI     — shipped AI products (link to blog posts) + how I build AI
+    EDIT: IMPACT (CAR)   — Challenge → Action → Result case studies (filterable, top 6 marked data-featured)
+    EDIT: HOW I WORK     — three principle cards
     EDIT: CAREER         — role-by-role timeline
-    EDIT: PROJECTS       — shipped AI products (link to blog posts)
-    EDIT: TOOLKIT        — skills
+    EDIT: TOOLKIT        — executive toolkit + hands-on engineering
     EDIT: CREDENTIALS    — certifications + education
     EDIT: CONTACT        — contact details + message form
     EDIT: FOOTER
@@ -524,6 +523,96 @@
     ::-webkit-scrollbar-track { background: var(--bg-alt); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--text-4); }
+
+    /* ============ v2: executive-review changes ============ */
+    /* Hero: name + role first, tagline second */
+    .hero-name {
+      font-family: var(--ff-display); font-size: clamp(2.8rem, 6vw, 4.6rem); font-weight: var(--display-weight);
+      line-height: 1.02; letter-spacing: var(--display-tracking); color: var(--hero-text); margin-bottom: 0.9rem;
+      animation: fadeUp 0.7s var(--ease) 0.2s both;
+    }
+    .hero-role {
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem); font-weight: 600; color: var(--hero-text); margin-bottom: 1.25rem; line-height: 1.45;
+      animation: fadeUp 0.7s var(--ease) 0.3s both;
+    }
+    .hero-role span { color: var(--hero-accent); margin: 0 4px; }
+    .hero-tagline {
+      font-family: var(--ff-display); font-size: clamp(1.3rem, 2.3vw, 1.7rem); font-weight: 500; line-height: 1.3;
+      color: var(--hero-text-2); margin-bottom: 1.1rem; padding-left: 14px; border-left: 3px solid var(--hero-accent);
+      animation: fadeUp 0.7s var(--ease) 0.35s both;
+    }
+    .hero-tagline em { font-style: var(--em-style); font-weight: 700; color: var(--hero-accent); }
+    .hero-sub { max-width: 600px; font-size: 1.02rem; }
+
+    /* About: 4 numbers, stays 2×2 on phones */
+    @media (max-width: 480px) {
+      .about-metrics { grid-template-columns: 1fr 1fr; }
+      .metric-cell { padding: 1.25rem 1rem; }
+      .metric-num { font-size: 2rem; }
+      .metric-desc { font-size: 0.76rem; }
+    }
+
+    /* Applied AI: project proof + practice strip */
+    .proj-proof { margin-top: 0.9rem; font-size: 0.8rem; font-weight: 600; color: var(--result); display: flex; gap: 8px; align-items: baseline; flex: 0 !important; }
+    .ai-practices {
+      list-style: none; margin-top: 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
+    }
+    .ai-practices li { background: var(--surface); padding: 1.1rem 1.25rem; display: flex; gap: 12px; align-items: flex-start; }
+    .ai-practices i { color: var(--accent-text); margin-top: 3px; }
+    .ai-practices strong { display: block; font-size: 0.9rem; color: var(--text); }
+    .ai-practices span { display: block; font-size: 0.8rem; color: var(--text-3); line-height: 1.5; margin-top: 2px; }
+
+    /* Impact: collapsible challenge/action, top-6 list */
+    .car-card.collapsed .car-step.c, .car-card.collapsed .car-step.a { display: none; }
+    .car-toggle {
+      margin-top: 0.9rem; align-self: flex-start; background: none; border: none; cursor: pointer; padding: 4px 0;
+      font-family: var(--ff-body); font-size: 0.78rem; font-weight: 600; color: var(--accent-text);
+      display: inline-flex; gap: 6px; align-items: center;
+    }
+    .car-toggle i { font-size: 0.7rem; transition: transform 0.2s; }
+    .car-toggle[aria-expanded="true"] i { transform: rotate(180deg); }
+    .car-toggle:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .car-more {
+      display: flex; margin: 2rem auto 0; align-items: center; gap: 8px; cursor: pointer;
+      font-family: var(--ff-body); font-size: 0.88rem; font-weight: 600; padding: 11px 22px; border-radius: 100px;
+      background: var(--surface); color: var(--text); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+    }
+    .car-more:hover { border-color: var(--accent-line); color: var(--accent-text); }
+    .car-more[hidden] { display: none; }
+
+    /* How I work: three scannable cards */
+    .principle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .principle { background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.75rem; display: flex; flex-direction: column; }
+    .principle-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--accent-text); margin-bottom: 1.1rem; }
+    .principle h3 { font-family: var(--ff-display); font-size: 1.15rem; font-weight: var(--display-weight); color: var(--text); margin-bottom: 0.5rem; }
+    .principle p { font-size: 0.92rem; color: var(--text-2); line-height: 1.6; flex: 1; }
+    .principle .principle-proof { flex: 0; margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--border); font-size: 0.78rem; font-weight: 600; color: var(--result); }
+
+    /* Toolkit: executive first, hands-on second */
+    .exec-toolkit { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: var(--r-lg); padding: 1.9rem; box-shadow: var(--shadow-sm); }
+    .exec-toolkit h3 { font-family: var(--ff-display); font-size: 1.25rem; font-weight: var(--display-weight); color: var(--text); margin-bottom: 1.2rem; display: flex; gap: 10px; align-items: center; }
+    .exec-toolkit h3 i { color: var(--accent-text); font-size: 1rem; }
+    .chips-lg .chip { font-size: 0.9rem; font-weight: 600; padding: 8px 16px; color: var(--text); background: var(--accent-soft); border-color: transparent; }
+    .hands-on-label { margin: 2.25rem 0 1rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-4); }
+    .hands-on-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .hands-on-grid .tool-col { padding: 1.25rem 1.4rem; box-shadow: none; }
+    .hands-on-grid h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-2); margin-bottom: 0.8rem; }
+    .chips-sm .chip { font-size: 0.75rem; padding: 4px 10px; }
+
+    @media (max-width: 1080px) {
+      .ai-practices { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .principle-grid, .hands-on-grid { grid-template-columns: 1fr; }
+      .ai-practices { grid-template-columns: 1fr; }
+      .principle { padding: 1.4rem; }
+    }
+    @media (max-width: 520px) {
+      .hero-stats > div { padding: 12px 12px; }
+      .hero-stat-num { font-size: 1.4rem; white-space: nowrap; }
+      .hero-stat-label { font-size: 0.64rem; }
+    }
   </style>
 </head>
 <body>
@@ -540,7 +629,6 @@
           <li><a href="#impact">Impact</a></li>
           <li><a href="#principles">How I Work</a></li>
           <li><a href="#experience">Career</a></li>
-          <li><a href="#projects">Projects</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="#contact" class="nav-cta">Connect</a></li>
         </ul>
@@ -558,18 +646,13 @@
     <div class="container">
       <div class="hero-inner">
         <div class="hero-text">
-          <p class="hero-eyebrow">Technology &amp; Delivery Leader · Applied AI</p>
-          <h1 class="hero-headline">
-            I modernize the platforms that <em>can't</em> afford to&nbsp;fail.
-          </h1>
+          <p class="hero-eyebrow">Former VP, Wells Fargo · Open to leadership roles</p>
+          <h1 class="hero-name">Sandeep Midde</h1>
+          <p class="hero-role">Technology &amp; Delivery Leader <span>·</span> Platform Modernization &amp; Applied AI</p>
+          <p class="hero-tagline">I modernize the platforms that <em>can't</em> afford to fail.</p>
           <p class="hero-sub">
-            For close to twenty years I've led technology and delivery for mission-critical finance systems in regulated banking — redesigning legacy platforms for compliance, resilience, and scale. Today I also design and ship GenAI systems end to end, with the same discipline: evaluate first, govern always, measure the outcome.
+            ~20 years leading mission-critical finance platforms in regulated banking — accountable for architecture, budget, roadmap, and stakeholder alignment. Now designing and shipping GenAI systems end to end.
           </p>
-          <ul class="hero-pillars">
-            <li>Platform Modernization</li>
-            <li>Delivery Governance &amp; Risk</li>
-            <li>Applied AI &amp; RAG</li>
-          </ul>
           <div class="hero-actions">
             <a href="#impact" class="btn btn-primary">See the impact <i class="fas fa-arrow-down" aria-hidden="true"></i></a>
             <a href="Resume/SandeepMidde.pdf" class="btn btn-ghost" target="_blank" rel="noopener"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a>
@@ -577,8 +660,8 @@
           </div>
           <div class="hero-stats" role="list" aria-label="Career highlights">
             <div role="listitem">
-              <div class="hero-stat-num">~20</div>
-              <div class="hero-stat-label">Years in technology &amp; delivery</div>
+              <div class="hero-stat-num">~20 yrs</div>
+              <div class="hero-stat-label">Enterprise technology &amp; delivery</div>
             </div>
             <div role="listitem">
               <div class="hero-stat-num">$2.5T+</div>
@@ -639,92 +722,82 @@
         </div>
         <div class="about-metrics anim">
           <div class="metric-cell">
+            <div class="metric-num">−70<span>%</span></div>
+            <div class="metric-label">Projected TCO</div>
+            <div class="metric-desc">$4M → $1.2M through a build-vs-buy case that won CTO sponsorship</div>
+          </div>
+          <div class="metric-cell">
             <div class="metric-num">142</div>
             <div class="metric-label">Models automated</div>
-            <div class="metric-desc">Daily GL reconciliation across Essbase models — zero failures in 4 years</div>
+            <div class="metric-desc">Daily GL reconciliation — zero failures over 4 years, audit-verified</div>
           </div>
           <div class="metric-cell">
-            <div class="metric-num">52</div>
-            <div class="metric-label">Downstream integrations</div>
-            <div class="metric-desc">Moved toward Apigee-governed API access with gateway-level audit</div>
-          </div>
-          <div class="metric-cell">
-            <div class="metric-num">8</div>
-            <div class="metric-label">Teams per DR cycle</div>
-            <div class="metric-desc">Coordinated failover to a verified 3–5 hour recovery window</div>
-          </div>
-          <div class="metric-cell">
-            <div class="metric-num">900<span>+</span></div>
-            <div class="metric-label">Custom objects retrofitted</div>
-            <div class="metric-desc">PeopleSoft Finance upgrade — zero critical post-go-live defects</div>
-          </div>
-          <div class="metric-cell">
-            <div class="metric-num">190<span>+</span></div>
-            <div class="metric-label">Countries</div>
-            <div class="metric-desc">Multilingual Inspira (UN talent acquisition) adoption at Oracle</div>
+            <div class="metric-num">3–5<span>h</span></div>
+            <div class="metric-label">Verified recovery</div>
+            <div class="metric-desc">Disaster-recovery failover coordinated across 8 teams</div>
           </div>
           <div class="metric-cell">
             <div class="metric-num">88<span>%</span></div>
             <div class="metric-label">Response accuracy</div>
-            <div class="metric-desc">Krishna Uvaca RAG platform, validated over 500 test conversations</div>
+            <div class="metric-desc">Krishna Uvaca RAG platform, across 500 test conversations</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===================== EDIT: APPLIED AI ===================== -->
+  <!-- ===================== EDIT: APPLIED AI (projects + how I build) =====================
+       Cards link to the full write-ups at posts/<slug>/ (built from /blog).
+  ================================================================= -->
   <section class="section bg-glow" id="ai">
     <div class="container">
       <div class="section-header">
         <p class="section-label">Applied AI</p>
-        <h2 class="section-title">GenAI, built with a<br><em>banker's</em> discipline.</h2>
-        <p class="section-sub">In regulated finance, you don't ship what you can't evaluate, explain, and govern. I bring that standard to AI — hands-on, from architecture to production.</p>
+        <h2 class="section-title">GenAI, built with a <em>banker's</em> discipline.</h2>
+        <p class="section-sub">Three AI products I've designed and shipped end to end — each written up in full. In regulated finance you don't ship what you can't evaluate, explain, and govern; I hold AI to the same bar.</p>
       </div>
-      <p class="ai-intro anim">
-        My approach: <strong>decide with evidence, design the guardrails first, then scale what's proven.</strong> That's how a RAG feasibility study at Wells Fargo produced a clear go/no-go, and how Krishna Uvaca reached production with a measured accuracy number rather than a demo.
-      </p>
-      <div class="ai-grid">
-        <article class="ai-card anim">
-          <div class="ai-card-icon"><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i></div>
-          <h3>Retrieval-Grounded Answers</h3>
-          <p>End-to-end <strong>RAG</strong> with LLM orchestration, vector retrieval (<strong>LangChain, ChromaDB</strong>), grounded response generation, and multi-turn memory — answers that cite their source.</p>
-          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> Krishna Uvaca · 88% accuracy / 500 conversations</p>
-        </article>
-        <article class="ai-card anim">
-          <div class="ai-card-icon"><i class="fas fa-diagram-project" aria-hidden="true"></i></div>
-          <h3>Agentic Workflows</h3>
-          <p>Multi-stage pipelines with <strong>provider-agnostic LLM</strong> integration, background job processing, resumable execution, and automated tests — treated as production systems, not scripts.</p>
-          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> ObserverPrime · human-approved at every step</p>
-        </article>
-        <article class="ai-card anim">
-          <div class="ai-card-icon"><i class="fas fa-book-open-reader" aria-hidden="true"></i></div>
-          <h3>Knowledge Platforms</h3>
-          <p>Turning unstructured material into structured, reusable knowledge through automated <strong>ingestion, extraction, and retrieval</strong> — enabling contextual discovery and personalized learning.</p>
-          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> Elara · AI strategy &amp; architecture</p>
-        </article>
-        <article class="ai-card anim">
-          <div class="ai-card-icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
-          <h3>Evaluation Before Commitment</h3>
-          <p>Evaluation harnesses with <strong>no-answer detection</strong> and source-grounding checks, so the decision to go to production rests on measured behavior — not enthusiasm.</p>
-          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> Wells Fargo RAG study · ~80% source-grounded</p>
-        </article>
-        <article class="ai-card anim">
-          <div class="ai-card-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></div>
-          <h3>Guardrails &amp; Responsible AI</h3>
-          <p>A <strong>200+ rule behavioral framework</strong> across 8 components — persona engineering, guardrails, contextual reasoning, and response orchestration — stress-tested before release.</p>
-          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> AI Security &amp; Governance certified</p>
-        </article>
-        <article class="ai-card anim">
-          <div class="ai-card-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
-          <h3>Multi-Model Architecture</h3>
-          <p>Designs that aren't hostage to one model vendor: swappable providers, fallbacks for resilience, and prompts engineered and versioned like any other <strong>production artifact</strong>.</p>
-          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> Applied across all three products</p>
-        </article>
+      <div class="proj-grid">
+        <a class="proj-card anim" href="posts/krishna-uvaca/">
+          <div class="proj-cover"><img src="blog/krishna-uvaca/cover.png" alt="Krishna Uvaca cover" loading="lazy" width="1200" height="627"></div>
+          <div class="proj-body">
+            <p class="proj-kind">RAG · Conversational AI · In production</p>
+            <h3>Krishna Uvaca</h3>
+            <p>A RAG platform on the Bhagavad Gita: grounded answers that cite the verse they come from, with multi-turn memory.</p>
+            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> 88% accuracy across 500 test conversations</p>
+            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+        <a class="proj-card anim" href="posts/observer-prime/">
+          <div class="proj-cover"><img src="blog/observer-prime/cover.png" alt="Observer Prime cover" loading="lazy" width="1200" height="627"></div>
+          <div class="proj-body">
+            <p class="proj-kind">Agentic workflow automation</p>
+            <h3>ObserverPrime</h3>
+            <p>Multi-stage content pipelines with provider-agnostic LLMs, background jobs, and resumable execution — a human approves every step.</p>
+            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Automated test coverage for production-grade reliability</p>
+            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+        <a class="proj-card anim" href="posts/project-elara/">
+          <div class="proj-cover"><img src="blog/project-elara/cover.png" alt="Project Elara cover" loading="lazy" width="1200" height="627"></div>
+          <div class="proj-body">
+            <p class="proj-kind">AI knowledge platform</p>
+            <h3>Elara</h3>
+            <p>Turns unstructured material into reusable knowledge through automated ingestion, extraction, and retrieval — a personal AI tutor.</p>
+            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Led AI strategy &amp; architecture</p>
+            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
       </div>
-      <p class="ai-closing anim">
-        I build with these tools myself. A leader who can't evaluate an AI system ends up governing what they don't understand — and in regulated industries, that's a risk no one can afford.
-      </p>
+      <ul class="ai-practices anim" aria-label="How I build AI">
+        <li><i class="fas fa-scale-balanced" aria-hidden="true"></i><div><strong>Evaluate first</strong><span>Harnesses with no-answer detection and grounding checks</span></div></li>
+        <li><i class="fas fa-shield-halved" aria-hidden="true"></i><div><strong>Guardrails by design</strong><span>200+ rule behavioral framework across 8 components</span></div></li>
+        <li><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i><div><strong>Grounded retrieval</strong><span>Answers that cite their source, not guesses</span></div></li>
+        <li><i class="fas fa-layer-group" aria-hidden="true"></i><div><strong>Model-agnostic</strong><span>Swappable LLM providers with fallbacks</span></div></li>
+      </ul>
+      <div class="projects-more anim">
+        <a href="blog.html" class="btn btn-primary">All writing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        <p>Notes on platform modernization, delivery leadership, and applied AI.</p>
+      </div>
     </div>
   </section>
 
@@ -737,7 +810,7 @@
       <div class="section-header">
         <p class="section-label">Impact · Challenge → Action → Result</p>
         <h2 class="section-title">The problems I was<br>trusted to <em>solve</em>.</h2>
-        <p class="section-sub">Each story below is told the same way: the constraint I walked into, what I did about it, and the measured result. Filter by the kind of problem.</p>
+        <p class="section-sub">Each story follows the same arc: the constraint I walked into, what I did, and the measured result. Tap any card to see the challenge and action behind it.</p>
         <div class="car-legend" aria-hidden="true">
           <span><i style="background:var(--challenge)"></i>Challenge</span>
           <span><i style="background:var(--action)"></i>Action</span>
@@ -756,7 +829,29 @@
 
       <div class="car-grid" id="carGrid">
 
-        <article class="car-card anim" data-theme="modernization">
+        <article class="car-card anim" data-featured data-theme="leadership">
+          <div class="car-top"><span class="car-tag">Strategy</span><span class="car-org">Wells Fargo</span></div>
+          <div class="car-metric"><span class="car-metric-num">$4M → $1.2M</span><span class="car-metric-label">projected TCO</span></div>
+          <h3>Won the build-vs-buy case for ERP modernization</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>Replace a legacy ERP: a $2M/year SaaS subscription, or an 18-month in-house build?</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Built the roadmap and cost model, designed a lean team that rolls contractors off at go-live, and presented to the Finance CTO.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>CTO sponsorship and budget approval for a cloud-hosted platform at a fraction of the cost.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-featured data-theme="reliability">
+          <div class="car-top"><span class="car-tag">Operations</span><span class="car-org">Wells Fargo · 2022–26</span></div>
+          <div class="car-metric"><span class="car-metric-num">99.8%</span><span class="car-metric-label">availability</span></div>
+          <h3>Built the L2 support model from the ground up</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>Production support had no dedicated L2 model, runbooks, or ownership structure.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Documented processes, trained staff, set point-of-contact ownership, and built runbooks, SLAs, and escalation paths.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>MTTR cut 30–60%; availability up from 99.2% to 99.8%.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-featured data-theme="modernization">
           <div class="car-top"><span class="car-tag">Integration</span><span class="car-org">Wells Fargo · 2020–21</span></div>
           <div class="car-metric"><span class="car-metric-num">99%</span><span class="car-metric-label">faster ticker response</span></div>
           <h3>Retired a third-party middleman for Bloomberg rate data</h3>
@@ -767,7 +862,7 @@
           </dl>
         </article>
 
-        <article class="car-card anim" data-theme="modernization">
+        <article class="car-card anim" data-featured data-theme="modernization">
           <div class="car-top"><span class="car-tag">Architecture</span><span class="car-org">Wells Fargo</span></div>
           <div class="car-metric"><span class="car-metric-num">3h → 2m</span><span class="car-metric-label">workflow time</span></div>
           <h3>Gave a legacy ERP computing power it never had</h3>
@@ -778,7 +873,7 @@
           </dl>
         </article>
 
-        <article class="car-card anim" data-theme="reliability">
+        <article class="car-card anim" data-featured data-theme="reliability">
           <div class="car-top"><span class="car-tag">Automation</span><span class="car-org">Wells Fargo</span></div>
           <div class="car-metric"><span class="car-metric-num">93%</span><span class="car-metric-label">less processing time</span></div>
           <h3>Automated daily GL reconciliation across 142 models</h3>
@@ -786,6 +881,17 @@
             <div class="car-step c"><dt>Challenge</dt><dd>Reconciling Oracle GL, PeopleSoft, and 7–8 upstream systems took ~5 hours a day in Excel — with misstatement risk.</dd></div>
             <div class="car-step a"><dt>Action</dt><dd>Engineered automated variance reporting into the daily run, with resilient reprocessing and an on-demand override.</dd></div>
             <div class="car-step r"><dt>Result</dt><dd>5 hours → 20 minutes; zero failures for 4 years, verified across 8–12 quarterly audits.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-featured data-theme="ai">
+          <div class="car-top"><span class="car-tag">GenAI Feasibility</span><span class="car-org">Wells Fargo</span></div>
+          <div class="car-metric"><span class="car-metric-num">~80%</span><span class="car-metric-label">source-grounded</span></div>
+          <h3>A retrieval-first RAG study that informed a go/no-go decision</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>GenAI adoption needed proof before commitment, given hallucination risk in customer-facing use.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Owned the architecture, constraint mapping, and an evaluation harness with no-answer detection.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Measured grounding gave leadership an evidence-based production decision.</dd></div>
           </dl>
         </article>
 
@@ -801,17 +907,6 @@
         </article>
 
         <article class="car-card anim" data-theme="reliability">
-          <div class="car-top"><span class="car-tag">Operations</span><span class="car-org">Wells Fargo · 2022–26</span></div>
-          <div class="car-metric"><span class="car-metric-num">99.8%</span><span class="car-metric-label">availability</span></div>
-          <h3>Built the L2 support model from the ground up</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Production support had no dedicated L2 model, runbooks, or ownership structure.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Documented processes, trained staff, set point-of-contact ownership, and built runbooks, SLAs, and escalation paths.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>MTTR cut 30–60%; availability up from 99.2% to 99.8%.</dd></div>
-          </dl>
-        </article>
-
-        <article class="car-card anim" data-theme="reliability">
           <div class="car-top"><span class="car-tag">Resilience</span><span class="car-org">Wells Fargo · 2021–26</span></div>
           <div class="car-metric"><span class="car-metric-num">3–5h</span><span class="car-metric-label">verified recovery</span></div>
           <h3>Made disaster recovery measurable — and routine</h3>
@@ -819,17 +914,6 @@
             <div class="car-step c"><dt>Challenge</dt><dd>Regulators required DR testing at set intervals, with no reliable estimate of recovery time.</dd></div>
             <div class="car-step a"><dt>Action</dt><dd>Coordinated parallel-server failover across 8 teams plus infra, DB, and support; streamlined the failover sequence.</dd></div>
             <div class="car-step r"><dt>Result</dt><dd>Consistent 3–5 hour window for 3 years; cadence raised from annual to every 6 months.</dd></div>
-          </dl>
-        </article>
-
-        <article class="car-card anim" data-theme="leadership">
-          <div class="car-top"><span class="car-tag">Strategy</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">$4M → $1.2M</span><span class="car-metric-label">projected TCO</span></div>
-          <h3>Won the build-vs-buy case for ERP modernization</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Replace a legacy ERP: a $2M/year SaaS subscription, or an 18-month in-house build?</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Built the roadmap and cost model, designed a lean team that rolls contractors off at go-live, and presented to the Finance CTO.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>CTO sponsorship and budget approval for a cloud-hosted platform at a fraction of the cost.</dd></div>
           </dl>
         </article>
 
@@ -863,17 +947,6 @@
             <div class="car-step c"><dt>Challenge</dt><dd>One flat team ran DCS, SCW, Rates, and Allocations on ad hoc Kanban with no release rhythm.</dd></div>
             <div class="car-step a"><dt>Action</dt><dd>Hired and mentored into module-owned Scrum pods, stood up a cloud-modernization team, and standardized CI/CD.</dd></div>
             <div class="car-step r"><dt>Result</dt><dd>Monthly → biweekly releases, with 20% fewer deployment incidents.</dd></div>
-          </dl>
-        </article>
-
-        <article class="car-card anim" data-theme="ai">
-          <div class="car-top"><span class="car-tag">GenAI Feasibility</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">~80%</span><span class="car-metric-label">source-grounded</span></div>
-          <h3>A retrieval-first RAG study that informed a go/no-go decision</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>GenAI adoption needed proof before commitment, given hallucination risk in customer-facing use.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Owned the architecture, constraint mapping, and an evaluation harness with no-answer detection.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Measured grounding gave leadership an evidence-based production decision.</dd></div>
           </dl>
         </article>
 
@@ -920,7 +993,8 @@
             <div class="car-step r"><dt>Result</dt><dd>Delivered on schedule, closing the final deliverable holding up funding.</dd></div>
           </dl>
         </article>
-
+      </div>
+      <button type="button" class="car-more" id="carMore"></button>
       </div>
     </div>
   </section>
@@ -930,35 +1004,28 @@
     <div class="container">
       <div class="section-header">
         <p class="section-label">How I Work</p>
-        <h2 class="section-title">Principles, earned<br>the <em>hard</em> way.</h2>
-        <p class="section-sub">Twenty years in regulated systems leaves you with a few convictions. Each of these traces back to a result above.</p>
+        <h2 class="section-title">Three principles, <em>earned</em> the hard way.</h2>
       </div>
-      <ul class="phil-list">
-        <li class="phil-item anim">
-          <h3 class="phil-name">Evaluate <em>before</em><br>you commit</h3>
-          <p class="phil-body">The cheapest mistake is the one you measure early. A build-vs-buy cost model won CTO sponsorship; a RAG evaluation harness gave leadership a clear production decision. <strong>Evidence first, commitment second.</strong></p>
-        </li>
-        <li class="phil-item anim">
-          <h3 class="phil-name">Reliability is <em>designed</em>,<br>not hoped for</h3>
-          <p class="phil-body">Checkpoint restart, resilient reprocessing, runbooks, rehearsed failover. Availability went from 99.2% to 99.8% and GL reconciliation ran four years without a failure because <strong>the failure paths were engineered, not improvised.</strong></p>
-        </li>
-        <li class="phil-item anim">
-          <h3 class="phil-name">Compliance is an<br><em>architecture</em> decision</h3>
-          <p class="phil-body">Audit-readiness bolted on at the end is expensive and brittle. Retention by data classification, file-receipt validation, and gateway-level access control make <strong>the compliant path the default path.</strong></p>
-        </li>
-        <li class="phil-item anim">
-          <h3 class="phil-name">Build it <em>once</em>,<br>reuse it often</h3>
-          <p class="phil-body">The Bloomberg integration was built so a second system could onboard without a one-off build. At Infosys, reusable fixes cut the backlog by a third. <strong>Every solution should make the next one cheaper.</strong></p>
-        </li>
-        <li class="phil-item anim">
-          <h3 class="phil-name">Teams that <em>own</em><br>what they ship</h3>
-          <p class="phil-body">Module-aligned pods with their own backlogs and release cadence, hired and mentored into ownership. <strong>Clear ownership beats heroics</strong> — releases doubled in frequency while deployment incidents fell.</p>
-        </li>
-        <li class="phil-item anim">
-          <h3 class="phil-name">Stay <em>hands-on</em></h3>
-          <p class="phil-body">I still build — Python layers, evaluation harnesses, and now three AI products of my own. I refuse to lead from theory, <strong>especially in a field moving as fast as AI.</strong></p>
-        </li>
-      </ul>
+      <div class="principle-grid">
+        <article class="principle anim">
+          <div class="principle-icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
+          <h3>Evaluate before committing</h3>
+          <p>The cheapest mistake is the one measured early. Cost models and evaluation harnesses come before budget is locked.</p>
+          <p class="principle-proof">Proof: $4M → $1.2M TCO case · RAG go/no-go</p>
+        </article>
+        <article class="principle anim">
+          <div class="principle-icon"><i class="fas fa-building-shield" aria-hidden="true"></i></div>
+          <h3>Compliance is architecture</h3>
+          <p>Audit-readiness bolted on at the end is brittle. Build classification, validation, and access control in — make the compliant path the default.</p>
+          <p class="principle-proof">Proof: COSO-aligned retention · 52 feeds moving to Apigee</p>
+        </article>
+        <article class="principle anim">
+          <div class="principle-icon"><i class="fas fa-heart-pulse" aria-hidden="true"></i></div>
+          <h3>Reliability is engineered</h3>
+          <p>Checkpoint restart, resilient reprocessing, runbooks, and rehearsed failover — failure paths designed, not improvised.</p>
+          <p class="principle-proof">Proof: 99.2% → 99.8% availability · 3–5h DR</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -1051,108 +1118,53 @@
     </div>
   </section>
 
-  <!-- ===================== EDIT: PROJECTS =====================
-       Cards link to the full write-ups at posts/<slug>/ (built from /blog).
-  ================================================================= -->
-  <section class="section projects bg-glow" id="projects">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label">Projects &amp; Writing</p>
-        <h2 class="section-title">Things I've <em>shipped</em>.</h2>
-        <p class="section-sub">Three AI products, each written up in full — the architecture, the trade-offs, and what I'd do differently.</p>
-      </div>
-      <div class="proj-grid">
-        <a class="proj-card anim" href="posts/krishna-uvaca/">
-          <div class="proj-cover"><img src="blog/krishna-uvaca/cover.png" alt="Krishna Uvaca cover" loading="lazy" width="1200" height="627"></div>
-          <div class="proj-body">
-            <p class="proj-kind">RAG · Conversational AI · Android</p>
-            <h3>Krishna Uvaca</h3>
-            <p>A RAG system built on the Bhagavad Gita. Ask life's questions and get answers that cite the verse they come from.</p>
-            <div class="proj-stack"><span>LangChain</span><span>ChromaDB</span><span>Guardrails</span></div>
-            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
-          </div>
-        </a>
-        <a class="proj-card anim" href="posts/observer-prime/">
-          <div class="proj-cover"><img src="blog/observer-prime/cover.png" alt="Observer Prime cover" loading="lazy" width="1200" height="627"></div>
-          <div class="proj-body">
-            <p class="proj-kind">Agentic workflow · Content</p>
-            <h3>ObserverPrime</h3>
-            <p>A local-first AI workbench that turns one topic into a complete YouTube video plan, with the creator approving every step.</p>
-            <div class="proj-stack"><span>Multi-LLM</span><span>Background jobs</span><span>Resumable</span></div>
-            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
-          </div>
-        </a>
-        <a class="proj-card anim" href="posts/project-elara/">
-          <div class="proj-cover"><img src="blog/project-elara/cover.png" alt="Project Elara cover" loading="lazy" width="1200" height="627"></div>
-          <div class="proj-body">
-            <p class="proj-kind">Knowledge platform · Learning</p>
-            <h3>Elara</h3>
-            <p>An AI tutor that reads everything you save to Google Drive and teaches you from it, with no manual tagging or filing.</p>
-            <div class="proj-stack"><span>Ingestion</span><span>Extraction</span><span>Retrieval</span></div>
-            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
-          </div>
-        </a>
-      </div>
-      <div class="projects-more anim">
-        <a href="blog.html" class="btn btn-primary">All writing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-        <p>Notes on platform modernization, delivery leadership, and applied AI.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== EDIT: TOOLKIT ===================== -->
   <section class="section toolkit bg-soft" id="stack">
     <div class="container">
       <div class="section-header">
         <p class="section-label">Toolkit</p>
-        <h2 class="section-title">What I bring<br>to the <em>table</em>.</h2>
+        <h2 class="section-title">What I bring to the <em>table</em>.</h2>
       </div>
-      <div class="tool-grid">
-        <div class="tool-col anim">
-          <h3><i class="fas fa-compass" aria-hidden="true"></i> Leadership, Governance &amp; Delivery</h3>
-          <p class="tool-note">How the work gets decided and delivered</p>
-          <div class="chips">
-            <span class="chip">Technical Strategy &amp; Architecture</span>
-            <span class="chip">Delivery Governance</span>
-            <span class="chip">Risk &amp; Compliance</span>
-            <span class="chip">COSO</span>
-            <span class="chip">CMMI Level 5</span>
-            <span class="chip">Audit Readiness</span>
-            <span class="chip">Agile / SAFe</span>
-            <span class="chip">Executive &amp; Stakeholder Management</span>
-            <span class="chip">Talent Development</span>
-          </div>
+      <div class="exec-toolkit anim">
+        <h3><i class="fas fa-compass" aria-hidden="true"></i> Executive Toolkit &amp; Governance</h3>
+        <div class="chips chips-lg">
+          <span class="chip">Technical Strategy &amp; Architecture</span>
+          <span class="chip">Enterprise Architecture (TOGAF)</span>
+          <span class="chip">Delivery Governance</span>
+          <span class="chip">Risk &amp; Compliance — COSO · CMMI L5 · Audit Readiness</span>
+          <span class="chip">Budget, Roadmap &amp; TCO Ownership</span>
+          <span class="chip">Build-vs-Buy Strategy</span>
+          <span class="chip">Executive &amp; Stakeholder Management</span>
+          <span class="chip">Agile / SAFe Delivery</span>
+          <span class="chip">Talent Development &amp; Hiring</span>
+          <span class="chip">Responsible AI &amp; AI Governance</span>
         </div>
+      </div>
+      <p class="hands-on-label">Hands-on engineering capabilities</p>
+      <div class="hands-on-grid">
         <div class="tool-col anim">
-          <h3><i class="fas fa-server" aria-hidden="true"></i> Engineering &amp; Platform</h3>
-          <p class="tool-note">Integration, architecture, and delivery tooling</p>
-          <div class="chips">
-            <span class="chip">PeopleSoft</span>
-            <span class="chip">Oracle</span>
-            <span class="chip">Salesforce</span>
+          <h4>Enterprise platforms &amp; integration</h4>
+          <div class="chips chips-sm">
+            <span class="chip">PeopleSoft · Oracle · Salesforce</span>
             <span class="chip">REST / Apigee</span>
-            <span class="chip">Python</span>
             <span class="chip">Kafka</span>
-            <span class="chip">Event-Driven / SOA / TOGAF</span>
+            <span class="chip">Event-Driven / SOA</span>
+            <span class="chip">Python</span>
             <span class="chip">Playwright</span>
-            <span class="chip">Git · Jenkins · Harness · uDeploy</span>
-            <span class="chip">Jira</span>
+            <span class="chip">Git · Jenkins · Harness · uDeploy · Jira</span>
             <span class="chip">Azure</span>
           </div>
         </div>
         <div class="tool-col anim">
-          <h3><i class="fas fa-brain" aria-hidden="true"></i> AI / GenAI Engineering</h3>
-          <p class="tool-note">Building AI that can be trusted</p>
-          <div class="chips">
+          <h4>Applied AI engineering</h4>
+          <div class="chips chips-sm">
             <span class="chip">RAG</span>
+            <span class="chip">Agentic Workflows</span>
             <span class="chip">Prompt Engineering</span>
-            <span class="chip">AI Guardrails &amp; Evaluation</span>
+            <span class="chip">Guardrails &amp; Evaluation</span>
             <span class="chip">LangChain</span>
             <span class="chip">ChromaDB</span>
-            <span class="chip">Vector Retrieval</span>
-            <span class="chip">Responsible AI</span>
             <span class="chip">Multi-Model Architecture</span>
-            <span class="chip">Agentic Workflows</span>
           </div>
         </div>
       </div>
@@ -1265,7 +1277,6 @@
           <li><a href="#ai">Applied AI</a></li>
           <li><a href="#impact">Impact</a></li>
           <li><a href="#experience">Career</a></li>
-          <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <p class="footer-tagline">Technology &amp; delivery leadership · Platform modernization · Applied AI</p>
@@ -1326,21 +1337,44 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.anim').forEach(el => reveal.observe(el));
 
-    // CAR filter (with counts)
+    // CAR case studies: featured-first list, filter chips, and collapsible challenge/action
     const cards = [...document.querySelectorAll('.car-card')];
     const filters = [...document.querySelectorAll('.car-filter')];
+    const moreBtn = document.getElementById('carMore');
+    let activeFilter = 'all', showAll = false;
+    const applyCars = () => {
+      cards.forEach(c => {
+        const match = activeFilter === 'all' || c.dataset.theme === activeFilter;
+        const limited = activeFilter === 'all' && !showAll && !c.hasAttribute('data-featured');
+        c.hidden = !match || limited;
+        c.classList.add('in');
+      });
+      moreBtn.hidden = activeFilter !== 'all';
+      moreBtn.innerHTML = showAll
+        ? 'Show top 6 only <i class="fas fa-chevron-up" aria-hidden="true"></i>'
+        : `Show all ${cards.length} case studies <i class="fas fa-chevron-down" aria-hidden="true"></i>`;
+    };
     filters.forEach(btn => {
       const f = btn.dataset.filter;
-      const n = f === 'all' ? cards.length : cards.filter(c => c.dataset.theme === f).length;
-      btn.querySelector('.count').textContent = n;
+      btn.querySelector('.count').textContent = f === 'all' ? cards.length : cards.filter(c => c.dataset.theme === f).length;
       btn.addEventListener('click', () => {
         filters.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-        cards.forEach(c => {
-          c.hidden = !(f === 'all' || c.dataset.theme === f);
-          c.classList.add('in');
-        });
+        activeFilter = f; applyCars();
       });
     });
+    moreBtn.addEventListener('click', () => { showAll = !showAll; applyCars(); });
+    cards.forEach(card => {
+      card.classList.add('collapsed');
+      const t = document.createElement('button');
+      t.type = 'button'; t.className = 'car-toggle'; t.setAttribute('aria-expanded', 'false');
+      t.innerHTML = 'Challenge &amp; action <i class="fas fa-chevron-down" aria-hidden="true"></i>';
+      t.addEventListener('click', () => {
+        const open = card.classList.toggle('collapsed') === false;
+        t.setAttribute('aria-expanded', String(open));
+      });
+      card.querySelector('.car-steps').after(t);
+    });
+    applyCars();
 
     // Contact form → pre-filled email
     document.getElementById('contactForm').addEventListener('submit', e => {
