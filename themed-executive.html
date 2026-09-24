@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sandeep Midde — Technology &amp; Delivery Leader · Platform Modernization · Applied AI</title>
-  <meta name="description" content="Technology and delivery leader with ~20 years modernizing mission-critical finance platforms in regulated banking — and designing and shipping GenAI systems end to end.">
+  <title>Sandeep Midde | Technology &amp; Delivery Leader</title>
+  <meta name="description" content="Technology and delivery leader with ~20 years modernizing mission-critical finance platforms in regulated banking, now designing and shipping GenAI systems end to end.">
   <meta name="author" content="Sandeep Midde">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <!-- Unlisted palette review page (Executive Tech): not linked from the site, hidden from search. -->
 
   <!-- Link previews (LinkedIn / WhatsApp / X) -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Sandeep Midde — Technology & Delivery Leader · Applied AI">
+  <meta property="og:title" content="Sandeep Midde | Technology & Delivery Leader">
   <meta property="og:description" content="~20 years modernizing mission-critical finance platforms in regulated banking. Now designing and shipping GenAI systems end to end.">
   <meta property="og:image" content="https://sandeepmidde.com/social-card.png">
   <meta property="og:url" content="https://sandeepmidde.com/themed-executive">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sandeep Midde — Technology & Delivery Leader · Applied AI">
+  <meta name="twitter:title" content="Sandeep Midde | Technology & Delivery Leader">
   <meta name="twitter:description" content="~20 years modernizing mission-critical finance platforms in regulated banking. Now designing and shipping GenAI systems end to end.">
   <meta name="twitter:image" content="https://sandeepmidde.com/social-card.png">
 
@@ -630,6 +630,18 @@
       100%    { box-shadow: var(--shadow-sm); }
     }
     .form-row input::placeholder, .form-row textarea::placeholder { color: var(--placeholder, var(--text-4)); opacity: 1; }
+
+    /* ============ v4: align case-study cards row by row ============ */
+    /* Each card spans 5 shared row tracks (org line, metric, title, steps, toggle),
+       so metrics, titles and Result blocks line up across a row. */
+    @supports (grid-template-rows: subgrid) {
+      .car-card { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
+      .car-top, .car-metric, .car-card h3 { align-self: start; }
+      .car-card h3 { align-self: start; }
+      .car-steps { margin-top: 0; align-self: start; }
+      .car-toggle { align-self: start; }
+      .car-metric { align-items: baseline; }
+    }
   </style>
 </head>
 <body>
@@ -667,7 +679,7 @@
           <p class="hero-role">Technology &amp; Delivery Leader</p>
           <p class="hero-tagline">I modernize the complex, highly regulated platforms that <em>cannot</em> afford to fail.</p>
           <p class="hero-sub">
-            For nearly 14 years as a Vice President at Wells Fargo, I set technical strategy and platform governance for a <strong>$2.5T+ AUM</strong> financial ecosystem — aligning architecture, budgets, and cross-functional teams to protect uptime and cut total cost of ownership. That foundation was laid earlier at Oracle and Infosys, delivering enterprise finance and talent platforms for clients such as Charles Schwab and Dow Jones.
+            For nearly 14 years as a Vice President at Wells Fargo, I set technical strategy and platform governance for a <strong>$2.5T+ AUM</strong> financial ecosystem, aligning architecture, budgets, and cross-functional teams to protect uptime and cut total cost of ownership. That foundation was laid earlier at Oracle and Infosys, delivering enterprise finance and talent platforms for clients such as Charles Schwab and Dow Jones.
           </p>
           <p class="hero-sub">
             Today, I pair that operational rigor with hands-on, evaluation-backed GenAI product architecture.
@@ -722,13 +734,13 @@
           <p class="section-label">About</p>
           <h2 class="section-title">Close to the architecture.<br><em>Accountable</em> for the outcome.</h2>
           <p>
-            I've spent my career where a system going down is a regulatory event, not an inconvenience. For nearly fourteen years at <strong>Wells Fargo</strong> I set the technical strategy and architectural guardrails for a <strong>$2.5T+ AUM finance ecosystem</strong> — redesigning it for COSO compliance, building its disaster-recovery discipline, and making its data audit-ready.
+            I've spent my career where a system going down is a regulatory event, not an inconvenience. For nearly fourteen years at <strong>Wells Fargo</strong> I set the technical strategy and architectural guardrails for a <strong>$2.5T+ AUM finance ecosystem</strong>, redesigning it for COSO compliance, building its disaster-recovery discipline, and making its data audit-ready.
           </p>
           <p>
             My decisions span architecture, budget, roadmap, and stakeholder alignment. I've made the build-vs-buy case to a CTO, rebuilt the support model that keeps finance close running, and restructured teams so each module has an owner. The through-line is <strong>turning technical depth into business outcomes</strong> that auditors, executives, and engineers can all verify.
           </p>
           <p>
-            Since mid-2026 I've been building <strong>independent GenAI products</strong> — a RAG conversational platform in production, an agentic content workflow, and an AI knowledge platform — applying regulated-industry rigor to a field that badly needs it.
+            Since mid-2026 I've been building <strong>independent GenAI products</strong>, including a RAG conversational platform in production, an agentic content workflow, and an AI knowledge platform. I bring the rigor of regulated finance to a field that badly needs it.
           </p>
           <div class="about-tags">
             <span class="tag">Platform Modernization</span>
@@ -741,17 +753,17 @@
         </div>
         <div class="about-metrics anim">
           <div class="metric-cell">
-            <div class="metric-num">−70<span>%</span></div>
-            <div class="metric-label">Projected TCO</div>
+            <div class="metric-num">70<span>%</span></div>
+            <div class="metric-label">Lower projected TCO</div>
             <div class="metric-desc">$4M → $1.2M through a build-vs-buy case that won CTO sponsorship</div>
           </div>
           <div class="metric-cell">
             <div class="metric-num">142</div>
             <div class="metric-label">Models automated</div>
-            <div class="metric-desc">Daily GL reconciliation — zero failures over 4 years, audit-verified</div>
+            <div class="metric-desc">Daily GL reconciliation with zero failures over 4 years, verified in audits</div>
           </div>
           <div class="metric-cell">
-            <div class="metric-num">3–5<span>h</span></div>
+            <div class="metric-num">3 to 5<span>h</span></div>
             <div class="metric-label">Verified recovery</div>
             <div class="metric-desc">Disaster-recovery failover coordinated across 8 teams</div>
           </div>
@@ -773,7 +785,7 @@
       <div class="section-header">
         <p class="section-label">Applied AI</p>
         <h2 class="section-title">GenAI, built with a <em>banker's</em> discipline.</h2>
-        <p class="section-sub">Three AI products I've designed and shipped end to end — each written up in full. In regulated finance you don't ship what you can't evaluate, explain, and govern; I hold AI to the same bar.</p>
+        <p class="section-sub">Three AI products I've designed and shipped end to end, each written up in full. In regulated finance you don't ship what you can't evaluate, explain, and govern. I hold AI to the same bar.</p>
       </div>
       <div class="proj-grid">
         <a class="proj-card anim" href="posts/krishna-uvaca/">
@@ -781,7 +793,7 @@
           <div class="proj-body">
             <p class="proj-kind">RAG · Conversational AI · In production</p>
             <h3>Krishna Uvaca</h3>
-            <p>A RAG platform on the Bhagavad Gita: grounded answers that cite the verse they come from, with multi-turn memory.</p>
+            <p>A RAG platform on the Bhagavad Gita that gives grounded answers, cites the verse each one comes from, and remembers the conversation.</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> 88% accuracy across 500 test conversations</p>
             <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
           </div>
@@ -791,7 +803,7 @@
           <div class="proj-body">
             <p class="proj-kind">Agentic workflow automation</p>
             <h3>ObserverPrime</h3>
-            <p>Multi-stage content pipelines with provider-agnostic LLMs, background jobs, and resumable execution — a human approves every step.</p>
+            <p>Multi-stage content pipelines with provider-agnostic LLMs, background jobs, and resumable execution. A human approves every step.</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Automated test coverage for production-grade reliability</p>
             <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
           </div>
@@ -801,7 +813,7 @@
           <div class="proj-body">
             <p class="proj-kind">AI knowledge platform</p>
             <h3>Elara</h3>
-            <p>Turns unstructured material into reusable knowledge through automated ingestion, extraction, and retrieval — a personal AI tutor.</p>
+            <p>Turns unstructured material into reusable knowledge through automated ingestion, extraction, and retrieval. Think of it as a personal AI tutor.</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Led AI strategy &amp; architecture</p>
             <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
           </div>
@@ -829,7 +841,7 @@
       <div class="section-header">
         <p class="section-label">Impact · Challenge → Action → Result</p>
         <h2 class="section-title">The problems I was<br>trusted to <em>solve</em>.</h2>
-        <p class="section-sub">Each story follows the same arc: the constraint I walked into, what I did, and the measured result. Tap any card to see the challenge and action behind it.</p>
+        <p class="section-sub">Each story follows the same arc, from the constraint I walked into, to what I did, to the measured result. Tap any card to see the challenge and action behind it.</p>
         <div class="car-legend" aria-hidden="true">
           <span><i style="background:var(--challenge)"></i>Challenge</span>
           <span><i style="background:var(--action)"></i>Action</span>
@@ -853,31 +865,31 @@
           <div class="car-metric"><span class="car-metric-num">$4M → $1.2M</span><span class="car-metric-label">projected TCO</span></div>
           <h3>Won the build-vs-buy case for ERP modernization</h3>
           <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Replace a legacy ERP: a $2M/year SaaS subscription, or an 18-month in-house build?</dd></div>
+            <div class="car-step c"><dt>Challenge</dt><dd>Replace a legacy ERP with a $2M/year SaaS subscription, or build in house over 18 months?</dd></div>
             <div class="car-step a"><dt>Action</dt><dd>Built the roadmap and cost model, designed a lean team that rolls contractors off at go-live, and presented to the Finance CTO.</dd></div>
             <div class="car-step r"><dt>Result</dt><dd>CTO sponsorship and budget approval for a cloud-hosted platform at a fraction of the cost.</dd></div>
           </dl>
         </article>
 
         <article id="car-l2" class="car-card anim" data-featured data-theme="reliability">
-          <div class="car-top"><span class="car-tag">Operations</span><span class="car-org">Wells Fargo · 2022–26</span></div>
+          <div class="car-top"><span class="car-tag">Operations</span><span class="car-org">Wells Fargo</span></div>
           <div class="car-metric"><span class="car-metric-num">99.8%</span><span class="car-metric-label">availability</span></div>
           <h3>Built the L2 support model from the ground up</h3>
           <dl class="car-steps">
             <div class="car-step c"><dt>Challenge</dt><dd>Production support had no dedicated L2 model, runbooks, or ownership structure.</dd></div>
             <div class="car-step a"><dt>Action</dt><dd>Documented processes, trained staff, set point-of-contact ownership, and built runbooks, SLAs, and escalation paths.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>MTTR cut 30–60%; availability up from 99.2% to 99.8%.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>MTTR cut by 30 to 60%, with availability up from 99.2% to 99.8%.</dd></div>
           </dl>
         </article>
 
         <article class="car-card anim" data-featured data-theme="modernization">
-          <div class="car-top"><span class="car-tag">Integration</span><span class="car-org">Wells Fargo · 2020–21</span></div>
+          <div class="car-top"><span class="car-tag">Integration</span><span class="car-org">Wells Fargo</span></div>
           <div class="car-metric"><span class="car-metric-num">99%</span><span class="car-metric-label">faster ticker response</span></div>
           <h3>Retired a third-party middleman for Bloomberg rate data</h3>
           <dl class="car-steps">
             <div class="car-step c"><dt>Challenge</dt><dd>The legacy ERP got Bloomberg ticker data through an intermediary system, delaying rate updates.</dd></div>
             <div class="car-step a"><dt>Action</dt><dd>Took a Python-based BEAP API integration from COVID-era POC to production, running both the build and the vendor coordination.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Intermediary eliminated, live in ~12 months; the reusable pattern then onboarded a second system.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Intermediary eliminated and live in about 12 months. The reusable pattern then onboarded a second system.</dd></div>
           </dl>
         </article>
 
@@ -886,9 +898,9 @@
           <div class="car-metric"><span class="car-metric-num">3h → 2m</span><span class="car-metric-label">workflow time</span></div>
           <h3>Gave a legacy ERP computing power it never had</h3>
           <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>The ERP's asynchronous design couldn't run key transformations synchronously — a 3-hour end-to-end bottleneck.</dd></div>
+            <div class="car-step c"><dt>Challenge</dt><dd>The ERP's asynchronous design couldn't run key transformations synchronously, creating a 3-hour end-to-end bottleneck.</dd></div>
             <div class="car-step a"><dt>Action</dt><dd>Architected a Python computation layer, wrapped in shell to talk to PeopleSoft, with Kafka consumption for upstream data.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Under 2 minutes end to end — a 98% improvement, with checklist-driven approvals.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Under 2 minutes end to end, a 98% improvement, with checklist-driven approvals.</dd></div>
           </dl>
         </article>
 
@@ -897,9 +909,9 @@
           <div class="car-metric"><span class="car-metric-num">93%</span><span class="car-metric-label">less processing time</span></div>
           <h3>Automated daily GL reconciliation across 142 models</h3>
           <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Reconciling Oracle GL, PeopleSoft, and 7–8 upstream systems took ~5 hours a day in Excel — with misstatement risk.</dd></div>
+            <div class="car-step c"><dt>Challenge</dt><dd>Reconciling Oracle GL, PeopleSoft, and 7 to 8 upstream systems took about 5 hours a day in Excel, with a risk of misstatement.</dd></div>
             <div class="car-step a"><dt>Action</dt><dd>Engineered automated variance reporting into the daily run, with resilient reprocessing and an on-demand override.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>5 hours → 20 minutes; zero failures for 4 years, verified across 8–12 quarterly audits.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>5 hours down to 20 minutes, with zero failures for 4 years, verified across 8 to 12 quarterly audits.</dd></div>
           </dl>
         </article>
 
@@ -926,13 +938,13 @@
         </article>
 
         <article id="car-dr" class="car-card anim" data-theme="reliability">
-          <div class="car-top"><span class="car-tag">Resilience</span><span class="car-org">Wells Fargo · 2021–26</span></div>
-          <div class="car-metric"><span class="car-metric-num">3–5h</span><span class="car-metric-label">verified recovery</span></div>
-          <h3>Made disaster recovery measurable — and routine</h3>
+          <div class="car-top"><span class="car-tag">Resilience</span><span class="car-org">Wells Fargo</span></div>
+          <div class="car-metric"><span class="car-metric-num">3 to 5h</span><span class="car-metric-label">verified recovery</span></div>
+          <h3>Made disaster recovery measurable and routine</h3>
           <dl class="car-steps">
             <div class="car-step c"><dt>Challenge</dt><dd>Regulators required DR testing at set intervals, with no reliable estimate of recovery time.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Coordinated parallel-server failover across 8 teams plus infra, DB, and support; streamlined the failover sequence.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Consistent 3–5 hour window for 3 years; cadence raised from annual to every 6 months.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Coordinated parallel-server failover across 8 teams plus infra, DB, and support, and streamlined the failover sequence.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>A consistent 3 to 5 hour window for 3 years, with the cadence raised from annual to every 6 months.</dd></div>
           </dl>
         </article>
 
@@ -970,18 +982,18 @@
         </article>
 
         <article class="car-card anim" data-theme="ai">
-          <div class="car-top"><span class="car-tag">Conversational AI</span><span class="car-org">Independent · 2026</span></div>
+          <div class="car-top"><span class="car-tag">Conversational AI</span><span class="car-org">Independent</span></div>
           <div class="car-metric"><span class="car-metric-num">88%</span><span class="car-metric-label">response accuracy</span></div>
           <h3>Took a governed conversational AI to production, solo</h3>
           <dl class="car-steps">
             <div class="car-step c"><dt>Challenge</dt><dd>Could a governed conversational AI reach production without a corporate delivery structure?</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Architected Krishna Uvaca end to end: a 200+ rule, 8-component behavioral framework plus its evaluation model.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Live in production; 88% accuracy validated across 500 test conversations.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Architected Krishna Uvaca end to end, including a 200+ rule, 8-component behavioral framework and its evaluation model.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Live in production, with 88% accuracy validated across 500 test conversations.</dd></div>
           </dl>
         </article>
 
         <article class="car-card anim" data-theme="modernization">
-          <div class="car-top"><span class="car-tag">ERP Upgrade</span><span class="car-org">Infosys · Charles Schwab</span></div>
+          <div class="car-top"><span class="car-tag">ERP Upgrade</span><span class="car-org">Infosys</span></div>
           <div class="car-metric"><span class="car-metric-num">900+</span><span class="car-metric-label">objects retrofitted</span></div>
           <h3>A PeopleSoft Finance upgrade with zero critical defects</h3>
           <dl class="car-steps">
@@ -992,18 +1004,18 @@
         </article>
 
         <article class="car-card anim" data-theme="reliability">
-          <div class="car-top"><span class="car-tag">Support Quality</span><span class="car-org">Infosys · Charles Schwab</span></div>
-          <div class="car-metric"><span class="car-metric-num">−30–40%</span><span class="car-metric-label">ticket backlog</span></div>
+          <div class="car-top"><span class="car-tag">Support Quality</span><span class="car-org">Infosys</span></div>
+          <div class="car-metric"><span class="car-metric-num">30 to 40%</span><span class="car-metric-label">smaller ticket backlog</span></div>
           <h3>Pattern-based fixes for finance-close incidents</h3>
           <dl class="car-steps">
             <div class="car-step c"><dt>Challenge</dt><dd>Recurring batch failures across finance modules built a growing backlog during close cycles.</dd></div>
             <div class="car-step a"><dt>Action</dt><dd>Mapped the recurring failure patterns and built reusable fixes and documentation under CMMI Level 5.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Backlog cut 30–40% during critical finance-close cycles.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Backlog cut by 30 to 40% during critical finance-close cycles.</dd></div>
           </dl>
         </article>
 
         <article class="car-card anim" data-theme="leadership">
-          <div class="car-top"><span class="car-tag">Delivery</span><span class="car-org">Infosys · Dow Jones</span></div>
+          <div class="car-top"><span class="car-tag">Delivery</span><span class="car-org">Infosys</span></div>
           <div class="car-metric"><span class="car-metric-num">9 mo</span><span class="car-metric-label">on schedule</span></div>
           <h3>Cleared the last blocker to a phased funding release</h3>
           <dl class="car-steps">
@@ -1030,19 +1042,19 @@
           <div class="principle-icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
           <h3>Evaluate before committing</h3>
           <p>The cheapest mistake is the one measured early. Cost models and evaluation harnesses come before budget is locked.</p>
-          <p class="principle-proof">Proof: <a href="#car-tco">$4M → $1.2M TCO case</a> · <a href="#car-rag">RAG go/no-go</a></p>
+          <p class="principle-proof">Proven by <a href="#car-tco">$4M → $1.2M TCO case</a> · <a href="#car-rag">RAG go/no-go</a></p>
         </article>
         <article class="principle anim">
           <div class="principle-icon"><i class="fas fa-building-shield" aria-hidden="true"></i></div>
           <h3>Compliance is architecture</h3>
-          <p>Audit-readiness bolted on at the end is brittle. Build classification, validation, and access control in — make the compliant path the default.</p>
-          <p class="principle-proof">Proof: <a href="#car-retention">COSO-aligned retention</a> · <a href="#car-apigee">52 feeds moving to Apigee</a></p>
+          <p>Audit-readiness bolted on at the end is brittle. Build classification, validation, and access control in from the start, so the compliant path is the default.</p>
+          <p class="principle-proof">Proven by <a href="#car-retention">COSO-aligned retention</a> · <a href="#car-apigee">52 feeds moving to Apigee</a></p>
         </article>
         <article class="principle anim">
           <div class="principle-icon"><i class="fas fa-heart-pulse" aria-hidden="true"></i></div>
           <h3>Reliability is engineered</h3>
-          <p>Checkpoint restart, resilient reprocessing, runbooks, and rehearsed failover — failure paths designed, not improvised.</p>
-          <p class="principle-proof">Proof: <a href="#car-l2">99.2% → 99.8% availability</a> · <a href="#car-dr">3–5h DR</a></p>
+          <p>Checkpoint restart, resilient reprocessing, runbooks, and rehearsed failover. Failure paths are designed, not improvised.</p>
+          <p class="principle-proof">Proven by <a href="#car-l2">99.2% → 99.8% availability</a> · <a href="#car-dr">3 to 5h DR</a></p>
         </article>
       </div>
     </div>
@@ -1054,21 +1066,21 @@
       <div class="section-header">
         <p class="section-label">Career</p>
         <h2 class="section-title">Two decades of<br><em>compounding</em> depth.</h2>
-        <p class="section-sub">From PeopleSoft Finance consultant to VP of a $2.5T+ AUM finance platform to independent AI builder — each chapter built the judgment for the next.</p>
+        <p class="section-sub">From PeopleSoft Finance consultant to VP of a $2.5T+ AUM finance platform to independent AI builder, each chapter built the judgment for the next.</p>
       </div>
       <div class="exp-list">
         <article class="exp-item anim">
           <div class="exp-meta">
-            <div class="exp-date">Jul 2026 — Present</div>
+            <div class="exp-date">Jul 2026 to Present</div>
             <div class="exp-co">Independent</div>
             <div class="exp-loc">AI / ML product development</div>
           </div>
           <div class="exp-body">
             <h3 class="exp-title">AI Technical Product Development</h3>
-            <p class="exp-summary">Leading independent AI/ML products from ideation to MVP and global deployment — GenAI products, agentic frameworks, and low-code/no-code apps built for multi-geography scale.</p>
+            <p class="exp-summary">Leading independent AI/ML products from ideation to MVP and global deployment, spanning GenAI products, agentic frameworks, and low-code/no-code apps built for multi-geography scale.</p>
             <div class="exp-pills"><span class="exp-pill">GenAI</span><span class="exp-pill">RAG</span><span class="exp-pill">Agentic AI</span></div>
             <ul class="exp-bullets">
-              <li>Architected and built <strong>Krishna Uvaca</strong>, an end-to-end RAG conversational AI platform with context-aware retrieval, grounded generation, and multi-turn memory — <strong>88% accuracy</strong> over 500 test conversations</li>
+              <li>Architected and built <strong>Krishna Uvaca</strong>, an end-to-end RAG conversational AI platform with context-aware retrieval, grounded generation, and multi-turn memory, reaching <strong>88% accuracy</strong> over 500 test conversations</li>
               <li>Designed and delivered <strong>ObserverPrime</strong>, an agentic workflow system orchestrating multi-stage content pipelines with provider-agnostic LLMs, background jobs, resumable execution, and automated tests</li>
               <li>Led AI strategy and architecture for <strong>Elara</strong>, a knowledge platform turning unstructured data into reusable knowledge through automated ingestion, extraction, and retrieval</li>
             </ul>
@@ -1077,7 +1089,7 @@
 
         <article class="exp-item anim">
           <div class="exp-meta">
-            <div class="exp-date">Oct 2012 — Jun 2026</div>
+            <div class="exp-date">Oct 2012 to Jun 2026</div>
             <div class="exp-co">Wells Fargo India</div>
             <div class="exp-loc">~14 years</div>
           </div>
@@ -1087,21 +1099,21 @@
             <div class="exp-pills"><span class="exp-pill">Platform Governance</span><span class="exp-pill">Modernization</span><span class="exp-pill">Risk &amp; Compliance</span><span class="exp-pill">Team Leadership</span></div>
             <ul class="exp-bullets">
               <li>Set <strong>architectural guardrails</strong> and target-state direction across finance-critical programs</li>
-              <li>Directed a retrieval-first <strong>RAG feasibility study</strong> with an evaluation harness and no-answer detection — <strong>~80% source-grounded</strong> responses, informing a production go/no-go</li>
+              <li>Directed a retrieval-first <strong>RAG feasibility study</strong> with an evaluation harness and no-answer detection, reaching <strong>~80% source-grounded</strong> responses and informing a production go/no-go</li>
               <li>Built a Python computation layer over PeopleSoft with Kafka consumption, turning a <strong>3-hour</strong> async workflow into <strong>under 2 minutes</strong></li>
               <li>Integrated <strong>Bloomberg BEAP</strong>, retiring a third-party intermediary and cutting response time <strong>99%</strong> on reusable architecture</li>
-              <li>Streamlined GL allocation feeding P&amp;L with checkpoint restart and adaptable rule skipping — <strong>58% faster</strong> (3.5h → 1.5h) across 2M+ rows a day</li>
-              <li>Standardized L2 support — MTTR down <strong>30–60%</strong>, availability <strong>99.2% → 99.8%</strong></li>
-              <li>Restructured into module-aligned pods and standardized CI/CD for cloud readiness — releases <strong>monthly → biweekly</strong>, deployment incidents <strong>−20%</strong></li>
+              <li>Streamlined GL allocation feeding P&amp;L with checkpoint restart and adaptable rule skipping, making it <strong>58% faster</strong> (3.5h → 1.5h) across 2M+ rows a day</li>
+              <li>Standardized L2 support, cutting MTTR by <strong>30 to 60%</strong> and lifting availability from <strong>99.2% to 99.8%</strong></li>
+              <li>Restructured into module-aligned pods and standardized CI/CD for cloud readiness, moving releases from <strong>monthly to biweekly</strong> with <strong>20% fewer</strong> deployment incidents</li>
               <li>Led a data-driven build-vs-buy strategy that secured CTO sponsorship and cut projected TCO from <strong>$4M to $1.2M</strong></li>
-              <li>Scaled DR from annual to <strong>every 6 months</strong> across 8 teams, with 3–5 hour execution; architected <strong>COSO-aligned</strong> auditable data retention</li>
+              <li>Scaled DR from annual to <strong>every 6 months</strong> across 8 teams, with 3 to 5 hour execution, and architected <strong>COSO-aligned</strong> auditable data retention</li>
             </ul>
           </div>
         </article>
 
         <article class="exp-item anim">
           <div class="exp-meta">
-            <div class="exp-date">Aug 2011 — Sep 2012</div>
+            <div class="exp-date">Aug 2011 to Sep 2012</div>
             <div class="exp-co">Oracle India</div>
             <div class="exp-loc">PeopleSoft consulting</div>
           </div>
@@ -1109,7 +1121,7 @@
             <h3 class="exp-title">Staff Consultant</h3>
             <div class="exp-pills"><span class="exp-pill">Requirements</span><span class="exp-pill">Localization</span></div>
             <ul class="exp-bullets">
-              <li>Drove requirements discovery with global stakeholders on the PeopleSoft Talent Acquisition model — <strong>~20% performance improvement</strong> and stabilized workflows</li>
+              <li>Drove requirements discovery with global stakeholders on the PeopleSoft Talent Acquisition model, delivering a <strong>~20% performance improvement</strong> and stabilized workflows</li>
               <li>Delivered bilingual and multilingual support for <strong>Inspira</strong> (UN talent acquisition), enabling adoption across <strong>190+ countries</strong></li>
             </ul>
           </div>
@@ -1117,7 +1129,7 @@
 
         <article class="exp-item anim">
           <div class="exp-meta">
-            <div class="exp-date">Jul 2006 — Jul 2011</div>
+            <div class="exp-date">Jul 2006 to Jul 2011</div>
             <div class="exp-co">Infosys</div>
             <div class="exp-loc">Charles Schwab · Dow Jones</div>
           </div>
@@ -1127,7 +1139,7 @@
             <ul class="exp-bullets">
               <li>Managed cross-functional delivery for the <strong>Charles Schwab</strong> account across development, support, design, and upgrade engagements</li>
               <li>Led a PeopleSoft Finance upgrade retrofitting <strong>900+ custom objects</strong> across P2P and O2C (GL, AR, AP, BI, Purchasing) into stable production</li>
-              <li>Owned delivery governance for recurring incidents under CMMI Level 5, cutting the ticket backlog <strong>30–40%</strong> during finance close</li>
+              <li>Owned delivery governance for recurring incidents under CMMI Level 5, cutting the ticket backlog by <strong>30 to 40%</strong> during finance close</li>
               <li>Led the <strong>Dow Jones</strong> PeopleSoft re-implementation, clearing the last blocker to its phased funding release</li>
               <li>Chaired the PeopleSoft LOB Communication Group, connecting <strong>30+ teams</strong> through knowledge-sharing sessions, newsletters, and hackathons</li>
             </ul>
@@ -1150,7 +1162,7 @@
           <span class="chip">Technical Strategy &amp; Architecture</span>
           <span class="chip">Enterprise Architecture (TOGAF)</span>
           <span class="chip">Delivery Governance</span>
-          <span class="chip">Risk &amp; Compliance — COSO · CMMI L5 · Audit Readiness</span>
+          <span class="chip">Risk &amp; Compliance (COSO · CMMI L5 · Audit Readiness)</span>
           <span class="chip">Budget, Roadmap &amp; TCO Ownership</span>
           <span class="chip">Build-vs-Buy Strategy</span>
           <span class="chip">Executive &amp; Stakeholder Management</span>
@@ -1196,7 +1208,7 @@
       <div class="section-header">
         <p class="section-label">Credentials</p>
         <h2 class="section-title">Learning, <em>continuously</em>.</h2>
-        <p class="section-sub">From a pharmacy degree to an MBA to postgraduate AI/ML — I've never stopped retooling.</p>
+        <p class="section-sub">From a pharmacy degree to an MBA to postgraduate AI/ML, I've never stopped retooling.</p>
       </div>
       <div class="certs-grid">
         <div>
@@ -1214,7 +1226,7 @@
           <p class="certs-col-label">Education</p>
           <div class="edu-list">
             <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-robot" aria-hidden="true"></i></div><div class="cert-info"><h4>Post Graduate, Artificial Intelligence &amp; Machine Learning</h4><div class="cert-issuer">IIIT Bangalore</div></div></div>
-            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div><div class="cert-info"><h4>MBA — IT &amp; Financial Accounting</h4><div class="cert-issuer">ICFAI</div></div></div>
+            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div><div class="cert-info"><h4>MBA, IT &amp; Financial Accounting</h4><div class="cert-issuer">ICFAI</div></div></div>
             <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div><div class="cert-info"><h4>B. Pharmacy (Hons.)</h4><div class="cert-issuer">BITS Pilani, Rajasthan</div></div></div>
           </div>
           <div class="exploring-card anim">
@@ -1237,7 +1249,7 @@
         <div class="contact-left">
           <p class="section-label">Contact</p>
           <h2 class="section-title">Let's talk about<br>what's <em>next</em>.</h2>
-          <p>Whether you're modernizing a critical platform, putting governance around AI, or building a technology and delivery leadership team — I'd welcome the conversation.</p>
+          <p>Whether you're modernizing a critical platform, putting governance around AI, or building a technology and delivery leadership team, I'd welcome the conversation.</p>
           <div class="contact-details">
             <div class="contact-item">
               <div class="contact-item-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
@@ -1420,7 +1432,7 @@
       e.preventDefault();
       const f = e.target;
       const subject = f.subject.value.trim() || 'Hello from sandeepmidde.com';
-      const body = f.message.value.trim() + '\n\n— ' + f.name.value.trim();
+      const body = f.message.value.trim() + '\n\n' + f.name.value.trim();
       window.location.href = 'mailto:sandeepmidde@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     });
   </script>
