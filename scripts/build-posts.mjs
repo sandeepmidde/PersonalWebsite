@@ -233,15 +233,16 @@ function pickSocialImage(postDir, slug, html) {
 // into <head>, plus a <base> so the template's relative links still resolve.
 function writePostPage(template, post, socialImage) {
   // Link previews read "<Short title> by Sandeep Midde" plus a one-line summary.
-  // The short title is the part before a "|" or colon ("Krishna Uvaca | Ancient..." -> "Krishna Uvaca").
+  // The short title is the part before the first comma, "|" or colon
+  // ("Krishna Uvaca, Ancient Wisdom..." -> "Krishna Uvaca").
   const fullTitle = decodeEntities(post.title);
-  const shortTitle = fullTitle.split(/[|:]/)[0].trim();
+  const shortTitle = fullTitle.split(/[|:]|, /)[0].trim();
   const title = `${shortTitle} by ${AUTHOR}`;
   const description = post.summary || decodeEntities(post.excerpt);
   const pagePath = `posts/${post.slug}/`;
   const image = escapeAttr(absoluteUrl(socialImage));
   const tags = [
-    `<title>${escapeAttr(fullTitle)} | ${AUTHOR}</title>`,
+    `<title>${escapeAttr(fullTitle)} · ${AUTHOR}</title>`,
     `<meta name="description" content="${escapeAttr(description)}" />`,
     `<meta property="og:type" content="article" />`,
     `<meta property="og:site_name" content="${AUTHOR}" />`,

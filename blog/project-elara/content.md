@@ -1,4 +1,4 @@
-# Project Elara | Save Anything, Learn Everything
+# Project Elara, Where Everything You Save Becomes Something You Learn
 Tags: Projects, AI, Learning
 Date: 2026-09-23
 Summary: An AI tutor that reads everything you save to Google Drive and teaches you from it, with no manual tagging or filing.

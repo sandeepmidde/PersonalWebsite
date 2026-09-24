@@ -1,4 +1,4 @@
-# Krishna Uvaca | Ancient Wisdom, Modern Answers
+# Krishna Uvaca, Ancient Wisdom for Modern Questions
 Tags: Projects, AI, Mobile
 Date: 2026-09-23
 Summary: A RAG system built on the Bhagavad Gita. Ask life's questions and get answers that cite the verse they come from.

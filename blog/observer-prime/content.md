@@ -1,4 +1,4 @@
-# Observer Prime | AI Drafts, You Decide
+# Observer Prime, Where AI Does the Legwork and You Make the Calls
 Tags: Projects, AI, Content Creation
 Date: 2026-09-23
 Summary: A local-first AI workbench that turns one topic into a complete YouTube video plan, with the creator approving every step.

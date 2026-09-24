@@ -113,13 +113,17 @@
   .topic-group .chevron { transition: transform .2s ease; }
   .topic-group[open] .chevron { transform: rotate(180deg); }
   .topic-link.active { color: #5eead4; font-weight: 600; }
-  #shareBtn {
+  /* Share row: plain links to each network's share page, so they work for every
+     visitor on every browser with no sign-in to this site or GitHub. */
+  .share-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    height: 34px; min-width: 34px; padding: 0 10px; border-radius: 9999px;
+    background-color: rgba(30, 41, 59, 0.6); color: #94a3b8;
     transition: color .2s ease, background-color .2s ease;
   }
-  #shareBtn.copied {
-    color: #5eead4;
-    background-color: rgba(45, 212, 191, 0.12);
-  }
+  .share-btn:hover { background-color: #1e293b; color: #e2e8f0; }
+  .share-btn svg { width: 16px; height: 16px; }
+  .share-btn.copied { color: #5eead4; background-color: rgba(45, 212, 191, 0.12); }
 </style>
 </head>
 
@@ -182,13 +186,30 @@
               <span id="viewCount">0</span> views
             </span>
 
-            <!-- One Share button: opens the device's native share sheet (WhatsApp, LinkedIn,
-                 Mail, Print, ...) via the Web Share API; falls back to copying the link
-                 on browsers that don't support it (e.g. Firefox desktop). -->
-            <button id="shareBtn" class="ml-auto flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/60 hover:bg-slate-800 font-medium">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" /></svg>
-              <span id="shareLabel">Share</span>
-            </button>
+            <!-- Share: direct links to each network (no sign-in to this site or GitHub needed),
+                 a Copy link button, and the phone's own share sheet where the browser offers one. -->
+            <div class="ml-auto flex items-center gap-2" id="shareRow">
+              <span class="hidden sm:inline text-slate-500 mr-1">Share</span>
+              <a id="shareLinkedIn" class="share-btn" target="_blank" rel="noopener" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+              </a>
+              <a id="shareWhatsApp" class="share-btn" target="_blank" rel="noopener" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91A9.84 9.84 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.23 8.24c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.17.25-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
+              </a>
+              <a id="shareX" class="share-btn" target="_blank" rel="noopener" aria-label="Share on X" title="Share on X">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg>
+              </a>
+              <a id="shareEmail" class="share-btn" aria-label="Share by email" title="Share by email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </a>
+              <button id="shareCopy" type="button" class="share-btn" aria-label="Copy link" title="Copy link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.69a4.5 4.5 0 016.36 6.36l-3 3a4.5 4.5 0 01-6.36-6.36l1.06-1.06M10.81 15.31a4.5 4.5 0 01-6.36-6.36l3-3a4.5 4.5 0 016.36 6.36l-1.06 1.06"/></svg>
+                <span id="shareCopyLabel" class="text-xs font-medium">Copy link</span>
+              </button>
+              <button id="shareNative" type="button" class="share-btn" style="display:none" aria-label="More sharing options" title="More sharing options">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"/></svg>
+              </button>
+            </div>
           </div>
 
           <!-- Comments — handled by giscus and stored as GitHub Discussions on this repo. -->
@@ -252,7 +273,7 @@
       fetch(`posts/${encodeURIComponent(slug)}.json`)
         .then(res => { if (!res.ok) throw new Error('not found'); return res.json(); })
         .then(post => {
-          document.title = `${post.title} — Sandeep Midde`;
+          document.title = `${post.title} · Sandeep Midde`;
           document.getElementById('postDate').setAttribute('datetime', post.date);
           document.getElementById('postDate').textContent = formatDate(post.date);
           document.getElementById('postReadTime').textContent = post.readTime;
@@ -399,29 +420,41 @@
       });
     }
 
-    // ---- Share (native share sheet where supported, copy-link fallback elsewhere) ----
+    // ---- Share: direct links (work for everyone, no sign-in), copy link, native sheet on phones ----
     function setupShare(title) {
-      const shareBtn = document.getElementById('shareBtn');
-      const shareLabel = document.getElementById('shareLabel');
-      const url = location.href;
+      const url = location.origin + location.pathname;   // clean post URL, no query or #hash
+      const u = encodeURIComponent(url), t = encodeURIComponent(title);
+      document.getElementById('shareLinkedIn').href = `https://www.linkedin.com/sharing/share-offsite/?url=${u}`;
+      document.getElementById('shareWhatsApp').href = `https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`;
+      document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${u}&text=${t}`;
+      document.getElementById('shareEmail').href = `mailto:?subject=${t}&body=${encodeURIComponent(title + '\n\n' + url)}`;
 
-      shareBtn.addEventListener('click', async () => {
-        if (navigator.share) {
-          try {
-            await navigator.share({ title, url });
-          } catch (e) { /* user closed the share sheet — nothing to do */ }
-          return;
-        }
-        try {
-          await navigator.clipboard.writeText(url);
-          shareLabel.textContent = 'Link copied';
-          shareBtn.classList.add('copied');
-          setTimeout(() => {
-            shareLabel.textContent = 'Share';
-            shareBtn.classList.remove('copied');
-          }, 2000);
-        } catch (e) {}
+      const copyBtn = document.getElementById('shareCopy');
+      const copyLabel = document.getElementById('shareCopyLabel');
+      const legacyCopy = () => {   // for browsers or contexts without the async clipboard API
+        const ta = document.createElement('textarea');
+        ta.value = url; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        let ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+        ta.remove(); return ok;
+      };
+      copyBtn.addEventListener('click', async () => {
+        let ok = false;
+        try { await navigator.clipboard.writeText(url); ok = true; } catch (e) { ok = legacyCopy(); }
+        if (!ok) { window.prompt('Copy this link', url); return; }
+        copyLabel.textContent = 'Copied';
+        copyBtn.classList.add('copied');
+        setTimeout(() => { copyLabel.textContent = 'Copy link'; copyBtn.classList.remove('copied'); }, 2000);
       });
+
+      // Phones and tablets: also offer the device's own share sheet (Messages, Slack, etc.)
+      const nativeBtn = document.getElementById('shareNative');
+      if (navigator.share && matchMedia('(pointer: coarse)').matches) {
+        nativeBtn.style.display = "";
+        nativeBtn.addEventListener('click', async () => {
+          try { await navigator.share({ title, url }); } catch (e) { /* closed the sheet */ }
+        });
+      }
     }
 
     // ---- Comments (giscus, backed by GitHub Discussions on this repo) ----
