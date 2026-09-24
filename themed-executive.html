@@ -64,7 +64,7 @@
 
       --bg: #F8F9FA; --bg-alt: #EEF2F7; --surface: #FFFFFF; --surface-2: #F4F6F9;
       --border: #E2E8F0; --line: rgba(15,23,42,0.08); --dot: rgba(15,23,42,0.07);
-      --text: #0F172A; --text-2: #334155; --text-3: #64748B; --text-4: #94A3B8;
+      --text: #0F172A; --text-2: #334155; --text-3: #64748B; --text-4: #5B677A;  /* text-4 ≥ 5.3:1 on every light surface */
       --accent: #2563EB; --accent-hover: #1D4ED8; --on-accent: #FFFFFF;
       --accent-text: #2563EB; --accent-soft: #EAF1FE; --accent-line: #BFD3FB;
       --metric: #0F172A;
@@ -613,6 +613,23 @@
       .hero-stat-num { font-size: 1.4rem; white-space: nowrap; }
       .hero-stat-label { font-size: 0.64rem; }
     }
+
+    /* ============ v3: hero copy, proof links, contrast ============ */
+    .hero-sub strong { color: var(--hero-text); font-weight: 600; }
+    .hero-sub + .hero-sub { margin-top: -0.85rem; }
+    .hero-role { color: var(--hero-accent); letter-spacing: 0.01em; }
+    .principle-proof a {
+      color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
+      text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+    }
+    .principle-proof a:hover { color: var(--accent-text); text-decoration-color: currentColor; }
+    .car-card { scroll-margin-top: 90px; }
+    .car-card.flash { animation: car-flash 1.8s var(--ease); }
+    @keyframes car-flash {
+      0%, 35% { box-shadow: 0 0 0 3px var(--accent), var(--shadow-lg); border-color: var(--accent); }
+      100%    { box-shadow: var(--shadow-sm); }
+    }
+    .form-row input::placeholder, .form-row textarea::placeholder { color: var(--placeholder, var(--text-4)); opacity: 1; }
   </style>
 </head>
 <body>
@@ -648,13 +665,16 @@
         <div class="hero-text">
           <p class="hero-eyebrow">Former VP, Wells Fargo · Open to leadership roles</p>
           <h1 class="hero-name">Sandeep Midde</h1>
-          <p class="hero-role">Technology &amp; Delivery Leader <span>·</span> Platform Modernization &amp; Applied AI</p>
-          <p class="hero-tagline">I modernize the platforms that <em>can't</em> afford to fail.</p>
+          <p class="hero-role">Technology &amp; Delivery Leader</p>
+          <p class="hero-tagline">I modernize the complex, highly regulated platforms that <em>cannot</em> afford to fail.</p>
           <p class="hero-sub">
-            ~20 years leading mission-critical finance platforms in regulated banking — accountable for architecture, budget, roadmap, and stakeholder alignment. Now designing and shipping GenAI systems end to end.
+            Over a 20-year career driving mission-critical engineering — including nearly 14 years setting technical strategy and platform governance for a <strong>$2.5T+ AUM</strong> financial ecosystem at <strong>Wells Fargo</strong> — I align architecture, budgets, and cross-functional teams to protect uptime and cut total cost of ownership.
+          </p>
+          <p class="hero-sub">
+            Today, I pair that operational rigor with hands-on, evaluation-backed GenAI product architecture.
           </p>
           <div class="hero-actions">
-            <a href="#impact" class="btn btn-primary">See the impact <i class="fas fa-arrow-down" aria-hidden="true"></i></a>
+            <a href="#impact" class="btn btn-primary">Review portfolio <i class="fas fa-arrow-down" aria-hidden="true"></i></a>
             <a href="Resume/SandeepMidde.pdf" class="btn btn-ghost" target="_blank" rel="noopener"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a>
             <a href="#contact" class="btn btn-ghost"><i class="fas fa-envelope" aria-hidden="true"></i> Get in touch</a>
           </div>
@@ -829,7 +849,7 @@
 
       <div class="car-grid" id="carGrid">
 
-        <article class="car-card anim" data-featured data-theme="leadership">
+        <article id="car-tco" class="car-card anim" data-featured data-theme="leadership">
           <div class="car-top"><span class="car-tag">Strategy</span><span class="car-org">Wells Fargo</span></div>
           <div class="car-metric"><span class="car-metric-num">$4M → $1.2M</span><span class="car-metric-label">projected TCO</span></div>
           <h3>Won the build-vs-buy case for ERP modernization</h3>
@@ -840,7 +860,7 @@
           </dl>
         </article>
 
-        <article class="car-card anim" data-featured data-theme="reliability">
+        <article id="car-l2" class="car-card anim" data-featured data-theme="reliability">
           <div class="car-top"><span class="car-tag">Operations</span><span class="car-org">Wells Fargo · 2022–26</span></div>
           <div class="car-metric"><span class="car-metric-num">99.8%</span><span class="car-metric-label">availability</span></div>
           <h3>Built the L2 support model from the ground up</h3>
@@ -884,7 +904,7 @@
           </dl>
         </article>
 
-        <article class="car-card anim" data-featured data-theme="ai">
+        <article id="car-rag" class="car-card anim" data-featured data-theme="ai">
           <div class="car-top"><span class="car-tag">GenAI Feasibility</span><span class="car-org">Wells Fargo</span></div>
           <div class="car-metric"><span class="car-metric-num">~80%</span><span class="car-metric-label">source-grounded</span></div>
           <h3>A retrieval-first RAG study that informed a go/no-go decision</h3>
@@ -906,7 +926,7 @@
           </dl>
         </article>
 
-        <article class="car-card anim" data-theme="reliability">
+        <article id="car-dr" class="car-card anim" data-theme="reliability">
           <div class="car-top"><span class="car-tag">Resilience</span><span class="car-org">Wells Fargo · 2021–26</span></div>
           <div class="car-metric"><span class="car-metric-num">3–5h</span><span class="car-metric-label">verified recovery</span></div>
           <h3>Made disaster recovery measurable — and routine</h3>
@@ -917,7 +937,7 @@
           </dl>
         </article>
 
-        <article class="car-card anim" data-theme="governance">
+        <article id="car-apigee" class="car-card anim" data-theme="governance">
           <div class="car-top"><span class="car-tag">API Governance</span><span class="car-org">Wells Fargo</span></div>
           <div class="car-metric"><span class="car-metric-num">52</span><span class="car-metric-label">connections secured</span></div>
           <h3>Put every downstream feed behind a governed gateway</h3>
@@ -928,7 +948,7 @@
           </dl>
         </article>
 
-        <article class="car-card anim" data-theme="governance">
+        <article id="car-retention" class="car-card anim" data-theme="governance">
           <div class="car-top"><span class="car-tag">Compliance</span><span class="car-org">Wells Fargo</span></div>
           <div class="car-metric"><span class="car-metric-num">8 yrs</span><span class="car-metric-label">auditable trail</span></div>
           <h3>Designed COSO-aligned, regulator-ready data retention</h3>
@@ -1011,19 +1031,19 @@
           <div class="principle-icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
           <h3>Evaluate before committing</h3>
           <p>The cheapest mistake is the one measured early. Cost models and evaluation harnesses come before budget is locked.</p>
-          <p class="principle-proof">Proof: $4M → $1.2M TCO case · RAG go/no-go</p>
+          <p class="principle-proof">Proof: <a href="#car-tco">$4M → $1.2M TCO case</a> · <a href="#car-rag">RAG go/no-go</a></p>
         </article>
         <article class="principle anim">
           <div class="principle-icon"><i class="fas fa-building-shield" aria-hidden="true"></i></div>
           <h3>Compliance is architecture</h3>
           <p>Audit-readiness bolted on at the end is brittle. Build classification, validation, and access control in — make the compliant path the default.</p>
-          <p class="principle-proof">Proof: COSO-aligned retention · 52 feeds moving to Apigee</p>
+          <p class="principle-proof">Proof: <a href="#car-retention">COSO-aligned retention</a> · <a href="#car-apigee">52 feeds moving to Apigee</a></p>
         </article>
         <article class="principle anim">
           <div class="principle-icon"><i class="fas fa-heart-pulse" aria-hidden="true"></i></div>
           <h3>Reliability is engineered</h3>
           <p>Checkpoint restart, resilient reprocessing, runbooks, and rehearsed failover — failure paths designed, not improvised.</p>
-          <p class="principle-proof">Proof: 99.2% → 99.8% availability · 3–5h DR</p>
+          <p class="principle-proof">Proof: <a href="#car-l2">99.2% → 99.8% availability</a> · <a href="#car-dr">3–5h DR</a></p>
         </article>
       </div>
     </div>
@@ -1375,6 +1395,26 @@
       card.querySelector('.car-steps').after(t);
     });
     applyCars();
+
+    // "Proof" links: jump to a case study, revealing and expanding it if needed
+    const openCard = (id) => {
+      const card = document.getElementById(id);
+      if (!card || !card.classList.contains('car-card')) return false;
+      if (card.hidden) {
+        activeFilter = 'all'; showAll = true;
+        filters.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === 'all')));
+        applyCars();
+      }
+      if (card.classList.contains('collapsed')) card.querySelector('.car-toggle').click();
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
+      return true;
+    };
+    document.querySelectorAll('a[href^="#car-"]').forEach(a => a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      if (openCard(id)) { e.preventDefault(); history.replaceState(null, '', '#' + id); }
+    }));
+    if (location.hash.startsWith('#car-')) setTimeout(() => openCard(location.hash.slice(1)), 300);
 
     // Contact form → pre-filled email
     document.getElementById('contactForm').addEventListener('submit', e => {
