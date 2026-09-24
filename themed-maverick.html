@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sandeep Midde — Technology &amp; Delivery Leader · Platform Modernization · Applied AI</title>
+  <meta name="description" content="Technology and delivery leader with ~20 years modernizing mission-critical finance platforms in regulated banking — and designing and shipping GenAI systems end to end.">
+  <meta name="author" content="Sandeep Midde">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <!-- Unlisted palette review page (Modern Maverick): not linked from the site, hidden from search. -->
+
+  <!-- Link previews (LinkedIn / WhatsApp / X) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sandeep Midde — Technology & Delivery Leader · Applied AI">
+  <meta property="og:description" content="~20 years modernizing mission-critical finance platforms in regulated banking. Now designing and shipping GenAI systems end to end.">
+  <meta property="og:image" content="https://sandeepmidde.com/social-card.png">
+  <meta property="og:url" content="https://sandeepmidde.com/themed-maverick">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sandeep Midde — Technology & Delivery Leader · Applied AI">
+  <meta name="twitter:description" content="~20 years modernizing mission-critical finance platforms in regulated banking. Now designing and shipping GenAI systems end to end.">
+  <meta name="twitter:image" content="https://sandeepmidde.com/social-card.png">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231E293B'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' font-weight='700' fill='%2310B981' text-anchor='middle'%3ESM%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!--
+  ============================================================================
+  HOW TO EDIT THIS SITE
+  ============================================================================
+  One plain HTML file — no build step. Find the section you want using the
+  "EDIT:" comment headers below, change the text between the tags, save,
+  refresh. The previous version of this page is kept as index_1.html.
+
+  Sections, top to bottom:
+    EDIT: NAV            — top bar links
+    EDIT: HERO           — headline, intro, headline stats, photo
+    EDIT: ABOUT          — story + metric grid (dark band)
+    EDIT: APPLIED AI     — six AI practice cards
+    EDIT: IMPACT (CAR)   — Challenge → Action → Result case studies (filterable)
+    EDIT: HOW I WORK     — operating principles
+    EDIT: CAREER         — role-by-role timeline
+    EDIT: PROJECTS       — shipped AI products (link to blog posts)
+    EDIT: TOOLKIT        — skills
+    EDIT: CREDENTIALS    — certifications + education
+    EDIT: CONTACT        — contact details + message form
+    EDIT: FOOTER
+
+  To add a CAR card: copy one <article class="car-card ..."> block and set its
+  data-theme to one of: modernization, reliability, governance, leadership, ai
+  ============================================================================
+-->
+
+  <style>
+    :root {
+      /* ===== THEME: Modern Maverick — 60% dark slate · 30% light silver · 10% emerald ===== */
+      --ff-display: 'Sora', system-ui, sans-serif;
+      --ff-body: 'Inter', system-ui, sans-serif;
+      --display-weight: 600; --num-weight: 700; --display-tracking: -0.025em;
+      --em-style: normal; --em-weight: 700; --mono-weight: 700;
+
+      --bg: #1E293B; --bg-alt: #1A2435; --surface: #243247; --surface-2: #1C283B;
+      --border: #334155; --line: rgba(241,245,249,0.08); --dot: rgba(241,245,249,0.05);
+      --text: #F1F5F9; --text-2: #CBD5E1; --text-3: #94A3B8; --text-4: #7C8BA1;
+      --accent: #10B981; --accent-hover: #059669; --on-accent: #052E22;
+      --accent-text: #34D399; --accent-soft: rgba(16,185,129,0.12); --accent-line: rgba(52,211,153,0.45);
+      --metric: #F1F5F9;
+      --challenge: #FBBF24; --action: #38BDF8; --result: #34D399;
+
+      --hero-bg: radial-gradient(900px 500px at 85% 10%, rgba(16,185,129,0.10), transparent 60%), #172133;
+      --hero-dot: rgba(241,245,249,0.07); --hero-text: #F8FAFC; --hero-text-2: #CBD5E1; --hero-muted: #94A3B8;
+      --hero-border: #334155; --hero-surface: rgba(255,255,255,0.03); --hero-accent: #34D399;
+
+      --band-bg: #0F172A; --foot-bg: #0B1120;
+      --band-text: #F1F5F9; --band-text-2: #CBD5E1; --band-muted: #94A3B8;
+      --band-border: rgba(148,163,184,0.16); --band-surface: rgba(255,255,255,0.04);
+      --band-cell: #131D31; --band-cell-hover: #182439; --band-accent: #34D399; --band-go: #34D399;
+      --mono-bg: radial-gradient(circle at 85% 12%, rgba(16,185,129,0.35), transparent 55%), #0F172A;
+      --mono-shadow: 0 30px 60px -24px rgba(0,0,0,0.6);
+
+      --nav-bg: rgba(23,33,51,0.88); --nav-border: #334155; --nav-text: #94A3B8; --nav-strong: #F1F5F9;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+      --shadow-lg: 0 18px 40px -16px rgba(0,0,0,0.55);
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --r-sm: 8px; --r-md: 14px; --r-lg: 18px;
+    }
+
+    /* ============ BASE (all colours come from the theme tokens above) ============ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 72px; background: var(--bg); }
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--accent-soft); color: var(--text); }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--accent); color: var(--on-accent);
+      padding: 12px 20px; font-size: 0.9rem; font-weight: 600; z-index: 10000;
+    }
+    .skip-link:focus { left: 0; }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 3px;
+    }
+
+    /* Accent words inside headings */
+    .section-title em, .phil-name em, .hero-headline em {
+      font-style: var(--em-style); font-weight: var(--em-weight); color: var(--accent-text);
+    }
+
+    /* ============ NAV ============ */
+    .site-nav {
+      position: fixed; top: 0; width: 100%;
+      background: var(--nav-bg);
+      backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-bottom: 1px solid transparent;
+      z-index: 1000;
+      transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .site-nav.scrolled { border-color: var(--nav-border); box-shadow: 0 4px 20px -12px rgba(0,0,0,0.25); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+    .logo { font-family: var(--ff-display); font-size: 1.15rem; font-weight: var(--display-weight); letter-spacing: -0.02em; color: var(--nav-strong); }
+    .logo span { color: var(--accent-text); }
+    .nav-links { display: flex; list-style: none; gap: 1.6rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--nav-text); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--nav-strong); }
+    .nav-cta {
+      font-weight: 600 !important; color: var(--on-accent) !important;
+      background: var(--accent); border: 1px solid var(--accent);
+      padding: 7px 18px; border-radius: 100px;
+      transition: background 0.2s, border-color 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+    .mobile-menu { display: none; font-size: 1.3rem; cursor: pointer; color: var(--nav-strong); background: none; border: none; padding: 4px; position: relative; z-index: 2; }
+
+    /* ============ HERO ============ */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; padding: 140px 0 90px;
+      position: relative; overflow: hidden; isolation: isolate;
+      background: var(--hero-bg); color: var(--hero-text);
+      border-bottom: 1px solid var(--hero-border);
+    }
+    .hero > .container { width: 100%; }
+    .hero::before {   /* quiet texture */
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background-image: radial-gradient(var(--hero-dot) 1px, transparent 1px);
+      background-size: 24px 24px;
+      -webkit-mask-image: radial-gradient(ellipse 70% 70% at 70% 40%, black 20%, transparent 100%);
+      mask-image: radial-gradient(ellipse 70% 70% at 70% 40%, black 20%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.76rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--hero-accent); margin-bottom: 1.5rem;
+      padding: 6px 14px 6px 10px; border: 1px solid var(--hero-border); border-radius: 100px;
+      background: var(--hero-surface);
+    }
+    .hero-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--result); }
+    .hero-headline {
+      max-width: 13ch;
+      font-family: var(--ff-display); font-size: clamp(2.6rem, 5.6vw, 4.3rem);
+      font-weight: var(--display-weight); line-height: 1.08; letter-spacing: var(--display-tracking); margin-bottom: 1.5rem; color: var(--hero-text);
+    }
+    .hero-headline em { color: var(--hero-accent); }
+    .hero-sub { font-size: 1.1rem; color: var(--hero-text-2); max-width: 580px; line-height: 1.75; margin-bottom: 1.75rem; }
+    .hero-pillars { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 2.5rem; list-style: none; }
+    .hero-pillars li { font-size: 0.82rem; font-weight: 600; color: var(--hero-text-2); display: inline-flex; align-items: center; gap: 8px; letter-spacing: 0.02em; }
+    .hero-pillars li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--hero-accent); }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 100px;
+      font-size: 0.9rem; font-weight: 600; font-family: var(--ff-body); cursor: pointer; border: 1px solid transparent;
+      transition: transform 0.2s var(--ease), box-shadow 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: var(--on-accent); }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+    .btn-ghost:hover { border-color: var(--text-3); transform: translateY(-2px); }
+    .hero .btn-ghost { color: var(--hero-text); border-color: var(--hero-border); background: var(--hero-surface); }
+    .hero .btn-ghost:hover { border-color: var(--hero-muted); }
+    .hero-stats { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-stats > div {
+      padding: 16px 20px; min-width: 160px;
+      border: 1px solid var(--hero-border); border-radius: var(--r-md);
+      background: var(--hero-surface); box-shadow: var(--shadow-sm);
+    }
+    .hero-stat-num { font-family: var(--ff-display); font-size: 2rem; font-weight: var(--num-weight); line-height: 1; color: var(--hero-text); letter-spacing: -0.02em; }
+    .hero-stat-label { font-size: 0.72rem; color: var(--hero-muted); margin-top: 8px; text-transform: uppercase; letter-spacing: 0.06em; max-width: 170px; line-height: 1.4; }
+    .hero-socials { display: flex; gap: 12px; margin-top: 2rem; }
+    .hero-socials a {
+      width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--hero-border); border-radius: 50%; color: var(--hero-muted); font-size: 0.95rem;
+      background: var(--hero-surface); transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .hero-socials a:hover { border-color: var(--hero-accent); color: var(--hero-accent); transform: translateY(-3px); }
+
+    /* Monogram portrait. To use a photo instead: replace the .monogram div
+       with <img src="your-photo.webp" alt="Sandeep Midde"> inside .hero-img-frame */
+    .hero-img-frame { width: 280px; height: 330px; position: relative; border-radius: 22px; box-shadow: var(--mono-shadow); }
+    .hero-img-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-radius: 22px; }
+    .monogram {
+      width: 100%; height: 100%; border-radius: 22px; background: var(--mono-bg);
+      display: flex; flex-direction: column; justify-content: space-between; padding: 28px;
+      position: relative; overflow: hidden; border: 1px solid var(--band-border);
+    }
+    .monogram-letters { font-family: var(--ff-display); font-size: 6.2rem; font-weight: var(--mono-weight); font-style: var(--em-style); line-height: 0.9; color: var(--band-text); position: relative; z-index: 1; letter-spacing: -0.03em; }
+    .monogram-letters span { color: var(--band-accent); }
+    .monogram-meta { position: relative; z-index: 1; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--band-muted); line-height: 1.8; }
+    .monogram-meta strong { color: var(--band-accent); font-weight: 600; }
+
+    /* ============ SECTION BASE ============ */
+    .section { padding: 100px 0; position: relative; background: var(--bg); }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 12px;
+    }
+    .section-label::before { content: ''; width: 22px; height: 2px; border-radius: 2px; background: var(--accent); }
+    .section-title { font-family: var(--ff-display); font-size: clamp(2rem, 4vw, 2.9rem); font-weight: var(--display-weight); line-height: 1.12; letter-spacing: var(--display-tracking); margin-bottom: 1rem; color: var(--text); }
+    .section-sub { font-size: 1.05rem; color: var(--text-3); max-width: 640px; line-height: 1.7; }
+    .section-header { margin-bottom: 3.5rem; }
+
+    .bg-soft { background: var(--bg-alt); }
+    .bg-glow { background: var(--bg); }
+    .bg-dots {
+      background-color: var(--bg-alt);
+      background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* Secondary-colour bands (About, Contact) */
+    .dark-band { background: var(--band-bg); color: var(--band-text); }
+    .dark-band .section-label { color: var(--band-accent); }
+    .dark-band .section-label::before { background: var(--band-accent); }
+    .dark-band .section-title { color: var(--band-text); }
+    .dark-band .section-title em { color: var(--band-accent); }
+
+    /* ============ ABOUT ============ */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .about-text p { font-size: 1.05rem; color: var(--band-text-2); line-height: 1.8; margin-bottom: 1.5rem; }
+    .about-text p strong { color: var(--band-text); font-weight: 600; }
+    .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2rem; }
+    .tag { font-size: 0.8rem; font-weight: 500; padding: 6px 14px; border: 1px solid var(--band-border); border-radius: 100px; color: var(--band-text-2); background: var(--band-surface); }
+    .about-metrics {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--band-border); border: 1px solid var(--band-border);
+      border-radius: var(--r-lg); overflow: hidden;
+    }
+    .metric-cell { background: var(--band-cell); padding: 2rem 1.75rem; transition: background 0.2s; }
+    .metric-cell:hover { background: var(--band-cell-hover); }
+    .metric-num { font-family: var(--ff-display); font-size: 2.7rem; font-weight: var(--num-weight); line-height: 1; margin-bottom: 8px; letter-spacing: -0.02em; color: var(--band-text); }
+    .metric-num span { color: var(--band-accent); }
+    .metric-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--band-accent); margin-bottom: 6px; }
+    .metric-desc { font-size: 0.82rem; color: var(--band-muted); line-height: 1.5; }
+
+    /* ============ APPLIED AI ============ */
+    .ai-intro { max-width: 740px; font-size: 1.05rem; color: var(--text-2); line-height: 1.8; margin-bottom: 3.5rem; }
+    .ai-intro strong { font-weight: 600; color: var(--text); }
+    .ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .ai-card {
+      position: relative; overflow: hidden;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-md); padding: 1.9rem 1.75rem; box-shadow: var(--shadow-sm);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
+    }
+    .ai-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+    .ai-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent-line); }
+    .ai-card-icon {
+      width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft);
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--accent-text); margin-bottom: 1.25rem;
+    }
+    .ai-card h3 { font-family: var(--ff-display); font-size: 1.12rem; font-weight: var(--display-weight); letter-spacing: -0.01em; margin-bottom: 0.6rem; color: var(--text); }
+    .ai-card p { font-size: 0.9rem; color: var(--text-3); line-height: 1.7; }
+    .ai-card p strong { color: var(--text-2); font-weight: 600; }
+    .ai-proof { margin-top: 1rem; font-size: 0.78rem; font-weight: 600; color: var(--result) !important; display: flex; gap: 8px; align-items: baseline; }
+    .ai-closing {
+      max-width: 700px; margin-top: 3rem; padding: 0.5rem 0 0.5rem 1.5rem; border-left: 3px solid var(--accent);
+      font-family: var(--ff-display); font-style: var(--em-style); font-weight: 400; font-size: 1.12rem; color: var(--text-2); line-height: 1.7;
+    }
+
+    /* ============ IMPACT — CAR CASE STUDIES ============ */
+    .car-legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 1.25rem; font-size: 0.8rem; color: var(--text-3); }
+    .car-legend span { display: inline-flex; align-items: center; gap: 8px; }
+    .car-legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+    .car-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem; }
+    .car-filter {
+      font-family: var(--ff-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em;
+      padding: 8px 16px; border-radius: 100px; cursor: pointer;
+      background: var(--surface); color: var(--text-3); border: 1px solid var(--border);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .car-filter:hover { border-color: var(--accent-line); color: var(--text); }
+    .car-filter[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+    .car-filter .count { opacity: 0.6; margin-left: 4px; font-weight: 500; }
+    .car-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .car-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+      padding: 1.75rem; display: flex; flex-direction: column; box-shadow: var(--shadow-sm);
+      transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
+    }
+    .car-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent-line); }
+    .car-card[hidden] { display: none; }
+    .car-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 1.1rem; }
+    .car-tag { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-text); }
+    .car-org { font-size: 0.72rem; color: var(--text-4); text-align: right; white-space: nowrap; }
+    .car-metric { display: flex; align-items: baseline; gap: 10px; margin-bottom: 0.5rem; flex-wrap: wrap; }
+    .car-metric-num { font-family: var(--ff-display); font-size: 2.4rem; font-weight: var(--num-weight); line-height: 1.05; letter-spacing: -0.02em; color: var(--metric); }
+    .car-metric-label { font-size: 0.78rem; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; }
+    .car-card h3 { font-family: var(--ff-display); font-size: 1.1rem; font-weight: var(--display-weight); letter-spacing: -0.01em; line-height: 1.35; margin-bottom: 1.1rem; color: var(--text); }
+    .car-steps { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+    .car-step { border-left: 3px solid var(--border); padding: 2px 0 2px 12px; }
+    .car-step dt { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 2px; }
+    .car-step dd { font-size: 0.86rem; color: var(--text-2); line-height: 1.55; }
+    .car-step.c { border-color: var(--challenge); } .car-step.c dt { color: var(--challenge); }
+    .car-step.a { border-color: var(--action); }    .car-step.a dt { color: var(--action); }
+    .car-step.r { border-color: var(--result); }    .car-step.r dt { color: var(--result); }
+    .car-step.r dd { color: var(--text); font-weight: 500; }
+
+    /* ============ HOW I WORK ============ */
+    .phil-list { max-width: 880px; list-style: none; }
+    .phil-item { display: grid; grid-template-columns: 270px 1fr; gap: 2.5rem; padding: 2.25rem 0; border-bottom: 1px solid var(--line); }
+    .phil-item:last-child { border-bottom: none; }
+    .phil-name { font-family: var(--ff-display); font-size: 1.32rem; font-weight: var(--display-weight); letter-spacing: -0.015em; line-height: 1.3; color: var(--text); }
+    .phil-body { font-size: 0.98rem; color: var(--text-2); line-height: 1.75; align-self: center; }
+    .phil-body strong { color: var(--text); font-weight: 600; }
+
+    /* ============ CAREER ============ */
+    .exp-list { max-width: 880px; }
+    .exp-item { display: grid; grid-template-columns: 170px 1fr; gap: 2.5rem; padding: 2.5rem 0; border-bottom: 1px solid var(--line); }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-meta { padding-top: 4px; }
+    .exp-date { font-size: 0.78rem; font-weight: 600; color: var(--text-4); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .exp-co { font-size: 0.88rem; color: var(--accent-text); font-weight: 600; }
+    .exp-loc { font-size: 0.78rem; color: var(--text-4); margin-top: 4px; }
+    .exp-title { font-family: var(--ff-display); font-size: 1.28rem; font-weight: var(--display-weight); margin-bottom: 0.5rem; letter-spacing: -0.01em; color: var(--text); }
+    .exp-summary { font-size: 0.93rem; color: var(--text-3); font-style: italic; line-height: 1.6; margin-bottom: 0.9rem; }
+    .exp-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+    .exp-pill { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 10px; background: var(--accent-soft); color: var(--accent-text); border-radius: 100px; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .exp-bullets li { font-size: 0.93rem; color: var(--text-2); line-height: 1.6; padding-left: 20px; position: relative; }
+    .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent-text); font-size: 0.85rem; }
+    .exp-bullets li strong { color: var(--text); font-weight: 600; }
+
+    /* ============ PROJECTS ============ */
+    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .proj-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
+      display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
+    }
+    .proj-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent-line); }
+    .proj-cover { aspect-ratio: 1200 / 627; background: var(--bg-alt); overflow: hidden; border-bottom: 1px solid var(--border); }
+    .proj-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .proj-card:hover .proj-cover img { transform: scale(1.04); }
+    .proj-body { padding: 1.5rem 1.6rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
+    .proj-kind { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-text); margin-bottom: 0.6rem; }
+    .proj-card h3 { font-family: var(--ff-display); font-size: 1.2rem; font-weight: var(--display-weight); letter-spacing: -0.01em; margin-bottom: 0.5rem; color: var(--text); }
+    .proj-card p { font-size: 0.9rem; color: var(--text-3); line-height: 1.65; flex: 1; }
+    .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+    .proj-stack span { font-size: 0.72rem; font-weight: 500; padding: 3px 10px; border: 1px solid var(--border); border-radius: 100px; color: var(--text-3); }
+    .proj-link { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; font-weight: 600; display: inline-flex; gap: 8px; align-items: center; color: var(--text); }
+    .proj-link i { color: var(--accent-text); font-size: 0.8rem; transition: transform 0.2s; }
+    .proj-card:hover .proj-link i { transform: translateX(4px); }
+    .projects-more { margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .projects-more p { font-size: 0.92rem; color: var(--text-3); }
+
+    /* ============ TOOLKIT ============ */
+    .tool-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .tool-col { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.75rem; box-shadow: var(--shadow-sm); }
+    .tool-col h3 { font-family: var(--ff-display); font-size: 1.08rem; font-weight: var(--display-weight); margin-bottom: 0.3rem; display: flex; align-items: center; gap: 10px; color: var(--text); }
+    .tool-col h3 i { color: var(--accent-text); font-size: 0.95rem; }
+    .tool-col .tool-note { font-size: 0.82rem; color: var(--text-4); margin-bottom: 1.2rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .chip { font-size: 0.8rem; font-weight: 500; padding: 5px 12px; border-radius: 100px; background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .chip:hover { border-color: var(--accent-line); color: var(--accent-text); background: var(--accent-soft); }
+
+    /* ============ CREDENTIALS ============ */
+    .certs-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; }
+    .certs-col-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-4); margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+    .cert-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .cert-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.25rem; box-shadow: var(--shadow-sm);
+      display: flex; gap: 1rem; align-items: center; transition: transform 0.2s var(--ease), box-shadow 0.2s, border-color 0.2s;
+    }
+    .edu-list .cert-card { margin-bottom: 1rem; }
+    .cert-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--accent-line); }
+    .cert-icon { width: 42px; height: 42px; flex-shrink: 0; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; }
+    .cert-icon i { font-size: 1.1rem; color: var(--accent-text); }
+    .cert-info h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 2px; line-height: 1.35; color: var(--text); }
+    .cert-issuer { font-size: 0.8rem; color: var(--text-3); font-weight: 500; }
+    .exploring-card { margin-top: 1.5rem; padding: 1.6rem; background: var(--bg-alt); border: 1px solid var(--border); border-radius: var(--r-lg); }
+    .exploring-card .certs-col-label { margin-bottom: 1rem; border-bottom: none; padding-bottom: 0; }
+    .exploring-list { display: flex; flex-direction: column; gap: 12px; list-style: none; }
+    .exploring-list li { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: var(--text-2); }
+    .exploring-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+    /* ============ CONTACT ============ */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-left > p { font-size: 1.05rem; color: var(--band-text-2); line-height: 1.75; margin-bottom: 2rem; }
+    .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-item { display: flex; align-items: center; gap: 14px; }
+    .contact-item-icon { width: 40px; height: 40px; flex-shrink: 0; border: 1px solid var(--band-border); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--band-accent); font-size: 0.95rem; background: var(--band-surface); }
+    .contact-item-text { font-size: 0.92rem; color: var(--band-text); word-break: break-word; }
+    .contact-item-text a:hover { color: var(--band-accent); }
+    .avail-badge { display: inline-flex; align-items: center; gap: 10px; font-size: 0.8rem; font-weight: 600; color: var(--band-text); background: var(--band-surface); border: 1px solid var(--band-border); padding: 8px 16px; border-radius: var(--r-lg); margin-top: 1.75rem; line-height: 1.5; }
+    .avail-dot { width: 7px; height: 7px; flex-shrink: 0; border-radius: 50%; background: var(--band-go); animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.75); } }
+    .contact-form-wrap { background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 2.25rem; box-shadow: var(--shadow-lg); }
+    .form-row { margin-bottom: 1.25rem; }
+    .form-row label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-2); margin-bottom: 7px; letter-spacing: 0.02em; }
+    .form-row input, .form-row textarea {
+      width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--r-sm);
+      font-size: 0.95rem; font-family: var(--ff-body); background: var(--surface-2); color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s; -webkit-appearance: none;
+    }
+    .form-row input::placeholder, .form-row textarea::placeholder { color: var(--text-4); }
+    .form-row input:focus, .form-row textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .form-row textarea { min-height: 130px; resize: vertical; }
+    .btn-submit {
+      width: 100%; background: var(--accent); color: var(--on-accent); border: none; padding: 14px; border-radius: 100px;
+      font-size: 0.92rem; font-weight: 700; font-family: var(--ff-body); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.2s, background 0.2s; margin-top: 0.5rem;
+    }
+    .btn-submit:hover { background: var(--accent-hover); transform: translateY(-2px); }
+    .form-note { font-size: 0.78rem; color: var(--text-4); margin-top: 0.9rem; text-align: center; }
+
+    /* ============ FOOTER ============ */
+    footer { background: var(--foot-bg); color: var(--band-muted); padding: 3rem 0; border-top: 1px solid var(--band-border); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-logo { font-family: var(--ff-display); font-size: 1.1rem; font-weight: var(--display-weight); color: var(--band-text); }
+    .footer-tagline { width: 100%; font-size: 0.85rem; color: var(--band-muted); margin-top: -0.75rem; }
+    .footer-nav { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .footer-nav a { font-size: 0.85rem; color: var(--band-muted); transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--band-text); }
+    .footer-links { width: 100%; display: flex; gap: 1.75rem; list-style: none; flex-wrap: wrap; padding-top: 1.25rem; border-top: 1px solid var(--band-border); }
+    .footer-links a { font-size: 0.85rem; font-weight: 500; color: var(--band-text-2); display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .footer-links a i { font-size: 0.8rem; color: var(--band-accent); }
+    .footer-links a:hover { color: var(--band-text); }
+    .footer-copy { width: 100%; font-size: 0.78rem; padding-top: 1rem; color: var(--band-muted); opacity: 0.7; }
+
+    .scroll-top {
+      position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--accent); color: var(--on-accent);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; cursor: pointer;
+      opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s, transform 0.2s, background 0.2s; z-index: 999; border: none;
+      box-shadow: var(--shadow-lg);
+    }
+    .scroll-top.visible { opacity: 1; visibility: visible; }
+    .scroll-top:hover { transform: translateY(-3px); background: var(--accent-hover); }
+
+    /* ============ ANIMATION ============ */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .anim { opacity: 0; transform: translateY(24px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+    .anim.in, .no-js .anim { opacity: 1; transform: none; }
+    .hero-eyebrow   { animation: fadeUp 0.7s var(--ease) 0.1s both; }
+    .hero-headline  { animation: fadeUp 0.7s var(--ease) 0.25s both; }
+    .hero-sub       { animation: fadeUp 0.7s var(--ease) 0.4s both; }
+    .hero-pillars   { animation: fadeUp 0.7s var(--ease) 0.5s both; }
+    .hero-actions   { animation: fadeUp 0.7s var(--ease) 0.6s both; }
+    .hero-stats     { animation: fadeUp 0.7s var(--ease) 0.7s both; }
+    .hero-socials   { animation: fadeUp 0.7s var(--ease) 0.8s both; }
+    .hero-image-wrap { animation: fadeUp 0.9s var(--ease) 0.3s both; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      .anim { opacity: 1; transform: none; }
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 1080px) {
+      .nav-links { gap: 1.1rem; }
+      .ai-grid, .car-grid, .proj-grid { grid-template-columns: repeat(2, 1fr); }
+      .tool-grid { grid-template-columns: 1fr; }
+      .certs-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 75%; max-width: 340px; height: 100vh; background: var(--surface);
+        flex-direction: column; justify-content: center; box-shadow: -8px 0 32px rgba(0,0,0,0.25); border-left: 1px solid var(--border);
+        transition: right 0.35s var(--ease); gap: 1.5rem;
+      }
+      .nav-links a { color: var(--text-2); }
+      .nav-links a:hover, .nav-links a.active { color: var(--text); }
+      .nav-links.open { right: 0; }
+      .nav-links a { font-size: 1.05rem; }
+      .mobile-menu { display: block; }
+    }
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      .section { padding: 72px 0; }
+      .hero { padding: 110px 0 60px; min-height: auto; }
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-image-wrap { order: -1; }
+      .hero-img-frame { width: 190px; height: 220px; }
+      .monogram { padding: 20px; }
+      .monogram-letters { font-size: 4.2rem; }
+      .hero-stats > div { min-width: 0; flex: 1 1 140px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .ai-grid, .car-grid, .proj-grid, .cert-list { grid-template-columns: 1fr; }
+      .phil-item { grid-template-columns: 1fr; gap: 0.5rem; padding: 1.75rem 0; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
+      .exp-meta { display: flex; align-items: baseline; gap: 0.4rem 1rem; flex-wrap: wrap; }
+      .contact-form-wrap { padding: 1.5rem; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .scroll-top { right: 16px; bottom: 16px; }
+    }
+    @media (max-width: 480px) {
+      .hero-headline { font-size: 2.2rem; }
+      .about-metrics { grid-template-columns: 1fr; }
+      .car-org { white-space: normal; }
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-alt); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-4); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ===================== EDIT: NAV ===================== -->
+  <nav class="site-nav" id="navbar" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#home" class="logo">Sandeep <span>Midde</span></a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#ai">Applied AI</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#principles">How I Work</a></li>
+          <li><a href="#experience">Career</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#contact" class="nav-cta">Connect</a></li>
+        </ul>
+        <button class="mobile-menu" id="mobileMenuBtn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+  <!-- ===================== EDIT: HERO ===================== -->
+  <section class="hero" id="home" aria-label="Introduction">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="hero-eyebrow">Technology &amp; Delivery Leader · Applied AI</p>
+          <h1 class="hero-headline">
+            I modernize the platforms that <em>can't</em> afford to&nbsp;fail.
+          </h1>
+          <p class="hero-sub">
+            For close to twenty years I've led technology and delivery for mission-critical finance systems in regulated banking — redesigning legacy platforms for compliance, resilience, and scale. Today I also design and ship GenAI systems end to end, with the same discipline: evaluate first, govern always, measure the outcome.
+          </p>
+          <ul class="hero-pillars">
+            <li>Platform Modernization</li>
+            <li>Delivery Governance &amp; Risk</li>
+            <li>Applied AI &amp; RAG</li>
+          </ul>
+          <div class="hero-actions">
+            <a href="#impact" class="btn btn-primary">See the impact <i class="fas fa-arrow-down" aria-hidden="true"></i></a>
+            <a href="Resume/SandeepMidde.pdf" class="btn btn-ghost" target="_blank" rel="noopener"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a>
+            <a href="#contact" class="btn btn-ghost"><i class="fas fa-envelope" aria-hidden="true"></i> Get in touch</a>
+          </div>
+          <div class="hero-stats" role="list" aria-label="Career highlights">
+            <div role="listitem">
+              <div class="hero-stat-num">~20</div>
+              <div class="hero-stat-label">Years in technology &amp; delivery</div>
+            </div>
+            <div role="listitem">
+              <div class="hero-stat-num">$2.5T+</div>
+              <div class="hero-stat-label">AUM finance platform governed</div>
+            </div>
+            <div role="listitem">
+              <div class="hero-stat-num">99.8%</div>
+              <div class="hero-stat-label">Availability, up from 99.2%</div>
+            </div>
+          </div>
+          <div class="hero-socials">
+            <a href="https://linkedin.com/in/sandeepmidde/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+            <a href="mailto:sandeepmidde@gmail.com" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+            <a href="blog.html" aria-label="Blog"><i class="fas fa-pen-nib" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <div class="hero-img-frame">
+            <!-- Swap this monogram for a photo: <img src="your-photo.webp" alt="Sandeep Midde" width="280" height="330"> -->
+            <div class="monogram" role="img" aria-label="Sandeep Midde monogram">
+              <div class="monogram-letters">S<span>M</span></div>
+              <div class="monogram-meta">
+                <strong>Sandeep Midde</strong><br>
+                Wells Fargo · Oracle · Infosys<br>
+                Independent AI products
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDIT: ABOUT ===================== -->
+  <section class="section about dark-band" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-label">About</p>
+          <h2 class="section-title">Close to the architecture.<br><em>Accountable</em> for the outcome.</h2>
+          <p>
+            I've spent my career where a system going down is a regulatory event, not an inconvenience. For nearly fourteen years at <strong>Wells Fargo</strong> I set the technical strategy and architectural guardrails for a <strong>$2.5T+ AUM finance ecosystem</strong> — redesigning it for COSO compliance, building its disaster-recovery discipline, and making its data audit-ready.
+          </p>
+          <p>
+            My decisions span architecture, budget, roadmap, and stakeholder alignment. I've made the build-vs-buy case to a CTO, rebuilt the support model that keeps finance close running, and restructured teams so each module has an owner. The through-line is <strong>turning technical depth into business outcomes</strong> that auditors, executives, and engineers can all verify.
+          </p>
+          <p>
+            Since mid-2026 I've been building <strong>independent GenAI products</strong> — a RAG conversational platform in production, an agentic content workflow, and an AI knowledge platform — applying regulated-industry rigor to a field that badly needs it.
+          </p>
+          <div class="about-tags">
+            <span class="tag">Platform Modernization</span>
+            <span class="tag">Technical Strategy</span>
+            <span class="tag">Risk &amp; Compliance</span>
+            <span class="tag">Delivery Governance</span>
+            <span class="tag">GenAI / RAG</span>
+            <span class="tag">Talent Development</span>
+          </div>
+        </div>
+        <div class="about-metrics anim">
+          <div class="metric-cell">
+            <div class="metric-num">142</div>
+            <div class="metric-label">Models automated</div>
+            <div class="metric-desc">Daily GL reconciliation across Essbase models — zero failures in 4 years</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-num">52</div>
+            <div class="metric-label">Downstream integrations</div>
+            <div class="metric-desc">Moved toward Apigee-governed API access with gateway-level audit</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-num">8</div>
+            <div class="metric-label">Teams per DR cycle</div>
+            <div class="metric-desc">Coordinated failover to a verified 3–5 hour recovery window</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-num">900<span>+</span></div>
+            <div class="metric-label">Custom objects retrofitted</div>
+            <div class="metric-desc">PeopleSoft Finance upgrade — zero critical post-go-live defects</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-num">190<span>+</span></div>
+            <div class="metric-label">Countries</div>
+            <div class="metric-desc">Multilingual Inspira (UN talent acquisition) adoption at Oracle</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-num">88<span>%</span></div>
+            <div class="metric-label">Response accuracy</div>
+            <div class="metric-desc">Krishna Uvaca RAG platform, validated over 500 test conversations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDIT: APPLIED AI ===================== -->
+  <section class="section bg-glow" id="ai">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Applied AI</p>
+        <h2 class="section-title">GenAI, built with a<br><em>banker's</em> discipline.</h2>
+        <p class="section-sub">In regulated finance, you don't ship what you can't evaluate, explain, and govern. I bring that standard to AI — hands-on, from architecture to production.</p>
+      </div>
+      <p class="ai-intro anim">
+        My approach: <strong>decide with evidence, design the guardrails first, then scale what's proven.</strong> That's how a RAG feasibility study at Wells Fargo produced a clear go/no-go, and how Krishna Uvaca reached production with a measured accuracy number rather than a demo.
+      </p>
+      <div class="ai-grid">
+        <article class="ai-card anim">
+          <div class="ai-card-icon"><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i></div>
+          <h3>Retrieval-Grounded Answers</h3>
+          <p>End-to-end <strong>RAG</strong> with LLM orchestration, vector retrieval (<strong>LangChain, ChromaDB</strong>), grounded response generation, and multi-turn memory — answers that cite their source.</p>
+          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> Krishna Uvaca · 88% accuracy / 500 conversations</p>
+        </article>
+        <article class="ai-card anim">
+          <div class="ai-card-icon"><i class="fas fa-diagram-project" aria-hidden="true"></i></div>
+          <h3>Agentic Workflows</h3>
+          <p>Multi-stage pipelines with <strong>provider-agnostic LLM</strong> integration, background job processing, resumable execution, and automated tests — treated as production systems, not scripts.</p>
+          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> ObserverPrime · human-approved at every step</p>
+        </article>
+        <article class="ai-card anim">
+          <div class="ai-card-icon"><i class="fas fa-book-open-reader" aria-hidden="true"></i></div>
+          <h3>Knowledge Platforms</h3>
+          <p>Turning unstructured material into structured, reusable knowledge through automated <strong>ingestion, extraction, and retrieval</strong> — enabling contextual discovery and personalized learning.</p>
+          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> Elara · AI strategy &amp; architecture</p>
+        </article>
+        <article class="ai-card anim">
+          <div class="ai-card-icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
+          <h3>Evaluation Before Commitment</h3>
+          <p>Evaluation harnesses with <strong>no-answer detection</strong> and source-grounding checks, so the decision to go to production rests on measured behavior — not enthusiasm.</p>
+          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> Wells Fargo RAG study · ~80% source-grounded</p>
+        </article>
+        <article class="ai-card anim">
+          <div class="ai-card-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></div>
+          <h3>Guardrails &amp; Responsible AI</h3>
+          <p>A <strong>200+ rule behavioral framework</strong> across 8 components — persona engineering, guardrails, contextual reasoning, and response orchestration — stress-tested before release.</p>
+          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> AI Security &amp; Governance certified</p>
+        </article>
+        <article class="ai-card anim">
+          <div class="ai-card-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
+          <h3>Multi-Model Architecture</h3>
+          <p>Designs that aren't hostage to one model vendor: swappable providers, fallbacks for resilience, and prompts engineered and versioned like any other <strong>production artifact</strong>.</p>
+          <p class="ai-proof"><i class="fas fa-check" aria-hidden="true"></i> Applied across all three products</p>
+        </article>
+      </div>
+      <p class="ai-closing anim">
+        I build with these tools myself. A leader who can't evaluate an AI system ends up governing what they don't understand — and in regulated industries, that's a risk no one can afford.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== EDIT: IMPACT (CAR) =====================
+       Each card = one Challenge → Action → Result story.
+       data-theme must be: modernization | reliability | governance | leadership | ai
+  ================================================================= -->
+  <section class="section impact bg-dots" id="impact">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Impact · Challenge → Action → Result</p>
+        <h2 class="section-title">The problems I was<br>trusted to <em>solve</em>.</h2>
+        <p class="section-sub">Each story below is told the same way: the constraint I walked into, what I did about it, and the measured result. Filter by the kind of problem.</p>
+        <div class="car-legend" aria-hidden="true">
+          <span><i style="background:var(--challenge)"></i>Challenge</span>
+          <span><i style="background:var(--action)"></i>Action</span>
+          <span><i style="background:var(--result)"></i>Result</span>
+        </div>
+      </div>
+
+      <div class="car-filters" id="carFilters" role="group" aria-label="Filter case studies">
+        <button class="car-filter" data-filter="all" aria-pressed="true">All<span class="count"></span></button>
+        <button class="car-filter" data-filter="modernization" aria-pressed="false">Modernization<span class="count"></span></button>
+        <button class="car-filter" data-filter="reliability" aria-pressed="false">Reliability<span class="count"></span></button>
+        <button class="car-filter" data-filter="governance" aria-pressed="false">Governance &amp; Risk<span class="count"></span></button>
+        <button class="car-filter" data-filter="leadership" aria-pressed="false">Leadership &amp; Strategy<span class="count"></span></button>
+        <button class="car-filter" data-filter="ai" aria-pressed="false">Applied AI<span class="count"></span></button>
+      </div>
+
+      <div class="car-grid" id="carGrid">
+
+        <article class="car-card anim" data-theme="modernization">
+          <div class="car-top"><span class="car-tag">Integration</span><span class="car-org">Wells Fargo · 2020–21</span></div>
+          <div class="car-metric"><span class="car-metric-num">99%</span><span class="car-metric-label">faster ticker response</span></div>
+          <h3>Retired a third-party middleman for Bloomberg rate data</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>The legacy ERP got Bloomberg ticker data through an intermediary system, delaying rate updates.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Took a Python-based BEAP API integration from COVID-era POC to production, running both the build and the vendor coordination.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Intermediary eliminated, live in ~12 months; the reusable pattern then onboarded a second system.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="modernization">
+          <div class="car-top"><span class="car-tag">Architecture</span><span class="car-org">Wells Fargo</span></div>
+          <div class="car-metric"><span class="car-metric-num">3h → 2m</span><span class="car-metric-label">workflow time</span></div>
+          <h3>Gave a legacy ERP computing power it never had</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>The ERP's asynchronous design couldn't run key transformations synchronously — a 3-hour end-to-end bottleneck.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Architected a Python computation layer, wrapped in shell to talk to PeopleSoft, with Kafka consumption for upstream data.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Under 2 minutes end to end — a 98% improvement, with checklist-driven approvals.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="reliability">
+          <div class="car-top"><span class="car-tag">Automation</span><span class="car-org">Wells Fargo</span></div>
+          <div class="car-metric"><span class="car-metric-num">93%</span><span class="car-metric-label">less processing time</span></div>
+          <h3>Automated daily GL reconciliation across 142 models</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>Reconciling Oracle GL, PeopleSoft, and 7–8 upstream systems took ~5 hours a day in Excel — with misstatement risk.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Engineered automated variance reporting into the daily run, with resilient reprocessing and an on-demand override.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>5 hours → 20 minutes; zero failures for 4 years, verified across 8–12 quarterly audits.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="modernization">
+          <div class="car-top"><span class="car-tag">Performance</span><span class="car-org">Wells Fargo</span></div>
+          <div class="car-metric"><span class="car-metric-num">58%</span><span class="car-metric-label">faster daily runtime</span></div>
+          <h3>Re-architected GL allocation feeding P&amp;L</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>142 daily jobs across 8 subsystems shared tables, so SQL slowdowns cascaded as volumes grew.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Isolated month-end-only rules, flattened and normalized shared tables, and added checkpoint restart with adaptable rule skipping.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>3.5 hrs → 1.5 hrs across 2M+ rows a day, with no reprocessing on failure.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="reliability">
+          <div class="car-top"><span class="car-tag">Operations</span><span class="car-org">Wells Fargo · 2022–26</span></div>
+          <div class="car-metric"><span class="car-metric-num">99.8%</span><span class="car-metric-label">availability</span></div>
+          <h3>Built the L2 support model from the ground up</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>Production support had no dedicated L2 model, runbooks, or ownership structure.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Documented processes, trained staff, set point-of-contact ownership, and built runbooks, SLAs, and escalation paths.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>MTTR cut 30–60%; availability up from 99.2% to 99.8%.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="reliability">
+          <div class="car-top"><span class="car-tag">Resilience</span><span class="car-org">Wells Fargo · 2021–26</span></div>
+          <div class="car-metric"><span class="car-metric-num">3–5h</span><span class="car-metric-label">verified recovery</span></div>
+          <h3>Made disaster recovery measurable — and routine</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>Regulators required DR testing at set intervals, with no reliable estimate of recovery time.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Coordinated parallel-server failover across 8 teams plus infra, DB, and support; streamlined the failover sequence.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Consistent 3–5 hour window for 3 years; cadence raised from annual to every 6 months.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="leadership">
+          <div class="car-top"><span class="car-tag">Strategy</span><span class="car-org">Wells Fargo</span></div>
+          <div class="car-metric"><span class="car-metric-num">$4M → $1.2M</span><span class="car-metric-label">projected TCO</span></div>
+          <h3>Won the build-vs-buy case for ERP modernization</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>Replace a legacy ERP: a $2M/year SaaS subscription, or an 18-month in-house build?</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Built the roadmap and cost model, designed a lean team that rolls contractors off at go-live, and presented to the Finance CTO.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>CTO sponsorship and budget approval for a cloud-hosted platform at a fraction of the cost.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="governance">
+          <div class="car-top"><span class="car-tag">API Governance</span><span class="car-org">Wells Fargo</span></div>
+          <div class="car-metric"><span class="car-metric-num">52</span><span class="car-metric-label">connections secured</span></div>
+          <h3>Put every downstream feed behind a governed gateway</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>52 downstream systems pulled EPM data by direct DB access or file transfer, ahead of a governed-API mandate.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Led the migration to Apigee, architecting access control and audit visibility at the gateway.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Legacy and governed access running in parallel, positioning EPM for the Dec 2026 cutover.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="governance">
+          <div class="car-top"><span class="car-tag">Compliance</span><span class="car-org">Wells Fargo</span></div>
+          <div class="car-metric"><span class="car-metric-num">8 yrs</span><span class="car-metric-label">auditable trail</span></div>
+          <h3>Designed COSO-aligned, regulator-ready data retention</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>A federal mandate required 8-year auditable data-flow trails, with examiner access on demand.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Enforced retention by data classification, with file-receipt validation (volume, amount, date) and access controls.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>A regulator-ready governance framework covering all EPM data communications.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="leadership">
+          <div class="car-top"><span class="car-tag">Org Design</span><span class="car-org">Wells Fargo</span></div>
+          <div class="car-metric"><span class="car-metric-num">2×</span><span class="car-metric-label">release cadence</span></div>
+          <h3>From one ad hoc team to module-aligned pods</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>One flat team ran DCS, SCW, Rates, and Allocations on ad hoc Kanban with no release rhythm.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Hired and mentored into module-owned Scrum pods, stood up a cloud-modernization team, and standardized CI/CD.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Monthly → biweekly releases, with 20% fewer deployment incidents.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="ai">
+          <div class="car-top"><span class="car-tag">GenAI Feasibility</span><span class="car-org">Wells Fargo</span></div>
+          <div class="car-metric"><span class="car-metric-num">~80%</span><span class="car-metric-label">source-grounded</span></div>
+          <h3>A retrieval-first RAG study that informed a go/no-go decision</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>GenAI adoption needed proof before commitment, given hallucination risk in customer-facing use.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Owned the architecture, constraint mapping, and an evaluation harness with no-answer detection.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Measured grounding gave leadership an evidence-based production decision.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="ai">
+          <div class="car-top"><span class="car-tag">Conversational AI</span><span class="car-org">Independent · 2026</span></div>
+          <div class="car-metric"><span class="car-metric-num">88%</span><span class="car-metric-label">response accuracy</span></div>
+          <h3>Took a governed conversational AI to production, solo</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>Could a governed conversational AI reach production without a corporate delivery structure?</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Architected Krishna Uvaca end to end: a 200+ rule, 8-component behavioral framework plus its evaluation model.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Live in production; 88% accuracy validated across 500 test conversations.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="modernization">
+          <div class="car-top"><span class="car-tag">ERP Upgrade</span><span class="car-org">Infosys · Charles Schwab</span></div>
+          <div class="car-metric"><span class="car-metric-num">900+</span><span class="car-metric-label">objects retrofitted</span></div>
+          <h3>A PeopleSoft Finance upgrade with zero critical defects</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>Upgrade PeopleSoft Finance without losing years of custom configuration across P2P and O2C.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Compared custom code against Oracle's baseline and systematically retrofitted every changed object through hypercare.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Upgrade delivered with zero critical post-go-live defects.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="reliability">
+          <div class="car-top"><span class="car-tag">Support Quality</span><span class="car-org">Infosys · Charles Schwab</span></div>
+          <div class="car-metric"><span class="car-metric-num">−30–40%</span><span class="car-metric-label">ticket backlog</span></div>
+          <h3>Pattern-based fixes for finance-close incidents</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>Recurring batch failures across finance modules built a growing backlog during close cycles.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Mapped the recurring failure patterns and built reusable fixes and documentation under CMMI Level 5.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Backlog cut 30–40% during critical finance-close cycles.</dd></div>
+          </dl>
+        </article>
+
+        <article class="car-card anim" data-theme="leadership">
+          <div class="car-top"><span class="car-tag">Delivery</span><span class="car-org">Infosys · Dow Jones</span></div>
+          <div class="car-metric"><span class="car-metric-num">9 mo</span><span class="car-metric-label">on schedule</span></div>
+          <h3>Cleared the last blocker to a phased funding release</h3>
+          <dl class="car-steps">
+            <div class="car-step c"><dt>Challenge</dt><dd>Dow Jones needed a full PeopleSoft P2P re-implementation, with undocumented legacy processes.</dd></div>
+            <div class="car-step a"><dt>Action</dt><dd>Reverse-engineered the legacy processes and rebuilt the module from scratch.</dd></div>
+            <div class="car-step r"><dt>Result</dt><dd>Delivered on schedule, closing the final deliverable holding up funding.</dd></div>
+          </dl>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDIT: HOW I WORK ===================== -->
+  <section class="section principles" id="principles">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">How I Work</p>
+        <h2 class="section-title">Principles, earned<br>the <em>hard</em> way.</h2>
+        <p class="section-sub">Twenty years in regulated systems leaves you with a few convictions. Each of these traces back to a result above.</p>
+      </div>
+      <ul class="phil-list">
+        <li class="phil-item anim">
+          <h3 class="phil-name">Evaluate <em>before</em><br>you commit</h3>
+          <p class="phil-body">The cheapest mistake is the one you measure early. A build-vs-buy cost model won CTO sponsorship; a RAG evaluation harness gave leadership a clear production decision. <strong>Evidence first, commitment second.</strong></p>
+        </li>
+        <li class="phil-item anim">
+          <h3 class="phil-name">Reliability is <em>designed</em>,<br>not hoped for</h3>
+          <p class="phil-body">Checkpoint restart, resilient reprocessing, runbooks, rehearsed failover. Availability went from 99.2% to 99.8% and GL reconciliation ran four years without a failure because <strong>the failure paths were engineered, not improvised.</strong></p>
+        </li>
+        <li class="phil-item anim">
+          <h3 class="phil-name">Compliance is an<br><em>architecture</em> decision</h3>
+          <p class="phil-body">Audit-readiness bolted on at the end is expensive and brittle. Retention by data classification, file-receipt validation, and gateway-level access control make <strong>the compliant path the default path.</strong></p>
+        </li>
+        <li class="phil-item anim">
+          <h3 class="phil-name">Build it <em>once</em>,<br>reuse it often</h3>
+          <p class="phil-body">The Bloomberg integration was built so a second system could onboard without a one-off build. At Infosys, reusable fixes cut the backlog by a third. <strong>Every solution should make the next one cheaper.</strong></p>
+        </li>
+        <li class="phil-item anim">
+          <h3 class="phil-name">Teams that <em>own</em><br>what they ship</h3>
+          <p class="phil-body">Module-aligned pods with their own backlogs and release cadence, hired and mentored into ownership. <strong>Clear ownership beats heroics</strong> — releases doubled in frequency while deployment incidents fell.</p>
+        </li>
+        <li class="phil-item anim">
+          <h3 class="phil-name">Stay <em>hands-on</em></h3>
+          <p class="phil-body">I still build — Python layers, evaluation harnesses, and now three AI products of my own. I refuse to lead from theory, <strong>especially in a field moving as fast as AI.</strong></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== EDIT: CAREER ===================== -->
+  <section class="section experience bg-soft" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Career</p>
+        <h2 class="section-title">Two decades of<br><em>compounding</em> depth.</h2>
+        <p class="section-sub">From PeopleSoft Finance consultant to VP of a $2.5T+ AUM finance platform to independent AI builder — each chapter built the judgment for the next.</p>
+      </div>
+      <div class="exp-list">
+        <article class="exp-item anim">
+          <div class="exp-meta">
+            <div class="exp-date">Jul 2026 — Present</div>
+            <div class="exp-co">Independent</div>
+            <div class="exp-loc">AI / ML product development</div>
+          </div>
+          <div class="exp-body">
+            <h3 class="exp-title">AI Technical Product Development</h3>
+            <p class="exp-summary">Leading independent AI/ML products from ideation to MVP and global deployment — GenAI products, agentic frameworks, and low-code/no-code apps built for multi-geography scale.</p>
+            <div class="exp-pills"><span class="exp-pill">GenAI</span><span class="exp-pill">RAG</span><span class="exp-pill">Agentic AI</span></div>
+            <ul class="exp-bullets">
+              <li>Architected and built <strong>Krishna Uvaca</strong>, an end-to-end RAG conversational AI platform with context-aware retrieval, grounded generation, and multi-turn memory — <strong>88% accuracy</strong> over 500 test conversations</li>
+              <li>Designed and delivered <strong>ObserverPrime</strong>, an agentic workflow system orchestrating multi-stage content pipelines with provider-agnostic LLMs, background jobs, resumable execution, and automated tests</li>
+              <li>Led AI strategy and architecture for <strong>Elara</strong>, a knowledge platform turning unstructured data into reusable knowledge through automated ingestion, extraction, and retrieval</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="exp-item anim">
+          <div class="exp-meta">
+            <div class="exp-date">Oct 2012 — Jun 2026</div>
+            <div class="exp-co">Wells Fargo India</div>
+            <div class="exp-loc">~14 years</div>
+          </div>
+          <div class="exp-body">
+            <h3 class="exp-title">Vice President</h3>
+            <p class="exp-summary">Technical strategy and platform governance for a $2.5T+ AUM finance ecosystem in a regulated banking environment.</p>
+            <div class="exp-pills"><span class="exp-pill">Platform Governance</span><span class="exp-pill">Modernization</span><span class="exp-pill">Risk &amp; Compliance</span><span class="exp-pill">Team Leadership</span></div>
+            <ul class="exp-bullets">
+              <li>Set <strong>architectural guardrails</strong> and target-state direction across finance-critical programs</li>
+              <li>Directed a retrieval-first <strong>RAG feasibility study</strong> with an evaluation harness and no-answer detection — <strong>~80% source-grounded</strong> responses, informing a production go/no-go</li>
+              <li>Built a Python computation layer over PeopleSoft with Kafka consumption, turning a <strong>3-hour</strong> async workflow into <strong>under 2 minutes</strong></li>
+              <li>Integrated <strong>Bloomberg BEAP</strong>, retiring a third-party intermediary and cutting response time <strong>99%</strong> on reusable architecture</li>
+              <li>Streamlined GL allocation feeding P&amp;L with checkpoint restart and adaptable rule skipping — <strong>58% faster</strong> (3.5h → 1.5h) across 2M+ rows a day</li>
+              <li>Standardized L2 support — MTTR down <strong>30–60%</strong>, availability <strong>99.2% → 99.8%</strong></li>
+              <li>Restructured into module-aligned pods and standardized CI/CD for cloud readiness — releases <strong>monthly → biweekly</strong>, deployment incidents <strong>−20%</strong></li>
+              <li>Led a data-driven build-vs-buy strategy that secured CTO sponsorship and cut projected TCO from <strong>$4M to $1.2M</strong></li>
+              <li>Scaled DR from annual to <strong>every 6 months</strong> across 8 teams, with 3–5 hour execution; architected <strong>COSO-aligned</strong> auditable data retention</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="exp-item anim">
+          <div class="exp-meta">
+            <div class="exp-date">Aug 2011 — Sep 2012</div>
+            <div class="exp-co">Oracle India</div>
+            <div class="exp-loc">PeopleSoft consulting</div>
+          </div>
+          <div class="exp-body">
+            <h3 class="exp-title">Staff Consultant</h3>
+            <div class="exp-pills"><span class="exp-pill">Requirements</span><span class="exp-pill">Localization</span></div>
+            <ul class="exp-bullets">
+              <li>Drove requirements discovery with global stakeholders on the PeopleSoft Talent Acquisition model — <strong>~20% performance improvement</strong> and stabilized workflows</li>
+              <li>Delivered bilingual and multilingual support for <strong>Inspira</strong> (UN talent acquisition), enabling adoption across <strong>190+ countries</strong></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="exp-item anim">
+          <div class="exp-meta">
+            <div class="exp-date">Jul 2006 — Jul 2011</div>
+            <div class="exp-co">Infosys</div>
+            <div class="exp-loc">Charles Schwab · Dow Jones</div>
+          </div>
+          <div class="exp-body">
+            <h3 class="exp-title">Technology Architect</h3>
+            <div class="exp-pills"><span class="exp-pill">ERP Delivery</span><span class="exp-pill">CMMI Level 5</span><span class="exp-pill">Client Leadership</span></div>
+            <ul class="exp-bullets">
+              <li>Managed cross-functional delivery for the <strong>Charles Schwab</strong> account across development, support, design, and upgrade engagements</li>
+              <li>Led a PeopleSoft Finance upgrade retrofitting <strong>900+ custom objects</strong> across P2P and O2C (GL, AR, AP, BI, Purchasing) into stable production</li>
+              <li>Owned delivery governance for recurring incidents under CMMI Level 5, cutting the ticket backlog <strong>30–40%</strong> during finance close</li>
+              <li>Led the <strong>Dow Jones</strong> PeopleSoft re-implementation, clearing the last blocker to its phased funding release</li>
+              <li>Chaired the PeopleSoft LOB Communication Group, connecting <strong>30+ teams</strong> through knowledge-sharing sessions, newsletters, and hackathons</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDIT: PROJECTS =====================
+       Cards link to the full write-ups at posts/<slug>/ (built from /blog).
+  ================================================================= -->
+  <section class="section projects bg-glow" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Projects &amp; Writing</p>
+        <h2 class="section-title">Things I've <em>shipped</em>.</h2>
+        <p class="section-sub">Three AI products, each written up in full — the architecture, the trade-offs, and what I'd do differently.</p>
+      </div>
+      <div class="proj-grid">
+        <a class="proj-card anim" href="posts/krishna-uvaca/">
+          <div class="proj-cover"><img src="blog/krishna-uvaca/cover.png" alt="Krishna Uvaca cover" loading="lazy" width="1200" height="627"></div>
+          <div class="proj-body">
+            <p class="proj-kind">RAG · Conversational AI · Android</p>
+            <h3>Krishna Uvaca</h3>
+            <p>A RAG system built on the Bhagavad Gita. Ask life's questions and get answers that cite the verse they come from.</p>
+            <div class="proj-stack"><span>LangChain</span><span>ChromaDB</span><span>Guardrails</span></div>
+            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+        <a class="proj-card anim" href="posts/observer-prime/">
+          <div class="proj-cover"><img src="blog/observer-prime/cover.png" alt="Observer Prime cover" loading="lazy" width="1200" height="627"></div>
+          <div class="proj-body">
+            <p class="proj-kind">Agentic workflow · Content</p>
+            <h3>ObserverPrime</h3>
+            <p>A local-first AI workbench that turns one topic into a complete YouTube video plan, with the creator approving every step.</p>
+            <div class="proj-stack"><span>Multi-LLM</span><span>Background jobs</span><span>Resumable</span></div>
+            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+        <a class="proj-card anim" href="posts/project-elara/">
+          <div class="proj-cover"><img src="blog/project-elara/cover.png" alt="Project Elara cover" loading="lazy" width="1200" height="627"></div>
+          <div class="proj-body">
+            <p class="proj-kind">Knowledge platform · Learning</p>
+            <h3>Elara</h3>
+            <p>An AI tutor that reads everything you save to Google Drive and teaches you from it, with no manual tagging or filing.</p>
+            <div class="proj-stack"><span>Ingestion</span><span>Extraction</span><span>Retrieval</span></div>
+            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+      </div>
+      <div class="projects-more anim">
+        <a href="blog.html" class="btn btn-primary">All writing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        <p>Notes on platform modernization, delivery leadership, and applied AI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDIT: TOOLKIT ===================== -->
+  <section class="section toolkit bg-soft" id="stack">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Toolkit</p>
+        <h2 class="section-title">What I bring<br>to the <em>table</em>.</h2>
+      </div>
+      <div class="tool-grid">
+        <div class="tool-col anim">
+          <h3><i class="fas fa-compass" aria-hidden="true"></i> Leadership, Governance &amp; Delivery</h3>
+          <p class="tool-note">How the work gets decided and delivered</p>
+          <div class="chips">
+            <span class="chip">Technical Strategy &amp; Architecture</span>
+            <span class="chip">Delivery Governance</span>
+            <span class="chip">Risk &amp; Compliance</span>
+            <span class="chip">COSO</span>
+            <span class="chip">CMMI Level 5</span>
+            <span class="chip">Audit Readiness</span>
+            <span class="chip">Agile / SAFe</span>
+            <span class="chip">Executive &amp; Stakeholder Management</span>
+            <span class="chip">Talent Development</span>
+          </div>
+        </div>
+        <div class="tool-col anim">
+          <h3><i class="fas fa-server" aria-hidden="true"></i> Engineering &amp; Platform</h3>
+          <p class="tool-note">Integration, architecture, and delivery tooling</p>
+          <div class="chips">
+            <span class="chip">PeopleSoft</span>
+            <span class="chip">Oracle</span>
+            <span class="chip">Salesforce</span>
+            <span class="chip">REST / Apigee</span>
+            <span class="chip">Python</span>
+            <span class="chip">Kafka</span>
+            <span class="chip">Event-Driven / SOA / TOGAF</span>
+            <span class="chip">Playwright</span>
+            <span class="chip">Git · Jenkins · Harness · uDeploy</span>
+            <span class="chip">Jira</span>
+            <span class="chip">Azure</span>
+          </div>
+        </div>
+        <div class="tool-col anim">
+          <h3><i class="fas fa-brain" aria-hidden="true"></i> AI / GenAI Engineering</h3>
+          <p class="tool-note">Building AI that can be trusted</p>
+          <div class="chips">
+            <span class="chip">RAG</span>
+            <span class="chip">Prompt Engineering</span>
+            <span class="chip">AI Guardrails &amp; Evaluation</span>
+            <span class="chip">LangChain</span>
+            <span class="chip">ChromaDB</span>
+            <span class="chip">Vector Retrieval</span>
+            <span class="chip">Responsible AI</span>
+            <span class="chip">Multi-Model Architecture</span>
+            <span class="chip">Agentic Workflows</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDIT: CREDENTIALS ===================== -->
+  <section class="section certifications" id="credentials">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Credentials</p>
+        <h2 class="section-title">Learning, <em>continuously</em>.</h2>
+        <p class="section-sub">From a pharmacy degree to an MBA to postgraduate AI/ML — I've never stopped retooling.</p>
+      </div>
+      <div class="certs-grid">
+        <div>
+          <p class="certs-col-label">Certifications</p>
+          <div class="cert-list">
+            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-diagram-project" aria-hidden="true"></i></div><div class="cert-info"><h4>Project Management Professional (PMP)</h4><div class="cert-issuer">PMI</div></div></div>
+            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></div><div class="cert-info"><h4>AI Security &amp; Governance</h4><div class="cert-issuer">Securiti</div></div></div>
+            <div class="cert-card anim"><div class="cert-icon"><i class="fab fa-salesforce" aria-hidden="true"></i></div><div class="cert-info"><h4>Agentblazer Champion 2026</h4><div class="cert-issuer">Salesforce</div></div></div>
+            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-cubes" aria-hidden="true"></i></div><div class="cert-info"><h4>Enterprise Product Management Fundamentals</h4><div class="cert-issuer">Microsoft</div></div></div>
+            <div class="cert-card anim"><div class="cert-icon"><i class="fab fa-microsoft" aria-hidden="true"></i></div><div class="cert-info"><h4>Azure Fundamentals (AZ-900)</h4><div class="cert-issuer">Microsoft</div></div></div>
+            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-database" aria-hidden="true"></i></div><div class="cert-info"><h4>Certified PeopleSoft Technical Consultant</h4><div class="cert-issuer">Oracle</div></div></div>
+          </div>
+        </div>
+        <div>
+          <p class="certs-col-label">Education</p>
+          <div class="edu-list">
+            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-robot" aria-hidden="true"></i></div><div class="cert-info"><h4>Post Graduate, Artificial Intelligence &amp; Machine Learning</h4><div class="cert-issuer">IIIT Bangalore</div></div></div>
+            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div><div class="cert-info"><h4>MBA — IT &amp; Financial Accounting</h4><div class="cert-issuer">ICFAI</div></div></div>
+            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div><div class="cert-info"><h4>B. Pharmacy (Hons.)</h4><div class="cert-issuer">BITS Pilani, Rajasthan</div></div></div>
+          </div>
+          <div class="exploring-card anim">
+            <p class="certs-col-label">Currently building with</p>
+            <ul class="exploring-list">
+              <li>Agentic AI workflows and multi-stage orchestration</li>
+              <li>Evaluation harnesses for grounded, auditable RAG</li>
+              <li>AI governance patterns for regulated industries</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDIT: CONTACT ===================== -->
+  <section class="section contact dark-band" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <p class="section-label">Contact</p>
+          <h2 class="section-title">Let's talk about<br>what's <em>next</em>.</h2>
+          <p>Whether you're modernizing a critical platform, putting governance around AI, or building a technology and delivery leadership team — I'd welcome the conversation.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+              <div class="contact-item-text"><a href="mailto:sandeepmidde@gmail.com">sandeepmidde@gmail.com</a></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fab fa-linkedin-in" aria-hidden="true"></i></div>
+              <div class="contact-item-text"><a href="https://linkedin.com/in/sandeepmidde/" target="_blank" rel="noopener">linkedin.com/in/sandeepmidde</a></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fas fa-file-lines" aria-hidden="true"></i></div>
+              <div class="contact-item-text"><a href="Resume/SandeepMidde.pdf" target="_blank" rel="noopener">Download resume (PDF)</a></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="fas fa-pen-nib" aria-hidden="true"></i></div>
+              <div class="contact-item-text"><a href="blog.html">Read the blog</a></div>
+            </div>
+          </div>
+          <div class="avail-badge">
+            <div class="avail-dot" aria-hidden="true"></div>
+            Open to technology &amp; delivery leadership · platform modernization · applied AI
+          </div>
+        </div>
+        <div class="contact-form-wrap anim">
+          <!-- No backend: submitting opens the visitor's email app with the message pre-filled -->
+          <form id="contactForm">
+            <div class="form-row">
+              <label for="name">Your name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name">
+            </div>
+            <div class="form-row">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" placeholder="Platform modernization conversation">
+            </div>
+            <div class="form-row">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me about the opportunity or the conversation you'd like to have…" required></textarea>
+            </div>
+            <button type="submit" class="btn-submit"><i class="fas fa-paper-plane" aria-hidden="true"></i> Send message</button>
+            <p class="form-note">Opens your email app with the message ready to send.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ===================== EDIT: FOOTER ===================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Sandeep Midde</div>
+        <ul class="footer-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#ai">Applied AI</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#experience">Career</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p class="footer-tagline">Technology &amp; delivery leadership · Platform modernization · Applied AI</p>
+        <ul class="footer-links">
+          <li><a href="https://linkedin.com/in/sandeepmidde/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
+          <li><a href="Resume/SandeepMidde.pdf" target="_blank" rel="noopener"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a></li>
+          <li><a href="mailto:sandeepmidde@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> Email</a></li>
+          <li><a href="blog.html"><i class="fas fa-pen-nib" aria-hidden="true"></i> Blog</a></li>
+        </ul>
+        <div class="footer-copy">&copy; <span id="year">2026</span> Sandeep Midde. Designed &amp; built by Sandeep Midde.</div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Nav border + scroll-to-top visibility
+    const navbar = document.getElementById('navbar');
+    const scrollTopBtn = document.getElementById('scrollTop');
+    const onScroll = () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Mobile menu
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const setMenu = (open) => {
+      navLinks.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.innerHTML = open ? '<i class="fas fa-xmark" aria-hidden="true"></i>' : '<i class="fas fa-bars" aria-hidden="true"></i>';
+    };
+    menuBtn.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+    // Scrollspy
+    const spyLinks = [...navLinks.querySelectorAll('a[href^="#"]')];
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        spyLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id));
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    document.querySelectorAll('main section[id]').forEach(s => spy.observe(s));
+
+    // Reveal on scroll
+    const reveal = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); reveal.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.anim').forEach(el => reveal.observe(el));
+
+    // CAR filter (with counts)
+    const cards = [...document.querySelectorAll('.car-card')];
+    const filters = [...document.querySelectorAll('.car-filter')];
+    filters.forEach(btn => {
+      const f = btn.dataset.filter;
+      const n = f === 'all' ? cards.length : cards.filter(c => c.dataset.theme === f).length;
+      btn.querySelector('.count').textContent = n;
+      btn.addEventListener('click', () => {
+        filters.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+        cards.forEach(c => {
+          c.hidden = !(f === 'all' || c.dataset.theme === f);
+          c.classList.add('in');
+        });
+      });
+    });
+
+    // Contact form → pre-filled email
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const f = e.target;
+      const subject = f.subject.value.trim() || 'Hello from sandeepmidde.com';
+      const body = f.message.value.trim() + '\n\n— ' + f.name.value.trim();
+      window.location.href = 'mailto:sandeepmidde@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    });
+  </script>
+
+  <!-- Cloudflare Web Analytics -->
+  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "53ef048b46274ad2b5c79200360ce999"}'></script>
+</body>
+</html>
