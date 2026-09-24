@@ -642,6 +642,10 @@
       .car-toggle { align-self: start; }
       .car-metric { align-items: baseline; }
     }
+
+    /* ============ v5: portrait ============ */
+    .hero-img-frame { background: var(--surface); }
+    .hero-img-frame img { border: 4px solid var(--surface); outline: 1px solid var(--border); background: var(--bg-alt); }
   </style>
 </head>
 <body>
@@ -711,15 +715,11 @@
         </div>
         <div class="hero-image-wrap">
           <div class="hero-img-frame">
-            <!-- Swap this monogram for a photo: <img src="your-photo.webp" alt="Sandeep Midde" width="280" height="330"> -->
-            <div class="monogram" role="img" aria-label="Sandeep Midde monogram">
-              <div class="monogram-letters">S<span>M</span></div>
-              <div class="monogram-meta">
-                <strong>Sandeep Midde</strong><br>
-                Platform modernization<br>
-                Applied AI
-              </div>
-            </div>
+            <img src="assets/img/sandeep-midde.webp"
+                 srcset="assets/img/sandeep-midde-sm.webp 280w, assets/img/sandeep-midde.webp 560w"
+                 sizes="(max-width: 768px) 190px, 280px"
+                 alt="Portrait of Sandeep Midde" width="280" height="330"
+                 loading="eager" fetchpriority="high" decoding="async">
           </div>
         </div>
       </div>
