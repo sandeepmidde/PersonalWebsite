@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <!-- Unlisted review page: shows every palette of the redesigned landing page side by side. -->
+  <title>Theme Comparison — Sandeep Midde</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111827'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='26' font-weight='700' fill='%23ffffff' text-anchor='middle'%3ESM%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <style>
+    :root {
+      --bg: #0d1117; --panel: #161b22; --border: #2a313c; --text: #e6edf3; --muted: #8b949e; --chip: #1f2630; --on: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; overflow: hidden; }
+
+    .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding: 14px 20px; border-bottom: 1px solid var(--border); background: #0b0f14; }
+    .bar h1 { font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; }
+    .bar h1 span { color: var(--muted); font-weight: 500; }
+    .group { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .group-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-right: 4px; }
+    .seg {
+      font: inherit; font-size: 0.8rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; cursor: pointer;
+      background: var(--chip); color: var(--muted); border: 1px solid var(--border);
+    }
+    .seg[aria-pressed="true"] { background: var(--text); color: #0b0f14; border-color: var(--text); }
+    .toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--muted); cursor: pointer; user-select: none; }
+    .toggle input { accent-color: #58a6ff; width: 15px; height: 15px; }
+    .hint { font-size: 0.75rem; color: var(--muted); margin-left: auto; }
+
+    .stage { flex: 1; overflow-x: auto; overflow-y: hidden; display: flex; gap: 14px; padding: 14px 20px 18px; scroll-snap-type: x mandatory; }
+    .panel { flex: 0 0 var(--pw); display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; scroll-snap-align: start; }
+    .panel[hidden] { display: none; }
+    .panel-head { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-bottom: 1px solid var(--border); min-height: 52px; }
+    .num { width: 22px; height: 22px; border-radius: 6px; background: var(--chip); color: var(--muted); font-size: 0.72rem; font-weight: 700; display: grid; place-items: center; flex-shrink: 0; }
+    .meta { min-width: 0; flex: 1; }
+    .name { font-size: 0.86rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .swatches { display: flex; gap: 4px; margin-top: 4px; }
+    .swatches i { width: 18px; height: 10px; border-radius: 3px; border: 1px solid rgba(255,255,255,0.15); display: block; }
+    .open { font-size: 0.75rem; font-weight: 600; color: #58a6ff; text-decoration: none; white-space: nowrap; }
+    .open:hover { text-decoration: underline; }
+    .viewport { flex: 1; position: relative; overflow: hidden; background: #fff; }
+    .viewport iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; background: #fff; }
+
+    @media (max-width: 700px) { .hint { display: none; } body { overflow: auto; } }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <h1>Theme comparison <span>· sandeepmidde.com redesign</span></h1>
+    <div class="group" role="group" aria-label="Preview device">
+      <span class="group-label">View</span>
+      <button class="seg" data-device="desktop" aria-pressed="true">Desktop</button>
+      <button class="seg" data-device="mobile" aria-pressed="false">Mobile</button>
+    </div>
+    <div class="group" role="group" aria-label="Panel size">
+      <span class="group-label">Size</span>
+      <button class="seg" data-size="fit" aria-pressed="true">Fit all</button>
+      <button class="seg" data-size="large" aria-pressed="false">Large</button>
+    </div>
+    <div class="group" id="showGroup" role="group" aria-label="Themes shown">
+      <span class="group-label">Show</span>
+    </div>
+    <label class="toggle"><input type="checkbox" id="sync" checked> Sync scrolling</label>
+    <span class="hint">Scroll inside any panel · each page is fully clickable</span>
+  </div>
+
+  <div class="stage" id="stage"></div>
+
+  <script>
+    const THEMES = [
+      { id: 'classic',    name: 'Classic (original style)', url: 'themed-classic.html',    sw: ['#FAFAF7', '#0F0F0F', '#C4622D'] },
+      { id: 'executive',  name: 'Executive Tech',           url: 'themed-executive.html',  sw: ['#F8F9FA', '#0F172A', '#2563EB'] },
+      { id: 'maverick',   name: 'Modern Maverick',          url: 'themed-maverick.html',   sw: ['#1E293B', '#F1F5F9', '#10B981'] },
+      { id: 'consultant', name: 'Strategic Consultant',     url: 'themed-consultant.html', sw: ['#FAFAFA', '#27272A', '#C2410C'] },
+      { id: 'aurora',     name: 'Midnight Aurora',          url: 'themed-aurora.html',     sw: ['#070B16', '#FFFFFF', '#22D3EE'] },
+    ];
+    const stage = document.getElementById('stage');
+    const showGroup = document.getElementById('showGroup');
+    const state = { device: 'desktop', size: 'fit' };
+    const DEVICE_W = { desktop: 1280, mobile: 390 };
+
+    THEMES.forEach((t, i) => {
+      const p = document.createElement('section');
+      p.className = 'panel'; p.dataset.id = t.id;
+      p.innerHTML = `
+        <div class="panel-head">
+          <div class="num">${i + 1}</div>
+          <div class="meta">
+            <div class="name">${t.name}</div>
+            <div class="swatches">${t.sw.map(c => `<i style="background:${c}" title="${c}"></i>`).join('')}</div>
+          </div>
+          <a class="open" href="${t.url}" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="viewport"><iframe src="${t.url}" title="${t.name} preview" loading="eager"></iframe></div>`;
+      stage.appendChild(p);
+
+      const b = document.createElement('button');
+      b.className = 'seg'; b.textContent = i + 1; b.title = t.name; b.setAttribute('aria-pressed', 'true');
+      b.addEventListener('click', () => {
+        const on = b.getAttribute('aria-pressed') !== 'true';
+        b.setAttribute('aria-pressed', String(on)); p.hidden = !on; layout();
+      });
+      showGroup.appendChild(b);
+    });
+
+    function layout() {
+      const panels = [...stage.querySelectorAll('.panel:not([hidden])')];
+      const n = Math.max(panels.length, 1);
+      const avail = stage.clientWidth - 40 - 14 * (n - 1);
+      const devW = DEVICE_W[state.device];
+      let pw;
+      if (state.size === 'fit') pw = Math.floor(avail / n);
+      else pw = state.device === 'mobile' ? devW : Math.max(Math.floor((stage.clientWidth - 54) / 2), 480);
+      if (state.device === 'mobile' && state.size === 'fit') pw = Math.min(pw, devW);
+      stage.style.setProperty('--pw', pw + 'px');
+      panels.forEach(p => {
+        const vp = p.querySelector('.viewport'), f = p.querySelector('iframe');
+        const scale = Math.min(1, (pw - 2) / devW);
+        f.style.width = devW + 'px';
+        f.style.height = (vp.clientHeight / scale) + 'px';
+        f.style.transform = `scale(${scale})`;
+      });
+    }
+
+    document.querySelectorAll('[data-device]').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('[data-device]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      state.device = b.dataset.device; layout();
+    }));
+    document.querySelectorAll('[data-size]').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('[data-size]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      state.size = b.dataset.size; layout();
+    }));
+    window.addEventListener('resize', layout);
+    layout();
+
+    // Sync scrolling: whichever page you're scrolling leads; the others follow proportionally
+    const syncBox = document.getElementById('sync');
+    let leader = null;
+    stage.querySelectorAll('iframe').forEach(f => f.addEventListener('load', () => {
+      let win;
+      try { win = f.contentWindow; win.document; } catch (e) { return; }
+      ['wheel', 'touchstart', 'mousedown', 'keydown'].forEach(ev =>
+        win.addEventListener(ev, () => { leader = f; }, { passive: true }));
+      win.addEventListener('scroll', () => {
+        if (!syncBox.checked || leader !== f) return;
+        const d = win.document.documentElement;
+        const ratio = win.scrollY / Math.max(1, d.scrollHeight - win.innerHeight);
+        stage.querySelectorAll('.panel:not([hidden]) iframe').forEach(o => {
+          if (o === f) return;
+          try {
+            const w = o.contentWindow, od = w.document.documentElement;
+            od.style.scrollBehavior = 'auto';
+            w.scrollTo(0, ratio * (od.scrollHeight - w.innerHeight));
+          } catch (e) {}
+        });
+      }, { passive: true });
+    }));
+  </script>
+</body>
+</html>
