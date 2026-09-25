@@ -710,6 +710,16 @@
       .exec-toolkit { padding: 1.4rem; }
       .chips-lg .chip { font-size: 0.78rem; padding: 6px 12px; }
     }
+
+    /* ============ v7: slim footer ============ */
+    footer { padding: 1.75rem 0; }
+    footer .footer-inner { align-items: center; gap: 1rem 2rem; }
+    footer .footer-copy { width: auto; padding-top: 0; font-size: 0.82rem; opacity: 1; color: var(--band-muted); }
+    @media (max-width: 768px) {
+      footer .footer-inner { flex-direction: column-reverse; align-items: flex-start; }
+      .footer-nav { gap: 0.6rem 1.25rem; }
+      .contact-actions .btn { flex: 1 1 0; }
+    }
   </style>
 </head>
 <body>
@@ -1302,13 +1312,9 @@
         <h2 class="section-title">Let's talk about what's <em>next</em>.</h2>
         <p class="contact-line">Modernizing a critical platform, putting governance around AI, or building a technology and delivery leadership team? I'd welcome the conversation.</p>
         <div class="contact-actions">
-          <a href="mailto:sandeepmidde@gmail.com" class="btn btn-primary"><i class="fas fa-envelope" aria-hidden="true"></i> sandeepmidde@gmail.com</a>
-          <a href="https://linkedin.com/in/sandeepmidde/" class="btn btn-band" target="_blank" rel="noopener"><i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a>
+          <a href="mailto:sandeepmidde@gmail.com" class="btn btn-primary"><i class="fas fa-envelope" aria-hidden="true"></i> Email</a>
           <a href="Resume/SandeepMidde.pdf" class="btn btn-band" target="_blank" rel="noopener"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a>
-        </div>
-        <div class="avail-badge">
-          <div class="avail-dot" aria-hidden="true"></div>
-          Open to technology &amp; delivery leadership, platform modernization, and applied AI roles
+          <a href="https://linkedin.com/in/sandeepmidde/" class="btn btn-band" target="_blank" rel="noopener"><i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a>
         </div>
       </div>
     </div>
@@ -1320,22 +1326,15 @@
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <div class="footer-logo">Sandeep Midde</div>
+        <div class="footer-copy">&copy; <span id="year">2026</span> Sandeep Midde. All rights reserved.</div>
         <ul class="footer-nav">
           <li><a href="#about">About</a></li>
           <li><a href="#ai">Applied AI</a></li>
           <li><a href="#impact">Impact</a></li>
           <li><a href="#experience">Career</a></li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <p class="footer-tagline">Technology &amp; delivery leadership · Platform modernization · Applied AI</p>
-        <ul class="footer-links">
-          <li><a href="https://linkedin.com/in/sandeepmidde/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
-          <li><a href="Resume/SandeepMidde.pdf" target="_blank" rel="noopener"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a></li>
-          <li><a href="mailto:sandeepmidde@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> Email</a></li>
-          <li><a href="blog.html"><i class="fas fa-pen-nib" aria-hidden="true"></i> Blog</a></li>
-        </ul>
-        <div class="footer-copy">&copy; <span id="year">2026</span> Sandeep Midde. Designed &amp; built by Sandeep Midde.</div>
       </div>
     </div>
   </footer>
