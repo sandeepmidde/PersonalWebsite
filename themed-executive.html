@@ -649,6 +649,67 @@
     /* ============ v5: portrait ============ */
     .hero-img-frame { background: var(--surface); }
     .hero-img-frame img { border: 4px solid var(--surface); outline: 1px solid var(--border); background: var(--bg-alt); }
+
+    /* ============ v6: streamlined layout ============ */
+    .section { padding: 84px 0; }
+    .section-header { margin-bottom: 2.5rem; }
+    .about-text p { margin-bottom: 1.1rem; }
+
+    /* Applied AI: inline "all writing" link */
+    .text-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 1.75rem; font-weight: 600; font-size: 0.92rem; color: var(--accent-text); }
+    .text-link i { font-size: 0.8rem; transition: transform 0.2s; }
+    .text-link:hover i { transform: translateX(4px); }
+
+    /* Career: compact rows, highlights on demand */
+    .exp-item { padding: 1.75rem 0; }
+    .exp-summary { font-style: normal; margin-bottom: 0.75rem; }
+    .exp-pills { margin-bottom: 0.6rem; }
+    .exp-more > summary {
+      list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; font-weight: 600; color: var(--accent-text); padding: 4px 0;
+    }
+    .exp-more > summary::-webkit-details-marker { display: none; }
+    .exp-more > summary::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 0.65rem; transition: transform 0.2s; }
+    .exp-more[open] > summary::after { transform: rotate(180deg); }
+    .exp-more > summary:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .exp-more[open] .exp-bullets { margin-top: 0.75rem; }
+
+    /* Credentials: two compact lists */
+    .cred-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; }
+    .cred-list { list-style: none; }
+    .cred-list li { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .cred-list li:last-child { border-bottom: none; }
+    .cred-list i { width: 34px; height: 34px; flex-shrink: 0; border-radius: 10px; background: var(--accent-soft); color: var(--accent-text); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+    .cred-list span { font-size: 0.85rem; color: var(--text-3); line-height: 1.4; }
+    .cred-list strong { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text); }
+
+    /* Contact: closing band */
+    .contact-band { max-width: 760px; }
+    .contact-line { font-size: 1.05rem; color: var(--band-text-2); line-height: 1.7; margin-bottom: 1.75rem; }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn-band { color: var(--band-text); border-color: var(--band-border); background: var(--band-surface); }
+    .btn-band:hover { border-color: var(--band-accent); transform: translateY(-2px); }
+
+    /* Phones: swipeable rows instead of long stacks */
+    .swipe-hint { display: none; }
+    @media (max-width: 768px) {
+      .section { padding: 60px 0; }
+      .swipe-hint { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 600; color: var(--text-4); margin: -0.5rem 0 0.75rem; }
+      .swipe-hint i { font-size: 0.7rem; }
+      .car-grid, .proj-grid, .principle-grid {
+        display: flex; overflow-x: auto; gap: 14px; scroll-snap-type: x mandatory;
+        margin: 0 -16px; padding: 4px 16px 14px; scrollbar-width: none;
+      }
+      .car-grid::-webkit-scrollbar, .proj-grid::-webkit-scrollbar, .principle-grid::-webkit-scrollbar { display: none; }
+      .car-card, .proj-card, .principle { flex: 0 0 86%; scroll-snap-align: start; }
+      .car-card { display: flex; }
+      .cred-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .contact-actions .btn { flex: 1 1 100%; justify-content: center; }
+    }
+    @media (max-width: 768px) {
+      .exec-toolkit { padding: 1.4rem; }
+      .chips-lg .chip { font-size: 0.78rem; padding: 6px 12px; }
+    }
   </style>
 </head>
 <body>
@@ -735,24 +796,13 @@
       <div class="about-grid">
         <div class="about-text">
           <p class="section-label">About</p>
-          <h2 class="section-title">Close to the architecture.<br><em>Accountable</em> for the outcome.</h2>
+          <h2 class="section-title">Close to the architecture. <em>Accountable</em> for the outcome.</h2>
           <p>
-            I've spent my career where a system going down is a regulatory event, not an inconvenience. For nearly fourteen years at <strong>Wells Fargo</strong> I set the technical strategy and architectural guardrails for a <strong>$2.5T+ AUM finance ecosystem</strong>, redesigning it for COSO compliance, building its disaster-recovery discipline, and making its data audit-ready.
+            I've spent my career where a system going down is a regulatory event, not an inconvenience. At Wells Fargo that meant owning the architecture, budget, and roadmap for finance-critical platforms, and turning technical depth into outcomes that auditors, executives, and engineers can all verify.
           </p>
           <p>
-            My decisions span architecture, budget, roadmap, and stakeholder alignment. I've made the build-vs-buy case to a CTO, rebuilt the support model that keeps finance close running, and restructured teams so each module has an owner. The through-line is <strong>turning technical depth into business outcomes</strong> that auditors, executives, and engineers can all verify.
+            Since mid-2026 I've been building my own GenAI products with the same rigor.
           </p>
-          <p>
-            Since mid-2026 I've been building <strong>independent GenAI products</strong>, including a RAG conversational platform in production, an agentic content workflow, and an AI knowledge platform. I bring the rigor of regulated finance to a field that badly needs it.
-          </p>
-          <div class="about-tags">
-            <span class="tag">Platform Modernization</span>
-            <span class="tag">Technical Strategy</span>
-            <span class="tag">Risk &amp; Compliance</span>
-            <span class="tag">Delivery Governance</span>
-            <span class="tag">GenAI / RAG</span>
-            <span class="tag">Talent Development</span>
-          </div>
         </div>
         <div class="about-metrics anim">
           <div class="metric-cell">
@@ -788,8 +838,9 @@
       <div class="section-header">
         <p class="section-label">Applied AI</p>
         <h2 class="section-title">GenAI, built with a <em>banker's</em> discipline.</h2>
-        <p class="section-sub">Three AI products I've designed and shipped end to end, each written up in full. In regulated finance you don't ship what you can't evaluate, explain, and govern. I hold AI to the same bar.</p>
+        <p class="section-sub">Three AI products I designed and shipped end to end, each written up in full.</p>
       </div>
+      <p class="swipe-hint" aria-hidden="true">Swipe for more <i class="fas fa-arrow-right"></i></p>
       <div class="proj-grid">
         <a class="proj-card anim" href="posts/krishna-uvaca/">
           <div class="proj-cover"><img src="blog/krishna-uvaca/cover.png" alt="Krishna Uvaca cover" loading="lazy" width="1200" height="627"></div>
@@ -822,16 +873,7 @@
           </div>
         </a>
       </div>
-      <ul class="ai-practices anim" aria-label="How I build AI">
-        <li><i class="fas fa-scale-balanced" aria-hidden="true"></i><div><strong>Evaluate first</strong><span>Harnesses with no-answer detection and grounding checks</span></div></li>
-        <li><i class="fas fa-shield-halved" aria-hidden="true"></i><div><strong>Guardrails by design</strong><span>200+ rule behavioral framework across 8 components</span></div></li>
-        <li><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i><div><strong>Grounded retrieval</strong><span>Answers that cite their source, not guesses</span></div></li>
-        <li><i class="fas fa-layer-group" aria-hidden="true"></i><div><strong>Model-agnostic</strong><span>Swappable LLM providers with fallbacks</span></div></li>
-      </ul>
-      <div class="projects-more anim">
-        <a href="blog.html" class="btn btn-primary">All writing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-        <p>Notes on platform modernization, delivery leadership, and applied AI.</p>
-      </div>
+      <a href="blog.html" class="text-link anim">Read all writing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
     </div>
   </section>
 
@@ -861,6 +903,7 @@
         <button class="car-filter" data-filter="ai" aria-pressed="false">Applied AI<span class="count"></span></button>
       </div>
 
+      <p class="swipe-hint" aria-hidden="true">Swipe for more <i class="fas fa-arrow-right"></i></p>
       <div class="car-grid" id="carGrid">
 
         <article id="car-tco" class="car-card anim" data-featured data-theme="leadership">
@@ -1040,6 +1083,7 @@
         <p class="section-label">How I Work</p>
         <h2 class="section-title">Three principles, <em>earned</em> the hard way.</h2>
       </div>
+      <p class="swipe-hint" aria-hidden="true">Swipe for more <i class="fas fa-arrow-right"></i></p>
       <div class="principle-grid">
         <article class="principle anim">
           <div class="principle-icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
@@ -1080,13 +1124,16 @@
           </div>
           <div class="exp-body">
             <h3 class="exp-title">AI Technical Product Development</h3>
-            <p class="exp-summary">Leading independent AI/ML products from ideation to MVP and global deployment, spanning GenAI products, agentic frameworks, and low-code/no-code apps built for multi-geography scale.</p>
+            <p class="exp-summary">Designing and shipping GenAI products, agentic workflows, and low-code apps from idea to deployment.</p>
             <div class="exp-pills"><span class="exp-pill">GenAI</span><span class="exp-pill">RAG</span><span class="exp-pill">Agentic AI</span></div>
-            <ul class="exp-bullets">
+            <details class="exp-more">
+              <summary>Key highlights (3)</summary>
+              <ul class="exp-bullets">
               <li>Architected and built <strong>Krishna Uvaca</strong>, an end-to-end RAG conversational AI platform with context-aware retrieval, grounded generation, and multi-turn memory, reaching <strong>88% accuracy</strong> over 500 test conversations</li>
               <li>Designed and delivered <strong>ObserverPrime</strong>, an agentic workflow system orchestrating multi-stage content pipelines with provider-agnostic LLMs, background jobs, resumable execution, and automated tests</li>
               <li>Led AI strategy and architecture for <strong>Elara</strong>, a knowledge platform turning unstructured data into reusable knowledge through automated ingestion, extraction, and retrieval</li>
-            </ul>
+              </ul>
+            </details>
           </div>
         </article>
 
@@ -1100,7 +1147,9 @@
             <h3 class="exp-title">Vice President</h3>
             <p class="exp-summary">Technical strategy and platform governance for a $2.5T+ AUM finance ecosystem in a regulated banking environment.</p>
             <div class="exp-pills"><span class="exp-pill">Platform Governance</span><span class="exp-pill">Modernization</span><span class="exp-pill">Risk &amp; Compliance</span><span class="exp-pill">Team Leadership</span></div>
-            <ul class="exp-bullets">
+            <details class="exp-more">
+              <summary>Key highlights (9)</summary>
+              <ul class="exp-bullets">
               <li>Set <strong>architectural guardrails</strong> and target-state direction across finance-critical programs</li>
               <li>Directed a retrieval-first <strong>RAG feasibility study</strong> with an evaluation harness and no-answer detection, reaching <strong>~80% source-grounded</strong> responses and informing a production go/no-go</li>
               <li>Built a Python computation layer over PeopleSoft with Kafka consumption, turning a <strong>3-hour</strong> async workflow into <strong>under 2 minutes</strong></li>
@@ -1110,7 +1159,8 @@
               <li>Restructured into module-aligned pods and standardized CI/CD for cloud readiness, moving releases from <strong>monthly to biweekly</strong> with <strong>20% fewer</strong> deployment incidents</li>
               <li>Led a data-driven build-vs-buy strategy that secured CTO sponsorship and cut projected TCO from <strong>$4M to $1.2M</strong></li>
               <li>Scaled DR from annual to <strong>every 6 months</strong> across 8 teams, with 3 to 5 hour execution, and architected <strong>COSO-aligned</strong> auditable data retention</li>
-            </ul>
+              </ul>
+            </details>
           </div>
         </article>
 
@@ -1122,11 +1172,15 @@
           </div>
           <div class="exp-body">
             <h3 class="exp-title">Staff Consultant</h3>
+            <p class="exp-summary">PeopleSoft consulting on a talent platform adopted across 190+ countries.</p>
             <div class="exp-pills"><span class="exp-pill">Requirements</span><span class="exp-pill">Localization</span></div>
-            <ul class="exp-bullets">
+            <details class="exp-more">
+              <summary>Key highlights (2)</summary>
+              <ul class="exp-bullets">
               <li>Drove requirements discovery with global stakeholders on the PeopleSoft Talent Acquisition model, delivering a <strong>~20% performance improvement</strong> and stabilized workflows</li>
               <li>Delivered bilingual and multilingual support for <strong>Inspira</strong> (UN talent acquisition), enabling adoption across <strong>190+ countries</strong></li>
-            </ul>
+              </ul>
+            </details>
           </div>
         </article>
 
@@ -1138,14 +1192,18 @@
           </div>
           <div class="exp-body">
             <h3 class="exp-title">Technology Architect</h3>
+            <p class="exp-summary">PeopleSoft Finance delivery for Charles Schwab and Dow Jones under CMMI Level 5 governance.</p>
             <div class="exp-pills"><span class="exp-pill">ERP Delivery</span><span class="exp-pill">CMMI Level 5</span><span class="exp-pill">Client Leadership</span></div>
-            <ul class="exp-bullets">
+            <details class="exp-more">
+              <summary>Key highlights (5)</summary>
+              <ul class="exp-bullets">
               <li>Managed cross-functional delivery for the <strong>Charles Schwab</strong> account across development, support, design, and upgrade engagements</li>
               <li>Led a PeopleSoft Finance upgrade retrofitting <strong>900+ custom objects</strong> across P2P and O2C (GL, AR, AP, BI, Purchasing) into stable production</li>
               <li>Owned delivery governance for recurring incidents under CMMI Level 5, cutting the ticket backlog by <strong>30 to 40%</strong> during finance close</li>
               <li>Led the <strong>Dow Jones</strong> PeopleSoft re-implementation, clearing the last blocker to its phased funding release</li>
               <li>Chaired the PeopleSoft LOB Communication Group, connecting <strong>30+ teams</strong> through knowledge-sharing sessions, newsletters, and hackathons</li>
-            </ul>
+              </ul>
+            </details>
           </div>
         </article>
       </div>
@@ -1211,35 +1269,26 @@
       <div class="section-header">
         <p class="section-label">Credentials</p>
         <h2 class="section-title">Learning, <em>continuously</em>.</h2>
-        <p class="section-sub">From a pharmacy degree to an MBA to postgraduate AI/ML, I've never stopped retooling.</p>
       </div>
-      <div class="certs-grid">
+      <div class="cred-grid anim">
         <div>
           <p class="certs-col-label">Certifications</p>
-          <div class="cert-list">
-            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-diagram-project" aria-hidden="true"></i></div><div class="cert-info"><h4>Project Management Professional (PMP)</h4><div class="cert-issuer">PMI</div></div></div>
-            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></div><div class="cert-info"><h4>AI Security &amp; Governance</h4><div class="cert-issuer">Securiti</div></div></div>
-            <div class="cert-card anim"><div class="cert-icon"><i class="fab fa-salesforce" aria-hidden="true"></i></div><div class="cert-info"><h4>Agentblazer Champion 2026</h4><div class="cert-issuer">Salesforce</div></div></div>
-            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-cubes" aria-hidden="true"></i></div><div class="cert-info"><h4>Enterprise Product Management Fundamentals</h4><div class="cert-issuer">Microsoft</div></div></div>
-            <div class="cert-card anim"><div class="cert-icon"><i class="fab fa-microsoft" aria-hidden="true"></i></div><div class="cert-info"><h4>Azure Fundamentals (AZ-900)</h4><div class="cert-issuer">Microsoft</div></div></div>
-            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-database" aria-hidden="true"></i></div><div class="cert-info"><h4>Certified PeopleSoft Technical Consultant</h4><div class="cert-issuer">Oracle</div></div></div>
-          </div>
+          <ul class="cred-list">
+            <li><i class="fas fa-diagram-project" aria-hidden="true"></i><span><strong>Project Management Professional (PMP)</strong> PMI</span></li>
+            <li><i class="fas fa-shield-halved" aria-hidden="true"></i><span><strong>AI Security &amp; Governance</strong> Securiti</span></li>
+            <li><i class="fab fa-salesforce" aria-hidden="true"></i><span><strong>Agentblazer Champion 2026</strong> Salesforce</span></li>
+            <li><i class="fas fa-cubes" aria-hidden="true"></i><span><strong>Enterprise Product Management Fundamentals</strong> Microsoft</span></li>
+            <li><i class="fab fa-microsoft" aria-hidden="true"></i><span><strong>Azure Fundamentals (AZ-900)</strong> Microsoft</span></li>
+            <li><i class="fas fa-database" aria-hidden="true"></i><span><strong>Certified PeopleSoft Technical Consultant</strong> Oracle</span></li>
+          </ul>
         </div>
         <div>
           <p class="certs-col-label">Education</p>
-          <div class="edu-list">
-            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-robot" aria-hidden="true"></i></div><div class="cert-info"><h4>Post Graduate, Artificial Intelligence &amp; Machine Learning</h4><div class="cert-issuer">IIIT Bangalore</div></div></div>
-            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div><div class="cert-info"><h4>MBA, IT &amp; Financial Accounting</h4><div class="cert-issuer">ICFAI</div></div></div>
-            <div class="cert-card anim"><div class="cert-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div><div class="cert-info"><h4>B. Pharmacy (Hons.)</h4><div class="cert-issuer">BITS Pilani, Rajasthan</div></div></div>
-          </div>
-          <div class="exploring-card anim">
-            <p class="certs-col-label">Currently building with</p>
-            <ul class="exploring-list">
-              <li>Agentic AI workflows and multi-stage orchestration</li>
-              <li>Evaluation harnesses for grounded, auditable RAG</li>
-              <li>AI governance patterns for regulated industries</li>
-            </ul>
-          </div>
+          <ul class="cred-list">
+            <li><i class="fas fa-robot" aria-hidden="true"></i><span><strong>Post Graduate, AI &amp; Machine Learning</strong> IIIT Bangalore</span></li>
+            <li><i class="fas fa-chart-line" aria-hidden="true"></i><span><strong>MBA, IT &amp; Financial Accounting</strong> ICFAI</span></li>
+            <li><i class="fas fa-graduation-cap" aria-hidden="true"></i><span><strong>B. Pharmacy (Hons.)</strong> BITS Pilani</span></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1248,52 +1297,18 @@
   <!-- ===================== EDIT: CONTACT ===================== -->
   <section class="section contact dark-band" id="contact">
     <div class="container">
-      <div class="contact-grid">
-        <div class="contact-left">
-          <p class="section-label">Contact</p>
-          <h2 class="section-title">Let's talk about<br>what's <em>next</em>.</h2>
-          <p>Whether you're modernizing a critical platform, putting governance around AI, or building a technology and delivery leadership team, I'd welcome the conversation.</p>
-          <div class="contact-details">
-            <div class="contact-item">
-              <div class="contact-item-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
-              <div class="contact-item-text"><a href="mailto:sandeepmidde@gmail.com">sandeepmidde@gmail.com</a></div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-item-icon"><i class="fab fa-linkedin-in" aria-hidden="true"></i></div>
-              <div class="contact-item-text"><a href="https://linkedin.com/in/sandeepmidde/" target="_blank" rel="noopener">linkedin.com/in/sandeepmidde</a></div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-item-icon"><i class="fas fa-file-lines" aria-hidden="true"></i></div>
-              <div class="contact-item-text"><a href="Resume/SandeepMidde.pdf" target="_blank" rel="noopener">Download resume (PDF)</a></div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-item-icon"><i class="fas fa-pen-nib" aria-hidden="true"></i></div>
-              <div class="contact-item-text"><a href="blog.html">Read the blog</a></div>
-            </div>
-          </div>
-          <div class="avail-badge">
-            <div class="avail-dot" aria-hidden="true"></div>
-            Open to technology &amp; delivery leadership · platform modernization · applied AI
-          </div>
+      <div class="contact-band">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Let's talk about what's <em>next</em>.</h2>
+        <p class="contact-line">Modernizing a critical platform, putting governance around AI, or building a technology and delivery leadership team? I'd welcome the conversation.</p>
+        <div class="contact-actions">
+          <a href="mailto:sandeepmidde@gmail.com" class="btn btn-primary"><i class="fas fa-envelope" aria-hidden="true"></i> sandeepmidde@gmail.com</a>
+          <a href="https://linkedin.com/in/sandeepmidde/" class="btn btn-band" target="_blank" rel="noopener"><i class="fab fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a>
+          <a href="Resume/SandeepMidde.pdf" class="btn btn-band" target="_blank" rel="noopener"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a>
         </div>
-        <div class="contact-form-wrap anim">
-          <!-- No backend: submitting opens the visitor's email app with the message pre-filled -->
-          <form id="contactForm">
-            <div class="form-row">
-              <label for="name">Your name</label>
-              <input type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name">
-            </div>
-            <div class="form-row">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="Platform modernization conversation">
-            </div>
-            <div class="form-row">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell me about the opportunity or the conversation you'd like to have…" required></textarea>
-            </div>
-            <button type="submit" class="btn-submit"><i class="fas fa-paper-plane" aria-hidden="true"></i> Send message</button>
-            <p class="form-note">Opens your email app with the message ready to send.</p>
-          </form>
+        <div class="avail-badge">
+          <div class="avail-dot" aria-hidden="true"></div>
+          Open to technology &amp; delivery leadership, platform modernization, and applied AI roles
         </div>
       </div>
     </div>
@@ -1430,14 +1445,6 @@
     }));
     if (location.hash.startsWith('#car-')) setTimeout(() => openCard(location.hash.slice(1)), 300);
 
-    // Contact form → pre-filled email
-    document.getElementById('contactForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const f = e.target;
-      const subject = f.subject.value.trim() || 'Hello from sandeepmidde.com';
-      const body = f.message.value.trim() + '\n\n' + f.name.value.trim();
-      window.location.href = 'mailto:sandeepmidde@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    });
   </script>
 
   <!-- Cloudflare Web Analytics -->
