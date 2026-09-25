@@ -44,7 +44,7 @@
     EDIT: HERO           — name, role, tagline, top-3 stats, photo
     EDIT: ABOUT          — story + 4 key numbers (dark band)
     EDIT: APPLIED AI     — shipped AI products (link to blog posts) + how I build AI
-    EDIT: IMPACT (CAR)   — Challenge → Action → Result case studies (filterable, top 6 marked data-featured)
+    EDIT: IMPACT         six outcome highlights
     EDIT: HOW I WORK     — three principle cards
     EDIT: CAREER         — role-by-role timeline
     EDIT: TOOLKIT        — executive toolkit + hands-on engineering
@@ -52,8 +52,7 @@
     EDIT: CONTACT        — contact details + message form
     EDIT: FOOTER
 
-  To add a CAR card: copy one <article class="car-card ..."> block and set its
-  data-theme to one of: modernization, reliability, governance, leadership, ai
+  To add an impact highlight: copy one <article class="impact-card ..."> block.
   ============================================================================
 -->
 
@@ -720,6 +719,34 @@
       .footer-nav { gap: 0.6rem 1.25rem; }
       .contact-actions .btn { flex: 1 1 0; }
     }
+
+    /* ============ v8: impact highlights (replaces CAR cards) ============ */
+    .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .impact-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+      padding: 1.75rem; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); scroll-margin-top: 90px;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
+    }
+    .impact-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent-line); }
+    .impact-tag { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-text); margin-bottom: 0.7rem; }
+    .impact-card h3 { font-family: var(--ff-display); font-size: 1.15rem; font-weight: var(--display-weight); line-height: 1.35; letter-spacing: -0.01em; color: var(--text); margin-bottom: 0.7rem; }
+    .impact-text { font-size: 0.9rem; color: var(--text-2); line-height: 1.65; margin-bottom: 1.25rem; }
+    .impact-stats {
+      list-style: none; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border);
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 0.75rem;
+    }
+    .impact-stats strong { display: block; font-family: var(--ff-display); font-size: 1.35rem; font-weight: var(--num-weight); letter-spacing: -0.02em; color: var(--text); line-height: 1.1; white-space: nowrap; }
+    .impact-stats span { display: block; margin-top: 4px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-4); line-height: 1.35; }
+    .impact-card.flash { animation: car-flash 1.8s var(--ease); }
+    @media (max-width: 1080px) { .impact-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px) {
+      .impact-grid {
+        display: flex; overflow-x: auto; gap: 14px; scroll-snap-type: x mandatory;
+        margin: 0 -16px; padding: 4px 16px 14px; scrollbar-width: none;
+      }
+      .impact-grid::-webkit-scrollbar { display: none; }
+      .impact-card { flex: 0 0 86%; scroll-snap-align: start; }
+    }
   </style>
 </head>
 <body>
@@ -810,30 +837,27 @@
           <p>
             I've spent my career where a system going down is a regulatory event, not an inconvenience. At Wells Fargo that meant owning the architecture, budget, and roadmap for finance-critical platforms, and turning technical depth into outcomes that auditors, executives, and engineers can all verify.
           </p>
-          <p>
-            Since mid-2026 I've been building my own GenAI products with the same rigor.
-          </p>
         </div>
         <div class="about-metrics anim">
           <div class="metric-cell">
-            <div class="metric-num">70<span>%</span></div>
-            <div class="metric-label">Lower projected TCO</div>
-            <div class="metric-desc">$4M → $1.2M through a build-vs-buy case that won CTO sponsorship</div>
+            <div class="metric-num">14<span> yrs</span></div>
+            <div class="metric-label">At Wells Fargo</div>
+            <div class="metric-desc">Rising to Vice President over finance-critical platforms</div>
           </div>
           <div class="metric-cell">
-            <div class="metric-num">142</div>
-            <div class="metric-label">Models automated</div>
-            <div class="metric-desc">Daily GL reconciliation with zero failures over 4 years, verified in audits</div>
+            <div class="metric-num">3</div>
+            <div class="metric-label">AI products shipped</div>
+            <div class="metric-desc">Designed and built end to end since 2026</div>
           </div>
           <div class="metric-cell">
-            <div class="metric-num">3 to 5<span>h</span></div>
-            <div class="metric-label">Verified recovery</div>
-            <div class="metric-desc">Disaster-recovery failover coordinated across 8 teams</div>
+            <div class="metric-num">190<span>+</span></div>
+            <div class="metric-label">Countries</div>
+            <div class="metric-desc">Adoption of a talent platform I delivered at Oracle</div>
           </div>
           <div class="metric-cell">
-            <div class="metric-num">88<span>%</span></div>
-            <div class="metric-label">Response accuracy</div>
-            <div class="metric-desc">Krishna Uvaca RAG platform, across 500 test conversations</div>
+            <div class="metric-num">900<span>+</span></div>
+            <div class="metric-label">Objects retrofitted</div>
+            <div class="metric-desc">In one PeopleSoft Finance upgrade, with zero critical defects</div>
           </div>
         </div>
       </div>
@@ -887,201 +911,73 @@
     </div>
   </section>
 
-  <!-- ===================== EDIT: IMPACT (CAR) =====================
-       Each card = one Challenge → Action → Result story.
-       data-theme must be: modernization | reliability | governance | leadership | ai
+  <!-- ===================== EDIT: IMPACT =====================
+       Six outcome highlights. Each card: tag, headline, 2 to 3 sentences, key numbers.
   ================================================================= -->
   <section class="section impact bg-dots" id="impact">
     <div class="container">
       <div class="section-header">
-        <p class="section-label">Impact · Challenge → Action → Result</p>
-        <h2 class="section-title">The problems I was<br>trusted to <em>solve</em>.</h2>
-        <p class="section-sub">Each story follows the same arc, from the constraint I walked into, to what I did, to the measured result. Tap any card to see the challenge and action behind it.</p>
-        <div class="car-legend" aria-hidden="true">
-          <span><i style="background:var(--challenge)"></i>Challenge</span>
-          <span><i style="background:var(--action)"></i>Action</span>
-          <span><i style="background:var(--result)"></i>Result</span>
-        </div>
+        <p class="section-label">Impact</p>
+        <h2 class="section-title">Outcomes that moved the <em>business</em>.</h2>
+        <p class="section-sub">Six areas where the teams I led changed the numbers.</p>
       </div>
-
-      <div class="car-filters" id="carFilters" role="group" aria-label="Filter case studies">
-        <button class="car-filter" data-filter="all" aria-pressed="true">All<span class="count"></span></button>
-        <button class="car-filter" data-filter="modernization" aria-pressed="false">Modernization<span class="count"></span></button>
-        <button class="car-filter" data-filter="reliability" aria-pressed="false">Reliability<span class="count"></span></button>
-        <button class="car-filter" data-filter="governance" aria-pressed="false">Governance &amp; Risk<span class="count"></span></button>
-        <button class="car-filter" data-filter="leadership" aria-pressed="false">Leadership &amp; Strategy<span class="count"></span></button>
-        <button class="car-filter" data-filter="ai" aria-pressed="false">Applied AI<span class="count"></span></button>
-      </div>
-
       <p class="swipe-hint" aria-hidden="true">Swipe for more <i class="fas fa-arrow-right"></i></p>
-      <div class="car-grid" id="carGrid">
-
-        <article id="car-tco" class="car-card anim" data-featured data-theme="leadership">
-          <div class="car-top"><span class="car-tag">Strategy</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">$4M → $1.2M</span><span class="car-metric-label">projected TCO</span></div>
-          <h3>Won the build-vs-buy case for ERP modernization</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Replace a legacy ERP with a $2M/year SaaS subscription, or build in house over 18 months?</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Built the roadmap and cost model, designed a lean team that rolls contractors off at go-live, and presented to the Finance CTO.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>CTO sponsorship and budget approval for a cloud-hosted platform at a fraction of the cost.</dd></div>
-          </dl>
+      <div class="impact-grid">
+        <article class="impact-card anim" id="impact-cost">
+          <p class="impact-tag">Modernization strategy</p>
+          <h3>Won the case for a leaner, modern finance platform</h3>
+          <p class="impact-text">I led the build-versus-buy decision to replace a legacy ERP platform, building the roadmap, the cost model and a lean delivery team, and took the business case to the Finance CTO. It secured sponsorship for a cloud-hosted platform developed in house.</p>
+          <ul class="impact-stats">
+            <li><strong>$4M → $1.2M</strong><span>Projected TCO</span></li>
+            <li><strong>CTO</strong><span>Sponsorship secured</span></li>
+          </ul>
         </article>
-
-        <article id="car-l2" class="car-card anim" data-featured data-theme="reliability">
-          <div class="car-top"><span class="car-tag">Operations</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">99.8%</span><span class="car-metric-label">availability</span></div>
-          <h3>Built the L2 support model from the ground up</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Production support had no dedicated L2 model, runbooks, or ownership structure.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Documented processes, trained staff, set point-of-contact ownership, and built runbooks, SLAs, and escalation paths.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>MTTR cut by 30 to 60%, with availability up from 99.2% to 99.8%.</dd></div>
-          </dl>
+        <article class="impact-card anim" id="impact-legacy">
+          <p class="impact-tag">Platform modernization</p>
+          <h3>Modernized how core finance systems connect and compute</h3>
+          <p class="impact-text">My teams replaced a third-party intermediary with a direct Bloomberg integration, added a Python computation layer fed by Kafka, and automated daily reconciliation across 142 models that had been checked by hand in Excel.</p>
+          <ul class="impact-stats">
+            <li><strong>99%</strong><span>Faster rate updates</span></li>
+            <li><strong>3h → 2m</strong><span>Workflow time</span></li>
+            <li><strong>5h → 20m</strong><span>Daily reconciliation</span></li>
+          </ul>
         </article>
-
-        <article class="car-card anim" data-featured data-theme="modernization">
-          <div class="car-top"><span class="car-tag">Integration</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">99%</span><span class="car-metric-label">faster ticker response</span></div>
-          <h3>Retired a third-party middleman for Bloomberg rate data</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>The legacy ERP got Bloomberg ticker data through an intermediary system, delaying rate updates.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Took a Python-based BEAP API integration from COVID-era POC to production, running both the build and the vendor coordination.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Intermediary eliminated and live in about 12 months. The reusable pattern then onboarded a second system.</dd></div>
-          </dl>
+        <article class="impact-card anim" id="impact-reliability">
+          <p class="impact-tag">Reliability and resilience</p>
+          <h3>Made production support and recovery predictable</h3>
+          <p class="impact-text">I built a dedicated L2 support model with runbooks, SLAs, clear ownership and escalation paths, cutting MTTR by 30 to 60%. In parallel, disaster recovery became a rehearsed routine, with failover coordinated across 8 teams twice a year.</p>
+          <ul class="impact-stats">
+            <li><strong>99.8%</strong><span>Availability, up from 99.2%</span></li>
+            <li><strong>3 to 5h</strong><span>Verified recovery</span></li>
+          </ul>
         </article>
-
-        <article class="car-card anim" data-featured data-theme="modernization">
-          <div class="car-top"><span class="car-tag">Architecture</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">3h → 2m</span><span class="car-metric-label">workflow time</span></div>
-          <h3>Gave a legacy ERP computing power it never had</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>The ERP's asynchronous design couldn't run key transformations synchronously, creating a 3-hour end-to-end bottleneck.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Architected a Python computation layer, wrapped in shell to talk to PeopleSoft, with Kafka consumption for upstream data.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Under 2 minutes end to end, a 98% improvement, with checklist-driven approvals.</dd></div>
-          </dl>
+        <article class="impact-card anim" id="impact-governance">
+          <p class="impact-tag">Governance and compliance</p>
+          <h3>Built compliance into the architecture, not around it</h3>
+          <p class="impact-text">I designed COSO-aligned data retention that enforces Fed and bank-mandated retention windows, with file-receipt validation and access controls. I also led the move of 52 downstream feeds to governed Apigee APIs ahead of a bank-wide mandate.</p>
+          <ul class="impact-stats">
+            <li><strong>8 yrs</strong><span>Auditable data trail</span></li>
+            <li><strong>52</strong><span>Feeds moving to Apigee</span></li>
+          </ul>
         </article>
-
-        <article class="car-card anim" data-featured data-theme="reliability">
-          <div class="car-top"><span class="car-tag">Automation</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">93%</span><span class="car-metric-label">less processing time</span></div>
-          <h3>Automated daily GL reconciliation across 142 models</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Reconciling Oracle GL, PeopleSoft, and 7 to 8 upstream systems took about 5 hours a day in Excel, with a risk of misstatement.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Engineered automated variance reporting into the daily run, with resilient reprocessing and an on-demand override.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>5 hours down to 20 minutes, with zero failures for 4 years, verified across 8 to 12 quarterly audits.</dd></div>
-          </dl>
+        <article class="impact-card anim" id="impact-team">
+          <p class="impact-tag">Organization and delivery</p>
+          <h3>Turned one stretched team into module-owned pods</h3>
+          <p class="impact-text">I restructured a single team spread across four modules into pods with their own backlogs and release rhythm, owned hiring and performance, mentored developers and architects, and stood up a cloud-modernization team on a standardized CI/CD framework.</p>
+          <ul class="impact-stats">
+            <li><strong>2×</strong><span>Release frequency</span></li>
+            <li><strong>20%</strong><span>Fewer deployment incidents</span></li>
+          </ul>
         </article>
-
-        <article id="car-rag" class="car-card anim" data-featured data-theme="ai">
-          <div class="car-top"><span class="car-tag">GenAI Feasibility</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">~80%</span><span class="car-metric-label">source-grounded</span></div>
-          <h3>A retrieval-first RAG study that informed a go/no-go decision</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>GenAI adoption needed proof before commitment, given hallucination risk in customer-facing use.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Owned the architecture, constraint mapping, and an evaluation harness with no-answer detection.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Measured grounding gave leadership an evidence-based production decision.</dd></div>
-          </dl>
+        <article class="impact-card anim" id="impact-ai">
+          <p class="impact-tag">Applied AI</p>
+          <h3>Brought GenAI in with evidence, not hype</h3>
+          <p class="impact-text">At Wells Fargo I directed a retrieval-first RAG feasibility study with an evaluation harness and no-answer detection, giving leadership a clear production decision. Since then I have shipped Krishna Uvaca, a governed RAG platform that is live today.</p>
+          <ul class="impact-stats">
+            <li><strong>~80%</strong><span>Source-grounded answers</span></li>
+            <li><strong>88%</strong><span>Accuracy, Krishna Uvaca</span></li>
+          </ul>
         </article>
-
-        <article class="car-card anim" data-theme="modernization">
-          <div class="car-top"><span class="car-tag">Performance</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">58%</span><span class="car-metric-label">faster daily runtime</span></div>
-          <h3>Re-architected GL allocation feeding P&amp;L</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>142 daily jobs across 8 subsystems shared tables, so SQL slowdowns cascaded as volumes grew.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Isolated month-end-only rules, flattened and normalized shared tables, and added checkpoint restart with adaptable rule skipping.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>3.5 hrs → 1.5 hrs across 2M+ rows a day, with no reprocessing on failure.</dd></div>
-          </dl>
-        </article>
-
-        <article id="car-dr" class="car-card anim" data-theme="reliability">
-          <div class="car-top"><span class="car-tag">Resilience</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">3 to 5h</span><span class="car-metric-label">verified recovery</span></div>
-          <h3>Made disaster recovery measurable and routine</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Regulators required DR testing at set intervals, with no reliable estimate of recovery time.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Coordinated parallel-server failover across 8 teams plus infra, DB, and support, and streamlined the failover sequence.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>A consistent 3 to 5 hour window for 3 years, with the cadence raised from annual to every 6 months.</dd></div>
-          </dl>
-        </article>
-
-        <article id="car-apigee" class="car-card anim" data-theme="governance">
-          <div class="car-top"><span class="car-tag">API Governance</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">52</span><span class="car-metric-label">connections secured</span></div>
-          <h3>Put every downstream feed behind a governed gateway</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>52 downstream systems pulled EPM data by direct DB access or file transfer, ahead of a governed-API mandate.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Led the migration to Apigee, architecting access control and audit visibility at the gateway.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Legacy and governed access running in parallel, positioning EPM for the Dec 2026 cutover.</dd></div>
-          </dl>
-        </article>
-
-        <article id="car-retention" class="car-card anim" data-theme="governance">
-          <div class="car-top"><span class="car-tag">Compliance</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">8 yrs</span><span class="car-metric-label">auditable trail</span></div>
-          <h3>Designed COSO-aligned, regulator-ready data retention</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>A federal mandate required 8-year auditable data-flow trails, with examiner access on demand.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Enforced retention by data classification, with file-receipt validation (volume, amount, date) and access controls.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>A regulator-ready governance framework covering all EPM data communications.</dd></div>
-          </dl>
-        </article>
-
-        <article class="car-card anim" data-theme="leadership">
-          <div class="car-top"><span class="car-tag">Org Design</span><span class="car-org">Wells Fargo</span></div>
-          <div class="car-metric"><span class="car-metric-num">2×</span><span class="car-metric-label">release cadence</span></div>
-          <h3>From one ad hoc team to module-aligned pods</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>One flat team ran DCS, SCW, Rates, and Allocations on ad hoc Kanban with no release rhythm.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Hired and mentored into module-owned Scrum pods, stood up a cloud-modernization team, and standardized CI/CD.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Monthly → biweekly releases, with 20% fewer deployment incidents.</dd></div>
-          </dl>
-        </article>
-
-        <article class="car-card anim" data-theme="ai">
-          <div class="car-top"><span class="car-tag">Conversational AI</span><span class="car-org">Independent</span></div>
-          <div class="car-metric"><span class="car-metric-num">88%</span><span class="car-metric-label">response accuracy</span></div>
-          <h3>Took a governed conversational AI to production, solo</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Could a governed conversational AI reach production without a corporate delivery structure?</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Architected Krishna Uvaca end to end, including a 200+ rule, 8-component behavioral framework and its evaluation model.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Live in production, with 88% accuracy validated across 500 test conversations.</dd></div>
-          </dl>
-        </article>
-
-        <article class="car-card anim" data-theme="modernization">
-          <div class="car-top"><span class="car-tag">ERP Upgrade</span><span class="car-org">Infosys</span></div>
-          <div class="car-metric"><span class="car-metric-num">900+</span><span class="car-metric-label">objects retrofitted</span></div>
-          <h3>A PeopleSoft Finance upgrade with zero critical defects</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Upgrade PeopleSoft Finance without losing years of custom configuration across P2P and O2C.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Compared custom code against Oracle's baseline and systematically retrofitted every changed object through hypercare.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Upgrade delivered with zero critical post-go-live defects.</dd></div>
-          </dl>
-        </article>
-
-        <article class="car-card anim" data-theme="reliability">
-          <div class="car-top"><span class="car-tag">Support Quality</span><span class="car-org">Infosys</span></div>
-          <div class="car-metric"><span class="car-metric-num">30 to 40%</span><span class="car-metric-label">smaller ticket backlog</span></div>
-          <h3>Pattern-based fixes for finance-close incidents</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Recurring batch failures across finance modules built a growing backlog during close cycles.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Mapped the recurring failure patterns and built reusable fixes and documentation under CMMI Level 5.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Backlog cut by 30 to 40% during critical finance-close cycles.</dd></div>
-          </dl>
-        </article>
-
-        <article class="car-card anim" data-theme="leadership">
-          <div class="car-top"><span class="car-tag">Delivery</span><span class="car-org">Infosys</span></div>
-          <div class="car-metric"><span class="car-metric-num">9 mo</span><span class="car-metric-label">on schedule</span></div>
-          <h3>Cleared the last blocker to a phased funding release</h3>
-          <dl class="car-steps">
-            <div class="car-step c"><dt>Challenge</dt><dd>Dow Jones needed a full PeopleSoft P2P re-implementation, with undocumented legacy processes.</dd></div>
-            <div class="car-step a"><dt>Action</dt><dd>Reverse-engineered the legacy processes and rebuilt the module from scratch.</dd></div>
-            <div class="car-step r"><dt>Result</dt><dd>Delivered on schedule, closing the final deliverable holding up funding.</dd></div>
-          </dl>
-        </article>
-      </div>
-      <button type="button" class="car-more" id="carMore"></button>
       </div>
     </div>
   </section>
@@ -1099,19 +995,19 @@
           <div class="principle-icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
           <h3>Evaluate before committing</h3>
           <p>The cheapest mistake is the one measured early. Cost models and evaluation harnesses come before budget is locked.</p>
-          <p class="principle-proof">Proven by <a href="#car-tco">$4M → $1.2M TCO case</a> · <a href="#car-rag">RAG go/no-go</a></p>
+          <p class="principle-proof">Proven by <a href="#impact-cost">$4M → $1.2M TCO case</a> · <a href="#impact-ai">RAG go/no-go</a></p>
         </article>
         <article class="principle anim">
           <div class="principle-icon"><i class="fas fa-building-shield" aria-hidden="true"></i></div>
           <h3>Compliance is architecture</h3>
           <p>Audit-readiness bolted on at the end is brittle. Build classification, validation, and access control in from the start, so the compliant path is the default.</p>
-          <p class="principle-proof">Proven by <a href="#car-retention">COSO-aligned retention</a> · <a href="#car-apigee">52 feeds moving to Apigee</a></p>
+          <p class="principle-proof">Proven by <a href="#impact-governance">COSO-aligned retention</a> · <a href="#impact-governance">52 feeds moving to Apigee</a></p>
         </article>
         <article class="principle anim">
           <div class="principle-icon"><i class="fas fa-heart-pulse" aria-hidden="true"></i></div>
           <h3>Reliability is engineered</h3>
           <p>Checkpoint restart, resilient reprocessing, runbooks, and rehearsed failover. Failure paths are designed, not improvised.</p>
-          <p class="principle-proof">Proven by <a href="#car-l2">99.2% → 99.8% availability</a> · <a href="#car-dr">3 to 5h DR</a></p>
+          <p class="principle-proof">Proven by <a href="#impact-reliability">99.2% → 99.8% availability</a> · <a href="#impact-reliability">3 to 5h DR</a></p>
         </article>
       </div>
     </div>
@@ -1385,65 +1281,16 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.anim').forEach(el => reveal.observe(el));
 
-    // CAR case studies: featured-first list, filter chips, and collapsible challenge/action
-    const cards = [...document.querySelectorAll('.car-card')];
-    const filters = [...document.querySelectorAll('.car-filter')];
-    const moreBtn = document.getElementById('carMore');
-    let activeFilter = 'all', showAll = false;
-    const applyCars = () => {
-      cards.forEach(c => {
-        const match = activeFilter === 'all' || c.dataset.theme === activeFilter;
-        const limited = activeFilter === 'all' && !showAll && !c.hasAttribute('data-featured');
-        c.hidden = !match || limited;
-        c.classList.add('in');
-      });
-      moreBtn.hidden = activeFilter !== 'all';
-      moreBtn.innerHTML = showAll
-        ? 'Show top 6 only <i class="fas fa-chevron-up" aria-hidden="true"></i>'
-        : `Show all ${cards.length} case studies <i class="fas fa-chevron-down" aria-hidden="true"></i>`;
-    };
-    filters.forEach(btn => {
-      const f = btn.dataset.filter;
-      btn.querySelector('.count').textContent = f === 'all' ? cards.length : cards.filter(c => c.dataset.theme === f).length;
-      btn.addEventListener('click', () => {
-        filters.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-        activeFilter = f; applyCars();
-      });
-    });
-    moreBtn.addEventListener('click', () => { showAll = !showAll; applyCars(); });
-    cards.forEach(card => {
-      card.classList.add('collapsed');
-      const t = document.createElement('button');
-      t.type = 'button'; t.className = 'car-toggle'; t.setAttribute('aria-expanded', 'false');
-      t.innerHTML = 'Challenge &amp; action <i class="fas fa-chevron-down" aria-hidden="true"></i>';
-      t.addEventListener('click', () => {
-        const open = card.classList.toggle('collapsed') === false;
-        t.setAttribute('aria-expanded', String(open));
-      });
-      card.querySelector('.car-steps').after(t);
-    });
-    applyCars();
-
-    // "Proof" links: jump to a case study, revealing and expanding it if needed
-    const openCard = (id) => {
-      const card = document.getElementById(id);
-      if (!card || !card.classList.contains('car-card')) return false;
-      if (card.hidden) {
-        activeFilter = 'all'; showAll = true;
-        filters.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === 'all')));
-        applyCars();
-      }
-      if (card.classList.contains('collapsed')) card.querySelector('.car-toggle').click();
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // "Proven by" links: scroll to the impact highlight and flash it
+    document.querySelectorAll('a[href^="#impact-"]').forEach(a => a.addEventListener('click', e => {
+      const card = document.getElementById(a.getAttribute('href').slice(1));
+      if (!card) return;
+      e.preventDefault();
+      card.classList.add('in');
+      card.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
       card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
-      return true;
-    };
-    document.querySelectorAll('a[href^="#car-"]').forEach(a => a.addEventListener('click', e => {
-      const id = a.getAttribute('href').slice(1);
-      if (openCard(id)) { e.preventDefault(); history.replaceState(null, '', '#' + id); }
+      history.replaceState(null, '', a.getAttribute('href'));
     }));
-    if (location.hash.startsWith('#car-')) setTimeout(() => openCard(location.hash.slice(1)), 300);
-
   </script>
 
   <!-- Cloudflare Web Analytics -->
