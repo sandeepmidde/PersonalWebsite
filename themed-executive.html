@@ -728,7 +728,7 @@
       transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
     }
     .impact-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent-line); }
-    .impact-tag { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-text); margin-bottom: 0.7rem; }
+    .impact-icon { width: 40px; height: 40px; border-radius: 11px; background: var(--surface-2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--accent-text); font-size: 1rem; margin-bottom: 1rem; }
     .impact-card h3 { font-family: var(--ff-display); font-size: 1.15rem; font-weight: var(--display-weight); line-height: 1.35; letter-spacing: -0.01em; color: var(--text); margin-bottom: 0.7rem; }
     .impact-text { font-size: 0.9rem; color: var(--text-2); line-height: 1.65; margin-bottom: 1.25rem; }
     .impact-stats {
@@ -912,7 +912,7 @@
   </section>
 
   <!-- ===================== EDIT: IMPACT =====================
-       Six outcome highlights. Each card: tag, headline, 2 to 3 sentences, key numbers.
+       Six outcome highlights. Each card: icon, short executive headline, 2 sentences, key numbers (optional).
   ================================================================= -->
   <section class="section impact bg-dots" id="impact">
     <div class="container">
@@ -924,59 +924,55 @@
       <p class="swipe-hint" aria-hidden="true">Swipe for more <i class="fas fa-arrow-right"></i></p>
       <div class="impact-grid">
         <article class="impact-card anim" id="impact-cost">
-          <p class="impact-tag">Modernization strategy</p>
-          <h3>Won the build-versus-buy case</h3>
-          <p class="impact-text">Led the build-versus-buy decision to replace a legacy ERP platform. Built the roadmap, the cost model and a lean delivery team, then won Finance CTO sponsorship for a cloud-hosted platform developed in house.</p>
+          <div class="impact-icon"><i class="fas fa-coins" aria-hidden="true"></i></div>
+          <h3>Capital-Efficient Modernization</h3>
+          <p class="impact-text">Set the build-versus-buy strategy for replacing a legacy ERP platform, owning the roadmap, cost model and delivery structure. Secured Finance CTO sponsorship for an in-house cloud platform run by a lean team.</p>
           <ul class="impact-stats">
-            <li><strong>$4M → $1.2M</strong><span>Projected TCO</span></li>
-            <li><strong>CTO</strong><span>Sponsorship secured</span></li>
+            <li><strong>70%</strong><span>Lower projected TCO</span></li>
+            <li><strong>$1.2M</strong><span>Down from $4M</span></li>
           </ul>
         </article>
         <article class="impact-card anim" id="impact-legacy">
-          <p class="impact-tag">Platform modernization</p>
-          <h3>Accelerated finance operations</h3>
-          <p class="impact-text">Replaced a third-party intermediary with a direct Bloomberg integration, added a Python computation layer fed by Kafka, and automated a daily reconciliation across 142 models that used to be a manual task.</p>
+          <div class="impact-icon"><i class="fas fa-gears" aria-hidden="true"></i></div>
+          <h3>Core Operations Transformation</h3>
+          <p class="impact-text">Directed the modernization of core finance workflows, retiring a third-party intermediary through a direct Bloomberg integration and a Kafka-fed computation layer. Automated a manual daily reconciliation across 142 models, removing a recurring operational risk.</p>
           <ul class="impact-stats">
             <li><strong>99%</strong><span>Faster rate updates</span></li>
             <li><strong>3h → 2m</strong><span>Workflow time</span></li>
-            <li><strong>142</strong><span>Models reconciled daily</span></li>
+            <li><strong>142</strong><span>Models automated</span></li>
           </ul>
         </article>
         <article class="impact-card anim" id="impact-reliability">
-          <p class="impact-tag">Reliability and resilience</p>
-          <h3>Raised the reliability bar</h3>
-          <p class="impact-text">Built a dedicated L2 support model with runbooks, SLAs, clear ownership and escalation paths, cutting MTTR by 30 to 60%. Turned disaster recovery into a rehearsed routine, with failover coordinated across 8 teams twice a year.</p>
+          <div class="impact-icon"><i class="fas fa-shield-halved" aria-hidden="true"></i></div>
+          <h3>Enterprise Resilience</h3>
+          <p class="impact-text">Instituted an L2 support model with SLAs, runbooks, clear ownership and escalation paths, cutting MTTR by 30 to 60%. Made disaster recovery a rehearsed, twice-yearly routine coordinated across 8 teams.</p>
           <ul class="impact-stats">
-            <li><strong>99.8%</strong><span>Availability, up from 99.2%</span></li>
+            <li><strong>99.8%</strong><span>Up from 99.2%</span></li>
             <li><strong>3 to 5h</strong><span>Verified recovery</span></li>
           </ul>
         </article>
         <article class="impact-card anim" id="impact-governance">
-          <p class="impact-tag">Governance and compliance</p>
-          <h3>Built regulator-ready governance</h3>
-          <p class="impact-text">Designed COSO-aligned data retention that enforces Fed and bank-mandated retention windows, with file-receipt validation and access controls. Led the shift of downstream data feeds from direct database pulls and file transfers to governed API access, ahead of an enterprise-wide mandate.</p>
+          <div class="impact-icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
+          <h3>Regulatory Data Governance</h3>
+          <p class="impact-text">Institutionalized COSO-aligned data retention that enforces Fed and bank-mandated windows, with validation on every inbound file. Initiated the move of downstream feeds to governed API access ahead of an enterprise-wide mandate.</p>
           <ul class="impact-stats">
             <li><strong>8 yrs</strong><span>Auditable data trail</span></li>
             <li><strong>100%</strong><span>Inbound files validated</span></li>
           </ul>
         </article>
         <article class="impact-card anim" id="impact-team">
-          <p class="impact-tag">Organization and delivery</p>
-          <h3>Restructured for delivery velocity</h3>
-          <p class="impact-text">Restructured one team stretched across four modules into pods with their own backlogs and release rhythm. Owned hiring and performance, mentored developers and architects, and stood up a cloud-modernization team on a standardized CI/CD framework.</p>
+          <div class="impact-icon"><i class="fas fa-people-group" aria-hidden="true"></i></div>
+          <h3>Organizational Transformation</h3>
+          <p class="impact-text">Redesigned a single team stretched across four modules into autonomous pods, each with its own backlog and release rhythm. Owned hiring, performance and mentoring, and stood up a cloud modernization team on standardized CI/CD.</p>
           <ul class="impact-stats">
             <li><strong>2×</strong><span>Release frequency</span></li>
-            <li><strong>20%</strong><span>Fewer deployment incidents</span></li>
+            <li><strong>20%</strong><span>Fewer deploy incidents</span></li>
           </ul>
         </article>
         <article class="impact-card anim" id="impact-ai">
-          <p class="impact-tag">Applied AI</p>
-          <h3>Brought rigor to GenAI decisions</h3>
-          <p class="impact-text">Owned a retrieval-first RAG feasibility study, covering the architecture, constraint mapping and an evaluation harness with no-answer detection. Hallucination risk was measured up front, so leadership could make a go or no-go call before committing to production.</p>
-          <ul class="impact-stats">
-            <li><strong>Eval-first</strong><span>Risk measured up front</span></li>
-            <li><strong>Go/no-go</strong><span>Before production spend</span></li>
-          </ul>
+          <div class="impact-icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
+          <h3>GenAI Risk Governance</h3>
+          <p class="impact-text">Directed a feasibility evaluation of GenAI retrieval (RAG) before any production commitment. Set up the evaluation framework for hallucination risk and constraint mapping, giving leadership evidence-based go or no-go criteria before capital was committed.</p>
         </article>
       </div>
     </div>
