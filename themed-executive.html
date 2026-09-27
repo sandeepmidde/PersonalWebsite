@@ -43,8 +43,8 @@
     EDIT: NAV            — top bar links
     EDIT: HERO           — name, role, tagline, top-3 stats, photo
     EDIT: ABOUT          — story + 4 key numbers (dark band)
-    EDIT: APPLIED AI     — shipped AI products (link to blog posts) + how I build AI
-    EDIT: IMPACT         six outcome highlights
+    EDIT: IMPACT         six outcome highlights (Executive Track Record)
+    EDIT: AI R&D LAB     three AI project cards (link to blog posts)
     EDIT: HOW I WORK     — three principle cards
     EDIT: CAREER         — role-by-role timeline
     EDIT: TOOLKIT        — executive toolkit + hands-on engineering
@@ -366,10 +366,10 @@
     .proj-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
     .proj-card:hover .proj-cover img { transform: scale(1.04); }
     .proj-body { padding: 1.5rem 1.6rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
-    .proj-kind { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-text); margin-bottom: 0.6rem; }
+    .proj-card .proj-kind { flex: none; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-text); margin-bottom: 0.6rem; }
     .proj-card h3 { font-family: var(--ff-display); font-size: 1.2rem; font-weight: var(--display-weight); letter-spacing: -0.01em; margin-bottom: 0.5rem; color: var(--text); }
     .proj-card p { font-size: 0.9rem; color: var(--text-3); line-height: 1.65; flex: 1; }
-    .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+    .proj-stack { flex: none; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
     .proj-stack span { font-size: 0.72rem; font-weight: 500; padding: 3px 10px; border: 1px solid var(--border); border-radius: 100px; color: var(--text-3); }
     .proj-link { margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; font-weight: 600; display: inline-flex; gap: 8px; align-items: center; color: var(--text); }
     .proj-link i { color: var(--accent-text); font-size: 0.8rem; transition: transform 0.2s; }
@@ -555,7 +555,7 @@
     }
 
     /* Applied AI: project proof + practice strip */
-    .proj-proof { margin-top: 0.9rem; font-size: 0.8rem; font-weight: 600; color: var(--result); display: flex; gap: 8px; align-items: baseline; flex: 0 !important; }
+    .proj-card .proj-proof { margin-top: 0.9rem; font-size: 0.8rem; font-weight: 600; color: var(--result); display: flex; gap: 8px; align-items: baseline; flex: 0 !important; }
     .ai-practices {
       list-style: none; margin-top: 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
       background: var(--border); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
@@ -759,8 +759,8 @@
         <a href="#home" class="logo">Sandeep <span>Midde</span></a>
         <ul class="nav-links" id="navLinks">
           <li><a href="#about">About</a></li>
-          <li><a href="#ai">Applied AI</a></li>
-          <li><a href="#impact">Impact</a></li>
+          <li><a href="#impact">Track Record</a></li>
+          <li><a href="#ai">AI Lab</a></li>
           <li><a href="#principles">Principles</a></li>
           <li><a href="#experience">Career</a></li>
           <li><a href="blog.html">Blog</a></li>
@@ -864,62 +864,15 @@
     </div>
   </section>
 
-  <!-- ===================== EDIT: APPLIED AI (projects + how I build) =====================
-       Cards link to the full write-ups at posts/<slug>/ (built from /blog).
-  ================================================================= -->
-  <section class="section bg-glow" id="ai">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label">Applied AI</p>
-        <h2 class="section-title">GenAI, built with a <em>banker's</em> discipline.</h2>
-        <p class="section-sub">Three AI products designed and shipped end to end, each written up in full.</p>
-      </div>
-      <p class="swipe-hint" aria-hidden="true">Swipe for more <i class="fas fa-arrow-right"></i></p>
-      <div class="proj-grid">
-        <a class="proj-card anim" href="posts/krishna-uvaca/">
-          <div class="proj-cover"><img src="blog/krishna-uvaca/cover.png" alt="Krishna Uvaca cover" loading="lazy" width="1200" height="627"></div>
-          <div class="proj-body">
-            <p class="proj-kind">RAG · Conversational AI · In production</p>
-            <h3>Krishna Uvaca</h3>
-            <p>A RAG platform on the Bhagavad Gita that gives grounded answers, cites the verse each one comes from, and remembers the conversation.</p>
-            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> 88% accuracy across 500 test conversations</p>
-            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
-          </div>
-        </a>
-        <a class="proj-card anim" href="posts/observer-prime/">
-          <div class="proj-cover"><img src="blog/observer-prime/cover.png" alt="Observer Prime cover" loading="lazy" width="1200" height="627"></div>
-          <div class="proj-body">
-            <p class="proj-kind">Agentic workflow automation</p>
-            <h3>ObserverPrime</h3>
-            <p>Multi-stage content pipelines with provider-agnostic LLMs, background jobs, and resumable execution. A human approves every step.</p>
-            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Automated test coverage for production-grade reliability</p>
-            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
-          </div>
-        </a>
-        <a class="proj-card anim" href="posts/project-elara/">
-          <div class="proj-cover"><img src="blog/project-elara/cover.png" alt="Project Elara cover" loading="lazy" width="1200" height="627"></div>
-          <div class="proj-body">
-            <p class="proj-kind">AI knowledge platform</p>
-            <h3>Elara</h3>
-            <p>Turns unstructured material into reusable knowledge through automated ingestion, extraction, and retrieval. Think of it as a personal AI tutor.</p>
-            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Led AI strategy &amp; architecture</p>
-            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
-          </div>
-        </a>
-      </div>
-      <a href="blog.html" class="text-link anim">Read all writing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
-    </div>
-  </section>
-
   <!-- ===================== EDIT: IMPACT =====================
        Six outcome highlights. Each card: icon, short executive headline, 2 sentences, key numbers (optional).
   ================================================================= -->
   <section class="section impact bg-dots" id="impact">
     <div class="container">
       <div class="section-header">
-        <p class="section-label">Impact</p>
+        <p class="section-label">Executive Track Record</p>
         <h2 class="section-title">Outcomes that moved the <em>business</em>.</h2>
-        <p class="section-sub">Selected highlights from two decades of delivery.</p>
+        <p class="section-sub">Modernization, governance and operational transformation across two decades of enterprise delivery.</p>
       </div>
       <p class="swipe-hint" aria-hidden="true">Swipe for more <i class="fas fa-arrow-right"></i></p>
       <div class="impact-grid">
@@ -975,6 +928,58 @@
           <p class="impact-text">Directed a feasibility evaluation of GenAI retrieval (RAG) before any production commitment. Set up the evaluation framework for hallucination risk and constraint mapping, giving leadership evidence-based go or no-go criteria before capital was committed.</p>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDIT: AI R&amp;D LAB (projects) =====================
+       Cards link to the full write-ups at posts/<slug>/ (built from /blog).
+  ================================================================= -->
+  <section class="section bg-glow" id="ai">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">AI R&amp;D Lab</p>
+        <h2 class="section-title">GenAI, built with a <em>banker's</em> discipline.</h2>
+        <p class="section-sub">Hands-on prototyping of retrieval, agentic and knowledge systems, from architecture to working build. Each one is written up in full.</p>
+      </div>
+      <p class="swipe-hint" aria-hidden="true">Swipe for more <i class="fas fa-arrow-right"></i></p>
+      <div class="proj-grid">
+        <a class="proj-card anim" href="posts/krishna-uvaca/">
+          <div class="proj-cover"><img src="blog/krishna-uvaca/cover.png" alt="Krishna Uvaca cover" loading="lazy" width="1200" height="627"></div>
+          <div class="proj-body">
+            <p class="proj-kind">Live RAG application</p>
+            <h3>Krishna Uvaca</h3>
+            <p>Conversational RAG application that answers only from retrieved source text, cites the verse behind every answer and keeps context across the conversation. Built to test how far strict grounding can contain hallucination where accuracy matters.</p>
+            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Verse-level citations on every answer</p>
+            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> 88% accuracy across 500 test conversations</p>
+            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+        <a class="proj-card anim" href="posts/observer-prime/">
+          <div class="proj-cover"><img src="blog/observer-prime/cover.png" alt="Observer Prime cover" loading="lazy" width="1200" height="627"></div>
+          <div class="proj-body">
+            <p class="proj-kind">Agentic workflow engine</p>
+            <h3>Observer Prime</h3>
+            <p>Agentic workflow engine with provider-agnostic LLM orchestration and resumable, versioned steps. A human-in-the-loop approval gate sits between every stage, so the AI drafts and a person decides.</p>
+            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Central orchestrator owns every workflow rule</p>
+            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> 36 automated tests on a zero-cost mock provider</p>
+            <div class="proj-stack"><span>Next.js 15</span><span>React 19</span><span>TypeScript</span><span>Vitest</span></div>
+            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+        <a class="proj-card anim" href="posts/project-elara/">
+          <div class="proj-cover"><img src="blog/project-elara/cover.png" alt="Project Elara cover" loading="lazy" width="1200" height="627"></div>
+          <div class="proj-body">
+            <p class="proj-kind">Knowledge ingestion engine</p>
+            <h3>Project Elara</h3>
+            <p>Knowledge platform that turns unstructured files in a user's own Google Drive into structured, searchable knowledge. A two-tier design uses AI only where understanding is needed and plain code for retrieval, keeping cost predictable.</p>
+            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> No vector database or agent framework needed</p>
+            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Verified with real sign-in and live AI calls</p>
+            <div class="proj-stack"><span>Next.js 16</span><span>TypeScript</span><span>Google Drive API</span></div>
+            <span class="proj-link">Read the case study <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+      </div>
+      <a href="blog.html" class="text-link anim">Read all writing <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
     </div>
   </section>
 
@@ -1221,8 +1226,8 @@
         <div class="footer-copy">&copy; <span id="year">2026</span> Sandeep Midde. All rights reserved.</div>
         <ul class="footer-nav">
           <li><a href="#about">About</a></li>
-          <li><a href="#ai">Applied AI</a></li>
-          <li><a href="#impact">Impact</a></li>
+          <li><a href="#impact">Track Record</a></li>
+          <li><a href="#ai">AI Lab</a></li>
           <li><a href="#experience">Career</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="#contact">Contact</a></li>
