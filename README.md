@@ -70,7 +70,10 @@ in `/posts` is generated and gitignored.
 
 ```
 .
-├── index.html                 # Portfolio / landing page (single page, anchor-nav)
+├── _redirects                 # Cloudflare Pages rules: serves themed-executive.html at /
+├── themed-executive.html      # Portfolio / landing page (the homepage, served at /)
+├── themed-*.html              # Other theme versions (unlisted, noindex) + themed-compare.html
+├── index-backup.html          # Previous homepage, kept for reference (noindex)
 ├── blog.html                  # Blog index: tag filter pills + post cards
 ├── post.html                  # Template for every post (copied per post by the build)
 ├── social-card.png            # Default link-preview image (1200×627)
@@ -102,16 +105,12 @@ in `/posts` is generated and gitignored.
 
 ## 3. Pages and features
 
-### `index.html`: portfolio
-- **Fixed left sidebar** (desktop) with name, title, blurb, scroll-spy nav,
-  a Résumé button, and LinkedIn / Email links. A GitHub icon is present but
-  hidden (`class="hidden"`, `href="#"`).
-- **Mobile**: a hamburger button opens a full-screen overlay menu.
-- **Sections**: Home (intro) → Experience (timeline with glowing active dot)
-  → Tech Stack (filterable pills: Leadership, Platform, AI) → Certifications &
-  Education → Writing (static teaser linking to the blog) → Contact.
-- **Effects**: cursor-following glow, fade-up on scroll.
-- Content blocks carry `EDIT:` comments that show where to change text.
+### `themed-executive.html`: portfolio (homepage)
+- There is no `index.html`. `_redirects` rewrites `/` to this page (status 200,
+  so the address bar stays on `/`), and `/index.html` redirects to `/`.
+- One plain HTML file with `EDIT:` comment headers per section: Hero, About,
+  Applied AI, Impact, Principles, Career, Toolkit, Credentials, Contact.
+- Edit this file only. Do not create a copy of it elsewhere.
 
 ### `blog.html`: blog index
 - Loads `posts/posts-index.json` and renders a card per post (date, read time,
