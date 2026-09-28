@@ -657,6 +657,11 @@
     /* ============ v6: streamlined layout ============ */
     .section { padding: 84px 0; }
     .section-header { margin-bottom: 2.5rem; }
+    /* One measure for every heading, tagline and paragraph block */
+    .section-header .section-title, .section-header .section-sub, .hero-sub { max-width: none; }
+    .hero-stat-label { max-width: none; white-space: nowrap; }
+    .impact-stats span { white-space: nowrap; }
+    .exp-list, .phil-list, .contact-line { max-width: none; }
     .about-text p { margin-bottom: 1.1rem; }
 
     /* Applied AI: inline "all writing" link */
@@ -688,7 +693,7 @@
     .cred-list strong { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text); }
 
     /* Contact: closing band */
-    .contact-band { max-width: 760px; }
+    .contact-band { max-width: none; }
     .contact-line { font-size: 1.05rem; color: var(--band-text-2); line-height: 1.7; margin-bottom: 1.75rem; }
     .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; }
     .btn-band { color: var(--band-text); border-color: var(--band-border); background: var(--band-surface); }
@@ -767,7 +772,7 @@
           <li><a href="#impact">Milestones</a></li>
           <li><a href="#ai">AI Lab</a></li>
           <li><a href="#principles">Principles</a></li>
-          <li><a href="#experience">Chronology</a></li>
+          <li><a href="#experience">Journey</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="#contact" class="nav-cta">Connect</a></li>
         </ul>
@@ -802,15 +807,15 @@
           <div class="hero-stats" role="list" aria-label="Career highlights">
             <div role="listitem">
               <div class="hero-stat-num">~20 yrs</div>
-              <div class="hero-stat-label">Enterprise technology &amp; delivery</div>
+              <div class="hero-stat-label">Enterprise delivery</div>
             </div>
             <div role="listitem">
               <div class="hero-stat-num">$2.5T+</div>
-              <div class="hero-stat-label">AUM finance platform governed</div>
+              <div class="hero-stat-label">AUM governed</div>
             </div>
             <div role="listitem">
               <div class="hero-stat-num">99.8%</div>
-              <div class="hero-stat-label">Availability, up from 99.2%</div>
+              <div class="hero-stat-label">Uptime, from 99.2%</div>
             </div>
           </div>
           <div class="hero-socials">
@@ -847,22 +852,22 @@
           <div class="metric-cell">
             <div class="metric-num">VP</div>
             <div class="metric-label">Executive mandate</div>
-            <div class="metric-desc">Architecture, budget and roadmap for finance-critical platforms</div>
+            <div class="metric-desc">Architecture, budget, roadmap</div>
           </div>
           <div class="metric-cell">
             <div class="metric-num">CTO</div>
             <div class="metric-label">Sponsorship secured</div>
-            <div class="metric-desc">Enterprise modernization strategy backed at Finance CTO level</div>
+            <div class="metric-desc">Backed by the Finance CTO</div>
           </div>
           <div class="metric-cell">
-            <div class="metric-num">8</div>
-            <div class="metric-label">Teams orchestrated</div>
-            <div class="metric-desc">Aligned across functions for every DR cycle</div>
+            <div class="metric-num">2<span>&times;</span></div>
+            <div class="metric-label">Release cadence</div>
+            <div class="metric-desc">Monthly to biweekly releases</div>
           </div>
           <div class="metric-cell">
             <div class="metric-num">30<span>+</span></div>
             <div class="metric-label">Teams in one practice</div>
-            <div class="metric-desc">Chaired a cross-location knowledge practice</div>
+            <div class="metric-desc">Cross-location practice chaired</div>
           </div>
         </div>
       </div>
@@ -886,7 +891,7 @@
           <h3>Capital-Efficient Modernization</h3>
           <p class="impact-text">Set the build-versus-buy strategy for replacing a legacy ERP platform, owning the roadmap, cost model and delivery structure. Secured Finance CTO sponsorship for an in-house cloud platform, delivered by a specialized engineering pod.</p>
           <ul class="impact-stats">
-            <li><strong>70%</strong><span>Lower projected TCO</span></li>
+            <li><strong>70%</strong><span>Lower TCO</span></li>
             <li><strong>$1.2M</strong><span>Down from $4M</span></li>
           </ul>
         </article>
@@ -895,9 +900,8 @@
           <h3>Core Operations Transformation</h3>
           <p class="impact-text">Directed the modernization of core finance workflows, retiring a third-party intermediary through a direct Bloomberg integration and a Kafka-fed computation layer. Automated a manual daily reconciliation across 142 models, removing a recurring operational risk.</p>
           <ul class="impact-stats">
-            <li><strong>99%</strong><span>Faster rate updates</span></li>
+            <li><strong>99%</strong><span>Faster updates</span></li>
             <li><strong>3h → 2m</strong><span>Workflow time</span></li>
-            <li><strong>142</strong><span>Models automated</span></li>
           </ul>
         </article>
         <article class="impact-card anim" id="impact-reliability">
@@ -914,8 +918,8 @@
           <h3>Regulatory Data Governance</h3>
           <p class="impact-text">Institutionalized COSO-aligned data retention that enforces Fed and bank-mandated windows, with validation on every inbound file. Initiated the move of downstream feeds to governed API access ahead of an enterprise-wide mandate.</p>
           <ul class="impact-stats">
-            <li><strong>8 yrs</strong><span>Auditable data trail</span></li>
-            <li><strong>100%</strong><span>Inbound files validated</span></li>
+            <li><strong>8 yrs</strong><span>Auditable trail</span></li>
+            <li><strong>100%</strong><span>Files validated</span></li>
           </ul>
         </article>
         <article class="impact-card anim" id="impact-team">
@@ -923,8 +927,8 @@
           <h3>Organizational Transformation</h3>
           <p class="impact-text">Redesigned a single team stretched across four modules into autonomous pods, each with its own backlog and release rhythm. Owned hiring, performance and mentoring, and stood up a cloud modernization team on standardized CI/CD.</p>
           <ul class="impact-stats">
-            <li><strong>2×</strong><span>Release frequency</span></li>
-            <li><strong>20%</strong><span>Fewer deploy incidents</span></li>
+            <li><strong>2×</strong><span>Release pace</span></li>
+            <li><strong>20%</strong><span>Fewer incidents</span></li>
           </ul>
         </article>
         <article class="impact-card anim" id="impact-ai">
@@ -1024,9 +1028,9 @@
   <section class="section experience bg-soft" id="experience">
     <div class="container">
       <div class="section-header">
-        <p class="section-label">Leadership Chronology</p>
-        <h2 class="section-title">Two decades of<br><em>compounding</em> depth.</h2>
-        <p class="section-sub">From PeopleSoft Finance consultant to VP of a $2.5T+ AUM finance platform to independent AI architect, each chapter built the judgment for the next.</p>
+        <p class="section-label">Leadership Journey</p>
+        <h2 class="section-title">Two decades of <em>compounding</em> depth.</h2>
+        <p class="section-sub">From PeopleSoft consultant to VP of a $2.5T+ AUM platform to independent AI architect, each chapter built the next.</p>
       </div>
       <div class="exp-list">
         <article class="exp-item anim">
@@ -1037,7 +1041,7 @@
           </div>
           <div class="exp-body">
             <h3 class="exp-title">Principal AI Architect</h3>
-            <p class="exp-summary">Prototyping and validating next-generation LLM pipelines, composable data integrations and agentic governance patterns, from architecture and evaluation to working build.</p>
+            <p class="exp-summary">Prototyping and validating LLM pipelines, composable data integrations and agentic governance patterns, from architecture to working build.</p>
             <div class="exp-pills"><span class="exp-pill">GenAI Architecture</span><span class="exp-pill">RAG</span><span class="exp-pill">Agentic AI</span><span class="exp-pill">AI-Augmented Engineering</span></div>
             <details class="exp-more">
               <summary>Key highlights (3)</summary>
@@ -1085,7 +1089,7 @@
           </div>
           <div class="exp-body">
             <h3 class="exp-title">Staff Consultant</h3>
-            <p class="exp-summary">PeopleSoft consulting on a global talent acquisition platform, from requirements discovery to localization and performance tuning.</p>
+            <p class="exp-summary">PeopleSoft consulting on a global talent acquisition platform, from requirements to localization and performance.</p>
             <div class="exp-pills"><span class="exp-pill">Requirements</span><span class="exp-pill">Localization</span></div>
             <details class="exp-more">
               <summary>Key highlights (2)</summary>
@@ -1213,7 +1217,7 @@
       <div class="contact-band">
         <p class="section-label">Connect</p>
         <h2 class="section-title">Let's talk about what's <em>next</em>.</h2>
-        <p class="contact-line">Modernizing a critical platform, putting governance around AI, or building a technology and delivery leadership team? I'd welcome the conversation.</p>
+        <p class="contact-line">Modernizing a critical platform, governing AI, or building a technology and delivery leadership team? I'd welcome the conversation.</p>
         <div class="contact-actions">
           <a href="mailto:sandeepmidde@gmail.com" class="btn btn-primary"><i class="fas fa-envelope" aria-hidden="true"></i> Email</a>
           <a href="Resume/SandeepMidde.pdf" class="btn btn-band" target="_blank" rel="noopener"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a>
@@ -1235,7 +1239,7 @@
           <li><a href="#impact">Milestones</a></li>
           <li><a href="#ai">AI Lab</a></li>
           <li><a href="#principles">Principles</a></li>
-          <li><a href="#experience">Chronology</a></li>
+          <li><a href="#experience">Journey</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="#contact">Connect</a></li>
         </ul>
