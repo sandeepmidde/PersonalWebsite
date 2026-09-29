@@ -260,6 +260,19 @@ function writePostPage(template, post, socialImage) {
   if (SITE_URL) {
     tags.push(`<meta property="og:url" content="${SITE_URL}/${pagePath}" />`);
     tags.push(`<link rel="canonical" href="${SITE_URL}/${pagePath}" />`);
+    // Structured data so search engines credit the article to the homepage's Person.
+    const ld = {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: fullTitle,
+      description,
+      datePublished: post.date,
+      image: absoluteUrl(socialImage),
+      url: `${SITE_URL}/${pagePath}`,
+      mainEntityOfPage: `${SITE_URL}/${pagePath}`,
+      author: { '@type': 'Person', '@id': `${SITE_URL}/#person`, name: AUTHOR, url: `${SITE_URL}/` },
+    };
+    tags.push(`<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`);
   }
 
   const page = template
@@ -327,6 +340,24 @@ async function buildPost(postFolderName, postDir, template) {
   return indexEntry;
 }
 
+// Writes /sitemap.xml (homepage, blog listing, every post) so search engines
+// find new posts without waiting to crawl the blog page.
+function writeSitemap(index) {
+  const newest = index[0]?.date;
+  const urls = [
+    { loc: `${SITE_URL}/`, priority: '1.0' },
+    { loc: `${SITE_URL}/blog`, lastmod: newest, priority: '0.8' },
+    ...index.map(p => ({ loc: `${SITE_URL}/posts/${p.slug}/`, lastmod: p.date, priority: '0.6' })),
+  ];
+  const body = urls.map(u =>
+    `  <url>\n    <loc>${u.loc}</loc>\n` +
+    (u.lastmod ? `    <lastmod>${u.lastmod.slice(0, 10)}</lastmod>\n` : '') +
+    `    <priority>${u.priority}</priority>\n  </url>`
+  ).join('\n');
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
+  fs.writeFileSync(path.join(POSTS_DIR, '..', 'sitemap.xml'), xml);
+}
+
 async function main() {
   // Everything under /posts is build output: JSON files, images/, and one
   // folder per generated post page. Clear it all so deleted posts disappear.
@@ -358,6 +389,7 @@ async function main() {
 
   index.sort((a, b) => b.date.localeCompare(a.date));
   fs.writeFileSync(path.join(POSTS_DIR, 'posts-index.json'), JSON.stringify(index, null, 2));
+  writeSitemap(index);
 
   console.log(`Built ${index.length} post(s).`);
 }
