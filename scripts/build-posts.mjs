@@ -72,6 +72,21 @@ function computeReadTime(html) {
   return `${minutes} min read`;
 }
 
+// Cloudflare Pages builds from a shallow clone, where every file's history is
+// just the latest commit, so undated posts would all get today's date. Fetch
+// the full history once before reading any dates. Harmless locally.
+function ensureFullGitHistory() {
+  try {
+    const shallow = execSync('git rev-parse --is-shallow-repository', { cwd: ROOT, encoding: 'utf8' }).trim();
+    if (shallow === 'true') {
+      execSync('git fetch --unshallow --quiet', { cwd: ROOT, stdio: 'ignore' });
+      console.log('Fetched full git history for post dates.');
+    }
+  } catch (e) {
+    console.warn('Could not fetch full git history; undated posts may show the build date.');
+  }
+}
+
 function gitFirstCommitDate(absPath) {
   try {
     const relPath = path.relative(ROOT, absPath).split(path.sep).join('/');
@@ -369,6 +384,7 @@ async function main() {
     }
   }
   fs.mkdirSync(POSTS_DIR, { recursive: true });
+  ensureFullGitHistory();
 
   const index = [];
   const template = fs.readFileSync(POST_TEMPLATE, 'utf8');
