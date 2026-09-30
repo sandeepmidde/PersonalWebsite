@@ -1,249 +1,425 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="no-js">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title id="pageTitle">Writing — Sandeep Midde</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- The build step replaces the charset, title and description lines below
+       (exact markup matters, see writePostPage in scripts/build-posts.mjs). -->
+<title id="pageTitle">Writing · Sandeep Midde</title>
 <meta name="description" content="Articles by Sandeep Midde on platform modernization, delivery leadership, and applied AI." />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-size='26' font-weight='700' fill='%232dd4bf' text-anchor='middle'%3ESM%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F172A'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' font-weight='700' fill='%232563EB' text-anchor='middle'%3ESM%3C/text%3E%3C/svg%3E">
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: { sans: ['Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
-        typography: () => ({
-          invert: {
-            css: {
-              '--tw-prose-body': '#cbd5e1',
-              '--tw-prose-headings': '#f1f5f9',
-              '--tw-prose-links': '#2dd4bf',
-              '--tw-prose-bold': '#f1f5f9',
-              '--tw-prose-quotes': '#94a3b8',
-              '--tw-prose-code': '#5eead4',
-            },
-          },
-        }),
-      },
-    },
-  };
-</script>
+<!--
+  Article page template. Never edited per post: scripts/build-posts.mjs copies
+  it to /posts/<slug>/index.html for every post, bakes that post's title,
+  description and preview image into <head>, adds <base href="/"> and sets
+  window.POST_SLUG. The article itself loads from posts/<slug>.json at runtime.
+  Views and likes use /api (Cloudflare Functions), comments use giscus.
+-->
 
-<style>
-  body { font-family: 'Manrope', sans-serif; letter-spacing: 0.01em; word-spacing: 0.1em; }
-  ::selection { background-color: rgba(45, 212, 191, 0.25); color: #99f6e4; }
-  ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: #020617; }
-  ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
-  .bg-glow {
-    background:
-      radial-gradient(600px circle at 15% 10%, rgba(45,212,191,0.10), transparent 60%),
-      radial-gradient(500px circle at 85% 20%, rgba(56,189,248,0.08), transparent 60%);
-  }
-  #cursorGlow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 1300px;
-    height: 1300px;
-    border-radius: 9999px;
-    pointer-events: none;
-    z-index: 0;
-    background: radial-gradient(circle, rgba(255,255,255,0.09), rgba(226,255,250,0.05) 35%, transparent 70%);
-    filter: blur(50px);
-    transform: translate(-9999px, -9999px);
-    will-change: transform;
-  }
-  .tag-chip {
-    display: inline-block;
-    padding: 0.25rem 0.7rem;
-    border-radius: 9999px;
-    font-family: inherit;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border: none;
-    color: #5eead4;
-    background-color: rgba(45, 212, 191, 0.08);
-    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
-    cursor: default;
-  }
-  .tag-chip:hover {
-    color: #99f6e4;
-    background-color: rgba(45, 212, 191, 0.18);
-    box-shadow: 0 0 16px rgba(45, 212, 191, 0.25);
-  }
-  /* Images inside blog post body content — see posts/welcome-to-my-blog.json for an example */
-  #postBody img {
-    border-radius: 0.75rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  #postBody figcaption {
-    text-align: center;
-    font-size: 0.8rem;
-  }
-  .related-card {
-    border: none;
-    background-color: transparent;
-    transition: background-color .2s ease;
-  }
-  .related-card:hover {
-    background-color: rgba(30, 41, 59, 0.4);
-  }
-  .related-card:hover .related-title { color: #5eead4; }
-  #likeBtn {
-    transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
-  }
-  #likeBtn.liked {
-    color: #5eead4;
-    background-color: rgba(45, 212, 191, 0.12);
-  }
-  /* Topic accordion (right column) */
-  .topic-group summary {
-    list-style: none;
-    cursor: pointer;
-  }
-  .topic-group summary::-webkit-details-marker { display: none; }
-  .topic-group summary:hover { background-color: rgba(30, 41, 59, 0.4); }
-  .topic-group .chevron { transition: transform .2s ease; }
-  .topic-group[open] .chevron { transform: rotate(180deg); }
-  .topic-link.active { color: #5eead4; font-weight: 600; }
-  /* Share row: plain links to each network's share page, so they work for every
-     visitor on every browser with no sign-in to this site or GitHub. */
-  .share-btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-    height: 34px; min-width: 34px; padding: 0 10px; border-radius: 9999px;
-    background-color: rgba(30, 41, 59, 0.6); color: #94a3b8;
-    transition: color .2s ease, background-color .2s ease;
-  }
-  .share-btn:hover { background-color: #1e293b; color: #e2e8f0; }
-  .share-btn svg { width: 16px; height: 16px; }
-  .share-btn.copied { color: #5eead4; background-color: rgba(45, 212, 191, 0.12); }
-</style>
+  <style>
+    :root {
+      /* Same tokens as themed-executive.html */
+      --ff-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --ff-body: 'Inter', system-ui, sans-serif;
+      --ff-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --display-weight: 700; --num-weight: 800; --display-tracking: -0.03em;
+
+      --bg: #F8F9FA; --bg-alt: #EEF2F7; --surface: #FFFFFF; --surface-2: #F4F6F9;
+      --border: #E2E8F0; --line: rgba(15,23,42,0.08);
+      --text: #0F172A; --text-2: #334155; --text-3: #64748B; --text-4: #5B677A;
+      --accent: #2563EB; --accent-hover: #1D4ED8; --on-accent: #FFFFFF;
+      --accent-text: #2563EB; --accent-soft: #EAF1FE; --accent-line: #BFD3FB;
+      --result: #059669; --kicker: #1D4ED8;
+
+      --hero-bg: linear-gradient(180deg, #FFFFFF 0%, #F1F5FB 100%);
+      --hero-dot: rgba(37,99,235,0.14);
+
+      --band-bg: #0F172A; --foot-bg: #0B1120;
+      --band-text: #F8FAFC; --band-text-2: #CBD5E1; --band-muted: #94A3B8;
+      --band-border: rgba(148,163,184,0.18); --band-surface: rgba(255,255,255,0.04); --band-accent: #60A5FA;
+
+      --nav-bg: rgba(255,255,255,0.86); --nav-border: #E2E8F0; --nav-text: #475569; --nav-strong: #0F172A;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,0.04), 0 1px 6px rgba(15,23,42,0.04);
+      --shadow-lg: 0 16px 36px -14px rgba(15,23,42,0.18);
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --r-sm: 8px; --r-md: 14px; --r-lg: 18px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 88px; background: var(--bg); }
+    body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.65; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    [hidden] { display: none !important; }
+    ::selection { background: var(--accent-soft); color: var(--text); }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+    /* Reading progress bar under the nav */
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--accent); z-index: 1001; transition: width 0.1s linear; }
+
+    /* ============ NAV (same as homepage) ============ */
+    .site-nav {
+      position: fixed; top: 0; width: 100%; background: var(--nav-bg);
+      backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-bottom: 1px solid transparent; z-index: 1000; transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .site-nav.scrolled { border-color: var(--nav-border); box-shadow: 0 4px 20px -12px rgba(0,0,0,0.25); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+    .logo { font-family: var(--ff-display); font-size: 1.15rem; font-weight: var(--display-weight); letter-spacing: -0.02em; color: var(--nav-strong); }
+    .logo span { color: var(--accent-text); }
+    .nav-links { display: flex; list-style: none; gap: 1.6rem; align-items: center; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--nav-text); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--nav-strong); }
+    .nav-links a.active { font-weight: 600; }
+    .nav-cta { font-weight: 600 !important; color: var(--on-accent) !important; background: var(--accent); border: 1px solid var(--accent); padding: 7px 18px; border-radius: 100px; }
+    .nav-cta:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+    .mobile-menu { display: none; font-size: 1.3rem; cursor: pointer; color: var(--nav-strong); background: none; border: none; padding: 4px; position: relative; z-index: 2; }
+
+    /* ============ ARTICLE HEADER ============ */
+    .post-head {
+      padding: 128px 0 48px; position: relative; overflow: hidden; isolation: isolate;
+      background: var(--hero-bg); border-bottom: 1px solid var(--border);
+    }
+    .post-head::before {
+      content: ''; position: absolute; inset: 0; z-index: -1;
+      background-image: radial-gradient(var(--hero-dot) 1px, transparent 1px); background-size: 24px 24px;
+      -webkit-mask-image: radial-gradient(ellipse 70% 80% at 85% 30%, black 20%, transparent 100%);
+      mask-image: radial-gradient(ellipse 70% 80% at 85% 30%, black 20%, transparent 100%);
+    }
+    .head-inner { max-width: 860px; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: var(--text-3); margin-bottom: 1.75rem; transition: color 0.2s; }
+    .back-link i { font-size: 0.75rem; transition: transform 0.2s; }
+    .back-link:hover { color: var(--accent-text); }
+    .back-link:hover i { transform: translateX(-3px); }
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.1rem; }
+    .pill { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 11px; background: var(--accent-soft); color: var(--accent-text); border-radius: 100px; }
+    a.pill:hover { background: var(--accent); color: var(--on-accent); }
+    .post-title { font-family: var(--ff-display); font-size: clamp(2rem, 4.4vw, 3.1rem); font-weight: var(--display-weight); line-height: 1.12; letter-spacing: var(--display-tracking); margin-bottom: 1.1rem; }
+    .post-lede { font-size: 1.12rem; color: var(--text-3); line-height: 1.7; max-width: 720px; margin-bottom: 1.75rem; }
+    .byline { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .byline img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--border); background: var(--bg-alt); }
+    .byline-name { font-size: 0.92rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .byline-meta { font-size: 0.8rem; color: var(--text-4); display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* ============ LAYOUT ============ */
+    .post-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 4rem; padding: 56px 0 72px; align-items: start; }
+    .post-cover { border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-sm); margin-bottom: 2.5rem; background: var(--bg-alt); }
+    .post-cover img { width: 100%; }
+
+    /* ============ PROSE ============ */
+    .prose { font-size: 1.05rem; line-height: 1.8; color: var(--text-2); max-width: 740px; }
+    .prose > * + * { margin-top: 1.25em; }
+    .prose h2 { font-family: var(--ff-display); font-size: 1.6rem; font-weight: var(--display-weight); letter-spacing: -0.02em; line-height: 1.25; color: var(--text); margin-top: 2.4em; padding-top: 0.2em; }
+    .prose h3 { font-family: var(--ff-display); font-size: 1.22rem; font-weight: var(--display-weight); letter-spacing: -0.01em; color: var(--text); margin-top: 2em; }
+    .prose h2 + *, .prose h3 + * { margin-top: 0.75em; }
+    .prose strong { color: var(--text); font-weight: 600; }
+    .prose a { color: var(--accent-text); font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--accent-line); }
+    .prose a:hover { text-decoration-color: currentColor; }
+    .prose ul, .prose ol { padding-left: 0; list-style: none; }
+    .prose li { position: relative; padding-left: 1.6em; }
+    .prose li + li { margin-top: 0.55em; }
+    .prose ul > li::before { content: '→'; position: absolute; left: 0; color: var(--accent-text); font-size: 0.9em; }
+    .prose ol { counter-reset: n; }
+    .prose ol > li { counter-increment: n; padding-left: 2.2em; }
+    .prose ol > li::before {
+      content: counter(n); position: absolute; left: 0; top: 0.2em; width: 1.55em; height: 1.55em; border-radius: 50%;
+      background: var(--accent-soft); color: var(--accent-text); font-size: 0.78em; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    }
+    .prose blockquote { border-left: 3px solid var(--accent); padding: 0.4em 0 0.4em 1.25em; font-family: var(--ff-display); font-size: 1.12em; color: var(--text); }
+    .prose code { font-family: var(--ff-mono); font-size: 0.85em; background: var(--surface-2); border: 1px solid var(--border); padding: 0.1em 0.4em; border-radius: 6px; color: var(--text); }
+    .prose pre { background: var(--band-bg); color: var(--band-text-2); padding: 1.1em 1.3em; border-radius: var(--r-md); overflow-x: auto; font-size: 0.88em; line-height: 1.65; }
+    .prose pre code { background: none; border: none; padding: 0; color: inherit; }
+    .prose img { border-radius: var(--r-md); border: 1px solid var(--border); background: var(--surface); margin: 2em auto 0.5em; box-shadow: var(--shadow-sm); }
+    .prose figcaption, .prose img + em { display: block; text-align: center; font-size: 0.82rem; color: var(--text-4); }
+    .prose hr { border: none; border-top: 1px solid var(--border); margin: 2.5em 0; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--surface); box-shadow: var(--shadow-sm); }
+    .prose table { width: 100%; border-collapse: collapse; font-size: 0.9rem; line-height: 1.6; }
+    .prose th { text-align: left; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-4); background: var(--surface-2); padding: 0.8em 1em; border-bottom: 1px solid var(--border); }
+    .prose td { padding: 0.85em 1em; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .prose tr:last-child td { border-bottom: none; }
+    .prose td:first-child { white-space: nowrap; }
+
+    /* ============ ENGAGE ROW ============ */
+    .engage { max-width: 740px; margin-top: 3rem; padding: 1.1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .chip-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 38px; min-width: 38px; padding: 0 14px; border-radius: 100px;
+      background: var(--surface); border: 1px solid var(--border); color: var(--text-2); font-size: 0.85rem; font-weight: 600; cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .chip-btn:hover { border-color: var(--accent-line); color: var(--accent-text); }
+    .chip-btn.on { background: var(--accent-soft); border-color: var(--accent-line); color: var(--accent-text); }
+    .chip-btn.icon { padding: 0; }
+    .views { font-size: 0.85rem; color: var(--text-4); display: inline-flex; align-items: center; gap: 7px; }
+    .share { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+    .share-label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-4); margin-right: 2px; }
+
+    .comments { max-width: 740px; margin-top: 3rem; }
+    .block-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-4); margin-bottom: 1rem; }
+
+    /* ============ SIDEBAR ============ */
+    .sidebar { position: sticky; top: 96px; display: flex; flex-direction: column; gap: 1.25rem; }
+    .side-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 1.25rem 1.3rem; box-shadow: var(--shadow-sm); }
+    .side-card .block-label { margin-bottom: 0.75rem; }
+    .toc { list-style: none; border-left: 2px solid var(--border); }
+    .toc a { display: block; font-size: 0.85rem; color: var(--text-3); line-height: 1.45; padding: 6px 0 6px 14px; margin-left: -2px; border-left: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .toc a:hover { color: var(--text); }
+    .toc a.active { color: var(--accent-text); border-left-color: var(--accent); font-weight: 600; }
+    .author-card { background: var(--band-bg); color: var(--band-text); border-color: var(--band-bg); }
+    .author-card .block-label { color: var(--band-accent); }
+    .author-card p { font-size: 0.85rem; color: var(--band-text-2); line-height: 1.6; margin-bottom: 1rem; }
+    .author-card a.author-link { font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; color: var(--band-text); }
+    .author-card a.author-link i { color: var(--band-accent); font-size: 0.78rem; transition: transform 0.2s; }
+    .author-card a.author-link:hover i { transform: translateX(4px); }
+
+    /* ============ MORE WRITING ============ */
+    .more { background: var(--bg-alt); border-top: 1px solid var(--border); padding: 72px 0; }
+    .section-label { display: inline-flex; align-items: center; gap: 10px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 12px; }
+    .section-label::before { content: ''; width: 22px; height: 2px; border-radius: 2px; background: var(--accent); }
+    .more-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .more-title { font-family: var(--ff-display); font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: 1.15; }
+    .more-title em { font-style: normal; font-weight: 800; color: var(--accent-text); }
+    .text-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.92rem; color: var(--accent-text); }
+    .text-link i { font-size: 0.8rem; transition: transform 0.2s; }
+    .text-link:hover i { transform: translateX(4px); }
+    .post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .post-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; position: relative;
+      display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
+    }
+    .post-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent-line); }
+    .cover { aspect-ratio: 1200 / 627; background: var(--bg-alt); overflow: hidden; border-bottom: 1px solid var(--border); position: relative; }
+    .cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .post-card:hover .cover img { transform: scale(1.04); }
+    .cover-fallback {
+      position: absolute; inset: 0; padding: 1.25rem 1.4rem; display: flex; flex-direction: column; justify-content: space-between;
+      background: radial-gradient(circle at 85% 12%, rgba(37,99,235,0.45), transparent 55%), var(--band-bg); color: var(--band-text);
+    }
+    .cover-fallback .cf-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--band-accent); }
+    .cover-fallback .cf-title { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 700; line-height: 1.25; max-width: 90%; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-body { padding: 1.3rem 1.4rem 1.4rem; display: flex; flex-direction: column; flex: 1; }
+    .post-kind { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--kicker); margin-bottom: 0.55rem; }
+    .post-tagline { font-size: 0.88rem; font-weight: 500; color: var(--text-2); line-height: 1.45; margin-top: 0.3rem; }
+    .post-card h3 { font-family: var(--ff-display); font-size: 1.05rem; font-weight: var(--display-weight); letter-spacing: -0.01em; line-height: 1.35; }
+    .post-card h3 a::after { content: ''; position: absolute; inset: 0; }
+    .post-card .meta { margin-top: auto; padding-top: 0.9rem; font-size: 0.78rem; color: var(--text-4); }
+
+    .state { padding: 160px 0 120px; text-align: center; color: var(--text-3); }
+    .state strong { display: block; font-family: var(--ff-display); font-size: 1.4rem; color: var(--text); margin-bottom: 6px; }
+    .state a { color: var(--accent-text); font-weight: 600; }
+
+    /* ============ FOOTER ============ */
+    footer { background: var(--foot-bg); color: var(--band-muted); padding: 1.75rem 0; border-top: 1px solid var(--band-border); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; }
+    .footer-copy { font-size: 0.82rem; }
+    .footer-nav { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .footer-nav a { font-size: 0.85rem; color: var(--band-muted); transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--band-text); }
+
+    .scroll-top {
+      position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--accent); color: var(--on-accent);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; cursor: pointer; border: none;
+      opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s, transform 0.2s; z-index: 999; box-shadow: var(--shadow-lg);
+    }
+    .scroll-top.visible { opacity: 1; visibility: visible; }
+    .scroll-top:hover { transform: translateY(-3px); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 1080px) {
+      .nav-links { gap: 1.1rem; }
+      .post-layout { grid-template-columns: minmax(0, 1fr) 220px; gap: 2.5rem; }
+    }
+    @media (max-width: 900px) {
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 75%; max-width: 340px; height: 100vh; background: var(--surface);
+        flex-direction: column; justify-content: center; box-shadow: -8px 0 32px rgba(0,0,0,0.25); border-left: 1px solid var(--border);
+        transition: right 0.35s var(--ease); gap: 1.5rem;
+      }
+      .nav-links.open { right: 0; }
+      .nav-links a { font-size: 1.05rem; }
+      .mobile-menu { display: block; }
+      .post-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .toc-card { display: none; }
+      .post-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .container { padding: 0 16px; }
+      .post-head { padding: 100px 0 36px; }
+      .post-layout { padding: 36px 0 56px; }
+      .prose { font-size: 1rem; }
+      .prose h2 { font-size: 1.4rem; }
+      .share { margin-left: 0; width: 100%; }
+      .more { padding: 56px 0; }
+      .post-grid { display: flex; overflow-x: auto; gap: 14px; scroll-snap-type: x mandatory; margin: 0 -16px; padding: 4px 16px 14px; scrollbar-width: none; }
+      .post-grid::-webkit-scrollbar { display: none; }
+      .post-card { flex: 0 0 86%; scroll-snap-align: start; }
+      .footer-inner { flex-direction: column-reverse; align-items: flex-start; }
+      .footer-nav { gap: 0.6rem 1.25rem; }
+      .scroll-top { right: 16px; bottom: 16px; }
+    }
+  </style>
 </head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
-<body class="bg-slate-950 text-slate-400 antialiased">
+  <nav class="site-nav" id="navbar" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="logo">Sandeep <span>Midde</span></a>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#impact">Milestones</a></li>
+          <li><a href="/#ai">AI Lab</a></li>
+          <li><a href="/#principles">Principles</a></li>
+          <li><a href="/#experience">Journey</a></li>
+          <li><a href="blog.html" class="active">Blog</a></li>
+          <li><a href="/#contact" class="nav-cta">Connect</a></li>
+        </ul>
+        <button class="mobile-menu" id="mobileMenuBtn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-  <div class="fixed inset-0 bg-glow pointer-events-none"></div>
-  <div id="cursorGlow"></div>
+  <main id="main">
+    <div class="state" id="loadingState"><strong>Loading</strong>Fetching the article.</div>
 
-  <header class="sticky top-0 z-40 flex items-center justify-between px-6 sm:px-12 lg:px-20 py-5 bg-slate-950/90 backdrop-blur border-b border-slate-800/80">
-    <a href="/" class="text-slate-100 font-bold text-lg tracking-tight">Sandeep Midde<span class="text-teal-300">.</span></a>
-    <nav class="flex items-center gap-6 text-sm font-medium">
-      <a href="/#home" class="hidden sm:inline text-slate-400 hover:text-teal-300">Home</a>
-      <a href="/#experience" class="hidden sm:inline text-slate-400 hover:text-teal-300">Experience</a>
-      <a href="/#stack" class="hidden sm:inline text-slate-400 hover:text-teal-300">Tech Stack</a>
-      <a href="blog.html" class="text-teal-300">Blog</a>
-      <a href="/#contact" class="text-slate-400 hover:text-teal-300">Contact</a>
-    </nav>
-  </header>
-
-  <main class="relative z-10 px-6 sm:px-12 lg:px-20 py-20">
-    <div class="grid grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)_240px] 2xl:grid-cols-[300px_minmax(0,1fr)_300px] gap-12 lg:gap-10 2xl:gap-16 items-start">
-      <!-- Static left column: Back to Blog + More from the blog (sticky, stays put while the article scrolls) -->
-      <aside class="order-2 lg:order-none lg:sticky lg:top-24">
-        <div class="mb-6">
-          <a href="blog.html" class="inline-flex items-center gap-2 text-slate-500 hover:text-teal-300 text-sm font-medium transition-colors">
-            <span aria-hidden="true">&larr;</span> Back to Blog
-          </a>
-        </div>
-        <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">More from the blog</h2>
-        <div id="relatedPosts" class="flex flex-col gap-1 max-h-[70vh] overflow-y-auto pr-1"></div>
-      </aside>
-
-      <div class="order-1 lg:order-none min-w-0">
-        <!-- Loading / not-found state -->
-        <div id="loadingState" class="rounded-xl p-14 text-center">
-          <p class="text-slate-300 font-medium">Loading…</p>
-        </div>
-
-        <!-- Populated once posts/<slug>.json loads -->
-        <article id="postContent" class="hidden">
-          <div class="flex items-center gap-3 text-xs text-slate-500 mb-4">
-            <time id="postDate"></time>
-            <span>·</span>
-            <span id="postReadTime"></span>
-          </div>
-          <h1 id="postTitle" class="text-2xl sm:text-3xl 2xl:text-4xl font-extrabold text-slate-100 tracking-tight mb-8"></h1>
-
-          <div id="postBody" class="prose prose-invert prose-sm lg:prose-base max-w-none text-slate-400 mb-6"></div>
-
-          <div id="postTags" class="flex flex-wrap gap-2 mb-10"></div>
-
-          <!-- View / like / share row -->
-          <div class="flex items-center gap-4 border-y border-slate-800/80 py-4 mb-14 text-sm text-slate-500">
-            <button id="likeBtn" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/60 hover:bg-slate-800 font-medium">
-              <span aria-hidden="true">&#9825;</span>
-              <span id="likeCount">0</span>
-            </button>
-            <span class="flex items-center gap-2">
-              <span aria-hidden="true">&#128065;</span>
-              <span id="viewCount">0</span> views
-            </span>
-
-            <!-- Share: direct links to each network (no sign-in to this site or GitHub needed),
-                 a Copy link button, and the phone's own share sheet where the browser offers one. -->
-            <div class="ml-auto flex items-center gap-2" id="shareRow">
-              <span class="hidden sm:inline text-slate-500 mr-1">Share</span>
-              <a id="shareLinkedIn" class="share-btn" target="_blank" rel="noopener" aria-label="Share on LinkedIn" title="Share on LinkedIn">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-              </a>
-              <a id="shareWhatsApp" class="share-btn" target="_blank" rel="noopener" aria-label="Share on WhatsApp" title="Share on WhatsApp">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91A9.84 9.84 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.23 8.23 0 0 1 8.23 8.24c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.17.25-.64.8-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
-              </a>
-              <a id="shareX" class="share-btn" target="_blank" rel="noopener" aria-label="Share on X" title="Share on X">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg>
-              </a>
-              <a id="shareEmail" class="share-btn" aria-label="Share by email" title="Share by email">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              </a>
-              <button id="shareCopy" type="button" class="share-btn" aria-label="Copy link" title="Copy link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.69a4.5 4.5 0 016.36 6.36l-3 3a4.5 4.5 0 01-6.36-6.36l1.06-1.06M10.81 15.31a4.5 4.5 0 01-6.36-6.36l3-3a4.5 4.5 0 016.36 6.36l-1.06 1.06"/></svg>
-                <span id="shareCopyLabel" class="text-xs font-medium">Copy link</span>
-              </button>
-              <button id="shareNative" type="button" class="share-btn" style="display:none" aria-label="More sharing options" title="More sharing options">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"/></svg>
-              </button>
+    <div id="postView" hidden>
+      <header class="post-head">
+        <div class="container">
+          <div class="head-inner">
+            <a href="blog.html" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> All insights</a>
+            <div class="pills" id="postTags"></div>
+            <h1 class="post-title" id="postTitle"></h1>
+            <p class="post-lede" id="postLede" hidden></p>
+            <div class="byline">
+              <img src="assets/img/sandeep-midde-sm.webp" alt="" width="44" height="44" onerror="this.remove()">
+              <div>
+                <div class="byline-name">Sandeep Midde</div>
+                <div class="byline-meta">
+                  <time id="postDate"></time><span aria-hidden="true">·</span><span id="postReadTime"></span>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+      </header>
 
-          <!-- Comments — handled by giscus and stored as GitHub Discussions on this repo. -->
-          <div id="giscusContainer"></div>
-        </article>
+      <div class="container">
+        <div class="post-layout">
+          <article>
+            <figure class="post-cover" id="postCover" hidden><img id="postCoverImg" alt=""></figure>
+            <div class="prose" id="postBody"></div>
+
+            <div class="engage">
+              <button id="likeBtn" class="chip-btn" type="button" aria-label="Like this article"><i class="far fa-heart" aria-hidden="true"></i><span id="likeCount">0</span></button>
+              <span class="views"><i class="far fa-eye" aria-hidden="true"></i><span id="viewCount">0</span> views</span>
+              <div class="share">
+                <span class="share-label">Share</span>
+                <a id="shareLinkedIn" class="chip-btn icon" target="_blank" rel="noopener" aria-label="Share on LinkedIn" title="Share on LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                <a id="shareWhatsApp" class="chip-btn icon" target="_blank" rel="noopener" aria-label="Share on WhatsApp" title="Share on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                <a id="shareX" class="chip-btn icon" target="_blank" rel="noopener" aria-label="Share on X" title="Share on X"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.97 6.82H1.67l7.73-8.84L1.25 2.25h6.83l4.71 6.23 5.45-6.23zm-1.16 17.52h1.83L7.08 4.13H5.12l11.96 15.64z"/></svg></a>
+                <a id="shareEmail" class="chip-btn icon" aria-label="Share by email" title="Share by email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                <button id="shareCopy" type="button" class="chip-btn" aria-label="Copy link"><i class="fas fa-link" aria-hidden="true"></i><span id="shareCopyLabel">Copy link</span></button>
+                <button id="shareNative" type="button" class="chip-btn icon" hidden aria-label="More sharing options" title="More sharing options"><i class="fas fa-share-nodes" aria-hidden="true"></i></button>
+              </div>
+            </div>
+
+            <section class="comments" aria-label="Comments">
+              <p class="block-label">Discussion</p>
+              <div id="giscusContainer"></div>
+            </section>
+          </article>
+
+          <aside class="sidebar">
+            <div class="side-card toc-card" id="tocCard" hidden>
+              <p class="block-label">On this page</p>
+              <ul class="toc" id="toc"></ul>
+            </div>
+            <div class="side-card author-card">
+              <p class="block-label">About the author</p>
+              <p>Enterprise technology delivery leader with 20 years of experience modernizing legacy infrastructure and governing $2.5T+ AUM banking platforms. Currently engineering and scaling resilient, production-ready GenAI architectures.</p>
+              <a href="/" class="author-link">View profile <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </aside>
+        </div>
       </div>
 
-      <!-- Static right column: posts grouped by topic (sticky, collapsible per group) -->
-      <aside class="order-3 lg:order-none lg:sticky lg:top-24">
-        <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">Browse by Topic</h2>
-        <div id="topicGroups" class="flex flex-col gap-2 max-h-[70vh] overflow-y-auto pr-1"></div>
-      </aside>
+      <section class="more" id="moreSection" hidden>
+        <div class="container">
+          <div class="more-head">
+            <div>
+              <p class="section-label">Keep reading</p>
+              <h2 class="more-title">More from the <em>lab</em>.</h2>
+            </div>
+            <a href="blog.html" class="text-link">Browse all insights <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          <div class="post-grid" id="moreGrid"></div>
+        </div>
+      </section>
     </div>
   </main>
 
-  <footer class="relative text-center text-xs text-slate-600 pb-12">
-    <p>Designed &amp; built by Sandeep Midde.</p>
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-copy">&copy; <span id="year">2026</span> Sandeep Midde. All rights reserved.</div>
+        <ul class="footer-nav">
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#impact">Milestones</a></li>
+          <li><a href="/#ai">AI Lab</a></li>
+          <li><a href="/#principles">Principles</a></li>
+          <li><a href="/#experience">Journey</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="/#contact">Connect</a></li>
+        </ul>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    // Cursor-following glow — purely decorative
-    const cursorGlow = document.getElementById('cursorGlow');
-    const glowRadius = 650;
-    let targetX = -9999, targetY = -9999, glowX = -9999, glowY = -9999;
-    window.addEventListener('mousemove', (e) => { targetX = e.clientX; targetY = e.clientY; });
-    function animateGlow() {
-      glowX += (targetX - glowX) * 0.12;
-      glowY += (targetY - glowY) * 0.12;
-      cursorGlow.style.transform = `translate(${glowX - glowRadius}px, ${glowY - glowRadius}px)`;
-      requestAnimationFrame(animateGlow);
-    }
-    animateGlow();
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
 
-    // ---- Post rendering ----
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const navbar = document.getElementById('navbar');
+    const scrollTopBtn = document.getElementById('scrollTop');
+    const progress = document.getElementById('progress');
+    const onScroll = () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 600);
+      const max = document.documentElement.scrollHeight - innerHeight;
+      progress.style.width = (max > 0 ? Math.min(100, scrollY / max * 100) : 0) + '%';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const setMenu = (open) => {
+      navLinks.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.innerHTML = open ? '<i class="fas fa-xmark" aria-hidden="true"></i>' : '<i class="fas fa-bars" aria-hidden="true"></i>';
+    };
+    menuBtn.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+
+    // ---- Post ----
     // Generated pages at /posts/<slug>/ set window.POST_SLUG (see scripts/build-posts.mjs).
     // Old post.html?slug=... links are forwarded there, so shared links get a proper preview.
     const querySlug = new URLSearchParams(location.search).get('slug');
@@ -251,176 +427,153 @@
       location.replace(`posts/${encodeURIComponent(querySlug)}/`);
     }
     const slug = window.POST_SLUG || querySlug;
-    const loadingState = document.getElementById('loadingState');
-    const postContent = document.getElementById('postContent');
-
-    function formatDate(iso) {
-      const d = new Date(iso + 'T00:00:00');
-      return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const postUrl = s => `posts/${encodeURIComponent(s)}/`;
+    const coverUrl = s => `blog/${encodeURIComponent(s)}/cover.png`;
+    // Same split as the blog cards: "Name, catchphrase" -> headline + tagline
+    function splitTitle(title) {
+      const m = String(title).match(/^(.+?)(?:, |\s*[:|]\s*)(.+)$/);
+      return m ? { name: m[1], tagline: m[2] } : { name: title, tagline: '' };
     }
+    const esc = s => String(s ?? '').replace(/&(?!\w+;|#\d+;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const formatDate = (iso, month = 'long') => new Date(iso + 'T00:00:00').toLocaleDateString('en-US', { month, day: 'numeric', year: 'numeric' });
 
     function showNotFound() {
-      loadingState.innerHTML = `
-        <p class="text-slate-300 font-medium">Post not found.</p>
-        <p class="mt-2 text-sm text-slate-500">
-          <a href="blog.html" class="text-teal-300 hover:underline">Back to the blog</a>
-        </p>`;
+      document.getElementById('loadingState').innerHTML =
+        '<strong>Post not found</strong><a href="blog.html">Back to all insights</a>';
     }
 
-    if (!slug) {
-      showNotFound();
-    } else {
-      fetch(`posts/${encodeURIComponent(slug)}.json`)
-        .then(res => { if (!res.ok) throw new Error('not found'); return res.json(); })
-        .then(post => {
-          document.title = `${post.title} · Sandeep Midde`;
-          document.getElementById('postDate').setAttribute('datetime', post.date);
-          document.getElementById('postDate').textContent = formatDate(post.date);
-          document.getElementById('postReadTime').textContent = post.readTime;
-          document.getElementById('postTitle').textContent = post.title;
-          document.getElementById('postBody').innerHTML = (post.body || []).join('');
-          document.getElementById('postTags').innerHTML = (post.tags || [])
-            .map(t => `<span class="tag-chip">${t}</span>`).join('');
+    if (!slug) showNotFound();
+    else fetch(`posts/${encodeURIComponent(slug)}.json`)
+      .then(res => { if (!res.ok) throw new Error('not found'); return res.json(); })
+      .then(renderPost)
+      .catch(showNotFound);
 
-          loadingState.classList.add('hidden');
-          postContent.classList.remove('hidden');
-
-          loadStats(post.slug);
-          loadGiscus(post.slug);
-          loadSidebars(post.slug, post.tags || []);
-          setupShare(post.title);
-        })
-        .catch(showNotFound);
-    }
-
-    // ---- Right + left sidebars, both driven by the same posts-index.json fetch ----
-    function loadSidebars(currentSlug, currentTags) {
-      fetch('posts/posts-index.json')
-        .then(res => res.json())
-        .then(posts => {
-          renderRelatedPosts(posts, currentSlug);
-          renderTopicGroups(posts, currentSlug, currentTags);
-        })
-        .catch(() => {
-          document.getElementById('relatedPosts').innerHTML = '';
-          document.getElementById('topicGroups').innerHTML = '';
-        });
-    }
-
-    // ---- "More from the blog" (left column) ----
-    function renderRelatedPosts(posts, currentSlug) {
-      const container = document.getElementById('relatedPosts');
-      const others = posts
-        .filter(p => p.slug !== currentSlug)
-        .sort((a, b) => b.date.localeCompare(a.date));
-
-      if (others.length === 0) {
-        container.innerHTML = '<p class="text-sm text-slate-600">More posts coming soon.</p>';
-        return;
+    function renderPost(post) {
+      document.title = `${post.title.replace(/&amp;/g, '&')} · Sandeep Midde`;
+      document.getElementById('postTitle').innerHTML = esc(post.title);
+      document.getElementById('postTags').innerHTML = (post.tags || [])
+        .map(t => `<a class="pill" href="blog.html">${esc(t)}</a>`).join('');
+      if (post.summary) {
+        const lede = document.getElementById('postLede');
+        lede.textContent = post.summary;
+        lede.hidden = false;
       }
+      const dateEl = document.getElementById('postDate');
+      dateEl.setAttribute('datetime', post.date);
+      dateEl.textContent = formatDate(post.date);
+      document.getElementById('postReadTime').textContent = post.readTime;
 
-      container.innerHTML = others.map(p => `
-        <a href="posts/${encodeURIComponent(p.slug)}/" title="${p.title}" class="related-card rounded-lg px-3 py-2 block">
-          <div class="related-title line-clamp-2 text-sm font-semibold text-slate-200 transition-colors duration-300">${p.title}</div>
-        </a>
-      `).join('');
-    }
-
-    // ---- "Browse by Topic" (right column) — posts grouped into a collapsible accordion per tag.
-    // A post can belong to several tags at once, so it can appear in more than one group. ----
-    function renderTopicGroups(posts, currentSlug, currentTags) {
-      const container = document.getElementById('topicGroups');
-
-      const groups = {};
-      posts.forEach(p => {
-        (p.tags || []).forEach(tag => {
-          (groups[tag] = groups[tag] || []).push(p);
-        });
+      const body = document.getElementById('postBody');
+      body.innerHTML = (post.body || []).join('');
+      body.querySelectorAll('table').forEach(t => {   // tables scroll sideways on phones
+        const wrap = document.createElement('div');
+        wrap.className = 'table-wrap';
+        t.replaceWith(wrap); wrap.appendChild(t);
       });
 
-      const topicNames = Object.keys(groups).sort();
-      if (topicNames.length === 0) {
-        container.innerHTML = '<p class="text-sm text-slate-600">No topics yet.</p>';
-        return;
-      }
+      const coverImg = document.getElementById('postCoverImg');
+      coverImg.onload = () => { document.getElementById('postCover').hidden = false; };
+      coverImg.src = coverUrl(post.slug);
 
-      container.innerHTML = topicNames.map(name => {
-        const items = groups[name].sort((a, b) => b.date.localeCompare(a.date));
-        const isCurrentTopic = currentTags.includes(name);
-        const links = items.map(p => `
-          <a href="posts/${encodeURIComponent(p.slug)}/" title="${p.title}"
-             class="topic-link line-clamp-2 py-1.5 pl-1 text-sm text-slate-400 hover:text-teal-300 transition-colors ${p.slug === currentSlug ? 'active' : ''}">
-            ${p.title}
-          </a>
-        `).join('');
-        return `
-          <details class="topic-group rounded-lg" ${isCurrentTopic ? 'open' : ''}>
-            <summary class="px-3 py-2 text-sm font-semibold text-slate-200 rounded-lg flex items-center justify-between gap-2">
-              <span class="truncate">${name}</span>
-              <span class="flex items-center gap-2 text-slate-500">
-                <span class="text-xs">${items.length}</span>
-                <svg class="chevron h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </span>
-            </summary>
-            <div class="pl-3 pb-2">${links}</div>
-          </details>
-        `;
-      }).join('');
+      document.getElementById('loadingState').hidden = true;
+      document.getElementById('postView').hidden = false;
+
+      buildToc(body);
+      loadMore(post);
+      loadStats(post.slug);
+      setupShare(post.title.replace(/&amp;/g, '&'));
+      loadGiscus(post.slug);
     }
 
-    // ---- View + like counters (Cloudflare Pages Functions + Workers KV) ----
+    // ---- "On this page" from the article's h2s, with scrollspy ----
+    function buildToc(body) {
+      const heads = [...body.querySelectorAll('h2')];
+      if (heads.length < 2) return;
+      const used = new Set();
+      heads.forEach(h => {
+        let id = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section';
+        while (used.has(id)) id += '-x';
+        used.add(id); h.id = id;
+      });
+      // Full path + hash: generated pages have <base href="/">, so a bare "#id" would open the homepage
+      document.getElementById('toc').innerHTML = heads.map(h =>
+        `<li><a href="${location.pathname}#${h.id}" data-target="${h.id}">${esc(h.textContent)}</a></li>`).join('');
+      document.getElementById('tocCard').hidden = false;
+      const links = [...document.querySelectorAll('#toc a')];
+      const spy = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) links.forEach(l => l.classList.toggle('active', l.dataset.target === e.target.id));
+        });
+      }, { rootMargin: '-15% 0px -75% 0px' });
+      heads.forEach(h => spy.observe(h));
+    }
+
+    // ---- More from the blog: same-topic posts first, then newest ----
+    function loadMore(post) {
+      fetch('posts/posts-index.json').then(r => r.json()).then(posts => {
+        const tags = new Set(post.tags || []);
+        const others = posts.filter(p => p.slug !== post.slug)
+          .map(p => ({ p, score: (p.tags || []).filter(t => tags.has(t)).length }))
+          .sort((a, b) => b.score - a.score || b.p.date.localeCompare(a.p.date))
+          .slice(0, 3).map(x => x.p);
+        if (!others.length) return;
+        document.getElementById('moreGrid').innerHTML = others.map(p => `
+          <article class="post-card">
+            <div class="cover">
+              <div class="cover-fallback" aria-hidden="true"><span class="cf-tag">${esc((p.tags || [])[0] || 'Article')}</span><span class="cf-title">${esc(p.title)}</span></div>
+              <img src="${coverUrl(p.slug)}" alt="" loading="lazy" style="position:relative" onerror="this.remove()">
+            </div>
+            <div class="card-body">
+              <p class="post-kind">${esc((p.tags || []).slice(0, 2).join(' · ') || 'Article')}</p>
+              <h3><a href="${postUrl(p.slug)}">${esc(splitTitle(p.title).name)}</a></h3>
+              ${splitTitle(p.title).tagline ? `<p class="post-tagline">${esc(splitTitle(p.title).tagline)}</p>` : ''}
+              <p class="meta">${formatDate(p.date, 'short')} · ${esc(p.readTime)}</p>
+            </div>
+          </article>`).join('');
+        document.getElementById('moreSection').hidden = false;
+      }).catch(() => {});
+    }
+
+    // ---- View + like counters (same endpoints as post.html; only live once deployed) ----
     async function loadStats(slug) {
       const viewCountEl = document.getElementById('viewCount');
       const likeCountEl = document.getElementById('likeCount');
       const likeBtn = document.getElementById('likeBtn');
+      const markLiked = () => {
+        likeBtn.classList.add('on'); likeBtn.disabled = true;
+        likeBtn.querySelector('i').className = 'fas fa-heart';
+      };
 
-      // View: increment at most once per 12h per browser, to avoid refresh-spam.
       const viewedKey = `viewed:${slug}`;
-      const lastViewed = Number(localStorage.getItem(viewedKey)) || 0;
+      let lastViewed = 0;
+      try { lastViewed = Number(localStorage.getItem(viewedKey)) || 0; } catch (e) {}
       const shouldCountView = Date.now() - lastViewed > 12 * 60 * 60 * 1000;
       try {
         const res = await fetch(shouldCountView ? '/api/view' : `/api/view?slug=${encodeURIComponent(slug)}`, shouldCountView ? {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ slug }),
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug }),
         } : undefined);
         const data = await res.json();
         viewCountEl.textContent = data.views ?? 0;
         if (shouldCountView) localStorage.setItem(viewedKey, String(Date.now()));
-      } catch (e) { /* counters are non-essential; fail silently */ }
+      } catch (e) {}
 
-      // Like: one like per browser, tracked via localStorage.
       const likedKey = `liked:${slug}`;
-      const alreadyLiked = localStorage.getItem(likedKey) === '1';
       try {
         const res = await fetch(`/api/like?slug=${encodeURIComponent(slug)}`);
-        const data = await res.json();
-        likeCountEl.textContent = data.likes ?? 0;
+        likeCountEl.textContent = (await res.json()).likes ?? 0;
       } catch (e) {}
-      if (alreadyLiked) {
-        likeBtn.classList.add('liked');
-        likeBtn.disabled = true;
-      }
+      try { if (localStorage.getItem(likedKey) === '1') markLiked(); } catch (e) {}
       likeBtn.addEventListener('click', async () => {
-        if (localStorage.getItem(likedKey) === '1') return;
         try {
-          const res = await fetch('/api/like', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ slug }),
-          });
-          const data = await res.json();
-          likeCountEl.textContent = data.likes ?? 0;
+          const res = await fetch('/api/like', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug }) });
+          likeCountEl.textContent = (await res.json()).likes ?? 0;
           localStorage.setItem(likedKey, '1');
-          likeBtn.classList.add('liked');
-          likeBtn.disabled = true;
+          markLiked();
         } catch (e) {}
       });
     }
 
-    // ---- Share: direct links (work for everyone, no sign-in), copy link, native sheet on phones ----
+    // ---- Share ----
     function setupShare(title) {
       const url = location.origin + location.pathname;   // clean post URL, no query or #hash
       const u = encodeURIComponent(url), t = encodeURIComponent(title);
@@ -428,7 +581,6 @@
       document.getElementById('shareWhatsApp').href = `https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`;
       document.getElementById('shareX').href = `https://twitter.com/intent/tweet?url=${u}&text=${t}`;
       document.getElementById('shareEmail').href = `mailto:?subject=${t}&body=${encodeURIComponent(title + '\n\n' + url)}`;
-
       const copyBtn = document.getElementById('shareCopy');
       const copyLabel = document.getElementById('shareCopyLabel');
       const legacyCopy = () => {   // for browsers or contexts without the async clipboard API
@@ -443,42 +595,36 @@
         try { await navigator.clipboard.writeText(url); ok = true; } catch (e) { ok = legacyCopy(); }
         if (!ok) { window.prompt('Copy this link', url); return; }
         copyLabel.textContent = 'Copied';
-        copyBtn.classList.add('copied');
-        setTimeout(() => { copyLabel.textContent = 'Copy link'; copyBtn.classList.remove('copied'); }, 2000);
+        copyBtn.classList.add('on');
+        setTimeout(() => { copyLabel.textContent = 'Copy link'; copyBtn.classList.remove('on'); }, 2000);
       });
 
       // Phones and tablets: also offer the device's own share sheet (Messages, Slack, etc.)
       const nativeBtn = document.getElementById('shareNative');
       if (navigator.share && matchMedia('(pointer: coarse)').matches) {
-        nativeBtn.style.display = "";
+        nativeBtn.hidden = false;
         nativeBtn.addEventListener('click', async () => {
           try { await navigator.share({ title, url }); } catch (e) { /* closed the sheet */ }
         });
       }
     }
 
-    // ---- Comments (giscus, backed by GitHub Discussions on this repo) ----
+    // ---- Comments (same giscus thread as post.html, light theme) ----
     function loadGiscus(slug) {
-      const script = document.createElement('script');
-      script.src = 'https://giscus.app/client.js';
-      script.setAttribute('data-repo', 'sandeepmidde/personalwebsite');
-      script.setAttribute('data-repo-id', 'R_kgDOUjW7gw');
-      script.setAttribute('data-category', 'Announcements');
-      script.setAttribute('data-category-id', 'DIC_kwDOUjW7g84DGElg');
-      script.setAttribute('data-mapping', 'specific');
-      script.setAttribute('data-term', slug);
-      script.setAttribute('data-strict', '0');
-      script.setAttribute('data-reactions-enabled', '1');
-      script.setAttribute('data-emit-metadata', '0');
-      script.setAttribute('data-input-position', 'bottom');
-      script.setAttribute('data-theme', 'dark_dimmed');
-      script.setAttribute('data-lang', 'en');
-      script.crossOrigin = 'anonymous';
-      script.async = true;
-      document.getElementById('giscusContainer').appendChild(script);
+      const s = document.createElement('script');
+      s.src = 'https://giscus.app/client.js';
+      Object.entries({
+        'data-repo': 'sandeepmidde/personalwebsite', 'data-repo-id': 'R_kgDOUjW7gw',
+        'data-category': 'Announcements', 'data-category-id': 'DIC_kwDOUjW7g84DGElg',
+        'data-mapping': 'specific', 'data-term': slug, 'data-strict': '0',
+        'data-reactions-enabled': '1', 'data-emit-metadata': '0', 'data-input-position': 'bottom',
+        'data-theme': 'light', 'data-lang': 'en',
+      }).forEach(([k, v]) => s.setAttribute(k, v));
+      s.crossOrigin = 'anonymous';
+      s.async = true;
+      document.getElementById('giscusContainer').appendChild(s);
     }
   </script>
-
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "53ef048b46274ad2b5c79200360ce999"}'></script>
   <!-- End Cloudflare Web Analytics -->

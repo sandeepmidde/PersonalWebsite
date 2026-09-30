@@ -79,7 +79,7 @@ in `/posts` is generated and gitignored.
 ├── social-card.png            # Default link-preview image (1200×627)
 │
 ├── blog/                      # ✍️ SOURCE OF TRUTH for posts (hand-edited)
-│   ├── welcome-to-my-blog/content.md
+│   ├── krishna-uvaca/content.md + cover.png + diagrams
 │   ├── ai-agents-move-into-production/content.md + agent-network.png
 │   └── agentic-ai-in-project-management/content.docx
 │
