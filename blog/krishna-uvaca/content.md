@@ -1,89 +1,67 @@
-# Kṛṣṇa Uvāca, Designing Trust in the Age of Generative AI
+# When an AI Should Say “I Don’t Know”
 Tags: Projects, AI
 Date: 2026-09-30
-Summary: Behind the code of how an unexpected question from my child forced a complete rethink of conversational RAG architecture and retrieval metrics.
+Summary: Building a RAG system taught me that reliable AI isn't just about finding the right answer. It's about knowing when the evidence isn't enough.
 
-> "Building software is often the easier part. Building something people genuinely trust is much harder."
+## The Spark
 
-## The question that exposed a gap
+It started with a simple question at home. Someone wanted the exact reference to a particular piece of wisdom from the Bhagavad Gita. I knew the passage existed, but finding the exact reference meant manually digging back through the text to verify it.
 
-Some questions stay with you long after they have been asked.
+That small moment exposed a much bigger problem. AI is exceptionally good at producing an answer. The much harder problem is knowing whether that answer is actually supported by the source.
 
-One evening, my child came to me worried about a friendship. To me, it felt like one of those childhood anxieties that time quietly heals. To my child, it was the entire world. Almost instinctively, I reached for grounded comfort.
+That became the idea behind **Kṛṣṇa Uvāca**, a practical experiment in building a conversational AI system where the source, not the model's confidence, determines what can be said.
 
-*"You know... Krishna once spoke about something exactly like this to Arjuna on the battlefield..."*
+## The Real Problem Wasn't Retrieval
 
-And then I stopped. I couldn't remember what the text actually said.
+Retrieval-Augmented Generation (RAG) makes the basic workflow fairly simple. Pull relevant information from a trusted source and feed it to the language model as context. But retrieval alone isn't enough. A model can find relevant text and still invent details beyond it.
 
-That moment stayed with me. After nearly two decades of leading technology transformations and anchoring complex systems in highly regulated environments, I faced an uncomfortable truth. I had built high-availability infrastructure to solve large business problems, but I had no reliable way to access the one body of knowledge I most wanted to understand.
+The system design focuses on three strict operational boundaries.
 
-So I built one.
+- **Strict source constraint.** Use only the available source context.
+- **Factual attestation.** Show the exact verse behind the answer.
+- **Calculated silence.** Do not answer when the source doesn't support one.
 
-Over a sprint of intensive R&D, I engineered **Kṛṣṇa Uvāca**, a live conversational retrieval-augmented generation (RAG) platform. The intent was simple. Build an MVP that lets people bring real, modern-day dilemmas to the Bhagavad Gita and receive context-aware answers grounded in the text itself.
+That last boundary became the most interesting engineering challenge. Generative AI is natively designed to produce text. This system needed to know precisely when not to produce it.
 
-What surprised me wasn't the mechanics of building it. It was the product thinking and the ethical trade-offs hiding just beneath the surface.
+## Building It Lean
 
-## From execution to governance, designing silence
+The goal wasn't to build a heavy AI platform. It was to test whether a generative experience could be made more dependable through architecture and guardrails rather than custom code bloat.
 
-In a standard enterprise tool, the engineering goal is usually throughput. The system should always respond. But with sacred texts, historical records or high-compliance legal material, the cost of a wrong answer is severe.
-
-I quickly realized I wasn't just configuring API endpoints. I was designing an infrastructure of trust, and I had to solve the same problems corporate technology teams face every day.
-
-- **When is silence better than confidence?** Asked something outside its source material, a standard language model will confidently invent an answer. I built guardrails that make the system say *"I don't know"* instead.
-- **How much context is enough?** Pushing an entire chapter into the prompt adds noise and drives up latency and token cost. The architecture had to retrieve the precise passages that matter while keeping the conversational thread intact.
-- **How do you stay authentic without sounding mechanical?** The system needed to feel human while staying anchored to the primary text, with every answer citing the verses it draws on.
-
-## The composable architecture blueprint
-
-To avoid the overhead of a long, monolithic build, I took a **composable enterprise approach**. AI-augmented engineering workflows and low-code middleware prioritized speed to value without compromising clear system boundaries.
-
-### System orchestration pipeline
+The solution uses a composable stack connecting Dify, Chroma, Airtable, Softr and Make.com like building blocks. Each component handles a specific part of the experience, from retrieval and orchestration to data management and presentation.
 
 ```
 [ User question ]
         │
         ▼
-[ Dify orchestration · multi-turn state ]
-        │
-        ├──► [ Grounded retrieval · source verses ]
+[ Dify orchestration loop ] ──► [ Chroma and Airtable source cache ]
         │
         ▼
-[ Context filter · hallucination guardrails ]
+[ Context window and guardrails ]
         │
         ▼
-[ Cited answer with verse references ] ──► [ Softr web front end ]
+[ Verified response OR "I don't know" ] ──► [ Softr web UI ]
 ```
 
-Separating the presentation layer from the orchestration loop keeps the architecture modular.
+The engineering decision was deliberate. Validate the system's behavior before investing in heavy infrastructure.
 
-- **Orchestration hub (Dify and Make.com).** Governs conversational routes, multi-turn memory and conditional API logic.
-- **Data layer (Airtable).** A structured, searchable store for the application's records.
-- **Interface (Softr).** Renders a clean, accessible front end, backed by FastAPI services.
+## Testing Failure
 
-## The trade-off matrix
+A system like this cannot only be tested with questions it is supposed to answer. It must be aggressively stress-tested with questions it shouldn't answer.
 
-No architecture is perfect. Every one is a set of calculated trade-offs. To move the MVP toward production-grade verification, I built the evaluation harness first, so user experience could be measured against data fidelity before any production spend.
+The evaluation harness intentionally included cases where the required information was entirely absent from the source text. The objective wasn't simply raw answer accuracy. It was determining whether the system could recognize when the evidence was insufficient and respond accordingly.
 
-| Dimension | The tactical choice | The strategic trade-off |
-|---|---|---|
-| **Data integrity** | Strict context grounding | The system refuses to answer when a question falls outside its source texts |
-| **Factual attestation** | Verse-level citation on every answer | More upfront configuration so every answer can be checked |
-| **Delivery velocity** | Composable low-code middleware | Less raw code flexibility in exchange for a live MVP in days instead of months |
-| **Conversational state** | A constrained memory window | Tight topical focus, with token growth and latency kept in check |
+Across roughly 500 test conversations, run and rerun every time the prompts changed, about 88% of answers landed on relevant, correctly cited verses. The more telling result was on the other side. Whenever the answer wasn't in the text, the system said so instead of guessing. In all that testing, I didn't find a single invented verse or reference.
 
-## Where the benchmarks stand today
+> Sometimes, the right AI response isn't a better answer. It's an honest "I don't know."
 
-Across 500 evaluated test conversations, Kṛṣṇa Uvāca reached **88% verified accuracy**. Just as important, questions outside the source texts are refused rather than answered, so the remaining misses are gaps in coverage, not confident invention.
+## The Takeaway
 
-The project proves a principle that matters for modern technology delivery. High-fidelity AI applications do not need heavy, high-overhead custom builds. Anchor the delivery strategy on composable architecture, strict guardrails and verifiable citations, and you can ship trusted systems quickly.
+The deeper lesson from this experiment wasn't really about RAG workflows. It was about placing hard structural boundaries around a probabilistic technology.
 
-## What's next on the roadmap
+- **The model** provides the intelligence.
+- **The architecture** determines what information it can use.
+- **The guardrails** define where it can go.
 
-This is the opening chapter. In upcoming posts I'll break down the following.
+As AI moves into specialized enterprise environments, the goal cannot be to build systems that always force an answer. It must be to build systems that know when they have enough evidence to give one. That is the engineering principle Kṛṣṇa Uvāca was built to explore.
 
-1. **Part 2.** The prompt engineering that governs the model's tone and its refusal thresholds.
-2. **Part 3.** Layering hybrid search to sharpen retrieval across complex passages.
-
-The live application is public. I'd genuinely value your perspective on the implementation.
-
-**[Explore the live system at krsna.sandeepmidde.com](https://krsna.sandeepmidde.com/)**
+**[Explore the live sandbox at krsna.sandeepmidde.com](https://krsna.sandeepmidde.com/)**
