@@ -97,12 +97,12 @@
     /* Header: one metadata row (back link, topics, date, read time), then a full-width title block */
     .head-inner { width: 100%; text-align: center; }   /* header block is centred on the page */
     .head-top {
-      /* Balanced bar: back link far left, topics dead centre, date and read time far right */
-      position: relative; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-      padding: 0.75rem 0; margin-bottom: 1.4rem; border-bottom: 1px solid var(--border);
-      font-family: var(--ff-mono); font-size: 0.75rem; color: var(--text-4);
+      /* Bar at the base of the header: back link and topics on the left, date and read time on the right */
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem 1rem;
+      margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px solid var(--border);
+      font-family: var(--ff-mono); font-size: 0.75rem; color: var(--text-4); text-align: left;
     }
-    .head-top .pills { position: absolute; left: 50%; transform: translateX(-50%); }
+    .head-left { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1rem; }
     .back-link { display: inline-flex; align-items: center; gap: 7px; font-family: var(--ff-body); font-size: 0.875rem; font-weight: 500; color: #475569; transition: color 0.2s; }
     .back-link i { font-size: 0.7rem; transition: transform 0.2s; }
     .back-link:hover { color: var(--accent-text); }
@@ -114,7 +114,7 @@
     .head-date { display: inline-flex; align-items: center; gap: 8px; }
     .head-meta i { font-size: 0.7rem; margin-right: 3px; }
     .post-title { font-family: var(--ff-display); font-size: 1.875rem; font-weight: 800; color: #0F172A; line-height: 1.25; letter-spacing: -0.025em; }
-    .post-subtitle { font-size: 1.125rem; font-weight: 500; color: #64748B; line-height: 1.5; margin: 0.5rem 0 1rem; text-align: center; }
+    .post-subtitle { font-size: 1.125rem; font-weight: 500; color: #64748B; line-height: 1.5; margin: 0.5rem 0 0; text-align: center; }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .byline { display: flex; align-items: center; gap: 12px; }
     .byline img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--border); background: var(--bg-alt); }
@@ -311,9 +311,6 @@
       .post-cover { display: none; }
       .prose { font-size: 1rem; }
       .prose h2 { font-size: 1.4rem; }
-      .head-top { flex-wrap: wrap; justify-content: center; gap: 0.75rem 0.9rem; }
-      .head-top .back-link { flex-basis: 100%; justify-content: center; }
-      .head-top .pills { position: static; transform: none; }
       .head-date { display: none; }
       .share { margin-left: 0; width: 100%; }
       .more { padding: 44px 0 56px; }
@@ -361,13 +358,15 @@
       <header class="post-head">
         <div class="container">
           <div class="head-inner">
-            <div class="head-top">
-              <a href="blog.html" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Blogs</a>
-              <div class="pills" id="postTags"></div>
-              <span class="head-meta"><span class="head-date"><time class="js-date"></time><span aria-hidden="true">·</span></span><span><i class="far fa-clock" aria-hidden="true"></i><span class="js-read"></span></span></span>
-            </div>
             <h1 class="post-title" id="postTitle"></h1>
             <div class="post-subtitle" id="postSubtitle" hidden></div>
+            <div class="head-top">
+              <div class="head-left">
+                <a href="blog.html" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Blogs</a>
+                <div class="pills" id="postTags"></div>
+              </div>
+              <span class="head-meta"><span class="head-date"><time class="js-date"></time><span aria-hidden="true">·</span></span><span><i class="far fa-clock" aria-hidden="true"></i><span class="js-read"></span></span></span>
+            </div>
           </div>
         </div>
       </header>
