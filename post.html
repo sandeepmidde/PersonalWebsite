@@ -115,7 +115,7 @@
     .byline-meta { font-size: 0.8rem; color: var(--text-4); display: flex; gap: 8px; flex-wrap: wrap; }
 
     /* ============ LAYOUT ============ */
-    /* Three columns: visual track (left) | article | contents, topics, more blogs, author (right). Both rails stick. */
+    /* Three columns: visual track (left) | article | contents, more blogs, tags, author (right). Both rails stick. */
     :root { --rail-l: 300px; --rail-r: 250px; --col-gap: 2.5rem; }
     .post-layout {
       display: grid; grid-template-columns: var(--rail-l) minmax(0, 1fr) var(--rail-r); grid-template-areas: "left main right";
@@ -208,14 +208,13 @@
     .side-divider { border: none; border-top: 1px solid var(--border); margin: 0.25rem 0; }
     .toc-card[hidden] + .side-divider, .tags-card[hidden] + .side-divider, .browse-card[hidden] + .side-divider { display: none; }
     .tags-card .pills { gap: 8px; }
-    /* More blogs: title with its tagline beneath, one even block per post */
+    /* More blogs: one title per post, evenly padded with a hairline between */
     .browse { list-style: none; }
     .browse li + li { border-top: 1px solid var(--line); }
     .browse a { display: block; padding: 0.7rem 0; }
     .browse li:first-child a { padding-top: 0.15rem; }
     .browse li:last-child a { padding-bottom: 0.1rem; }
     .browse-name { display: block; font-family: var(--ff-display); font-size: 0.9rem; font-weight: 600; line-height: 1.35; color: var(--text); transition: color 0.2s; }
-    .browse-tagline { display: block; margin-top: 0.15rem; font-size: 0.78rem; line-height: 1.4; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .browse a:hover .browse-name { color: var(--accent-text); }
     .author-card { background: var(--band-bg); color: var(--band-text); border-color: var(--band-bg); }
     .author-card .block-label { color: var(--band-accent); }
@@ -405,15 +404,15 @@
               <ul class="toc" id="toc"></ul>
             </div>
             <hr class="side-divider" aria-hidden="true">
-            <div class="side-card tags-card" id="tagsCard" hidden>
-              <p class="block-label">Topics</p>
-              <div class="pills" id="postTags"></div>
-            </div>
-            <hr class="side-divider" aria-hidden="true">
             <nav class="side-card browse-card" id="browseCard" aria-label="More blogs" hidden>
               <p class="block-label">More blogs</p>
               <div id="browseList"></div>
             </nav>
+            <hr class="side-divider" aria-hidden="true">
+            <div class="side-card tags-card" id="tagsCard" hidden>
+              <p class="block-label">Tags</p>
+              <div class="pills" id="postTags"></div>
+            </div>
             <hr class="side-divider" aria-hidden="true">
             <div class="side-card author-card">
               <p class="block-label">About the author</p>
@@ -671,12 +670,8 @@
         if (!others.length) return;
 
         document.getElementById('browseList').innerHTML =
-          `<ul class="browse">${others.slice(0, 6).map(p => {
-            // Tagline: the part after the comma in the title, else the post summary. Long ones end in an ellipsis.
-            const { name, tagline } = splitTitle(p.title, p.subtitle);
-            const sub = tagline || p.summary || p.excerpt || '';
-            return `<li><a href="${postUrl(p.slug)}" title="${esc(sub)}"><span class="browse-name">${esc(name)}</span>${sub ? `<span class="browse-tagline">${esc(sub)}</span>` : ''}</a></li>`;
-          }).join('')}</ul>`;
+          `<ul class="browse">${others.slice(0, 6).map(p =>
+            `<li><a href="${postUrl(p.slug)}"><span class="browse-name">${esc(splitTitle(p.title, p.subtitle).name)}</span></a></li>`).join('')}</ul>`;
         document.getElementById('browseCard').hidden = false;
 
 
