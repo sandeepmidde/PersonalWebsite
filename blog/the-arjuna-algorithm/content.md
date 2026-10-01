@@ -1,4 +1,4 @@
-# The Arjuna Algorithm, Ancient Legend Decodes Modern AI
+# Arjuna Algorithm, Ancient Legend Decodes Modern AI
 Tags: AI, Explainers
 Date: 2026-10-01
 Summary: History's greatest archer mastered data retrieval using nothing but a bow and a pool of water.
