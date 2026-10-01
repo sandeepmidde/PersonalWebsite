@@ -1,4 +1,4 @@
-# Arjuna Algorithm, Ancient Legend Decodes Modern AI
+# The Archer's Target, Decoding RAG
 Tags: AI, Explainers
 Date: 2026-10-01
 Summary: History's greatest archer mastered data retrieval using nothing but a bow and a pool of water.
