@@ -823,6 +823,9 @@
        natural left edge, since narrow columns justify into wide gaps. */
     p, .exp-bullets li, .cred-list li { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
     @media (max-width: 640px) { p, .exp-bullets li, .cred-list li { text-align: left; } }
+
+    /* AI Lab card titles match the blog: the part after the colon in a lighter, muted tone */
+    .proj-title-rest { font-weight: 500; color: var(--text-3); }
   </style>
 </head>
 <body>
@@ -1020,12 +1023,12 @@
       <div class="proj-grid">
         <article class="proj-card anim">
           <!-- ?v= is the first 8 characters of the cover file's md5, so browsers refetch a changed cover. Update it when a cover changes. -->
-          <div class="proj-cover"><img src="blog/krishna-uvaca/cover.webp?v=3efc2672" alt="Krishna Uvaca cover" loading="lazy" width="1200" height="627"></div>
+          <div class="proj-cover"><img src="blog/krishna-uvaca/cover.webp?v=3efc2672" alt="Kṛṣṇa Uvāca cover" loading="lazy" width="1200" height="627"></div>
           <div class="proj-body">
             <p class="proj-kind">Live RAG sandbox</p>
-            <h3>Krishna Uvaca</h3>
-            <div class="proj-stack"><span>Dify</span><span>Make.com</span><span>Airtable</span><span>Softr</span><span>FastAPI</span></div>
-            <p>A live conversational RAG engine built to benchmark multi-turn context grounding. Strict grounding and source citation contain hallucination on dense, high-complexity text, orchestrated on a composable low-code stack to shorten time to market.</p>
+            <h3>Kṛṣṇa Uvāca: <span class="proj-title-rest">Decoding Cosmic Counsel</span></h3>
+            <div class="proj-stack"><span>Dify</span><span>Make.com</span><span>Chroma</span><span>Airtable</span><span>Softr</span></div>
+            <p>Ancient Wisdom for Modern Life: Architecture of Factual Grounding</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> ~88% relevant, cited answers across ~500 test conversations</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Says "I don't know" instead of inventing verses</p>
             <div class="proj-links"><a class="proj-link proj-main" href="posts/krishna-uvaca/">Review architecture <i class="fas fa-arrow-right" aria-hidden="true"></i></a><a class="proj-link proj-launch" href="https://krsna.sandeepmidde.com/" target="_blank" rel="noopener">Launch live application <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
@@ -1035,9 +1038,9 @@
           <div class="proj-cover"><img src="blog/observer-prime/cover.webp?v=d006abb3" alt="Observer Prime cover" loading="lazy" width="1200" height="627"></div>
           <div class="proj-body">
             <p class="proj-kind">Agentic workflow engine</p>
-            <h3>Observer Prime</h3>
+            <h3>Observer Prime: <span class="proj-title-rest">Unified Engine for Agentic Workflows</span></h3>
             <div class="proj-stack"><span>Claude Code</span><span>Next.js 15</span><span>React 19</span><span>TypeScript</span><span>Vitest</span></div>
-            <p>Agentic workflow engine with provider-agnostic LLM orchestration and resumable, versioned steps. A human-in-the-loop approval gate sits between every stage, so the AI drafts and a person decides.</p>
+            <p>Building a multi-agent orchestration engine that runs complex projects without sacrificing human judgment.</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Central orchestrator owns every workflow rule</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> 36 automated tests on a zero-cost mock provider</p>
             <div class="proj-links"><a class="proj-link proj-main" href="posts/observer-prime/">Review architecture <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
@@ -1047,9 +1050,9 @@
           <div class="proj-cover"><img src="blog/project-elara/cover.webp?v=7eb3cb14" alt="Project Elara cover" loading="lazy" width="1200" height="627"></div>
           <div class="proj-body">
             <p class="proj-kind">Knowledge ingestion engine</p>
-            <h3>Project Elara</h3>
+            <h3>Project Elara: <span class="proj-title-rest">Your Personalised OS</span></h3>
             <div class="proj-stack"><span>Claude Code</span><span>Next.js 16</span><span>TypeScript</span><span>Google Drive API</span></div>
-            <p>Knowledge platform that turns unstructured files in a user's own Google Drive into structured, searchable knowledge. A two-tier design uses AI only where understanding is needed and plain code for retrieval, keeping cost predictable.</p>
+            <p>A smart personal workspace built to turn your bookmarked articles, PDFs, and messy digital clutter into a structured library.</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> No vector database or agent framework needed</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Verified with real sign-in and live AI calls</p>
             <div class="proj-links"><a class="proj-link proj-main" href="posts/project-elara/">Review architecture <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
