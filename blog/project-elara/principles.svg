@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 414" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11122B"/><stop offset="1" stop-color="#1A1B3D"/></linearGradient>
+    <radialGradient id="glowV" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#A78BFA" stop-opacity="0.45"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glowC" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#5EEAD4" stop-opacity="0.4"/><stop offset="1" stop-color="#5EEAD4" stop-opacity="0"/></radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#25285A"/><stop offset="1" stop-color="#1A1C42"/></linearGradient>
+    <marker id="aV" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#A78BFA"/></marker>
+  </defs>
+  <rect width="400" height="414" rx="18" fill="url(#bg)"/>
+  <text x="28" y="40" text-anchor="start" fill="#A78BFA" font-size="11.5" font-weight="800" letter-spacing="1.6">THREE PRINCIPLES</text>
+  <rect x="28" y="62" width="72" height="72" rx="18" fill="url(#tile)" stroke="#2C2F55"/>
+  <g transform="translate(64 98) scale(1)"><path d="M-11,-4 v-8 a11,11 0 0 1 22,0 v8" fill="none" stroke="#5EEAD4" stroke-width="3.2"/><rect x="-17" y="-4" width="34" height="26" rx="5" fill="#5EEAD4"/><circle cx="0" cy="8" r="4" fill="#0E0F24"/></g>
+  <text x="120" y="94" text-anchor="start" fill="#EEF0FA" font-size="17" font-weight="700">Own your data</text>
+  <text x="120" y="118" text-anchor="start" fill="#A3A9C6" font-size="13.5" font-weight="400">your Drive, your AI key</text>
+  <line x1="120" y1="158" x2="372" y2="158" stroke="#2C2F55"/>
+  <rect x="28" y="184" width="72" height="72" rx="18" fill="url(#tile)" stroke="#2C2F55"/>
+  <g transform="translate(64 220) scale(1)" stroke-linejoin="round"><path d="M0,-4 L22,6 L0,16 L-22,6 Z" fill="#A78BFA" fill-opacity="0.45" stroke="#A78BFA" stroke-width="2"/><path d="M0,-18 L22,-8 L0,2 L-22,-8 Z" fill="#A78BFA" stroke="#A78BFA" stroke-width="2"/></g>
+  <text x="120" y="216" text-anchor="start" fill="#EEF0FA" font-size="17" font-weight="700">Tier your AI</text>
+  <text x="120" y="240" text-anchor="start" fill="#A3A9C6" font-size="13.5" font-weight="400">cheap to index, strong to teach</text>
+  <line x1="120" y1="280" x2="372" y2="280" stroke="#2C2F55"/>
+  <rect x="28" y="306" width="72" height="72" rx="18" fill="url(#tile)" stroke="#2C2F55"/>
+  <g transform="translate(64 342) scale(1)" fill="none" stroke="#5EEAD4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M-10,-14 L-22,0 L-10,14"/><path d="M10,-14 L22,0 L10,14"/><path d="M4,-18 L-4,18"/></g>
+  <text x="120" y="338" text-anchor="start" fill="#EEF0FA" font-size="17" font-weight="700">Code first</text>
+  <text x="120" y="362" text-anchor="start" fill="#A3A9C6" font-size="13.5" font-weight="400">AI only where it counts</text>
+</svg>

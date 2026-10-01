@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 554" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11122B"/><stop offset="1" stop-color="#1A1B3D"/></linearGradient>
+    <radialGradient id="glowV" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#A78BFA" stop-opacity="0.45"/><stop offset="1" stop-color="#A78BFA" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glowC" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#5EEAD4" stop-opacity="0.4"/><stop offset="1" stop-color="#5EEAD4" stop-opacity="0"/></radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#25285A"/><stop offset="1" stop-color="#1A1C42"/></linearGradient>
+    <marker id="aV" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#A78BFA"/></marker>
+  </defs>
+  <rect width="400" height="554" rx="18" fill="url(#bg)"/>
+  <text x="28" y="40" text-anchor="start" fill="#A78BFA" font-size="11.5" font-weight="800" letter-spacing="1.6">HOW ELARA WORKS</text>
+  <rect x="28" y="60" width="72" height="72" rx="18" fill="url(#tile)" stroke="#2C2F55"/>
+  <g transform="translate(55.0 99.6) rotate(-12) scale(0.9)"><path d="M-13,-17 h17 l9,9 v25 h-26 z" fill="#1A1C42" stroke="#5EEAD4" stroke-width="2.4" stroke-linejoin="round"/><line x1="-7" y1="-2" x2="7" y2="-2" stroke="#5EEAD4" stroke-width="2"/><line x1="-7" y1="5" x2="5" y2="5" stroke="#5EEAD4" stroke-width="2"/></g><g transform="translate(73.0 97.8) rotate(10) scale(0.9)"><path d="M-13,-17 h17 l9,9 v25 h-26 z" fill="#1A1C42" stroke="#5EEAD4" stroke-width="2.4" stroke-linejoin="round"/><line x1="-7" y1="-2" x2="7" y2="-2" stroke="#5EEAD4" stroke-width="2"/><line x1="-7" y1="5" x2="5" y2="5" stroke="#5EEAD4" stroke-width="2"/></g><g transform="translate(64.0 94.2) rotate(0) scale(0.9)"><path d="M-13,-17 h17 l9,9 v25 h-26 z" fill="#1A1C42" stroke="#5EEAD4" stroke-width="2.4" stroke-linejoin="round"/><line x1="-7" y1="-2" x2="7" y2="-2" stroke="#5EEAD4" stroke-width="2"/><line x1="-7" y1="5" x2="5" y2="5" stroke="#5EEAD4" stroke-width="2"/></g>
+  <text x="120" y="92" text-anchor="start" fill="#EEF0FA" font-size="17" font-weight="700">Your files</text>
+  <text x="120" y="115" text-anchor="start" fill="#A3A9C6" font-size="13.5" font-weight="400">saved to your own Drive</text>
+  <line x1="64" y1="136" x2="64" y2="154" stroke="#A78BFA" stroke-width="2" marker-end="url(#aV)"/>
+  <circle cx="64" cy="194" r="46" fill="url(#glowV)"/>
+  <rect x="28" y="158" width="72" height="72" rx="18" fill="url(#tile)" stroke="#2C2F55"/>
+  <path transform="translate(64 194) scale(1)" d="M4,-22 L-12,4 H0 L-4,22 L12,-4 H0 Z" fill="#A78BFA" stroke="#A78BFA" stroke-width="2" stroke-linejoin="round"/>
+  <text x="120" y="190" text-anchor="start" fill="#EEF0FA" font-size="17" font-weight="700">Tier 1, Indexer</text>
+  <text x="120" y="213" text-anchor="start" fill="#A3A9C6" font-size="13.5" font-weight="400">fast model, reads each file once</text>
+  <line x1="64" y1="234" x2="64" y2="252" stroke="#A78BFA" stroke-width="2" marker-end="url(#aV)"/>
+  <rect x="28" y="256" width="72" height="72" rx="18" fill="url(#tile)" stroke="#2C2F55"/>
+  <g transform="translate(64 292) scale(1)" fill="none" stroke="#5EEAD4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M-10,-14 L-22,0 L-10,14"/><path d="M10,-14 L22,0 L10,14"/><path d="M4,-18 L-4,18"/></g>
+  <text x="120" y="288" text-anchor="start" fill="#EEF0FA" font-size="17" font-weight="700">Plain code</text>
+  <text x="120" y="311" text-anchor="start" fill="#A3A9C6" font-size="13.5" font-weight="400">search, changes, concept graph</text>
+  <line x1="64" y1="332" x2="64" y2="350" stroke="#A78BFA" stroke-width="2" marker-end="url(#aV)"/>
+  <circle cx="64" cy="390" r="46" fill="url(#glowV)"/>
+  <rect x="28" y="354" width="72" height="72" rx="18" fill="url(#tile)" stroke="#2C2F55"/>
+  <path transform="translate(64 390) scale(1)" d="M0,-22 C3,-6 6,-3 22,0 C6,3 3,6 0,22 C-3,6 -6,3 -22,0 C-6,-3 -3,-6 0,-22 Z" fill="#A78BFA"/><circle cx="80" cy="375" r="4" fill="#A78BFA"/>
+  <text x="120" y="386" text-anchor="start" fill="#EEF0FA" font-size="17" font-weight="700">Tier 2, Tutor</text>
+  <text x="120" y="409" text-anchor="start" fill="#A3A9C6" font-size="13.5" font-weight="400">strong model, only while you learn</text>
+  <line x1="64" y1="430" x2="64" y2="448" stroke="#A78BFA" stroke-width="2" marker-end="url(#aV)"/>
+  <rect x="28" y="452" width="72" height="72" rx="18" fill="url(#tile)" stroke="#2C2F55"/>
+  <g transform="translate(64 488) scale(1)"><path d="M-24,-4 L0,-15 L24,-4 L0,7 Z" fill="#FBBF24"/><path d="M-14,1 v10 c0,6 28,6 28,0 v-10" fill="none" stroke="#FBBF24" stroke-width="3"/><line x1="22" y1="-3" x2="22" y2="12" stroke="#FBBF24" stroke-width="2.5"/></g>
+  <text x="120" y="484" text-anchor="start" fill="#EEF0FA" font-size="17" font-weight="700">You learn</text>
+  <text x="120" y="507" text-anchor="start" fill="#A3A9C6" font-size="13.5" font-weight="400">chat, quiz or mock interview</text>
+</svg>
