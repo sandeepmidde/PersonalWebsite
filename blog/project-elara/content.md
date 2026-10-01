@@ -1,5 +1,5 @@
 # Project Elara: Your Personalised OS
-Subtitle: Architecture of Knowledge Ingestion
+Subtitle: A smart personal workspace built to turn your bookmarked articles, PDFs, and messy digital clutter into a structured library.
 Tags: Projects, AI, Learning
 Date: 2026-09-23
 Summary: Save knowledge, then learn. Elara handles everything in between, reading, summarizing and connecting what you save.

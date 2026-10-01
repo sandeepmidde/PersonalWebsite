@@ -1,5 +1,5 @@
 # Observer Prime: Unified Engine for Agentic Workflows
-Subtitle: Governing Agentic Workflows
+Subtitle: Building a multi-agent orchestration engine that runs complex projects in the background without sacrificing human judgment.
 Tags: Projects, AI
 Date: 2026-09-23
 Summary: Building a multi-agent workflow engine proved that real autonomy needs firm human-in-the-loop guardrails to keep the system from drifting.
