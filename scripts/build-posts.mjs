@@ -26,6 +26,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { execSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { marked } from 'marked';
 import mammoth from 'mammoth';
@@ -212,7 +213,19 @@ function imageSize(absPath) {
   return null;
 }
 
-// Adds width/height plus lazy loading to every local image in the post body.
+// Short content fingerprint for a site file, appended as ?v= so browsers fetch an
+// image again as soon as it changes (images are cached for hours otherwise).
+function fingerprint(sitePath) {
+  try {
+    return createHash('md5').update(fs.readFileSync(path.join(ROOT, sitePath))).digest('hex').slice(0, 8);
+  } catch { return null; }
+}
+function versioned(sitePath) {
+  const v = fingerprint(decodeURIComponent(sitePath));
+  return v ? `${sitePath}?v=${v}` : sitePath;
+}
+
+// Adds width/height, lazy loading and a cache-busting version to every local image in the post body.
 function addImageHints(html) {
   return html.replace(/<img([^>]*)>/gi, (full, attrs) => {
     const src = attrs.match(/\ssrc="([^"]+)"/);
@@ -223,7 +236,8 @@ function addImageHints(html) {
       if (size) extra += ` width="${size.width}" height="${size.height}"`;
     }
     if (!/\sloading=/.test(attrs)) extra += ' loading="lazy" decoding="async"';
-    return `<img${attrs.replace(/\s*\/$/, '')}${extra}>`;
+    const withVersion = attrs.replace(/\ssrc="([^"?]+)"/, (m, src) => ` src="${versioned(src)}"`);
+    return `<img${withVersion.replace(/\s*\/$/, '')}${extra}>`;
   });
 }
 
@@ -231,7 +245,7 @@ function addImageHints(html) {
 function findCover(postDir, postFolderName) {
   const files = fs.readdirSync(postDir);
   const file = ['webp', 'png', 'jpg', 'jpeg'].map(ext => `cover.${ext}`).find(f => files.includes(f));
-  return file ? `blog/${encodeURIComponent(postFolderName)}/${file}` : null;
+  return file ? versioned(`blog/${encodeURIComponent(postFolderName)}/${file}`) : null;
 }
 
 async function convertDocx(absPath, slug) {
@@ -277,7 +291,8 @@ function pickSocialImage(postDir, slug, html) {
   if (cover) return copyStaticImage(path.join(postDir, cover), slug, cover);
 
   for (const [, src] of html.matchAll(/<img[^>]*\ssrc="([^"]+)"/gi)) {
-    if (RASTER_IMAGE.test(src) && !/^https?:\/\//i.test(src)) return src;
+    const file = src.split('?')[0];   // ignore the ?v= cache-busting version
+    if (RASTER_IMAGE.test(file) && !/^https?:\/\//i.test(file)) return file;
   }
   return DEFAULT_SOCIAL_IMAGE;
 }
