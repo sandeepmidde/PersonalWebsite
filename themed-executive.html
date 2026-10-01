@@ -826,6 +826,15 @@
 
     /* AI Lab card titles match the blog: the part after the colon in a lighter, muted tone */
     .proj-title-rest { font-weight: 500; color: var(--text-3); }
+
+    /* AI Lab cards share row lines (subgrid), so label, title, stack, description, both proof
+       points and the links start at the same height in every card. Each card has 8 rows:
+       cover, then 7 body rows. */
+    @supports (grid-template-rows: subgrid) {
+      .proj-grid > .proj-card { display: grid; grid-row: span 8; grid-template-rows: subgrid; row-gap: 0; }
+      .proj-card > .proj-body { display: grid; grid-row: span 7; grid-template-rows: subgrid; row-gap: 0; }
+      .proj-card .proj-links { align-self: start; }
+    }
   </style>
 </head>
 <body>
