@@ -3,8 +3,6 @@ Tags: Projects, AI
 Date: 2026-09-23
 Summary: Building a multi-agent workflow engine proved that real autonomy needs firm human-in-the-loop guardrails to keep the system from drifting.
 
-## System Drift
-
 Multi-agent systems promise a lot. Instead of one AI chatbot, a team of specialized AI assistants takes on a long, multi-step project, such as deep research, auditing a contract or building a structured operating plan.
 
 Run those agents over a long stretch of work, though, and they hit a real bottleneck, **system drift**. The further they go without a human checking the work, the more they lose focus. A small mistake at step two compounds into a flawed final product by step ten.
