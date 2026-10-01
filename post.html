@@ -172,6 +172,14 @@
     .toc a { display: block; font-size: 0.85rem; color: var(--text-3); line-height: 1.45; padding: 6px 0 6px 14px; margin-left: -2px; border-left: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
     .toc a:hover { color: var(--text); }
     .toc a.active { color: var(--accent-text); border-left-color: var(--accent); font-weight: 600; }
+    .browse { list-style: none; }
+    .browse li + li { border-top: 1px solid var(--line); }
+    .browse a { display: block; padding: 0.7rem 0; }
+    .browse li:first-child a { padding-top: 0.1rem; }
+    .browse li:last-child a { padding-bottom: 0.1rem; }
+    .browse-tag { display: block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--kicker); margin-bottom: 0.2rem; }
+    .browse-title { display: block; font-family: var(--ff-display); font-size: 0.9rem; font-weight: 600; line-height: 1.35; color: var(--text); transition: color 0.2s; }
+    .browse a:hover .browse-title { color: var(--accent-text); }
     .author-card { background: var(--band-bg); color: var(--band-text); border-color: var(--band-bg); }
     .author-card .block-label { color: var(--band-accent); }
     .author-card p { font-size: 0.85rem; color: var(--band-text-2); line-height: 1.6; margin-bottom: 1rem; }
@@ -179,37 +187,25 @@
     .author-card a.author-link i { color: var(--band-accent); font-size: 0.78rem; transition: transform 0.2s; }
     .author-card a.author-link:hover i { transform: translateX(4px); }
 
-    /* ============ MORE WRITING ============ */
-    .more { background: var(--bg-alt); border-top: 1px solid var(--border); padding: 72px 0; }
-    .section-label { display: inline-flex; align-items: center; gap: 10px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 12px; }
-    .section-label::before { content: ''; width: 22px; height: 2px; border-radius: 2px; background: var(--accent); }
-    .more-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
-    .more-title { font-family: var(--ff-display); font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: var(--display-weight); letter-spacing: var(--display-tracking); line-height: 1.15; }
-    .more-title em { font-style: normal; font-weight: 800; color: var(--accent-text); }
+    /* ============ CONTINUE READING ============ */
+    .more { border-top: 1px solid var(--border); padding: 56px 0 80px; }
+    .more-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .more-title { font-family: var(--ff-display); font-size: 1.35rem; font-weight: var(--display-weight); letter-spacing: -0.02em; line-height: 1.2; }
     .text-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.92rem; color: var(--accent-text); }
     .text-link i { font-size: 0.8rem; transition: transform 0.2s; }
     .text-link:hover i { transform: translateX(4px); }
-    .post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .post-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; position: relative;
-      display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
+    .more-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+    .more-card {
+      position: relative; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 1.5rem 1.6rem; transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .post-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--accent-line); }
-    .cover { aspect-ratio: 1200 / 627; background: var(--bg-alt); overflow: hidden; border-bottom: 1px solid var(--border); position: relative; }
-    .cover img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
-    .post-card:hover .cover img { transform: scale(1.04); }
-    .cover-fallback {
-      position: absolute; inset: 0; padding: 1.25rem 1.4rem; display: flex; flex-direction: column; justify-content: space-between;
-      background: radial-gradient(circle at 85% 12%, rgba(37,99,235,0.45), transparent 55%), var(--band-bg); color: var(--band-text);
-    }
-    .cover-fallback .cf-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--band-accent); }
-    .cover-fallback .cf-title { font-family: var(--ff-display); font-size: 1.15rem; font-weight: 700; line-height: 1.25; max-width: 90%; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .card-body { padding: 1.3rem 1.4rem 1.4rem; display: flex; flex-direction: column; flex: 1; }
-    .post-kind { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--kicker); margin-bottom: 0.55rem; }
-    .post-tagline { font-size: 0.88rem; font-weight: 500; color: var(--text-2); line-height: 1.45; margin-top: 0.3rem; }
-    .post-card h3 { font-family: var(--ff-display); font-size: 1.05rem; font-weight: var(--display-weight); letter-spacing: -0.01em; line-height: 1.35; }
-    .post-card h3 a::after { content: ''; position: absolute; inset: 0; }
-    .post-card .meta { margin-top: auto; padding-top: 0.9rem; font-size: 0.78rem; color: var(--text-4); }
+    .more-card:hover { border-color: var(--accent-line); box-shadow: var(--shadow-sm); }
+    .post-kind { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--kicker); margin-bottom: 0.5rem; }
+    .more-card h3 { font-family: var(--ff-display); font-size: 1.15rem; font-weight: var(--display-weight); letter-spacing: -0.01em; line-height: 1.35; }
+    .more-card h3 a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+    .more-snippet { font-size: 0.9rem; color: var(--text-3); line-height: 1.6; margin-top: 0.5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .more-card .text-link { margin-top: auto; padding-top: 1.1rem; font-size: 0.88rem; }
+    .more-card:hover .text-link i { transform: translateX(4px); }
 
     .state { padding: 160px 0 120px; text-align: center; color: var(--text-3); }
     .state strong { display: block; font-family: var(--ff-display); font-size: 1.4rem; color: var(--text); margin-bottom: 6px; }
@@ -252,8 +248,7 @@
       .mobile-menu { display: block; }
       .post-layout { grid-template-columns: 1fr; }
       .sidebar { position: static; }
-      .toc-card { display: none; }
-      .post-grid { grid-template-columns: repeat(2, 1fr); }
+      .toc-card, .browse-card { display: none; }
     }
     @media (max-width: 768px) {
       .container { padding: 0 16px; }
@@ -262,10 +257,9 @@
       .prose { font-size: 1rem; }
       .prose h2 { font-size: 1.4rem; }
       .share { margin-left: 0; width: 100%; }
-      .more { padding: 56px 0; }
-      .post-grid { display: flex; overflow-x: auto; gap: 14px; scroll-snap-type: x mandatory; margin: 0 -16px; padding: 4px 16px 14px; scrollbar-width: none; }
-      .post-grid::-webkit-scrollbar { display: none; }
-      .post-card { flex: 0 0 86%; scroll-snap-align: start; }
+      .more { padding: 44px 0 56px; }
+      .more-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .more-card { padding: 1.25rem 1.3rem; }
       .footer-inner { flex-direction: column-reverse; align-items: flex-start; }
       .footer-nav { gap: 0.6rem 1.25rem; }
       .scroll-top { right: 16px; bottom: 16px; }
@@ -350,6 +344,10 @@
               <p class="block-label">On this page</p>
               <ul class="toc" id="toc"></ul>
             </div>
+            <nav class="side-card browse-card" id="browseCard" aria-label="Browse insights" hidden>
+              <p class="block-label">Browse insights</p>
+              <ul class="browse" id="browseList"></ul>
+            </nav>
             <div class="side-card author-card">
               <p class="block-label">About the author</p>
               <p>Enterprise technology delivery leader with 20 years of experience modernizing legacy infrastructure and governing $2.5T+ AUM banking platforms. Currently engineering and scaling resilient, production-ready GenAI architectures.</p>
@@ -359,16 +357,13 @@
         </div>
       </div>
 
-      <section class="more" id="moreSection" hidden>
+      <section class="more" id="moreSection" aria-labelledby="moreTitle" hidden>
         <div class="container">
           <div class="more-head">
-            <div>
-              <p class="section-label">Keep reading</p>
-              <h2 class="more-title">More from the <em>lab</em>.</h2>
-            </div>
-            <a href="blog.html" class="text-link">Browse all insights <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <h2 class="more-title" id="moreTitle">Continue reading</h2>
+            <a href="blog.html" class="text-link">All insights <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
           </div>
-          <div class="post-grid" id="moreGrid"></div>
+          <div class="more-grid" id="moreGrid"></div>
         </div>
       </section>
     </div>
@@ -499,6 +494,7 @@
       document.getElementById('toc').innerHTML = heads.map(h =>
         `<li><a href="${location.pathname}#${h.id}" data-target="${h.id}">${esc(h.textContent)}</a></li>`).join('');
       document.getElementById('tocCard').hidden = false;
+      fitSidebar();
       const links = [...document.querySelectorAll('#toc a')];
       const spy = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -508,31 +504,42 @@
       heads.forEach(h => spy.observe(h));
     }
 
-    // ---- More from the blog: same-topic posts first, then newest ----
+    // ---- Related reading: sidebar list (all other posts, newest first) + two closest posts below ----
+    const topicLabel = p => esc((p.tags || []).slice(0, 2).join(' · ') || 'Article');
     function loadMore(post) {
       fetch('posts/posts-index.json').then(r => r.json()).then(posts => {
+        const others = posts.filter(p => p.slug !== post.slug);
+        if (!others.length) return;
+
+        document.getElementById('browseList').innerHTML = others.slice(0, 5).map(p => `
+          <li><a href="${postUrl(p.slug)}"><span class="browse-tag">${topicLabel(p)}</span><span class="browse-title">${esc(splitTitle(p.title).name)}</span></a></li>`).join('');
+        document.getElementById('browseCard').hidden = false;
+
+        // Same-topic posts first, then newest
         const tags = new Set(post.tags || []);
-        const others = posts.filter(p => p.slug !== post.slug)
+        const next = others
           .map(p => ({ p, score: (p.tags || []).filter(t => tags.has(t)).length }))
           .sort((a, b) => b.score - a.score || b.p.date.localeCompare(a.p.date))
-          .slice(0, 3).map(x => x.p);
-        if (!others.length) return;
-        document.getElementById('moreGrid').innerHTML = others.map(p => `
-          <article class="post-card">
-            <div class="cover">
-              <div class="cover-fallback" aria-hidden="true"><span class="cf-tag">${esc((p.tags || [])[0] || 'Article')}</span><span class="cf-title">${esc(p.title)}</span></div>
-              <img src="${coverUrl(p.slug)}" alt="" loading="lazy" style="position:relative" onerror="this.remove()">
-            </div>
-            <div class="card-body">
-              <p class="post-kind">${esc((p.tags || []).slice(0, 2).join(' · ') || 'Article')}</p>
-              <h3><a href="${postUrl(p.slug)}">${esc(splitTitle(p.title).name)}</a></h3>
-              ${splitTitle(p.title).tagline ? `<p class="post-tagline">${esc(splitTitle(p.title).tagline)}</p>` : ''}
-              <p class="meta">${formatDate(p.date, 'short')} · ${esc(p.readTime)}</p>
-            </div>
+          .slice(0, 2).map(x => x.p);
+        document.getElementById('moreGrid').innerHTML = next.map(p => `
+          <article class="more-card">
+            <p class="post-kind">${topicLabel(p)}</p>
+            <h3><a href="${postUrl(p.slug)}">${esc(splitTitle(p.title).name)}</a></h3>
+            <p class="more-snippet">${esc(p.summary || p.excerpt)}</p>
+            <span class="text-link" aria-hidden="true">Read article <i class="fas fa-arrow-right"></i></span>
           </article>`).join('');
         document.getElementById('moreSection').hidden = false;
+        fitSidebar();
       }).catch(() => {});
     }
+
+    // Keep the sidebar sticky even when it is taller than the window: a negative top lets
+    // it scroll until its bottom is in view, then it sticks there.
+    const sidebar = document.querySelector('.sidebar');
+    function fitSidebar() {
+      sidebar.style.top = innerWidth > 900 ? Math.min(96, innerHeight - sidebar.offsetHeight - 24) + 'px' : '';
+    }
+    window.addEventListener('resize', fitSidebar);
 
     // ---- View + like counters (same endpoints as post.html; only live once deployed) ----
     async function loadStats(slug) {
