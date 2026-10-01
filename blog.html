@@ -388,12 +388,13 @@
     // "Observer Prime, Where AI Does the Legwork..." -> headline "Observer Prime"
     // plus tagline "Where AI does the legwork...". Same split rule the build
     // script uses for link-preview titles. Titles without a comma stay whole.
-    function splitTitle(title) {
+    function splitTitle(title, subtitle) {
+      if (subtitle) return { name: title, tagline: subtitle };   // explicit "Subtitle:" line in the post
       const m = String(title).match(/^(.+?)(?:, |\s*[:|]\s*)(.+)$/);
       return m ? { name: m[1], tagline: m[2] } : { name: title, tagline: '' };
     }
     const headline = (post, tag) => {
-      const { name, tagline } = splitTitle(post.title);
+      const { name, tagline } = splitTitle(post.title, post.subtitle);
       return `<${tag}>${esc(name)}</${tag}>${tagline ? `<p class="post-tagline">${esc(tagline)}</p>` : ''}`;
     };
 
@@ -402,7 +403,7 @@
       const tag = (post.tags || [])[0] || 'Article';
       return `
         <div class="cover">
-          <div class="cover-fallback" aria-hidden="true"><span class="cf-tag">${esc(tag)}</span><span class="cf-title">${esc(splitTitle(post.title).name)}</span></div>
+          <div class="cover-fallback" aria-hidden="true"><span class="cf-tag">${esc(tag)}</span><span class="cf-title">${esc(splitTitle(post.title, post.subtitle).name)}</span></div>
           <img src="${post.cover || coverUrl(post.slug)}" alt="" loading="lazy" style="position:relative" onerror="this.remove()">
         </div>`;
     }

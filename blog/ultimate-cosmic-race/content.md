@@ -1,4 +1,5 @@
-# Ultimate Cosmic Race, Decoding Vector Databases
+# Ultimate Cosmic Race: Decoding Vector Databases
+Subtitle: How AI Finds the Right Data
 Tags: AI, Explainers
 Date: 2026-10-02
 Summary: Asked to search the entire universe, one ancient legend showed that working smarter always beats running faster.

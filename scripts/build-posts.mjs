@@ -115,12 +115,21 @@ function extractMetaLines(rawText) {
   let tags = [];
   let date = null;
   let summary = null;
+  let subtitle = null;
   const drop = new Set();
 
   for (let i = 0; i < Math.min(lines.length, 8); i++) {
     const summaryMatch = lines[i].match(/^\s*summary\s*:\s*(.+)$/i);
     if (summaryMatch) {
       summary = summaryMatch[1].trim();
+      drop.add(i);
+      continue;
+    }
+    // Optional "Subtitle: ..." shown under the title. Without it, the title's text
+    // after the first comma is used as the subtitle.
+    const subtitleMatch = lines[i].match(/^\s*subtitle\s*:\s*(.+)$/i);
+    if (subtitleMatch) {
+      subtitle = subtitleMatch[1].trim();
       drop.add(i);
       continue;
     }
@@ -139,7 +148,7 @@ function extractMetaLines(rawText) {
   }
 
   const rest = lines.filter((_, i) => !drop.has(i)).join('\n');
-  return { tags, date, summary, rest };
+  return { tags, date, summary, subtitle, rest };
 }
 
 // Same idea, applied to already-converted HTML (used for .docx, since mammoth
@@ -304,7 +313,8 @@ function writePostPage(template, post, socialImage) {
   // The short title is the part before the first comma, "|" or colon
   // ("Krishna Uvaca, Ancient Wisdom..." -> "Krishna Uvaca").
   const fullTitle = decodeEntities(post.title);
-  const shortTitle = fullTitle.split(/[|:]|, /)[0].trim();
+  // A post with its own "Subtitle:" line already has its title as the full header.
+  const shortTitle = post.subtitle ? fullTitle : fullTitle.split(/[|:]|, /)[0].trim();
   const title = `${shortTitle} by ${AUTHOR}`;
   const description = post.summary || decodeEntities(post.excerpt);
   const pagePath = `posts/${post.slug}/`;
@@ -362,6 +372,7 @@ async function buildPost(postFolderName, postDir, template) {
   let tags;
   let explicitDate;
   let summary;
+  let subtitle;
   let sourceFile;
 
   if (fs.existsSync(mdPath)) {
@@ -371,6 +382,7 @@ async function buildPost(postFolderName, postDir, template) {
     tags = extracted.tags;
     explicitDate = extracted.date;
     summary = extracted.summary;
+    subtitle = extracted.subtitle;
     html = marked.parse(extracted.rest);
     html = processMarkdownImages(html, postDir, slug);
   } else if (fs.existsSync(docxPath)) {
@@ -400,6 +412,7 @@ async function buildPost(postFolderName, postDir, template) {
     readTime: computeReadTime(html),
     excerpt: computeExcerpt(html),
     ...(summary ? { summary } : {}),
+    ...(subtitle ? { subtitle } : {}),
     ...(cover ? { cover } : {}),
     body: [html],
   };

@@ -495,7 +495,8 @@
     const postUrl = s => `posts/${encodeURIComponent(s)}/`;
     const coverUrl = s => `blog/${encodeURIComponent(s)}/cover.png`;
     // Same split as the blog cards: "Name, catchphrase" -> headline + tagline
-    function splitTitle(title) {
+    function splitTitle(title, subtitle) {
+      if (subtitle) return { name: title, tagline: subtitle };   // explicit "Subtitle:" line in the post
       const m = String(title).match(/^(.+?)(?:, |\s*[:|]\s*)(.+)$/);
       return m ? { name: m[1], tagline: m[2] } : { name: title, tagline: '' };
     }
@@ -515,7 +516,7 @@
 
     function renderPost(post) {
       document.title = `${post.title.replace(/&amp;/g, '&')} · Sandeep Midde`;
-      const { name, tagline } = splitTitle(post.title);
+      const { name, tagline } = splitTitle(post.title, post.subtitle);
       document.getElementById('postTitle').innerHTML = tagline
         ? `${esc(name)}<span class="sr-only">, </span><span class="t-sub">${esc(tagline)}</span>`
         : esc(post.title);
@@ -664,7 +665,7 @@
         document.getElementById('browseList').innerHTML =
           `<ul class="browse">${others.slice(0, 6).map(p => {
             // Tagline: the part after the comma in the title, else the post summary. Long ones end in an ellipsis.
-            const { name, tagline } = splitTitle(p.title);
+            const { name, tagline } = splitTitle(p.title, p.subtitle);
             const sub = tagline || p.summary || p.excerpt || '';
             return `<li><a href="${postUrl(p.slug)}" title="${esc(sub)}"><span class="browse-name">${esc(name)}</span>${sub ? `<span class="browse-tagline">${esc(sub)}</span>` : ''}</a></li>`;
           }).join('')}</ul>`;
@@ -679,7 +680,7 @@
         document.getElementById('moreGrid').innerHTML = next.map(p => `
           <article class="more-card">
             <p class="post-kind">${topicLabel(p)}</p>
-            <h3><a href="${postUrl(p.slug)}">${esc(splitTitle(p.title).name)}</a></h3>
+            <h3><a href="${postUrl(p.slug)}">${esc(splitTitle(p.title, p.subtitle).name)}</a></h3>
             <p class="more-snippet">${esc(p.summary || p.excerpt)}</p>
             <span class="text-link" aria-hidden="true">Read article <i class="fas fa-arrow-right"></i></span>
           </article>`).join('');
