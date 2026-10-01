@@ -95,7 +95,7 @@
       mask-image: radial-gradient(ellipse 70% 80% at 85% 30%, black 20%, transparent 100%);
     }
     /* Title lines up with the article column (left rail width + gap) */
-    .head-inner { max-width: 780px; margin-left: calc(var(--rail-l) + var(--col-gap)); }
+    .head-inner { max-width: 900px; margin-left: calc(var(--rail-l) + var(--col-gap)); }
     .head-top { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1.25rem; margin-bottom: 0.9rem; }
     .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: var(--text-3); transition: color 0.2s; }
     .back-link i { font-size: 0.75rem; transition: transform 0.2s; }
@@ -104,7 +104,15 @@
     .pills { display: flex; flex-wrap: wrap; gap: 6px; }
     .pill { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 11px; background: var(--accent-soft); color: var(--accent-text); border-radius: 100px; }
     a.pill:hover { background: var(--accent); color: var(--on-accent); }
-    .post-title { font-family: var(--ff-display); font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: var(--display-weight); line-height: 1.15; letter-spacing: var(--display-tracking); margin-bottom: 0.5rem; }
+    /* Roomier tracking than the homepage display type, so long titles don't read as one block */
+    .post-title { font-family: var(--ff-display); font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: var(--display-weight); line-height: 1.2; letter-spacing: 0.005em; word-spacing: 0.06em; margin-bottom: 0.6rem; }
+    /* "Name, tagline" titles: name, accent bar, then the tagline in a lighter weight on the same line */
+    .t-rest { display: inline-block; }
+    .t-sep { display: inline-block; width: 0.75em; height: 3px; border-radius: 3px; background: var(--accent); vertical-align: 0.32em; margin: 0 0.5em 0 0.4em; }
+    .post-title.wrapped .t-rest { display: block; margin-top: 0.15em; }
+    .post-title.wrapped .t-sep { margin-left: 0; }
+    .t-sub { font-size: 0.6em; font-weight: 500; color: var(--text-3); letter-spacing: 0.01em; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .post-lede { font-size: 1.02rem; color: var(--text-3); line-height: 1.6; }
     .byline { display: flex; align-items: center; gap: 12px; }
     .byline img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--border); background: var(--bg-alt); }
@@ -148,7 +156,7 @@
     .prose > :first-child { margin-top: 0 !important; padding-top: 0; }
     .prose { font-size: 1.05rem; line-height: 1.8; color: var(--text-2); max-width: 740px; }
     .prose > * + * { margin-top: 1.25em; }
-    .prose h2 { font-family: var(--ff-display); font-size: 1.6rem; font-weight: var(--display-weight); letter-spacing: -0.02em; line-height: 1.25; color: var(--text); margin-top: 2.4em; padding-top: 0.2em; }
+    .prose h2 { font-family: var(--ff-display); font-size: 1.6rem; font-weight: var(--display-weight); letter-spacing: 0; word-spacing: 0.04em; line-height: 1.3; color: var(--text); margin-top: 2.4em; padding-top: 0.2em; }
     .prose h3 { font-family: var(--ff-display); font-size: 1.22rem; font-weight: var(--display-weight); letter-spacing: -0.01em; color: var(--text); margin-top: 2em; }
     .prose h2 + *, .prose h3 + * { margin-top: 0.75em; }
     .prose strong { color: var(--text); font-weight: 600; }
@@ -509,7 +517,22 @@
 
     function renderPost(post) {
       document.title = `${post.title.replace(/&amp;/g, '&')} · Sandeep Midde`;
-      document.getElementById('postTitle').innerHTML = esc(post.title);
+      const { name, tagline } = splitTitle(post.title);
+      document.getElementById('postTitle').innerHTML = tagline
+        ? `${esc(name)}<span class="sr-only">, </span><span class="t-rest"><span class="t-sep" aria-hidden="true"></span><span class="t-sub">${esc(tagline)}</span></span>`
+        : esc(post.title);
+      // When the tagline drops to its own line, start it flush left instead of indented
+      const fitTitle = () => {
+        const h1 = document.getElementById('postTitle'), rest = h1.querySelector('.t-rest');
+        if (!rest) return;
+        h1.classList.remove('wrapped');
+        // Unwrapped, the tagline sits on the name's line; wrapped, it starts a full line lower
+        const lineHeight = parseFloat(getComputedStyle(h1).lineHeight);
+        h1.classList.toggle('wrapped', rest.getBoundingClientRect().top - h1.getBoundingClientRect().top > lineHeight * 0.7);
+      };
+      fitTitle();
+      document.fonts?.ready.then(fitTitle);
+      window.addEventListener('resize', fitTitle);
       document.getElementById('postTags').innerHTML = (post.tags || [])
         .map(t => `<a class="pill" href="blog.html">${esc(t)}</a>`).join('');
       if (post.summary) {
