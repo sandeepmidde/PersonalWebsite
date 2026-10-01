@@ -817,6 +817,10 @@
       .impact-grid::-webkit-scrollbar { display: none; }
       .impact-card { flex: 0 0 86%; scroll-snap-align: start; }
     }
+
+    /* Hero and About paragraphs: straight right edge on wider screens, natural edge on phones */
+    .hero-sub, .about-text p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    @media (max-width: 640px) { .hero-sub, .about-text p { text-align: left; } }
   </style>
 </head>
 <body>

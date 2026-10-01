@@ -108,6 +108,8 @@
     .post-title { font-family: var(--ff-display); font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: var(--display-weight); line-height: 1.2; letter-spacing: 0.005em; word-spacing: 0.06em; margin-bottom: 0.6rem; }
     /* "Name, tagline" titles: the name, with the tagline stacked below it in a muted weight */
     .t-sub { display: block; font-size: 0.56em; font-weight: 500; color: var(--text-3); letter-spacing: 0.01em; line-height: 1.35; margin-top: 0.3em; }
+    .post-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; font-size: 0.85rem; color: var(--text-4); margin-top: 0.2rem; }
+    .post-meta i { font-size: 0.78rem; margin-right: 2px; }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .byline { display: flex; align-items: center; gap: 12px; }
     .byline img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--border); background: var(--bg-alt); }
@@ -214,9 +216,7 @@
     .author-card .byline { margin-bottom: 0.9rem; }
     .author-card .byline img { border-color: var(--band-bg); box-shadow: 0 0 0 1px var(--band-border); }
     .author-card .byline-name { color: var(--band-text); }
-    .author-card .byline-meta { color: var(--band-muted); flex-direction: column; gap: 0; }
-    .author-card .byline-meta span[aria-hidden] { display: none; }
-    .author-card p { font-size: 0.85rem; color: var(--band-text-2); line-height: 1.6; margin-bottom: 1rem; }
+    .author-card p { font-size: 0.85rem; color: var(--band-text-2); line-height: 1.6; margin-bottom: 1rem; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
     .author-card a.author-link { font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; color: var(--band-text); }
     .author-card a.author-link i { color: var(--band-accent); font-size: 0.78rem; transition: transform 0.2s; }
     .author-card a.author-link:hover i { transform: translateX(4px); }
@@ -347,6 +347,7 @@
               <div class="pills" id="postTags"></div>
             </div>
             <h1 class="post-title" id="postTitle"></h1>
+            <p class="post-meta"><time class="js-date"></time><span aria-hidden="true">·</span><span><i class="far fa-clock" aria-hidden="true"></i> <span class="js-read"></span></span></p>
           </div>
         </div>
       </header>
@@ -361,9 +362,6 @@
               <img src="assets/img/sandeep-midde-sm.webp" alt="" width="44" height="44" onerror="this.remove()">
               <div>
                 <div class="byline-name">Sandeep Midde</div>
-                <div class="byline-meta">
-                  <time class="js-date"></time><span aria-hidden="true">·</span><span class="js-read"></span>
-                </div>
               </div>
             </div>
             </div>
@@ -407,12 +405,10 @@
                 <img src="assets/img/sandeep-midde-sm.webp" alt="" width="44" height="44" onerror="this.remove()">
                 <div>
                   <div class="byline-name">Sandeep Midde</div>
-                  <div class="byline-meta">
-                    <time class="js-date"></time><span aria-hidden="true">·</span><span class="js-read"></span>
-                  </div>
                 </div>
               </div>
-              <p>Enterprise technology delivery leader with 20 years of experience modernizing legacy infrastructure and governing $2.5T+ AUM banking platforms. Currently engineering and scaling resilient, production-ready GenAI architectures.</p>
+              <!-- &shy; = optional hyphen, so the justified bio breaks cleanly in the narrow card -->
+              <p>Enter&shy;prise tech&shy;nol&shy;ogy deliv&shy;ery leader with over 20 years of expe&shy;ri&shy;ence mod&shy;ern&shy;iz&shy;ing legacy infra&shy;struc&shy;ture and gov&shy;ern&shy;ing $2.5T+ AUM bank&shy;ing plat&shy;forms. Cur&shy;rently engi&shy;neer&shy;ing and scal&shy;ing resil&shy;ient, pro&shy;duc&shy;tion-ready GenAI archi&shy;tec&shy;tures.</p>
               <a href="/" class="author-link">View profile <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </aside>
