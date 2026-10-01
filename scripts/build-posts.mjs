@@ -196,6 +196,44 @@ function processMarkdownImages(html, postDir, slug) {
   });
 }
 
+// Intrinsic size of a local image, so the page can reserve its space before it
+// downloads (no layout jump on slow connections). Handles SVG and PNG.
+function imageSize(absPath) {
+  try {
+    if (/\.svg$/i.test(absPath)) {
+      const head = fs.readFileSync(absPath, 'utf8').slice(0, 600);
+      const vb = head.match(/viewBox="\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)/);
+      if (vb) return { width: Math.round(+vb[1]), height: Math.round(+vb[2]) };
+    } else if (/\.png$/i.test(absPath)) {
+      const buf = fs.readFileSync(absPath);
+      if (buf.toString('ascii', 12, 16) === 'IHDR') return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
+    }
+  } catch {}
+  return null;
+}
+
+// Adds width/height plus lazy loading to every local image in the post body.
+function addImageHints(html) {
+  return html.replace(/<img([^>]*)>/gi, (full, attrs) => {
+    const src = attrs.match(/\ssrc="([^"]+)"/);
+    if (!src || /^https?:\/\//i.test(src[1])) return full;
+    let extra = '';
+    if (!/\swidth=/.test(attrs)) {
+      const size = imageSize(path.join(ROOT, decodeURIComponent(src[1])));
+      if (size) extra += ` width="${size.width}" height="${size.height}"`;
+    }
+    if (!/\sloading=/.test(attrs)) extra += ' loading="lazy" decoding="async"';
+    return `<img${attrs.replace(/\s*\/$/, '')}${extra}>`;
+  });
+}
+
+// Lightest cover in the post folder: cover.webp if present, else cover.png/jpg.
+function findCover(postDir, postFolderName) {
+  const files = fs.readdirSync(postDir);
+  const file = ['webp', 'png', 'jpg', 'jpeg'].map(ext => `cover.${ext}`).find(f => files.includes(f));
+  return file ? `blog/${encodeURIComponent(postFolderName)}/${file}` : null;
+}
+
 async function convertDocx(absPath, slug) {
   let imgCounter = 0;
   const result = await mammoth.convertToHtml(
@@ -333,6 +371,8 @@ async function buildPost(postFolderName, postDir, template) {
     return null;
   }
 
+  html = addImageHints(html);
+  const cover = findCover(postDir, postFolderName);
   const title = extractTitleFromHtml(html, titleCaseFromSlug(slug));
   html = removeFirstH1(html);
   const date = explicitDate || gitFirstCommitDate(sourceFile);
@@ -345,6 +385,7 @@ async function buildPost(postFolderName, postDir, template) {
     readTime: computeReadTime(html),
     excerpt: computeExcerpt(html),
     ...(summary ? { summary } : {}),
+    ...(cover ? { cover } : {}),
     body: [html],
   };
 

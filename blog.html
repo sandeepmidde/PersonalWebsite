@@ -396,7 +396,7 @@
       return `
         <div class="cover">
           <div class="cover-fallback" aria-hidden="true"><span class="cf-tag">${esc(tag)}</span><span class="cf-title">${esc(splitTitle(post.title).name)}</span></div>
-          <img src="${coverUrl(post.slug)}" alt="" loading="lazy" style="position:relative" onerror="this.remove()">
+          <img src="${post.cover || coverUrl(post.slug)}" alt="" loading="lazy" style="position:relative" onerror="this.remove()">
         </div>`;
     }
 

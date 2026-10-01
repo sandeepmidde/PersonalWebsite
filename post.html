@@ -54,7 +54,7 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 88px; background: var(--bg); }
     body { font-family: var(--ff-body); background: var(--bg); color: var(--text); line-height: 1.65; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-    img { display: block; max-width: 100%; }
+    img { display: block; max-width: 100%; height: auto; }
     a { color: inherit; text-decoration: none; }
     button { font: inherit; }
     [hidden] { display: none !important; }
@@ -119,17 +119,20 @@
       column-gap: var(--col-gap); padding: 40px 0 72px; align-items: start;
     }
     .post-layout > article { grid-area: main; min-width: 0; }
-    .rail-left { grid-area: left; position: sticky; top: 92px; }
+    .rail-left { grid-area: left; align-self: stretch; position: relative; }
     .post-strip { display: none; }   /* cover + byline strip, medium and small screens only */
     .post-cover { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-sm); background: var(--bg-alt); }
     .post-cover img { width: 100%; }
 
-    /* Visual track: the figure for the section being read, swapped as the reader scrolls */
-    .vtrack-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-4); margin-bottom: 0.7rem; min-height: 1.1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .vstage { display: grid; }
-    .vslide { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), visibility 0.4s; }
-    .vslide.on { opacity: 1; visibility: visible; transform: none; }
-    .vzoom { display: block; width: 100%; padding: 0; border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; background: var(--surface); box-shadow: var(--shadow-sm); cursor: zoom-in; position: relative; }
+    /* Visual track: each figure sits level with its own section and stays pinned while that
+       section is read, then scrolls away as the next figure arrives. On a tall screen they are
+       all visible at once, each beside its text. */
+    .vtrack { position: absolute; inset: 0; }
+    .vsec { position: absolute; left: 0; right: 0; }
+    .vfig { position: sticky; top: 92px; opacity: 0; transform: translateY(12px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+    .vfig.seen { opacity: 1; transform: none; }
+    .vfig-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-4); margin-bottom: 0.6rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .vzoom { display: block; width: 100%; padding: 0; border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; background: var(--bg-alt); box-shadow: var(--shadow-sm); cursor: zoom-in; position: relative; }
     .vzoom img { width: 100%; }
     .vzoom .vzoom-hint { position: absolute; right: 8px; bottom: 8px; width: 28px; height: 28px; border-radius: 50%; background: rgba(15,23,42,0.72); color: #fff; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
     .vzoom:hover .vzoom-hint, .vzoom:focus-visible .vzoom-hint { opacity: 1; }
@@ -351,10 +354,7 @@
       <div class="container">
         <div class="post-layout">
           <aside class="rail-left" aria-label="Figures">
-            <div class="vtrack" id="vtrack" hidden>
-              <p class="vtrack-label" id="vtrackLabel"></p>
-              <div class="vstage" id="vstage"></div>
-            </div>
+            <div class="vtrack" id="vtrack" hidden></div>
             <div class="post-strip">
             <figure class="post-cover" id="postCover" hidden><img id="postCoverImg" alt=""></figure>
             <div class="byline">
@@ -397,6 +397,10 @@
               <p class="block-label">On this page</p>
               <ul class="toc" id="toc"></ul>
             </div>
+            <nav class="side-card browse-card" id="browseCard" aria-label="Browse insights" hidden>
+              <p class="block-label">Browse insights</p>
+              <div id="browseList"></div>
+            </nav>
             <div class="side-card author-card">
               <p class="block-label">About the author</p>
               <div class="byline">
@@ -411,10 +415,6 @@
               <p>Enterprise technology delivery leader with 20 years of experience modernizing legacy infrastructure and governing $2.5T+ AUM banking platforms. Currently engineering and scaling resilient, production-ready GenAI architectures.</p>
               <a href="/" class="author-link">View profile <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
-            <nav class="side-card browse-card" id="browseCard" aria-label="Browse insights" hidden>
-              <p class="block-label">Browse insights</p>
-              <div id="browseList"></div>
-            </nav>
           </aside>
         </div>
       </div>
@@ -532,14 +532,14 @@
       });
 
       const coverImg = document.getElementById('postCoverImg');
-      coverImg.onload = () => { document.getElementById('postCover').hidden = false; addCoverSlide(coverImg.src); };
-      coverImg.src = coverUrl(post.slug);
+      coverImg.onload = () => { document.getElementById('postCover').hidden = false; };
+      coverImg.src = post.cover || coverUrl(post.slug);
 
       document.getElementById('loadingState').hidden = true;
       document.getElementById('postView').hidden = false;
 
       buildToc(body);
-      buildTrack(body);
+      buildTrack(body, post.cover || coverUrl(post.slug));
       loadMore(post);
       loadStats(post.slug);
       setupShare(post.title.replace(/&amp;/g, '&'));
@@ -570,57 +570,76 @@
       heads.forEach(h => spy.observe(h));
     }
 
-    // ---- Visual track: on wide screens each article figure moves to the left rail and shows
-    // while its section is being read. The cover stands in until the first figure.
-    // Markdown images titled "aside" (![alt](file.svg "aside")) appear only in the track.
-    const track = { slides: [], heads: [], cover: null };
-    function makeSlide(src, alt) {
-      const fig = document.createElement('figure');
-      fig.className = 'vslide';
-      fig.innerHTML = `<button type="button" class="vzoom" aria-label="Enlarge figure${alt ? ': ' + esc(alt) : ''}"><img src="${esc(src)}" alt="${esc(alt)}"><span class="vzoom-hint" aria-hidden="true"><i class="fas fa-expand"></i></span></button>`;
-      fig.querySelector('button').addEventListener('click', () => openLightbox(fig.querySelector('img')));
-      document.getElementById('vstage').appendChild(fig);
-      return fig;
+    // ---- Visual track: on wide screens each article figure moves to the left rail, level with
+    // its section (the cover takes the opening section). Markdown images titled "aside"
+    // (![alt](file.svg "aside")) appear only there, never in the article text.
+    const track = { items: [], heads: [], body: null };
+    function addTrackItem(section, src, alt, width, height) {
+      const sec = document.createElement('div');
+      sec.className = 'vsec';
+      const label = section > 0 ? track.heads[section - 1].textContent : (track.heads[0]?.textContent || '');
+      sec.innerHTML = `<figure class="vfig">
+          ${label ? `<p class="vfig-label">${esc(label)}</p>` : ''}
+          <button type="button" class="vzoom" aria-label="Enlarge figure${alt ? ': ' + esc(alt) : ''}">
+            <img src="${esc(src)}" alt="${esc(alt)}"${width ? ` width="${width}" height="${height}"` : ''} loading="lazy" decoding="async">
+            <span class="vzoom-hint" aria-hidden="true"><i class="fas fa-expand"></i></span>
+          </button>
+        </figure>`;
+      const img = sec.querySelector('img');
+      sec.querySelector('button').addEventListener('click', () => openLightbox(img));
+      img.addEventListener('load', layoutTrack);
+      document.getElementById('vtrack').appendChild(sec);
+      const item = { section, sec, fig: sec.querySelector('.vfig') };
+      img.addEventListener('error', () => { sec.remove(); track.items = track.items.filter(i => i !== item); layoutTrack(); });
+      track.items.push(item);
+      figObserver.observe(item.fig);
     }
-    function buildTrack(body) {
+    const figObserver = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('seen');
+    }), { rootMargin: '0px 0px -10% 0px' });
+
+    function buildTrack(body, coverSrc) {
+      track.body = body;
       track.heads = [...body.querySelectorAll('h2')];
+      if (coverSrc) addTrackItem(0, coverSrc, '', 1200, 627);
       body.querySelectorAll('img').forEach(img => {
         const block = img.closest('p') && img.closest('p').textContent.trim() === '' ? img.closest('p') : img;
         if (img.title === 'aside') { block.classList.add('aside-only'); img.removeAttribute('title'); }
         block.classList.add('in-track');
         const markTall = () => img.classList.toggle('tall', img.naturalHeight > img.naturalWidth * 0.9);
-        img.complete ? markTall() : img.addEventListener('load', markTall);
+        if (img.getAttribute('width')) img.classList.toggle('tall', +img.getAttribute('height') > +img.getAttribute('width') * 0.9);
+        else img.complete ? markTall() : img.addEventListener('load', markTall);
         // Section = number of h2s before the image (0 = intro, before the first heading)
         const section = track.heads.filter(h => h.compareDocumentPosition(img) & Node.DOCUMENT_POSITION_FOLLOWING).length;
-        track.slides.push({ section, el: makeSlide(img.getAttribute('src'), img.alt) });
+        addTrackItem(section, img.getAttribute('src'), img.alt, img.getAttribute('width'), img.getAttribute('height'));
       });
-      updateTrack();
+      document.getElementById('vtrack').hidden = !track.items.length;
+      new ResizeObserver(layoutTrack).observe(body);
+      window.addEventListener('resize', layoutTrack);
+      document.fonts?.ready.then(layoutTrack);
+      layoutTrack();
     }
-    function addCoverSlide(src) {
-      track.cover = { section: 0, el: makeSlide(src, '') };
-      updateTrack();
+
+    // Each figure's slot runs from its section's heading to the next figure's slot, so it stays
+    // pinned while its text is read. Slots never overlap, even when sections are short.
+    function layoutTrack() {
+      if (!track.items.length || innerWidth <= 1180) return;
+      const railTop = document.getElementById('vtrack').getBoundingClientRect().top;
+      const sectionTop = k => (k > 0 ? track.heads[k - 1] : track.body).getBoundingClientRect().top - railTop;
+      const end = track.body.getBoundingClientRect().bottom - railTop;
+      const gap = 40;
+      let prevBottom = -Infinity;
+      const tops = track.items.map(item => {
+        const top = Math.max(sectionTop(item.section), prevBottom + gap);
+        prevBottom = top + item.fig.offsetHeight;
+        return top;
+      });
+      track.items.forEach((item, i) => {
+        const until = i + 1 < tops.length ? tops[i + 1] - gap : end;
+        item.sec.style.top = tops[i] + 'px';
+        item.sec.style.height = Math.max(until - tops[i], item.fig.offsetHeight) + 'px';
+      });
     }
-    let activeSlide = null;
-    function updateTrack() {
-      const all = (track.cover ? [track.cover] : []).concat(track.slides);
-      document.getElementById('vtrack').hidden = !all.length;
-      if (!all.length) return;
-      // Current section: the last heading that has passed 40% of the window height
-      const line = innerHeight * 0.4;
-      const current = track.heads.filter(h => h.getBoundingClientRect().top < line).length;
-      const slide = all.filter(s => s.section <= current).pop() || all[0];
-      if (slide === activeSlide) return;
-      activeSlide = slide;
-      all.forEach(s => s.el.classList.toggle('on', s === slide));
-      document.getElementById('vtrackLabel').textContent = current > 0 ? track.heads[current - 1].textContent : '';
-      fitSidebar();
-    }
-    let trackTick = false;
-    window.addEventListener('scroll', () => {
-      if (trackTick) return;
-      trackTick = true;
-      requestAnimationFrame(() => { trackTick = false; updateTrack(); });
-    }, { passive: true });
 
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
