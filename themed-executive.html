@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en-US" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -818,9 +818,11 @@
       .impact-card { flex: 0 0 86%; scroll-snap-align: start; }
     }
 
-    /* Hero and About paragraphs: straight right edge on wider screens, natural edge on phones */
-    .hero-sub, .about-text p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
-    @media (max-width: 640px) { .hero-sub, .about-text p { text-align: left; } }
+    /* Site-wide default: body text is justified, with hyphenation to keep spacing even.
+       Element-level selectors, so any class that centers text still wins. Phones keep a
+       natural left edge, since narrow columns justify into wide gaps. */
+    p, .exp-bullets li, .cred-list li { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    @media (max-width: 640px) { p, .exp-bullets li, .cred-list li { text-align: left; } }
   </style>
 </head>
 <body>
@@ -1371,5 +1373,18 @@
 
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "53ef048b46274ad2b5c79200360ce999"}'></script>
+  <!-- Hyphenation for browsers without built-in English hyphenation (Chrome and Edge on Windows),
+       so justified text keeps even word spacing. Fetches nothing where the browser already hyphenates. -->
+  <script src="https://cdn.jsdelivr.net/npm/hyphenopoly@6.1.0/min/Hyphenopoly_Loader.js"></script>
+  <script>
+    Hyphenopoly.config({
+      require: { "en-us": "Supercalifragilisticexpialidocious" },
+      setup: { CORScredentials: "omit", hide: "none", selectors: { "p, li": {} } }
+    });
+    // For text the page adds after load (posts, cards)
+    window.hyphenate = el => {
+      try { Hyphenopoly.hyphenators["en-us"].then(h => h(el, "p, li")).catch(() => {}); } catch (e) {}
+    };
+  </script>
 </body>
 </html>

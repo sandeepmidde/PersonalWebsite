@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en-US" class="no-js">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -150,7 +150,6 @@
 
     /* ============ PROSE ============ */
     .prose > :first-child { margin-top: 0 !important; padding-top: 0; }
-    .prose p, .prose li { text-align: justify; hyphens: auto; -webkit-hyphens: auto; text-wrap: pretty; }
     .prose { font-size: 1.05rem; line-height: 1.8; color: var(--text-2); max-width: 740px; }
     .prose > * + * { margin-top: 1.25em; }
     .prose h2 { font-family: var(--ff-display); font-size: 1.6rem; font-weight: var(--display-weight); letter-spacing: 0; word-spacing: 0.04em; line-height: 1.3; color: var(--text); margin-top: 2.4em; padding-top: 0.2em; }
@@ -216,7 +215,7 @@
     .author-card .byline { margin-bottom: 0.9rem; }
     .author-card .byline img { border-color: var(--band-bg); box-shadow: 0 0 0 1px var(--band-border); }
     .author-card .byline-name { color: var(--band-text); }
-    .author-card p { font-size: 0.85rem; color: var(--band-text-2); line-height: 1.6; margin-bottom: 1rem; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    .author-card p { font-size: 0.85rem; color: var(--band-text-2); line-height: 1.6; margin-bottom: 1rem; }
     .author-card a.author-link { font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; color: var(--band-text); }
     .author-card a.author-link i { color: var(--band-accent); font-size: 0.78rem; transition: transform 0.2s; }
     .author-card a.author-link:hover i { transform: translateX(4px); }
@@ -301,7 +300,6 @@
       .post-cover { display: none; }
       .prose { font-size: 1rem; }
       .prose h2 { font-size: 1.4rem; }
-      .prose p, .prose li { text-align: left; }   /* narrow columns justify into wide gaps */
       .share { margin-left: 0; width: 100%; }
       .more { padding: 44px 0 56px; }
       .more-grid { grid-template-columns: 1fr; gap: 1rem; }
@@ -310,6 +308,12 @@
       .footer-nav { gap: 0.6rem 1.25rem; }
       .scroll-top { right: 16px; bottom: 16px; }
     }
+
+    /* Site-wide default: body text is justified, with hyphenation to keep spacing even.
+       Element-level selectors, so any class that centers text still wins. Phones keep a
+       natural left edge, since narrow columns justify into wide gaps. */
+    p, .prose li { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+    @media (max-width: 640px) { p, .prose li { text-align: left; } }
   </style>
 </head>
 <body>
@@ -538,6 +542,7 @@
       loadStats(post.slug);
       setupShare(post.title.replace(/&amp;/g, '&'));
       loadGiscus(post.slug);
+      window.hyphenate?.(document.getElementById('postView'));
     }
 
     // ---- "On this page" from the article's h2s, with scrollspy ----
@@ -668,6 +673,7 @@
             <span class="text-link" aria-hidden="true">Read article <i class="fas fa-arrow-right"></i></span>
           </article>`).join('');
         document.getElementById('moreSection').hidden = false;
+        window.hyphenate?.(document.getElementById('moreGrid'));
         fitSidebar();
       }).catch(() => {});
     }
@@ -774,5 +780,18 @@
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "53ef048b46274ad2b5c79200360ce999"}'></script>
   <!-- End Cloudflare Web Analytics -->
+  <!-- Hyphenation for browsers without built-in English hyphenation (Chrome and Edge on Windows),
+       so justified text keeps even word spacing. Fetches nothing where the browser already hyphenates. -->
+  <script src="https://cdn.jsdelivr.net/npm/hyphenopoly@6.1.0/min/Hyphenopoly_Loader.js"></script>
+  <script>
+    Hyphenopoly.config({
+      require: { "en-us": "Supercalifragilisticexpialidocious" },
+      setup: { CORScredentials: "omit", hide: "none", selectors: { "p, li": {} } }
+    });
+    // For text the page adds after load (posts, cards)
+    window.hyphenate = el => {
+      try { Hyphenopoly.hyphenators["en-us"].then(h => h(el, "p, li")).catch(() => {}); } catch (e) {}
+    };
+  </script>
 </body>
 </html>
