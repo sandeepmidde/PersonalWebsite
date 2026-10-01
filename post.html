@@ -94,22 +94,20 @@
       -webkit-mask-image: radial-gradient(ellipse 70% 80% at 85% 30%, black 20%, transparent 100%);
       mask-image: radial-gradient(ellipse 70% 80% at 85% 30%, black 20%, transparent 100%);
     }
-    /* Title lines up with the article column (left rail width + gap) */
-    .head-inner { max-width: 900px; margin-left: calc(var(--rail-l) + var(--col-gap)); }
-    .head-top { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1.25rem; margin-bottom: 0.9rem; }
-    .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: var(--text-3); transition: color 0.2s; }
-    .back-link i { font-size: 0.75rem; transition: transform 0.2s; }
+    /* Header: one metadata row (back link, topics, date, read time), then a full-width title block */
+    .head-inner { width: 100%; }
+    .head-top { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 1rem; margin-bottom: 0.5rem; font-family: var(--ff-mono); font-size: 0.75rem; color: var(--text-3); }
+    .back-link { display: inline-flex; align-items: center; gap: 7px; font-weight: 500; color: var(--text-3); transition: color 0.2s; }
+    .back-link i { font-size: 0.7rem; transition: transform 0.2s; }
     .back-link:hover { color: var(--accent-text); }
     .back-link:hover i { transform: translateX(-3px); }
     .pills { display: flex; flex-wrap: wrap; gap: 6px; }
-    .pill { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 11px; background: var(--accent-soft); color: var(--accent-text); border-radius: 100px; }
+    .pill { font-family: var(--ff-body); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 10px; background: var(--accent-soft); color: var(--accent-text); border-radius: 100px; }
     a.pill:hover { background: var(--accent); color: var(--on-accent); }
-    /* Roomier tracking than the homepage display type, so long titles don't read as one block */
-    .post-title { font-family: var(--ff-display); font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: var(--display-weight); line-height: 1.2; letter-spacing: 0.005em; word-spacing: 0.06em; margin-bottom: 0.6rem; }
-    /* "Name, tagline" titles: the name, with the tagline stacked below it in a muted weight */
-    .t-sub { display: block; font-size: 0.56em; font-weight: 500; color: var(--text-3); letter-spacing: 0.01em; line-height: 1.35; margin-top: 0.3em; }
-    .post-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; font-size: 0.85rem; color: var(--text-4); margin-top: 0.2rem; }
-    .post-meta i { font-size: 0.78rem; margin-right: 2px; }
+    .head-meta { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
+    .head-meta i { font-size: 0.7rem; margin-right: 3px; }
+    .post-title { font-family: var(--ff-display); font-size: 1.875rem; font-weight: 800; color: #0F172A; line-height: 1.25; letter-spacing: -0.025em; }
+    .post-subtitle { font-size: 1.125rem; font-weight: 500; color: #64748B; line-height: 1.5; margin: 0.5rem 0 1rem; text-align: left; }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .byline { display: flex; align-items: center; gap: 12px; }
     .byline img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: center top; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--border); background: var(--bg-alt); }
@@ -355,9 +353,10 @@
             <div class="head-top">
               <a href="blog.html" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Blogs</a>
               <div class="pills" id="postTags"></div>
+              <span class="head-meta"><time class="js-date"></time><span aria-hidden="true">·</span><span><i class="far fa-clock" aria-hidden="true"></i><span class="js-read"></span></span></span>
             </div>
             <h1 class="post-title" id="postTitle"></h1>
-            <div class="post-meta"><time class="js-date"></time><span aria-hidden="true">·</span><span><i class="far fa-clock" aria-hidden="true"></i> <span class="js-read"></span></span></div>
+            <div class="post-subtitle" id="postSubtitle" hidden></div>
           </div>
         </div>
       </header>
@@ -517,9 +516,10 @@
     function renderPost(post) {
       document.title = `${post.title.replace(/&amp;/g, '&')} · Sandeep Midde`;
       const { name, tagline } = splitTitle(post.title, post.subtitle);
-      document.getElementById('postTitle').innerHTML = tagline
-        ? `${esc(name)}<span class="sr-only">, </span><span class="t-sub">${esc(tagline)}</span>`
-        : esc(post.title);
+      document.getElementById('postTitle').innerHTML = esc(name);
+      const subEl = document.getElementById('postSubtitle');
+      subEl.textContent = tagline;
+      subEl.hidden = !tagline;
       document.getElementById('postTags').innerHTML = (post.tags || [])
         .map(t => `<a class="pill" href="blog.html">${esc(t)}</a>`).join('');
       document.querySelectorAll('.js-date').forEach(el => {
