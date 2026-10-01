@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 530" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E3B23C"/></marker></defs>
+  <rect width="400" height="530" rx="18" fill="#14151B"/>
+  <text x="24" y="42" fill="#E3B23C" font-size="18" font-weight="700">The lean stack</text>
+  <rect x="24" y="66" width="352" height="52" rx="12" fill="#1E1F27" stroke="#3A3B45" stroke-width="1"/>
+  <text x="200.0" y="98.0" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">User question</text>
+  <line x1="131" y1="118" x2="131" y2="146" stroke="#E3B23C" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="24" y="148" width="214" height="64" rx="12" fill="#1E1F27" stroke="#3A3B45" stroke-width="1"/>
+  <text x="131" y="177" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">Dify orchestration</text>
+  <text x="131" y="197" text-anchor="middle" fill="#A6A8B3" font-size="13.5">retrieval and prompt loop</text>
+  <rect x="292" y="148" width="84" height="64" rx="12" fill="#1E1F27" stroke="#3A3B45" stroke-width="1"/>
+  <text x="334" y="176" text-anchor="middle" fill="#F3F4F6" font-size="15" font-weight="700">Chroma</text><text x="334" y="196" text-anchor="middle" fill="#A6A8B3" font-size="13.5">Airtable</text>
+  <line x1="242" y1="180" x2="288" y2="180" stroke="#E3B23C" stroke-width="2" marker-end="url(#arr)" marker-start="url(#arr)"/>
+  <line x1="131" y1="212" x2="131" y2="240" stroke="#E3B23C" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="24" y="242" width="352" height="64" rx="12" fill="#1E1F27" stroke="#3A3B45" stroke-width="1"/>
+  <text x="200.0" y="271.0" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">Context window and guardrails</text>
+  <text x="200.0" y="291.0" text-anchor="middle" fill="#A6A8B3" font-size="13.5">source text only, nothing beyond it</text>
+  <line x1="110" y1="306" x2="110" y2="336" stroke="#E3B23C" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="290" y1="306" x2="290" y2="336" stroke="#E3B23C" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="24" y="338" width="172" height="72" rx="12" fill="#1E1F27" stroke="#3A3B45" stroke-width="1"/>
+  <text x="110.0" y="371.0" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">Verified answer</text>
+  <text x="110.0" y="391.0" text-anchor="middle" fill="#A6A8B3" font-size="13.5">with the exact verse</text>
+  <rect x="204" y="338" width="172" height="72" rx="12" fill="#1E1F27" stroke="#E3B23C" stroke-width="1.5"/>
+  <text x="290.0" y="371.0" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">“I don’t know”</text>
+  <text x="290.0" y="391.0" text-anchor="middle" fill="#A6A8B3" font-size="13.5">the source is silent</text>
+  <line x1="110" y1="410" x2="110" y2="440" stroke="#E3B23C" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="290" y1="410" x2="290" y2="440" stroke="#E3B23C" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="24" y="442" width="352" height="64" rx="12" fill="#1E1F27" stroke="#3A3B45" stroke-width="1"/>
+  <text x="200.0" y="471.0" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">Softr web app</text>
+  <text x="200.0" y="491.0" text-anchor="middle" fill="#A6A8B3" font-size="13.5">krsna.sandeepmidde.com</text>
+</svg>

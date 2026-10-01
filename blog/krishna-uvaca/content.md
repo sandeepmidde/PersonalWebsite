@@ -21,6 +21,8 @@ The system design focuses on three strict operational boundaries.
 - **Factual attestation.** Show the exact verse behind the answer.
 - **Calculated silence.** Do not answer when the source doesn't support one.
 
+![Three boundaries on every answer](boundaries.svg "aside")
+
 That last boundary became the most interesting engineering challenge. Generative AI is natively designed to produce text. This system needed to know precisely when not to produce it.
 
 ## Building It Lean
@@ -29,18 +31,7 @@ The goal wasn't to build a heavy AI platform. It was to test whether a generativ
 
 The solution uses a composable stack connecting Dify, Chroma, Airtable, Softr and Make.com like building blocks. Each component handles a specific part of the experience, from retrieval and orchestration to data management and presentation.
 
-```
-[ User question ]
-        │
-        ▼
-[ Dify orchestration loop ] ──► [ Chroma and Airtable source cache ]
-        │
-        ▼
-[ Context window and guardrails ]
-        │
-        ▼
-[ Verified response OR "I don't know" ] ──► [ Softr web UI ]
-```
+![The lean stack, from question to verified answer or an honest I don't know](lean-stack.svg)
 
 The engineering decision was deliberate. Validate the system's behavior before investing in heavy infrastructure.
 
@@ -52,6 +43,8 @@ The evaluation harness intentionally included cases where the required informati
 
 Across roughly 500 test conversations, run and rerun every time the prompts changed, about 88% of answers landed on relevant, correctly cited verses. The more telling result was on the other side. Whenever the answer wasn't in the text, the system said so instead of guessing. In all that testing, I didn't find a single invented verse or reference.
 
+![What the stress tests showed](testing.svg "aside")
+
 > Sometimes, the right AI response isn't a better answer. It's an honest "I don't know."
 
 ## The Takeaway
@@ -61,6 +54,8 @@ The deeper lesson from this experiment wasn't really about RAG workflows. It was
 - **The model** provides the intelligence.
 - **The architecture** determines what information it can use.
 - **The guardrails** define where it can go.
+
+![Structure around the model](takeaway.svg "aside")
 
 As AI moves into specialized enterprise environments, the goal cannot be to build systems that always force an answer. It must be to build systems that know when they have enough evidence to give one. That is the engineering principle Kṛṣṇa Uvāca was built to explore.
 
