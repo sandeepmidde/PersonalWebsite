@@ -207,9 +207,15 @@
     .toc a { display: block; font-size: 0.85rem; color: var(--text-3); line-height: 1.45; padding: 6px 0 6px 14px; margin-left: -2px; border-left: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
     .toc a:hover { color: var(--text); }
     .toc a.active { color: var(--accent-text); border-left-color: var(--accent); font-weight: 600; }
+    /* More blogs: title with its tagline beneath, one even block per post */
     .browse { list-style: none; }
-    .browse a { display: block; padding: 0.3rem 0; font-family: var(--ff-display); font-size: 0.9rem; font-weight: 600; line-height: 1.35; color: var(--text); transition: color 0.2s; }
-    .browse a:hover { color: var(--accent-text); }
+    .browse li + li { border-top: 1px solid var(--line); }
+    .browse a { display: block; padding: 0.7rem 0; }
+    .browse li:first-child a { padding-top: 0.15rem; }
+    .browse li:last-child a { padding-bottom: 0.1rem; }
+    .browse-name { display: block; font-family: var(--ff-display); font-size: 0.9rem; font-weight: 600; line-height: 1.35; color: var(--text); transition: color 0.2s; }
+    .browse-tagline { display: block; margin-top: 0.15rem; font-size: 0.78rem; line-height: 1.4; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .browse a:hover .browse-name { color: var(--accent-text); }
     .author-card { background: var(--band-bg); color: var(--band-text); border-color: var(--band-bg); }
     .author-card .block-label { color: var(--band-accent); }
     .author-card .byline { margin-bottom: 0.9rem; }
@@ -656,7 +662,12 @@
         if (!others.length) return;
 
         document.getElementById('browseList').innerHTML =
-          `<ul class="browse">${others.slice(0, 6).map(p => `<li><a href="${postUrl(p.slug)}">${esc(splitTitle(p.title).name)}</a></li>`).join('')}</ul>`;
+          `<ul class="browse">${others.slice(0, 6).map(p => {
+            // Tagline: the part after the comma in the title, else the post summary. Long ones end in an ellipsis.
+            const { name, tagline } = splitTitle(p.title);
+            const sub = tagline || p.summary || p.excerpt || '';
+            return `<li><a href="${postUrl(p.slug)}" title="${esc(sub)}"><span class="browse-name">${esc(name)}</span>${sub ? `<span class="browse-tagline">${esc(sub)}</span>` : ''}</a></li>`;
+          }).join('')}</ul>`;
         document.getElementById('browseCard').hidden = false;
 
         // Same-topic posts first, then newest
