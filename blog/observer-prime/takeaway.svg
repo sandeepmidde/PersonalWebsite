@@ -1,14 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 410" font-family="Segoe UI, Helvetica, Arial, sans-serif">
-  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#34D399"/></marker></defs>
-  <rect width="400" height="410" rx="18" fill="#0E1525"/>
-  <text x="24" y="42" fill="#34D399" font-size="18" font-weight="700">Who owns what</text>
-  <rect x="24" y="66" width="352" height="320" rx="16" fill="#172238" stroke="#34D399" stroke-width="1.5" stroke-dasharray="6 5"/>
-  <text x="200" y="98" text-anchor="middle" fill="#F3F4F6" font-size="17" font-weight="700">The human</text>
-  <text x="200" y="120" text-anchor="middle" fill="#A9B4C8" font-size="14">keeps strategic accountability</text>
-  <rect x="50" y="142" width="300" height="220" rx="14" fill="#0E1525" stroke="#2B3A57"/>
-  <text x="200" y="174" text-anchor="middle" fill="#F3F4F6" font-size="17" font-weight="700">The architecture</text>
-  <text x="200" y="196" text-anchor="middle" fill="#A9B4C8" font-size="14">sets what data can be used</text>
-  <rect x="78" y="220" width="244" height="116" rx="12" fill="#34D399"/>
-  <text x="200" y="268" text-anchor="middle" fill="#0E1525" font-size="18" font-weight="800">The AI</text>
-  <text x="200" y="292" text-anchor="middle" fill="#0E1525" font-size="14" font-weight="600">does the high-volume drafting</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 430" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1324"/><stop offset="1" stop-color="#111D33"/></linearGradient>
+    <radialGradient id="glowG" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#34D399" stop-opacity="0.35"/><stop offset="1" stop-color="#34D399" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glowB" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#60A5FA" stop-opacity="0.3"/><stop offset="1" stop-color="#60A5FA" stop-opacity="0"/></radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B2B47"/><stop offset="1" stop-color="#132036"/></linearGradient>
+    <marker id="aG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#34D399"/></marker>
+    <marker id="aW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#F87171" fill-opacity="0.8"/></marker>
+  </defs>
+  <rect width="400" height="430" rx="18" fill="url(#bg)"/>
+  <circle cx="200" cy="238" r="172" fill="none" stroke="#34D399" stroke-opacity="0.55" stroke-width="1.5" stroke-dasharray="5 6"/>
+  <circle cx="200" cy="238" r="116" fill="#0F1A2E" stroke="#60A5FA" stroke-opacity="0.6" stroke-width="1.5"/>
+  <circle cx="200" cy="238" r="88" fill="url(#glowG)"/>
+  <circle cx="200" cy="238" r="58" fill="#34D399"/>
+  <text x="200" y="102" text-anchor="middle" fill="#E8EDF5" font-size="16" font-weight="700">The human</text>
+  <text x="200" y="121" text-anchor="middle" fill="#93A1B8" font-size="12.5" font-weight="400">accountable for the call</text>
+  <text x="200" y="156" text-anchor="middle" fill="#E8EDF5" font-size="15" font-weight="700">The architecture</text>
+  <text x="200" y="174" text-anchor="middle" fill="#93A1B8" font-size="12.5" font-weight="400">sets the boundaries</text>
+  <text x="200" y="240" text-anchor="middle" fill="#0B1324" font-size="17" font-weight="800">The AI</text>
+  <text x="200" y="259" text-anchor="middle" fill="#0B1324" font-size="12" font-weight="600">does the drafting</text>
 </svg>

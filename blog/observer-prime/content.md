@@ -5,56 +5,38 @@ Summary: Building a multi-agent workflow engine proved that real autonomy needs 
 
 ## System Drift
 
-In the world of automation, we are hearing a lot about **multi-agent systems**. The idea is simple. Instead of using one AI chatbot, you deploy a team of specialized digital assistants to handle a long, multi-step project for you, such as doing deep research, auditing a legal contract or building a structured operating plan.
+Multi-agent systems promise a lot. Instead of one AI chatbot, a team of specialized AI assistants takes on a long, multi-step project, such as deep research, auditing a contract or building a structured operating plan.
 
-It sounds incredible in theory. But when you run these automated AI teams over a long stretch of work, you hit a major real-world bottleneck, **system drift**.
+Run those agents over a long stretch of work, though, and they hit a real bottleneck, **system drift**. The further they go without a human checking the work, the more they lose focus. A small mistake at step two compounds into a flawed final product by step ten.
 
-Think of it like a game of telephone. The further an AI team progresses through a project without a human checking its work, the more it loses focus. A small mistake at step two compounds into a completely flawed final product by step ten.
+I built **Observer Prime**, a local workflow framework, to solve exactly this. Let AI do the heavy lifting without losing control of the outcome.
 
-I built a local framework called **Observer Prime** to tackle exactly this problem. The goal was simple. Let AI do the exhausting heavy lifting without losing control of the final outcome.
+## Sequential by Design
 
-## Tearing Down the Complex Version
+Running several agents in parallel and reviewing all their output at once creates a heavy review burden, and it hides where an error first crept in. So Observer Prime runs as a sequential pipeline. Each step produces one output, a person approves it, and only then does the next step begin.
 
-When I first started this project, I fell into a classic engineering trap. I built a beautifully complex parallel workbench.
-
-When you gave the system a topic, five AI agents went to work at the same moment. One handled raw research, another explored angles, a third studied audience psychology, a fourth shaped the story and a fifth played the skeptic. A synthesis step then pulled all of it together.
-
-On paper, it was a highly impressive design. But once it was put to real use, the verdict was immediate. It overwhelmed the operator. Reviewing ten boards of competing AI opinions at the same time felt like a massive cognitive burden, not a helpful tool.
-
-So I made the call to scrap that version entirely. I tore it down and replaced it with a simple, sequential pipeline that handles one decision at a time.
-
-The leadership lesson here is vital. An architecture that looks brilliant in a technical presentation is useless if it paralyzes the person using it. Real discipline means having the courage to abandon an elegant, over-engineered pipeline when a simpler approach works better.
-
-![The parallel workbench against the sequential pipeline that replaced it](v1-vs-wizard.svg "aside")
+![Parallel agents pile up output to review, a sequential pipeline approves one step at a time](sequential.svg)
 
 ## Designing the Guardrails
 
-To make the system dependable, the focus shifted from adding features to enforcing three simple operating boundaries.
+Three simple boundaries make the system dependable.
 
-- **One step at a time.** The workflow is broken into clear milestones. The AI proposes options for one specific step, and the human decides before anything moves forward.
-- **Context budgets.** Instead of drowning the AI in a sea of data, each step is fed only the exact, minimal information its task needs. This keeps the output focused and keeps computing costs down.
-- **The approval gateway.** The AI does the grunt work, but a human operator is the mandatory gatekeeper. If you change your mind about a decision made at step one, the system automatically clears everything after it, so later work can never contradict the foundational plan.
+- **One step at a time.** The AI proposes options for one step, and the human decides before anything moves forward.
+- **Context budgets.** Each step gets only the minimal information its task needs, which keeps output focused and costs down.
+- **The approval gateway.** A human is the mandatory gatekeeper. Change a decision at step one, and everything after it is cleared, so later work never contradicts the plan.
 
-![One governed step at a time, with a human approval gate before anything moves on](framework.svg)
+![The three guardrails](guardrails.svg "aside")
 
 ## Testing for Failure
 
-A truly reliable system can't only be tested with tasks it knows how to handle. It has to be deliberately pushed into the situations where things go wrong.
-
-To do that safely without running up technology bills, I built a simulated AI provider into the testing setup. It made it possible to run 36 automated checks completely offline, at no cost.
-
-The objective wasn't just to see whether the AI could generate answers. The real goal was to prove the workflow itself holds up. Every step unlocks in the right order, changing an early decision cleanly clears everything after it, and a project's files are never left half-written, because every save is queued and completed in one piece.
-
-![What the testing setup guarantees](testing.svg "aside")
+A simulated AI provider built into the testing setup runs 36 automated checks completely offline, at no cost. They prove the workflow holds up. Steps unlock in the right order, changing an early decision clears everything after it, and every save completes in one piece, so a project's files are never left half-written.
 
 ## Takeaway
 
-Building this framework proved a vital principle for how we should implement automation anywhere in a business.
-
 - **The AI** handles the repetitive, high-volume drafting.
-- **The architecture** defines the strict boundaries of what data can be used.
-- **The human** keeps ultimate strategic accountability.
+- **The architecture** sets strict boundaries on what data can be used.
+- **The human** keeps strategic accountability.
 
-As technology moves deeper into specialized corporate functions, the goal can't be to hand complete, unchecked execution over to software. The real win lies in building intelligent systems that do the exhausting mechanical legwork, while keeping the human operator firmly in control of the final call.
+The goal isn't to hand unchecked execution over to software. It's to build systems that do the mechanical legwork while the person stays in control of the final call.
 
 ![Who owns what in a governed AI workflow](takeaway.svg "aside")
