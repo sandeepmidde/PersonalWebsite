@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 424" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#34D399"/></marker></defs>
+  <rect width="400" height="424" rx="18" fill="#0E1525"/>
+  <text x="24" y="42" fill="#34D399" font-size="18" font-weight="700">From topic to production pack</text>
+  <rect x="24" y="66" width="352" height="52" rx="12" fill="#172238" stroke="#2B3A57" stroke-width="1"/>
+  <text x="200" y="98" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">A topic</text>
+  <line x1="118" y1="118" x2="118" y2="144" stroke="#34D399" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="24" y="146" width="188" height="66" rx="12" fill="#172238" stroke="#2B3A57" stroke-width="1"/>
+  <text x="118.0" y="176.0" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">AI drafting wizard</text>
+  <text x="118.0" y="195.0" text-anchor="middle" fill="#A9B4C8" font-size="13" font-weight="400">one step at a time</text>
+  <rect x="240" y="146" width="136" height="66" rx="12" fill="#172238" stroke="#2B3A57" stroke-width="1"/>
+  <text x="308.0" y="176.0" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">Any provider</text>
+  <text x="308.0" y="195.0" text-anchor="middle" fill="#A9B4C8" font-size="12.5" font-weight="400">switch while running</text>
+  <line x1="214" y1="179" x2="238" y2="179" stroke="#34D399" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="118" y1="212" x2="118" y2="238" stroke="#34D399" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="24" y="240" width="188" height="66" rx="12" fill="#172238" stroke="#34D399" stroke-width="1.5"/>
+  <text x="118.0" y="270.0" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">Human approval</text>
+  <text x="118.0" y="289.0" text-anchor="middle" fill="#A9B4C8" font-size="13" font-weight="400">waits for your yes</text>
+  <rect x="240" y="240" width="136" height="66" rx="12" fill="#172238" stroke="#2B3A57" stroke-width="1"/>
+  <text x="308.0" y="270.0" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">Reopen a step</text>
+  <text x="308.0" y="289.0" text-anchor="middle" fill="#A9B4C8" font-size="12.5" font-weight="400">later steps clear</text>
+  <line x1="214" y1="273" x2="238" y2="273" stroke="#34D399" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="118" y1="306" x2="118" y2="332" stroke="#34D399" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="24" y="334" width="188" height="66" rx="12" fill="#172238" stroke="#2B3A57" stroke-width="1"/>
+  <text x="118.0" y="364.0" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">Production pack</text>
+  <text x="118.0" y="383.0" text-anchor="middle" fill="#A9B4C8" font-size="13" font-weight="400">Markdown export</text>
+  <rect x="240" y="334" width="136" height="66" rx="12" fill="#172238" stroke="#2B3A57" stroke-width="1"/>
+  <text x="308.0" y="364.0" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">Local files</text>
+  <text x="308.0" y="383.0" text-anchor="middle" fill="#A9B4C8" font-size="12.5" font-weight="400">JSON and Markdown</text>
+  <line x1="214" y1="367" x2="238" y2="367" stroke="#34D399" stroke-width="2" marker-end="url(#arr)"/>
+</svg>

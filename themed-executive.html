@@ -1379,11 +1379,11 @@
   <script>
     Hyphenopoly.config({
       require: { "en-us": "Supercalifragilisticexpialidocious" },
-      setup: { CORScredentials: "omit", hide: "none", selectors: { "p, li": {} } }
+      setup: { CORScredentials: "omit", hide: "none", selectors: { "p, .exp-bullets li, .cred-list li": {} } }
     });
     // For text the page adds after load (posts, cards)
     window.hyphenate = el => {
-      try { Hyphenopoly.hyphenators["en-us"].then(h => h(el, "p, li")).catch(() => {}); } catch (e) {}
+      try { Hyphenopoly.hyphenators["en-us"].then(h => h(el, "p, .exp-bullets li, .cred-list li")).catch(() => {}); } catch (e) {}
     };
   </script>
 </body>
