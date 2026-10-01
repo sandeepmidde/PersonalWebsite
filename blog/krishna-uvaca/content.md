@@ -1,4 +1,5 @@
-# Kṛṣṇa Uvāca, Architecture of Factual Grounding
+# Kṛṣṇa Uvāca: Decoding Cosmic Counsel
+Subtitle: Ancient Wisdom for Modern Life: Architecture of Factual Grounding
 Tags: Projects, AI
 Date: 2026-09-30
 Summary: Reliable AI isn't just about finding the right answer. It's about knowing when the evidence isn't enough.

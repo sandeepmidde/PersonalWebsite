@@ -1,4 +1,5 @@
-# Project Elara, Architecture of Knowledge Ingestion
+# Project Elara: Your Personalised OS
+Subtitle: Architecture of Knowledge Ingestion
 Tags: Projects, AI, Learning
 Date: 2026-09-23
 Summary: Save knowledge, then learn. Elara handles everything in between, reading, summarizing and connecting what you save.
