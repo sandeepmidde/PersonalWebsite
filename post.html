@@ -577,7 +577,9 @@
     function addTrackItem(section, src, alt, width, height) {
       const sec = document.createElement('div');
       sec.className = 'vsec';
-      const label = section > 0 ? track.heads[section - 1].textContent : (track.heads[0]?.textContent || '');
+      // The opening slot borrows the first heading only when the article starts with it
+      const opensWithHeading = track.body.firstElementChild === track.heads[0];
+      const label = section > 0 ? track.heads[section - 1].textContent : (opensWithHeading ? track.heads[0].textContent : '');
       sec.innerHTML = `<figure class="vfig">
           ${label ? `<p class="vfig-label">${esc(label)}</p>` : ''}
           <button type="button" class="vzoom" aria-label="Enlarge figure${alt ? ': ' + esc(alt) : ''}">

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 472" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E3B23C"/></marker></defs>
+  <rect width="400" height="472" rx="18" fill="#0F1626"/>
+  <text x="24" y="42" fill="#E3B23C" font-size="18" font-weight="700">Without retrieval</text>
+  <rect x="24" y="66" width="352" height="58" rx="12" fill="#18223A" stroke="#2C3A58" stroke-width="1"/>
+  <text x="200" y="101" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">A hard question</text>
+  <line x1="200" y1="124" x2="200" y2="150" stroke="#E3B23C" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="24" y="152" width="352" height="66" rx="12" fill="#18223A" stroke="#2C3A58" stroke-width="1"/>
+  <text x="200" y="182" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">The model's memory alone</text>
+  <text x="200" y="203" text-anchor="middle" fill="#A9B4C8" font-size="13.5" font-weight="400">no source to check against</text>
+  <line x1="200" y1="218" x2="200" y2="244" stroke="#E3B23C" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="24" y="246" width="352" height="104" rx="12" fill="#18223A" stroke="#2C3A58" stroke-width="1"/>
+  <path d="M48,278 q18,-10 36,0 t36,0 t36,0 t36,0 t36,0 t36,0 t36,0 t36,0" fill="none" stroke="#5CC4CF" stroke-opacity="0.75" stroke-width="2"/>
+  <path d="M48,298 q18,-10 36,0 t36,0 t36,0 t36,0 t36,0 t36,0 t36,0 t36,0" fill="none" stroke="#5CC4CF" stroke-opacity="0.55" stroke-width="2"/>
+  <path d="M48,318 q18,-10 36,0 t36,0 t36,0 t36,0 t36,0 t36,0 t36,0 t36,0" fill="none" stroke="#5CC4CF" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="200" y="340" text-anchor="middle" fill="#A9B4C8" font-size="13.5" font-weight="400">ripples, glare and a blur of motion</text>
+  <line x1="200" y1="350" x2="200" y2="376" stroke="#E3B23C" stroke-width="2" marker-end="url(#arr)"/>
+  <rect x="24" y="378" width="352" height="70" rx="12" fill="#18223A" stroke="#E07A5F" stroke-width="1.5"/>
+  <text x="200" y="409" text-anchor="middle" fill="#F3F4F6" font-size="16" font-weight="700">A confident guess</text>
+  <text x="200" y="431" text-anchor="middle" fill="#E07A5F" font-size="13.5" font-weight="400">the arrow misses, the AI hallucinates</text>
+</svg>

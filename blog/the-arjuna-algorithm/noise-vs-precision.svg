@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 376" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#E3B23C"/></marker></defs>
+  <rect width="400" height="376" rx="18" fill="#0F1626"/>
+  <text x="24" y="42" fill="#E3B23C" font-size="18" font-weight="700">Noise versus precision</text>
+  <rect x="24" y="66" width="168" height="286" rx="12" fill="#18223A" stroke="#E07A5F" stroke-width="1.5"/>
+  <rect x="208" y="66" width="168" height="286" rx="12" fill="#18223A" stroke="#E3B23C" stroke-width="1.5"/>
+  <text x="108" y="100" text-anchor="middle" fill="#E07A5F" font-size="17" font-weight="700">Noise</text>
+  <text x="292" y="100" text-anchor="middle" fill="#E3B23C" font-size="17" font-weight="700">Precision</text>
+  <text x="108" y="122" text-anchor="middle" fill="#A9B4C8" font-size="13" font-weight="400">a model guessing</text>
+  <text x="292" y="122" text-anchor="middle" fill="#A9B4C8" font-size="13" font-weight="400">a model with RAG</text>
+  <text x="108" y="166" text-anchor="middle" fill="#F3F4F6" font-size="14" font-weight="400">Answers first</text>
+  <text x="292" y="166" text-anchor="middle" fill="#F3F4F6" font-size="14" font-weight="400">Retrieves first</text>
+  <line x1="40" y1="190" x2="176" y2="190" stroke="#2C3A58"/>
+  <line x1="224" y1="190" x2="360" y2="190" stroke="#2C3A58"/>
+  <text x="108" y="216" text-anchor="middle" fill="#F3F4F6" font-size="14" font-weight="400">Sounds sure of itself</text>
+  <text x="292" y="216" text-anchor="middle" fill="#F3F4F6" font-size="14" font-weight="400">Grounded in evidence</text>
+  <line x1="40" y1="240" x2="176" y2="240" stroke="#2C3A58"/>
+  <line x1="224" y1="240" x2="360" y2="240" stroke="#2C3A58"/>
+  <text x="108" y="266" text-anchor="middle" fill="#F3F4F6" font-size="14" font-weight="400">Invents what it lacks</text>
+  <text x="292" y="266" text-anchor="middle" fill="#F3F4F6" font-size="14" font-weight="400">Admits what it lacks</text>
+  <line x1="40" y1="290" x2="176" y2="290" stroke="#2C3A58"/>
+  <line x1="224" y1="290" x2="360" y2="290" stroke="#2C3A58"/>
+  <text x="108" y="316" text-anchor="middle" fill="#F3F4F6" font-size="14" font-weight="400">Cannot show a source</text>
+  <text x="292" y="316" text-anchor="middle" fill="#F3F4F6" font-size="14" font-weight="400">Shows its source</text>
+</svg>
