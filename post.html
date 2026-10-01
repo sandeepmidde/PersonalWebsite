@@ -499,7 +499,6 @@
     }
     const slug = window.POST_SLUG || querySlug;
     const postUrl = s => `posts/${encodeURIComponent(s)}/`;
-    const coverUrl = s => `blog/${encodeURIComponent(s)}/cover.png`;
     // Same split as the blog cards: "Name, catchphrase" -> headline + tagline
     function splitTitle(title, subtitle) {
       if (subtitle) return { name: title, tagline: subtitle };   // explicit "Subtitle:" line in the post
@@ -520,8 +519,12 @@
       .then(renderPost)
       .catch(showNotFound);
 
+    // Titles arrive HTML-escaped from the build ("Archer&#39;s"), so decode before using them as plain text
+    const decodeHtml = s => { const t = document.createElement('textarea'); t.innerHTML = s; return t.value; };
+
     function renderPost(post) {
-      document.title = `${post.title.replace(/&amp;/g, '&')} · Sandeep Midde`;
+      const plainTitle = decodeHtml(post.title);
+      document.title = `${plainTitle} · Sandeep Midde`;
       const { name, tagline } = splitTitle(post.title, post.subtitle);
       document.getElementById('postTitle').innerHTML = esc(name);
       const subEl = document.getElementById('postSubtitle');
@@ -546,16 +549,16 @@
 
       const coverImg = document.getElementById('postCoverImg');
       coverImg.onload = () => { document.getElementById('postCover').hidden = false; };
-      coverImg.src = post.cover || coverUrl(post.slug);
+      if (post.cover) coverImg.src = post.cover;
 
       document.getElementById('loadingState').hidden = true;
       document.getElementById('postView').hidden = false;
 
       buildToc(body);
-      buildTrack(body, post.cover || coverUrl(post.slug));
+      buildTrack(body, post.cover);
       loadMore(post);
       loadStats(post.slug);
-      setupShare(post.title.replace(/&amp;/g, '&'));
+      setupShare(plainTitle);
       loadGiscus(post.slug);
       window.hyphenate?.(document.getElementById('postView'));
     }

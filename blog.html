@@ -381,7 +381,6 @@
 
     // ---- Posts ----
     const postUrl = slug => `posts/${encodeURIComponent(slug)}/`;
-    const coverUrl = slug => `blog/${encodeURIComponent(slug)}/cover.png`;
     const esc = s => String(s ?? '').replace(/&(?!\w+;|#\d+;)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     const formatDate = iso => new Date(iso + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
@@ -406,7 +405,7 @@
       return `
         <div class="cover">
           <div class="cover-fallback" aria-hidden="true"><span class="cf-tag">${esc(tag)}</span><span class="cf-title">${esc(splitTitle(post.title, post.subtitle).name)}</span></div>
-          <img src="${post.cover || coverUrl(post.slug)}" alt="" loading="lazy" style="position:relative" onerror="this.remove()">
+          ${post.cover ? `<img src="${post.cover}" alt="" loading="lazy" style="position:relative" onerror="this.remove()">` : ''}
         </div>`;
     }
 
