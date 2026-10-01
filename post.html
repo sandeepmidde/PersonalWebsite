@@ -106,12 +106,8 @@
     a.pill:hover { background: var(--accent); color: var(--on-accent); }
     /* Roomier tracking than the homepage display type, so long titles don't read as one block */
     .post-title { font-family: var(--ff-display); font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: var(--display-weight); line-height: 1.2; letter-spacing: 0.005em; word-spacing: 0.06em; margin-bottom: 0.6rem; }
-    /* "Name, tagline" titles: name, accent bar, then the tagline in a lighter weight on the same line */
-    .t-rest { display: inline-block; }
-    .t-sep { display: inline-block; width: 0.75em; height: 3px; border-radius: 3px; background: var(--accent); vertical-align: 0.32em; margin: 0 0.5em 0 0.4em; }
-    .post-title.wrapped .t-rest { display: block; margin-top: 0.15em; }
-    .post-title.wrapped .t-sep { margin-left: 0; }
-    .t-sub { font-size: 0.6em; font-weight: 500; color: var(--text-3); letter-spacing: 0.01em; }
+    /* "Name, tagline" titles: the name, with the tagline stacked below it in a muted weight */
+    .t-sub { display: block; font-size: 0.56em; font-weight: 500; color: var(--text-3); letter-spacing: 0.01em; line-height: 1.35; margin-top: 0.3em; }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .post-lede { font-size: 1.02rem; color: var(--text-3); line-height: 1.6; }
     .byline { display: flex; align-items: center; gap: 12px; }
@@ -519,20 +515,8 @@
       document.title = `${post.title.replace(/&amp;/g, '&')} · Sandeep Midde`;
       const { name, tagline } = splitTitle(post.title);
       document.getElementById('postTitle').innerHTML = tagline
-        ? `${esc(name)}<span class="sr-only">, </span><span class="t-rest"><span class="t-sep" aria-hidden="true"></span><span class="t-sub">${esc(tagline)}</span></span>`
+        ? `${esc(name)}<span class="sr-only">, </span><span class="t-sub">${esc(tagline)}</span>`
         : esc(post.title);
-      // When the tagline drops to its own line, start it flush left instead of indented
-      const fitTitle = () => {
-        const h1 = document.getElementById('postTitle'), rest = h1.querySelector('.t-rest');
-        if (!rest) return;
-        h1.classList.remove('wrapped');
-        // Unwrapped, the tagline sits on the name's line; wrapped, it starts a full line lower
-        const lineHeight = parseFloat(getComputedStyle(h1).lineHeight);
-        h1.classList.toggle('wrapped', rest.getBoundingClientRect().top - h1.getBoundingClientRect().top > lineHeight * 0.7);
-      };
-      fitTitle();
-      document.fonts?.ready.then(fitTitle);
-      window.addEventListener('resize', fitTitle);
       document.getElementById('postTags').innerHTML = (post.tags || [])
         .map(t => `<a class="pill" href="blog.html">${esc(t)}</a>`).join('');
       if (post.summary) {
