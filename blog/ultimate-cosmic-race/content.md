@@ -2,7 +2,7 @@
 Subtitle: Viewing data fragmentation, semantic search, and AI indexing through the lens of a legendary journey.
 Tags: AI, Explainers
 Date: 2026-10-02
-Summary: Asked to search the entire universe, one ancient legend showed that working smarter always beats running faster.
+Summary: Viewing data fragmentation, semantic search, and AI indexing through the lens of a legendary journey.
 
 ## From Target to Map
 

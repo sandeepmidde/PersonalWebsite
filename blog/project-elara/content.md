@@ -2,7 +2,7 @@
 Subtitle: A smart personal workspace built to turn your bookmarked articles, PDFs, and messy digital clutter into a structured library.
 Tags: Projects, AI, Learning
 Date: 2026-09-23
-Summary: Save knowledge, then learn. Elara handles everything in between, reading, summarizing and connecting what you save.
+Summary: A smart personal workspace built to turn your bookmarked articles, PDFs, and messy digital clutter into a structured library.
 
 We all fall into the digital accumulation trap. We save interesting articles, download PDFs and screenshot complex diagrams, promising to read them later. Sorting all of it into folders and tags feels like a chore, so we never do it, and the material sits there, buried and forgotten.
 

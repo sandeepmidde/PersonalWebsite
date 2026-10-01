@@ -2,7 +2,7 @@
 Subtitle: Ancient Wisdom for Modern Life: Architecture of Factual Grounding
 Tags: Projects, AI
 Date: 2026-09-30
-Summary: Reliable AI isn't just about finding the right answer. It's about knowing when the evidence isn't enough.
+Summary: Ancient Wisdom for Modern Life: Architecture of Factual Grounding
 
 The idea came from a simple moment at home. A conversation needed the exact reference to a particular piece of wisdom in the Bhagavad Gita, and finding the precise wording meant digging back through the text by hand.
 

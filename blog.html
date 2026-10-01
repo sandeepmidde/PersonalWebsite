@@ -395,7 +395,9 @@
     }
     const headline = (post, tag) => {
       const { name, tagline } = splitTitle(post.title, post.subtitle);
-      return `<${tag}>${esc(name)}</${tag}>${tagline ? `<p class="post-tagline">${esc(tagline)}</p>` : ''}`;
+      // Skip the tagline line when the summary below already says the same thing
+      const showTagline = tagline && tagline !== (post.summary || '');
+      return `<${tag}>${esc(name)}</${tag}>${showTagline ? `<p class="post-tagline">${esc(tagline)}</p>` : ''}`;
     };
 
     // Cover image if the post folder has cover.png, else the navy title panel
