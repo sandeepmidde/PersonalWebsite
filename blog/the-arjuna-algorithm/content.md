@@ -3,15 +3,15 @@ Tags: AI, Explainers
 Date: 2026-10-01
 Summary: History's greatest archer mastered data retrieval using nothing but a bow and a pool of water.
 
-## The Context Shift
+## Why RAG Matters
 
 In the fast-moving world of Artificial Intelligence, the tech sector is anchored around a single three-letter acronym. **RAG**, or Retrieval-Augmented Generation.
 
 At its core, RAG is the architecture that stops AI from guessing. It lets an AI model search through a massive ocean of data, filter out background noise and isolate the exact fact required to answer a question accurately.
 
-While it sounds like cutting-edge 21st-century science, the underlying logic is thousands of years old. Tucked inside the ancient Indian epic, the **Mahabharata**, is the story of a legendary warrior prince named **Arjuna**. His most famous test explains exactly how modern engineering closes the AI reliability gap today.
+While it sounds like cutting-edge 21st-century science, the underlying logic is thousands of years old. History's greatest archer mastered data retrieval using nothing but a bow and a pool of water. Tucked inside the ancient Indian epic, the **Mahabharata**, is the story of a legendary warrior prince named **Arjuna**. His most famous test explains exactly how modern engineering closes the AI reliability gap today.
 
-## The Hallucination Pool
+## Hallucination Pool
 
 The story opens at a grand royal tournament where the finest archers gather to compete. The challenge set before them appears impossible. Pierce the eye of a rotating wooden fish suspended high up on a towering pole.
 
@@ -23,7 +23,7 @@ This is exactly what happens when a standard large language model tries to answe
 
 ![Without retrieval, the model guesses](no-retrieval.svg "aside")
 
-## The Precision Shot
+## Precision Shot
 
 Then Arjuna steps forward.
 
@@ -49,7 +49,7 @@ While other warriors fought with wild, unpredictable swings, Arjuna fought with 
 
 ![Noise versus precision](noise-vs-precision.svg "aside")
 
-## The Archer's Blueprint
+## Archer's Blueprint
 
 Today, software teams are building digital Arjunas. With RAG, they are training models to stop generating noise and start operating like legendary archers. They are building systems that look into a vast pool of information, filter out the ripples of distraction and answer only from the evidence they find.
 
