@@ -1,14 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 410" font-family="Segoe UI, Helvetica, Arial, sans-serif">
-  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E3B23C"/></marker></defs>
-  <rect width="400" height="410" rx="18" fill="#14151B"/>
-  <text x="24" y="42" fill="#E3B23C" font-size="18" font-weight="700">Structure around the model</text>
-  <rect x="24" y="66" width="352" height="320" rx="16" fill="#1E1F27" stroke="#E3B23C" stroke-width="1.5" stroke-dasharray="6 5"/>
-  <text x="200" y="98" text-anchor="middle" fill="#F3F4F6" font-size="17" font-weight="700">The guardrails</text>
-  <text x="200" y="120" text-anchor="middle" fill="#A6A8B3" font-size="14">define where it can go</text>
-  <rect x="50" y="142" width="300" height="220" rx="14" fill="#14151B" stroke="#3A3B45"/>
-  <text x="200" y="174" text-anchor="middle" fill="#F3F4F6" font-size="17" font-weight="700">The architecture</text>
-  <text x="200" y="196" text-anchor="middle" fill="#A6A8B3" font-size="14">decides what it can use</text>
-  <rect x="78" y="220" width="244" height="116" rx="12" fill="#E3B23C"/>
-  <text x="200" y="268" text-anchor="middle" fill="#14151B" font-size="18" font-weight="800">The model</text>
-  <text x="200" y="292" text-anchor="middle" fill="#14151B" font-size="14" font-weight="600">provides the intelligence</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 430" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16141C"/><stop offset="1" stop-color="#1F1B22"/></linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#F2C04E" stop-opacity="0.4"/><stop offset="1" stop-color="#F2C04E" stop-opacity="0"/></radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E2920"/><stop offset="1" stop-color="#221E1A"/></linearGradient>
+    <marker id="aG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#F2C04E"/></marker>
+  </defs>
+  <rect width="400" height="430" rx="18" fill="url(#bg)"/>
+  <circle cx="200" cy="238" r="172" fill="none" stroke="#F2C04E" stroke-opacity="0.6" stroke-width="1.5" stroke-dasharray="5 6"/>
+  <circle cx="200" cy="238" r="116" fill="#1B1820" stroke="#E3963C" stroke-opacity="0.6" stroke-width="1.5"/>
+  <circle cx="200" cy="238" r="90" fill="url(#glow)"/>
+  <circle cx="200" cy="238" r="58" fill="#F2C04E"/>
+  <text x="200" y="102" text-anchor="middle" fill="#F5F1E6" font-size="16" font-weight="700">The guardrails</text>
+  <text x="200" y="121" text-anchor="middle" fill="#B5AE9C" font-size="12.5" font-weight="400">define where it can go</text>
+  <text x="200" y="156" text-anchor="middle" fill="#F5F1E6" font-size="15" font-weight="700">The architecture</text>
+  <text x="200" y="174" text-anchor="middle" fill="#B5AE9C" font-size="12.5" font-weight="400">decides what it can use</text>
+  <text x="200" y="240" text-anchor="middle" fill="#141218" font-size="16" font-weight="800">The model</text>
+  <text x="200" y="259" text-anchor="middle" fill="#141218" font-size="12" font-weight="600">the intelligence</text>
 </svg>

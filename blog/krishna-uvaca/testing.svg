@@ -1,17 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 410" font-family="Segoe UI, Helvetica, Arial, sans-serif">
-  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#E3B23C"/></marker></defs>
-  <rect width="400" height="410" rx="18" fill="#14151B"/>
-  <text x="24" y="42" fill="#E3B23C" font-size="18" font-weight="700">What the stress tests showed</text>
-  <rect x="24" y="66" width="352" height="96" rx="12" fill="#1E1F27" stroke="#3A3B45" stroke-width="1"/>
-  <text x="42" y="126" fill="#E3B23C" font-size="34" font-weight="800">~500</text>
-  <text x="148" y="109" fill="#F3F4F6" font-size="14.5">test conversations, rerun</text>
-  <text x="148" y="131" fill="#A6A8B3" font-size="14">after every prompt change</text>
-  <rect x="24" y="178" width="352" height="96" rx="12" fill="#1E1F27" stroke="#3A3B45" stroke-width="1"/>
-  <text x="42" y="238" fill="#E3B23C" font-size="34" font-weight="800">~88%</text>
-  <text x="148" y="221" fill="#F3F4F6" font-size="14.5">answers landed on relevant,</text>
-  <text x="148" y="243" fill="#A6A8B3" font-size="14">correctly cited verses</text>
-  <rect x="24" y="290" width="352" height="96" rx="12" fill="#1E1F27" stroke="#E3B23C" stroke-width="1.5"/>
-  <text x="42" y="350" fill="#E3B23C" font-size="34" font-weight="800">0</text>
-  <text x="148" y="333" fill="#F3F4F6" font-size="14.5">invented verses or references</text>
-  <text x="148" y="355" fill="#A6A8B3" font-size="14">found in all that testing</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 422" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16141C"/><stop offset="1" stop-color="#1F1B22"/></linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#F2C04E" stop-opacity="0.4"/><stop offset="1" stop-color="#F2C04E" stop-opacity="0"/></radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E2920"/><stop offset="1" stop-color="#221E1A"/></linearGradient>
+    <marker id="aG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#F2C04E"/></marker>
+  </defs>
+  <rect width="400" height="422" rx="18" fill="url(#bg)"/>
+  <text x="28" y="40" fill="#F2C04E" font-size="11.5" font-weight="800" letter-spacing="1.6">WHAT THE STRESS TESTS SHOWED</text>
+  <rect x="28" y="62" width="344" height="98" rx="16" fill="url(#tile)" stroke="#3A3428" stroke-width="1"/>
+  <text x="48" y="125" text-anchor="start" fill="#F2C04E" font-size="36" font-weight="800">~500</text>
+  <text x="164" y="106" text-anchor="start" fill="#F5F1E6" font-size="14.5" font-weight="400">test conversations,</text>
+  <text x="164" y="128" text-anchor="start" fill="#B5AE9C" font-size="13.5" font-weight="400">rerun on every prompt change</text>
+  <rect x="28" y="180" width="344" height="98" rx="16" fill="url(#tile)" stroke="#3A3428" stroke-width="1"/>
+  <text x="48" y="243" text-anchor="start" fill="#F2C04E" font-size="36" font-weight="800">~88%</text>
+  <text x="164" y="224" text-anchor="start" fill="#F5F1E6" font-size="14.5" font-weight="400">answers on relevant,</text>
+  <text x="164" y="246" text-anchor="start" fill="#B5AE9C" font-size="13.5" font-weight="400">correctly cited verses</text>
+  <rect x="28" y="298" width="344" height="98" rx="16" fill="url(#tile)" stroke="#4ADE80" stroke-width="2"/>
+  <text x="48" y="361" text-anchor="start" fill="#4ADE80" font-size="36" font-weight="800">0</text>
+  <text x="164" y="342" text-anchor="start" fill="#F5F1E6" font-size="14.5" font-weight="400">invented verses or</text>
+  <text x="164" y="364" text-anchor="start" fill="#B5AE9C" font-size="13.5" font-weight="400">references found</text>
 </svg>

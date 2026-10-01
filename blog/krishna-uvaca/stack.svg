@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 570" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16141C"/><stop offset="1" stop-color="#1F1B22"/></linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#F2C04E" stop-opacity="0.4"/><stop offset="1" stop-color="#F2C04E" stop-opacity="0"/></radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E2920"/><stop offset="1" stop-color="#221E1A"/></linearGradient>
+    <marker id="aG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#F2C04E"/></marker>
+  </defs>
+  <rect width="400" height="570" rx="18" fill="url(#bg)"/>
+  <text x="28" y="40" fill="#F2C04E" font-size="11.5" font-weight="800" letter-spacing="1.6">HOW AN ANSWER IS MADE</text>
+  <rect x="28" y="60" width="72" height="72" rx="18" fill="url(#tile)" stroke="#3A3428"/>
+  <g transform="translate(64 96)"><path d="M-22,-14 h44 a6,6 0 0 1 6,6 v18 a6,6 0 0 1 -6,6 h-28 l-10,9 v-9 h-6 a6,6 0 0 1 -6,-6 v-18 a6,6 0 0 1 6,-6 z" fill="#B5AE9C" fill-opacity="0.25" stroke="#B5AE9C" stroke-width="2.4" stroke-linejoin="round"/><circle cx="-9" cy="1" r="2.6" fill="#B5AE9C"/><circle cx="0" cy="1" r="2.6" fill="#B5AE9C"/><circle cx="9" cy="1" r="2.6" fill="#B5AE9C"/></g>
+  <text x="120" y="92" text-anchor="start" fill="#F5F1E6" font-size="17" font-weight="700">Your question</text>
+  <text x="120" y="115" text-anchor="start" fill="#B5AE9C" font-size="13.5" font-weight="400">asked in the Softr app</text>
+  <line x1="64" y1="136" x2="64" y2="154" stroke="#F2C04E" stroke-width="2" marker-end="url(#aG)"/>
+  <rect x="28" y="158" width="72" height="72" rx="18" fill="url(#tile)" stroke="#3A3428"/>
+  <g transform="translate(64 194)" stroke="#F2C04E" stroke-width="2.6" fill="none"><circle cx="-14" cy="-10" r="7" fill="#F2C04E"/><circle cx="14" cy="-10" r="7"/><circle cx="0" cy="14" r="7" fill="#F2C04E" fill-opacity="0.5"/><path d="M-7,-10 H7 M10,-4 L4,8 M-10,-4 L-4,8"/></g>
+  <text x="120" y="190" text-anchor="start" fill="#F5F1E6" font-size="17" font-weight="700">Dify orchestration</text>
+  <text x="120" y="213" text-anchor="start" fill="#B5AE9C" font-size="13.5" font-weight="400">runs the retrieval loop</text>
+  <line x1="64" y1="234" x2="64" y2="252" stroke="#F2C04E" stroke-width="2" marker-end="url(#aG)"/>
+  <rect x="28" y="256" width="72" height="72" rx="18" fill="url(#tile)" stroke="#3A3428"/>
+  <g transform="translate(64 292)" stroke="#F2C04E" stroke-width="2.6" fill="none"><ellipse cx="0" cy="-14" rx="18" ry="6" fill="#F2C04E" fill-opacity="0.35"/><path d="M-18,-14 v28 c0,8 36,8 36,0 v-28"/><path d="M-18,0 c0,8 36,8 36,0"/></g>
+  <text x="120" y="288" text-anchor="start" fill="#F5F1E6" font-size="17" font-weight="700">Chroma and Airtable</text>
+  <text x="120" y="311" text-anchor="start" fill="#B5AE9C" font-size="13.5" font-weight="400">the source text</text>
+  <line x1="64" y1="332" x2="64" y2="350" stroke="#F2C04E" stroke-width="2" marker-end="url(#aG)"/>
+  <rect x="28" y="354" width="72" height="72" rx="18" fill="url(#tile)" stroke="#3A3428"/>
+  <g transform="translate(64 390)"><path d="M0,-22 L20,-14 V0 C20,12 10,19 0,23 C-10,19 -20,12 -20,0 V-14 Z" fill="#F2C04E" fill-opacity="0.25" stroke="#F2C04E" stroke-width="2.6" stroke-linejoin="round"/><path d="M-8,0 l6,6 l11,-12" fill="none" stroke="#F2C04E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="120" y="386" text-anchor="start" fill="#F5F1E6" font-size="17" font-weight="700">Guardrails</text>
+  <text x="120" y="409" text-anchor="start" fill="#B5AE9C" font-size="13.5" font-weight="400">source only, nothing beyond it</text>
+  <line x1="64" y1="430" x2="64" y2="460" stroke="#F2C04E" stroke-width="2" marker-end="url(#aG)"/>
+  <path d="M64,444 H289 V460" fill="none" stroke="#F2C04E" stroke-width="2" marker-end="url(#aG)"/>
+  <rect x="28" y="462" width="166" height="84" rx="16" fill="url(#tile)" stroke="#4ADE80" stroke-width="2"/>
+<circle cx="58" cy="504" r="15" fill="#4ADE80"/><path d="M51.25,504.3 l4.8,4.8 l8.7,-9.3" fill="none" stroke="#141218" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round"/>  <text x="84" y="500" text-anchor="start" fill="#F5F1E6" font-size="15" font-weight="700">Cited verse</text>
+  <text x="84" y="520" text-anchor="start" fill="#B5AE9C" font-size="12.5" font-weight="400">answer + source</text>
+  <rect x="206" y="462" width="166" height="84" rx="16" fill="url(#tile)" stroke="#F2C04E" stroke-width="2"/>
+  <circle cx="236" cy="504" r="15" fill="#F2C04E"/>  <text x="236" y="511" text-anchor="middle" fill="#141218" font-size="19" font-weight="800">?</text>
+  <text x="262" y="500" text-anchor="start" fill="#F5F1E6" font-size="15" font-weight="700">I don't know</text>
+  <text x="262" y="520" text-anchor="start" fill="#B5AE9C" font-size="12.5" font-weight="400">source is silent</text>
+</svg>
