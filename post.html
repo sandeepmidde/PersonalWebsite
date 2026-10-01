@@ -96,13 +96,7 @@
     }
     /* Header: one metadata row (back link, topics, date, read time), then a full-width title block */
     .head-inner { width: 100%; text-align: center; }   /* header block is centred on the page */
-    .head-top {
-      /* Bar at the base of the header: back link and topics on the left, date and read time on the right */
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem 1rem;
-      margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px solid var(--border);
-      font-family: var(--ff-mono); font-size: 0.75rem; color: var(--text-4); text-align: left;
-    }
-    .head-left { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1rem; }
+    .head-back { text-align: left; margin-bottom: 0.9rem; }   /* back link pinned to the top-left of the container */
     .back-link { display: inline-flex; align-items: center; gap: 7px; font-family: var(--ff-body); font-size: 0.875rem; font-weight: 500; color: #475569; transition: color 0.2s; }
     .back-link i { font-size: 0.7rem; transition: transform 0.2s; }
     .back-link:hover { color: var(--accent-text); }
@@ -110,9 +104,8 @@
     .pills { display: flex; flex-wrap: wrap; gap: 6px; }
     .pill { font-family: var(--ff-body); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 10px; background: var(--accent-soft); color: var(--accent-text); border-radius: 100px; }
     a.pill:hover { background: var(--accent); color: var(--on-accent); }
-    .head-meta { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; text-align: right; }
-    .head-date { display: inline-flex; align-items: center; gap: 8px; }
-    .head-meta i { font-size: 0.7rem; margin-right: 3px; }
+    .post-meta-line { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 0.5rem; font-family: var(--ff-mono); font-size: 0.75rem; color: #64748B; }
+    .post-meta-line i { font-size: 0.7rem; margin-right: 4px; }
     .post-title { font-family: var(--ff-display); font-size: 1.875rem; font-weight: 800; color: #0F172A; line-height: 1.25; letter-spacing: -0.025em; }
     .post-subtitle { font-size: 1.125rem; font-weight: 500; color: #64748B; line-height: 1.5; margin: 0.5rem 0 0; text-align: center; }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -122,7 +115,7 @@
     .byline-meta { font-size: 0.8rem; color: var(--text-4); display: flex; gap: 8px; flex-wrap: wrap; }
 
     /* ============ LAYOUT ============ */
-    /* Three columns: visual track (left) | article | contents, author, browse (right). Both rails stick. */
+    /* Three columns: visual track (left) | article | contents, topics, author (right). Both rails stick. */
     :root { --rail-l: 300px; --rail-r: 250px; --col-gap: 2.5rem; }
     .post-layout {
       display: grid; grid-template-columns: var(--rail-l) minmax(0, 1fr) var(--rail-r); grid-template-areas: "left main right";
@@ -212,15 +205,9 @@
     .toc a { display: block; font-size: 0.85rem; color: var(--text-3); line-height: 1.45; padding: 6px 0 6px 14px; margin-left: -2px; border-left: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
     .toc a:hover { color: var(--text); }
     .toc a.active { color: var(--accent-text); border-left-color: var(--accent); font-weight: 600; }
-    /* More blogs: title with its tagline beneath, one even block per post */
-    .browse { list-style: none; }
-    .browse li + li { border-top: 1px solid var(--line); }
-    .browse a { display: block; padding: 0.7rem 0; }
-    .browse li:first-child a { padding-top: 0.15rem; }
-    .browse li:last-child a { padding-bottom: 0.1rem; }
-    .browse-name { display: block; font-family: var(--ff-display); font-size: 0.9rem; font-weight: 600; line-height: 1.35; color: var(--text); transition: color 0.2s; }
-    .browse-tagline { display: block; margin-top: 0.15rem; font-size: 0.78rem; line-height: 1.4; color: var(--text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .browse a:hover .browse-name { color: var(--accent-text); }
+    .side-divider { border: none; border-top: 1px solid var(--border); margin: 0.25rem 0; }
+    .toc-card[hidden] + .side-divider, .tags-card[hidden] + .side-divider { display: none; }
+    .tags-card .pills { gap: 8px; }
     .author-card { background: var(--band-bg); color: var(--band-text); border-color: var(--band-bg); }
     .author-card .block-label { color: var(--band-accent); }
     .author-card .byline { margin-bottom: 0.9rem; }
@@ -302,7 +289,7 @@
       .mobile-menu { display: block; }
       .post-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "left" "main" "right"; }
       .sidebar { position: static; margin-top: 2.5rem; }
-      .toc-card, .browse-card { display: none; }
+      .toc-card, .toc-card + .side-divider { display: none; }
     }
     @media (max-width: 768px) {
       .container { padding: 0 16px; }
@@ -311,7 +298,6 @@
       .post-cover { display: none; }
       .prose { font-size: 1rem; }
       .prose h2 { font-size: 1.4rem; }
-      .head-date { display: none; }
       .share { margin-left: 0; width: 100%; }
       .more { padding: 44px 0 56px; }
       .more-grid { grid-template-columns: 1fr; gap: 1rem; }
@@ -358,15 +344,10 @@
       <header class="post-head">
         <div class="container">
           <div class="head-inner">
+            <div class="head-back"><a href="blog.html" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Blogs</a></div>
             <h1 class="post-title" id="postTitle"></h1>
             <div class="post-subtitle" id="postSubtitle" hidden></div>
-            <div class="head-top">
-              <div class="head-left">
-                <a href="blog.html" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Blogs</a>
-                <div class="pills" id="postTags"></div>
-              </div>
-              <span class="head-meta"><span class="head-date"><time class="js-date"></time><span aria-hidden="true">·</span></span><span><i class="far fa-clock" aria-hidden="true"></i><span class="js-read"></span></span></span>
-            </div>
+            <div class="post-meta-line"><time class="js-date"></time><span aria-hidden="true">·</span><span><i class="far fa-clock" aria-hidden="true"></i><span class="js-read"></span></span></div>
           </div>
         </div>
       </header>
@@ -414,10 +395,12 @@
               <p class="block-label">On this page</p>
               <ul class="toc" id="toc"></ul>
             </div>
-            <nav class="side-card browse-card" id="browseCard" aria-label="More blogs" hidden>
-              <p class="block-label">More blogs</p>
-              <div id="browseList"></div>
-            </nav>
+            <hr class="side-divider" aria-hidden="true">
+            <div class="side-card tags-card" id="tagsCard" hidden>
+              <p class="block-label">Topics</p>
+              <div class="pills" id="postTags"></div>
+            </div>
+            <hr class="side-divider" aria-hidden="true">
             <div class="side-card author-card">
               <p class="block-label">About the author</p>
               <div class="byline">
@@ -532,6 +515,7 @@
       subEl.hidden = !tagline;
       document.getElementById('postTags').innerHTML = (post.tags || [])
         .map(t => `<a class="pill" href="blog.html">${esc(t)}</a>`).join('');
+      document.getElementById('tagsCard').hidden = !(post.tags || []).length;
       document.querySelectorAll('.js-date').forEach(el => {
         el.setAttribute('datetime', post.date);
         el.textContent = formatDate(post.date);
@@ -665,21 +649,13 @@
     }
     lightbox.addEventListener('click', () => lightbox.close());
 
-    // ---- Related reading: sidebar list (all other posts, newest first) + two closest posts below ----
+    // ---- Related reading: the two closest posts below the article ----
     const topicLabel = p => esc((p.tags || []).slice(0, 2).join(' · ') || 'Article');
     function loadMore(post) {
       fetch('posts/posts-index.json').then(r => r.json()).then(posts => {
         const others = posts.filter(p => p.slug !== post.slug);
         if (!others.length) return;
 
-        document.getElementById('browseList').innerHTML =
-          `<ul class="browse">${others.slice(0, 6).map(p => {
-            // Tagline: the part after the comma in the title, else the post summary. Long ones end in an ellipsis.
-            const { name, tagline } = splitTitle(p.title, p.subtitle);
-            const sub = tagline || p.summary || p.excerpt || '';
-            return `<li><a href="${postUrl(p.slug)}" title="${esc(sub)}"><span class="browse-name">${esc(name)}</span>${sub ? `<span class="browse-tagline">${esc(sub)}</span>` : ''}</a></li>`;
-          }).join('')}</ul>`;
-        document.getElementById('browseCard').hidden = false;
 
         // Same-topic posts first, then newest
         const tags = new Set(post.tags || []);
@@ -812,7 +788,7 @@
     });
     // For text the page adds after load (posts, cards)
     window.hyphenate = el => {
-      try { Hyphenopoly.hyphenators["en-us"].then(h => h(el, "p, .prose li")).catch(() => {}); } catch (e) {}
+      try { Hyphenopoly.hyphenators.HTML.then(h => h(el, "p, .prose li")).catch(() => {}); } catch (e) {}
     };
   </script>
 </body>
