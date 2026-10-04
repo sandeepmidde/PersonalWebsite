@@ -1,6 +1,6 @@
 # Ultimate Cosmic Race: Decoding Vector Databases
 Subtitle: Viewing data fragmentation, semantic search, and AI indexing through the lens of a legendary journey.
-Tags: AI, Explainers
+Tags: AI, RAG, Stories
 Date: 2026-10-02
 Summary: Viewing data fragmentation, semantic search, and AI indexing through the lens of a legendary journey.
 

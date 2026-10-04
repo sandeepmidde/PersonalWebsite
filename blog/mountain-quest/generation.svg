@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 426" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1220"/><stop offset="1" stop-color="#14203A"/></linearGradient>
+    <radialGradient id="glowG" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#F2C04E" stop-opacity="0.45"/><stop offset="1" stop-color="#F2C04E" stop-opacity="0"/></radialGradient>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1C2A47"/><stop offset="1" stop-color="#152139"/></linearGradient>
+    <marker id="aG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#F2C04E"/></marker>
+  </defs>
+  <rect width="400" height="426" rx="18" fill="url(#bg)"/>
+  <text x="28" y="40" fill="#F2C04E" font-size="11.5" font-weight="800" letter-spacing="1.6">GENERATION</text>
+  <rect x="40" y="62" width="100" height="58" rx="8" fill="#A9B4C8" fill-opacity="0.15" stroke="#A9B4C8" stroke-width="1.8"/><line x1="50" y1="78" x2="130" y2="78" stroke="#A9B4C8" stroke-width="2.4" stroke-linecap="round"/><line x1="50" y1="89" x2="120" y2="89" stroke="#A9B4C8" stroke-width="2.4" stroke-linecap="round"/><line x1="50" y1="100" x2="130" y2="100" stroke="#A9B4C8" stroke-width="2.4" stroke-linecap="round"/><line x1="50" y1="111" x2="120" y2="111" stroke="#A9B4C8" stroke-width="2.4" stroke-linecap="round"/>
+  <rect x="150" y="62" width="100" height="58" rx="8" fill="#F2C04E" fill-opacity="0.25" stroke="#F2C04E" stroke-width="1.8"/><line x1="160" y1="78" x2="240" y2="78" stroke="#F2C04E" stroke-width="2.4" stroke-linecap="round"/><line x1="160" y1="89" x2="230" y2="89" stroke="#F2C04E" stroke-width="2.4" stroke-linecap="round"/><line x1="160" y1="100" x2="240" y2="100" stroke="#F2C04E" stroke-width="2.4" stroke-linecap="round"/><line x1="160" y1="111" x2="230" y2="111" stroke="#F2C04E" stroke-width="2.4" stroke-linecap="round"/>
+  <rect x="260" y="62" width="100" height="58" rx="8" fill="#A9B4C8" fill-opacity="0.15" stroke="#A9B4C8" stroke-width="1.8"/><line x1="270" y1="78" x2="350" y2="78" stroke="#A9B4C8" stroke-width="2.4" stroke-linecap="round"/><line x1="270" y1="89" x2="340" y2="89" stroke="#A9B4C8" stroke-width="2.4" stroke-linecap="round"/><line x1="270" y1="100" x2="350" y2="100" stroke="#A9B4C8" stroke-width="2.4" stroke-linecap="round"/><line x1="270" y1="111" x2="340" y2="111" stroke="#A9B4C8" stroke-width="2.4" stroke-linecap="round"/>
+  <text x="200" y="144" text-anchor="middle" fill="#A9B4C8" font-size="13" font-weight="400">retrieved passages</text>
+  <line x1="200" y1="154" x2="200" y2="184" stroke="#F2C04E" stroke-width="2.5" marker-end="url(#aG)"/>
+  <text x="214" y="174" fill="#F2C04E" font-size="13" font-weight="700">read</text>
+  <rect x="28" y="190" width="344" height="88" rx="18" fill="url(#tile)" stroke="#F2C04E" stroke-width="2"/>
+  <rect x="54" y="208" width="52" height="52" rx="10" fill="#F2C04E"/><text x="80" y="240" text-anchor="middle" fill="#0B1220" font-size="15" font-weight="800">LLM</text><line x1="66" y1="202" x2="66" y2="208" stroke="#F2C04E" stroke-width="2.4"/><line x1="66" y1="260" x2="66" y2="266" stroke="#F2C04E" stroke-width="2.4"/><line x1="80" y1="202" x2="80" y2="208" stroke="#F2C04E" stroke-width="2.4"/><line x1="80" y1="260" x2="80" y2="266" stroke="#F2C04E" stroke-width="2.4"/><line x1="94" y1="202" x2="94" y2="208" stroke="#F2C04E" stroke-width="2.4"/><line x1="94" y1="260" x2="94" y2="266" stroke="#F2C04E" stroke-width="2.4"/>
+  <text x="126" y="228" text-anchor="start" fill="#F1F4FA" font-size="17" font-weight="700">The generator</text>
+  <text x="126" y="251" text-anchor="start" fill="#A9B4C8" font-size="13.5" font-weight="400">keeps the facts, drops the rest</text>
+  <line x1="200" y1="282" x2="200" y2="312" stroke="#F2C04E" stroke-width="2.5" marker-end="url(#aG)"/>
+  <text x="214" y="302" fill="#F2C04E" font-size="13" font-weight="700">answer</text>
+  <path d="M40,320 h320 a10,10 0 0 1 10,10 v56 a10,10 0 0 1 -10,10 h-262 l-14,14 v-14 h-44 a10,10 0 0 1 -10,-10 v-56 a10,10 0 0 1 10,-10 z" fill="#F2C04E" fill-opacity="0.16" stroke="#F2C04E" stroke-width="2"/>
+  <circle cx="72" cy="358" r="16" fill="#3DD68C"/><path d="M64,358 l6,6 l11,-12" fill="none" stroke="#0B1220" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="102" y="352" text-anchor="start" fill="#F1F4FA" font-size="17" font-weight="700">A clear answer</text>
+  <text x="102" y="374" text-anchor="start" fill="#A9B4C8" font-size="13.5" font-weight="400">grounded in the passages</text>
+</svg>
