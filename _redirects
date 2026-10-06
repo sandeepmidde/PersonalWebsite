@@ -4,3 +4,25 @@
 /README.md  /  301
 /readme.md  /  301
 /README  /  301
+
+# Build and source files: not pages, so send visitors home
+/blog/:slug/content.md  /  301
+/blog/:slug/content.docx  /  301
+/package.json  /  301
+/package-lock.json  /  301
+/.gitignore  /  301
+/scripts/*  /  301
+
+# Old homepage designs, kept in git for reference only
+/themed-aurora  /  301
+/themed-aurora.html  /  301
+/themed-classic  /  301
+/themed-classic.html  /  301
+/themed-consultant  /  301
+/themed-consultant.html  /  301
+/themed-maverick  /  301
+/themed-maverick.html  /  301
+/themed-compare  /  301
+/themed-compare.html  /  301
+/index-backup  /  301
+/index-backup.html  /  301
