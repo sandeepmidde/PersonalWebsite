@@ -431,7 +431,6 @@
     .proj-card h3 { font-family: var(--ff-display); font-size: 1.2rem; font-weight: var(--display-weight); letter-spacing: -0.01em; margin-bottom: 0.5rem; color: var(--text); }
     .proj-card p { font-size: 0.9rem; color: var(--text-3); line-height: 1.65; flex: 1; }
     .proj-card { position: relative; }
-    .proj-stack { flex: none; display: flex; flex-wrap: wrap; gap: 3px 1.1em; margin: 0 0 0.85rem; font-family: var(--ff-mono); font-size: 0.68rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-4); }
     .proj-links { flex: none; margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; }
     .proj-link { font-size: 0.85rem; font-weight: 600; display: inline-flex; gap: 8px; align-items: center; color: var(--text); }
     .proj-link:hover { color: var(--accent-text); }
@@ -827,12 +826,12 @@
     /* AI Lab card titles match the blog: the part after the colon in a lighter, muted tone */
     .proj-title-rest { font-weight: 500; color: var(--text-3); }
 
-    /* AI Lab cards share row lines (subgrid), so label, title, stack, description, both proof
-       points and the links start at the same height in every card. Each card has 8 rows:
-       cover, then 7 body rows. */
+    /* AI Lab cards share row lines (subgrid), so label, title, description, both proof
+       points and the links start at the same height in every card. Each card has 7 rows:
+       cover, then 6 body rows. */
     @supports (grid-template-rows: subgrid) {
-      .proj-grid > .proj-card { display: grid; grid-row: span 8; grid-template-rows: subgrid; row-gap: 0; }
-      .proj-card > .proj-body { display: grid; grid-row: span 7; grid-template-rows: subgrid; row-gap: 0; }
+      .proj-grid > .proj-card { display: grid; grid-row: span 7; grid-template-rows: subgrid; row-gap: 0; }
+      .proj-card > .proj-body { display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; }
       .proj-card .proj-links { align-self: start; }
     }
   </style>
@@ -884,7 +883,7 @@
           </div>
           <div class="hero-stats" role="list" aria-label="Career highlights">
             <div role="listitem">
-              <div class="hero-stat-num">~20 yrs</div>
+              <div class="hero-stat-num">~20 Yrs</div>
               <div class="hero-stat-label">Enterprise delivery</div>
             </div>
             <div role="listitem">
@@ -893,7 +892,7 @@
             </div>
             <div role="listitem">
               <div class="hero-stat-num">99.8%</div>
-              <div class="hero-stat-label">Uptime, from 99.2%</div>
+              <div class="hero-stat-label">Platform availability</div>
             </div>
           </div>
           <div class="hero-socials">
@@ -945,7 +944,7 @@
           <div class="metric-cell">
             <div class="metric-num">30<span>+</span></div>
             <div class="metric-label">Teams in one practice</div>
-            <div class="metric-desc">Cross-location practice chaired</div>
+            <div class="metric-desc">Led across multiple locations</div>
           </div>
         </div>
       </div>
@@ -987,8 +986,8 @@
           <h3>Enterprise Resilience</h3>
           <p class="impact-text">Instituted an L2 support model with SLAs, runbooks, clear ownership and escalation paths, cutting MTTR by 30 to 60%. Made disaster recovery a rehearsed, twice-yearly routine coordinated across 8 teams.</p>
           <ul class="impact-stats">
-            <li><strong>99.8%</strong><span>Up from 99.2%</span></li>
-            <li><strong>3 to 5h</strong><span>Verified recovery</span></li>
+            <li><strong>99.8%</strong><span>Availability</span></li>
+            <li><strong>3-5 Hr</strong><span>Disaster recovery</span></li>
           </ul>
         </article>
         <article class="impact-card anim" id="impact-governance">
@@ -996,7 +995,7 @@
           <h3>Regulatory Data Governance</h3>
           <p class="impact-text">Institutionalized COSO-aligned data retention that enforces Fed and bank-mandated windows, with validation on every inbound file. Initiated the move of downstream feeds to governed API access ahead of an enterprise-wide mandate.</p>
           <ul class="impact-stats">
-            <li><strong>8 yrs</strong><span>Auditable trail</span></li>
+            <li><strong>8 Yrs</strong><span>Data retention</span></li>
             <li><strong>100%</strong><span>Files validated</span></li>
           </ul>
         </article>
@@ -1036,7 +1035,6 @@
           <div class="proj-body">
             <p class="proj-kind">Live RAG sandbox</p>
             <h3>Kṛṣṇa Uvāca: <span class="proj-title-rest">Decoding Cosmic Counsel</span></h3>
-            <div class="proj-stack"><span>Dify</span><span>Make.com</span><span>Chroma</span><span>Airtable</span><span>Softr</span></div>
             <p>Ancient Wisdom for Modern Life: Architecture of Factual Grounding</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> ~88% relevant, cited answers across ~500 test conversations</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Says "I don't know" instead of inventing verses</p>
@@ -1048,7 +1046,6 @@
           <div class="proj-body">
             <p class="proj-kind">Agentic workflow engine</p>
             <h3>Observer Prime: <span class="proj-title-rest">Unified Engine for Agentic Workflows</span></h3>
-            <div class="proj-stack"><span>Claude Code</span><span>Next.js 15</span><span>React 19</span><span>TypeScript</span><span>Vitest</span></div>
             <p>Building a multi-agent orchestration engine that runs complex projects without sacrificing human judgment.</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Central orchestrator owns every workflow rule</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> 36 automated tests on a zero-cost mock provider</p>
@@ -1060,7 +1057,6 @@
           <div class="proj-body">
             <p class="proj-kind">Knowledge ingestion engine</p>
             <h3>Project Elara: <span class="proj-title-rest">Your Personalised OS</span></h3>
-            <div class="proj-stack"><span>Claude Code</span><span>Next.js 16</span><span>TypeScript</span><span>Google Drive API</span></div>
             <p>A smart personal workspace built to turn your bookmarked articles, PDFs, and messy digital clutter into a structured library.</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> No vector database or agent framework needed</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Verified with real sign-in and live AI calls</p>
@@ -1097,7 +1093,7 @@
           <div class="principle-icon"><i class="fas fa-heart-pulse" aria-hidden="true"></i></div>
           <h3>Reliability is engineered</h3>
           <p>Checkpoint restart, resilient reprocessing, runbooks, and rehearsed failover. Failure paths are designed, not improvised.</p>
-          <p class="principle-proof">Proven by <a href="#impact-reliability">99.2% → 99.8% availability</a> · <a href="#impact-reliability">3 to 5h DR</a></p>
+          <p class="principle-proof">Proven by <a href="#impact-reliability">99.8% availability</a> · <a href="#impact-reliability">3-5 Hr disaster recovery</a></p>
         </article>
       </div>
     </div>
@@ -1151,10 +1147,10 @@
               <li>Eliminated a <strong>3-hour</strong> ERP bottleneck by directing a Python computation layer with Kafka consumption, bringing the workflow to <strong>under 2 minutes</strong></li>
               <li>Decommissioned a third-party intermediary, and the operational risk it carried, by architecting a direct <strong>Bloomberg BEAP</strong> integration from proof of concept to production, cutting rate-update latency by <strong>99%</strong></li>
               <li>Re-architected the GL allocation run feeding P&amp;L, isolating month-end rules and adding checkpoint restart, cutting daily runtime <strong>58%</strong> (3.5h → 1.5h)</li>
-              <li>Instituted a dedicated L2 operating model, cutting MTTR by <strong>30 to 60%</strong> and lifting availability from <strong>99.2% to 99.8%</strong></li>
+              <li>Instituted a dedicated L2 operating model, cutting MTTR by <strong>30 to 60%</strong> and lifting availability to <strong>99.8%</strong></li>
               <li>Led the organizational redesign into module-aligned pods on standardized CI/CD, moving releases from <strong>monthly to biweekly</strong> with <strong>20% fewer</strong> deployment incidents</li>
               <li>Won Finance CTO sponsorship for a build-versus-buy modernization strategy, cutting projected TCO from <strong>$4M to $1.2M</strong></li>
-              <li>Institutionalized disaster recovery <strong>every 6 months</strong> across 8 teams with a verified 3 to 5 hour recovery window, and architected <strong>COSO-aligned</strong> auditable data retention</li>
+              <li>Institutionalized disaster recovery <strong>every 6 months</strong> across 8 teams with a verified 3-5 Hr recovery window, and architected <strong>COSO-aligned</strong> auditable data retention</li>
               </ul>
             </details>
           </div>
