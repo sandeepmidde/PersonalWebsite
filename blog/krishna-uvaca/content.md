@@ -1,8 +1,8 @@
-# Kṛṣṇa Uvāca: Decoding Cosmic Counsel
-Subtitle: A Bhagavad Gita guide that answers only from the source text, cites every verse and admits when it does not know.
+# Kṛṣṇa Uvāca: Grounded Cosmic Counsel
+Subtitle: An AI-powered Bhagavad Gita guide built to stop hallucinations. It answers only from the source text and cites every verse.
 Tags: Projects, AI
 Date: 2026-09-30
-Summary: A Bhagavad Gita guide that answers only from the source text, cites every verse and admits when it does not know.
+Summary: An AI-powered Bhagavad Gita guide built to stop hallucinations. It answers only from the source text and cites every verse.
 
 The idea came from a simple moment at home. A conversation needed the exact reference to a particular piece of wisdom in the Bhagavad Gita, and finding the precise wording meant digging back through the text by hand.
 

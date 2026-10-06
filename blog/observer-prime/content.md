@@ -1,8 +1,8 @@
-# Observer Prime: Unified Engine for Agentic Workflows
-Subtitle: Building a multi-agent orchestration engine that runs complex projects without sacrificing human judgment.
+# Observer Prime: Unified Agentic Orchestration
+Subtitle: A multi-agent orchestration product that automates complex, multi-step workflows, with human checkpoints that preserve strategic judgment.
 Tags: Projects, AI
 Date: 2026-09-23
-Summary: Building a multi-agent orchestration engine that runs complex projects without sacrificing human judgment.
+Summary: A multi-agent orchestration product that automates complex, multi-step workflows, with human checkpoints that preserve strategic judgment.
 
 Multi-agent systems promise a lot. Instead of one AI chatbot, a team of specialized AI assistants takes on a long, multi-step project, such as deep research, auditing a contract or building a structured operating plan.
 
