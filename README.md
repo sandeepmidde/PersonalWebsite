@@ -16,8 +16,9 @@ counters.
 - **Status (as of 2026-10-06):** live. Homepage, blog, 8 posts, counters,
   comments, analytics, link previews, sitemap and structured data all work.
 
-> This README sits in the repo root, so Cloudflare serves it publicly at
-> `/README.md`. Keep secrets and private notes out of it.
+> `_redirects` sends `/README.md` to the homepage, so the site doesn't serve
+> this file. The GitHub repo is public (giscus needs that), so anyone can still
+> read it there. Keep secrets and private notes out of it.
 
 ---
 
@@ -74,7 +75,7 @@ Design rule: **`/blog` is the only post content you edit.** Everything in
 
 ```
 .
-├── _redirects               # Serves themed-executive.html at /, sends /index.html to /
+├── _redirects               # Serves themed-executive.html at /, sends /index.html and /README.md to /
 ├── themed-executive.html    # THE HOMEPAGE. Edit only this file for homepage changes
 ├── themed-*.html            # Older theme variants and themed-compare.html (noindex, unlisted)
 ├── index-backup.html        # Previous homepage, kept for reference (noindex)
