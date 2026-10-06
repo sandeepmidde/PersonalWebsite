@@ -653,7 +653,9 @@
     .principle-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--accent-text); margin-bottom: 1.1rem; }
     .principle h3 { font-family: var(--ff-display); font-size: 1.15rem; font-weight: var(--display-weight); color: var(--text); margin-bottom: 0.5rem; }
     .principle p { font-size: 0.92rem; color: var(--text-2); line-height: 1.6; flex: 1; }
-    .principle .principle-proof { flex: 0; margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--border); font-size: 0.78rem; font-weight: 600; color: var(--result); }
+    .principle .principle-proof { flex: 0; list-style: none; margin: 1rem 0 0; padding: 0.9rem 0 0; border-top: 1px solid var(--border); display: grid; gap: 0.45rem; font-size: 0.8rem; font-weight: 600; line-height: 1.4; color: var(--result); }
+    .principle-proof li { display: flex; gap: 0.55rem; align-items: baseline; }
+    .principle-proof li i { font-size: 0.7rem; flex: none; }
 
     /* Toolkit: executive first, hands-on second */
     .exec-toolkit { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: var(--r-lg); padding: 1.9rem; box-shadow: var(--shadow-sm); }
@@ -1073,27 +1075,27 @@
     <div class="container">
       <div class="section-header">
         <p class="section-label">Principles</p>
-        <h2 class="section-title">Three principles, <em>earned</em> the hard way.</h2>
+        <h2 class="section-title">Three core directives, <em>proven</em> through enterprise execution.</h2>
       </div>
       <p class="swipe-hint" aria-hidden="true">Swipe for more <i class="fas fa-arrow-right"></i></p>
       <div class="principle-grid">
         <article class="principle anim">
           <div class="principle-icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
-          <h3>Evaluate before committing</h3>
-          <p>The cheapest mistake is the one measured early. Cost models and evaluation harnesses come before budget is locked.</p>
-          <p class="principle-proof">Proven by <a href="#impact-cost">$4M → $1.2M TCO case</a> · <a href="#impact-ai">RAG go/no-go</a></p>
+          <h3>Strategic Capital Governance</h3>
+          <p>Championing rigorous valuation and risk modeling before budget allocation. Institutionalizes comprehensive evaluation frameworks early in the life cycle to safeguard enterprise margins and maximize ROI.</p>
+          <ul class="principle-proof"><li><i class="fas fa-check" aria-hidden="true"></i><a href="#impact-cost">Reduced Total Cost of Ownership (TCO) from $4M to $1.2M</a></li><li><i class="fas fa-check" aria-hidden="true"></i><a href="#impact-ai">Led a RAG feasibility evaluation before any spend was committed</a></li></ul>
         </article>
         <article class="principle anim">
           <div class="principle-icon"><i class="fas fa-building-shield" aria-hidden="true"></i></div>
-          <h3>Compliance is architecture</h3>
-          <p>Audit-readiness bolted on at the end is brittle. Build classification, validation, and access control in from the start, so the compliant path is the default.</p>
-          <p class="principle-proof">Proven by <a href="#impact-governance">COSO-aligned retention</a> · <a href="#impact-governance">Governed API access</a></p>
+          <h3>Compliance-First Architecture</h3>
+          <p>Eliminating retroactive, high-maintenance fixes by embedding regulatory safeguards natively. Integrates data classification, access control, and validation directly into foundational designs so compliance is the default.</p>
+          <ul class="principle-proof"><li><i class="fas fa-check" aria-hidden="true"></i><a href="#impact-governance">Enforced COSO-aligned data retention policies across systems</a></li><li><i class="fas fa-check" aria-hidden="true"></i><a href="#impact-governance">Initiated secure, governed API access for downstream data feeds</a></li></ul>
         </article>
         <article class="principle anim">
           <div class="principle-icon"><i class="fas fa-heart-pulse" aria-hidden="true"></i></div>
-          <h3>Reliability is engineered</h3>
-          <p>Checkpoint restart, resilient reprocessing, runbooks, and rehearsed failover. Failure paths are designed, not improvised.</p>
-          <p class="principle-proof">Proven by <a href="#impact-reliability">99.8% availability</a> · <a href="#impact-reliability">3-5 Hr disaster recovery</a></p>
+          <h3>Enterprise Resilience by Design</h3>
+          <p>Shifting operations from reactive troubleshooting to predictive, engineered stability. Systematizes fault-tolerant reprocessing and live failover protocols to protect business continuity.</p>
+          <ul class="principle-proof"><li><i class="fas fa-check" aria-hidden="true"></i><a href="#impact-reliability">Sustained 99.8% platform availability across enterprise operations</a></li><li><i class="fas fa-check" aria-hidden="true"></i><a href="#impact-reliability">Architected 3-5 hour disaster recovery via rehearsed failover drills</a></li></ul>
         </article>
       </div>
     </div>
