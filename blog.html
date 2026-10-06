@@ -38,6 +38,9 @@
        Heading-1 styled line (Word) — becomes the post title.
        Cards show the part before the first comma as the headline and the
        rest as a smaller tagline, so "Name, Catchy line" reads well.
+     - Optional: a line reading "Subtitle: one sentence" (Markdown only).
+       With it, the whole title is the headline and this line the tagline.
+       All current posts use "# Name: Hook" plus a Subtitle line.
      - Optional: a line reading "Tags: AI, Project Management" anywhere in
        the first few lines — becomes the topics this post is grouped under.
      - Optional: a line reading "Date: 2026-01-15" (YYYY-MM-DD) anywhere in
@@ -47,7 +50,8 @@
        - shown on the card and when the post is shared on LinkedIn etc.
      - Optional: a cover.png (1200x627) in the folder - the card image and
        the image shown in link previews. Without one, the card shows a navy
-       title panel instead.
+       title panel instead. Add a cover.webp (800x418) too: the cards use the
+       lighter webp, previews use the png. Full guide: README.md section 4.
      - Just write normally after that. Images: reference them by filename
        (Markdown: "![caption](photo.jpg)") or embed them directly (Word) —
        either way, drop the actual image file in the same folder.
