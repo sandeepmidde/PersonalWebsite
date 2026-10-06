@@ -75,7 +75,8 @@ Design rule: **`/blog` is the only post content you edit.** Everything in
 
 ```
 .
-├── _redirects               # Serves themed-executive.html at /, sends /index.html and /README.md to /
+├── _redirects               # Serves themed-executive.html at /. Sends README, raw post sources,
+│                            # build files and the old theme pages to / (see section 10)
 ├── themed-executive.html    # THE HOMEPAGE. Edit only this file for homepage changes
 ├── themed-*.html            # Older theme variants and themed-compare.html (noindex, unlisted)
 ├── index-backup.html        # Previous homepage, kept for reference (noindex)
@@ -364,8 +365,12 @@ Then open `http://localhost:8765/themed-executive.html` (homepage),
 | giscus | `post.html`, `loadGiscus()` | repo-id `R_kgDOUjW7gw`, category-id `DIC_kwDOUjW7g84DGElg`. The repo must stay public with Discussions on and the giscus app installed |
 | Web Analytics | Beacon script at the end of each page | Public token `53ef048b...` |
 
-**What's public:** every tracked file in the repo is served, including
-`/blog` sources, `/scripts` and this README. `Resume/Car.pdf`,
+**What's public:** every tracked file in the repo is deployed, but `_redirects`
+sends these to the homepage: `/README.md`, `/blog/<slug>/content.md` and
+`.docx`, `/scripts/*`, `package.json`, `package-lock.json`, `.gitignore`, the
+`themed-*` pages other than the homepage, and `index-backup`. Images in
+`/blog/<slug>/` stay reachable because the cards use them. Add a rule there
+for any new file that isn't meant to be a page. `Resume/Car.pdf`,
 `Resume/TargetResume.pdf` and `ref/` are gitignored. Keep new private files
 out of git.
 
