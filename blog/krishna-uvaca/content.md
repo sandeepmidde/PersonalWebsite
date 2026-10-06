@@ -1,8 +1,8 @@
 # Kṛṣṇa Uvāca: Decoding Cosmic Counsel
-Subtitle: Ancient Wisdom for Modern Life: Architecture of Factual Grounding
+Subtitle: A Bhagavad Gita guide that answers only from the source text, cites every verse and admits when it does not know.
 Tags: Projects, AI
 Date: 2026-09-30
-Summary: Ancient Wisdom for Modern Life: Architecture of Factual Grounding
+Summary: A Bhagavad Gita guide that answers only from the source text, cites every verse and admits when it does not know.
 
 The idea came from a simple moment at home. A conversation needed the exact reference to a particular piece of wisdom in the Bhagavad Gita, and finding the precise wording meant digging back through the text by hand.
 
