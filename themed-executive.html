@@ -254,6 +254,14 @@
     .btn-ghost:hover { border-color: var(--text-3); transform: translateY(-2px); }
     .hero .btn-ghost { color: var(--hero-text); border-color: var(--hero-border); background: var(--hero-surface); }
     .hero .btn-ghost:hover { border-color: var(--hero-muted); }
+    /* Hero CTAs: one outlined primary action, then the resume as a quiet link, so the nav's Connect button stays the only solid one */
+    .hero-actions { align-items: center; gap: 1.5rem; }
+    .btn-outline { background: transparent; color: var(--accent-text); border-color: var(--accent-text); }
+    .btn-outline:hover { background: var(--accent-soft); transform: translateY(-2px); }
+    .btn-outline i { transition: transform 0.2s; }
+    .btn-outline:hover i { transform: translateY(2px); }
+    .hero-resume { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.95rem; color: var(--hero-text); }
+    .hero-resume:hover { color: var(--accent-text); }
     .hero-stats { display: flex; gap: 1rem; flex-wrap: wrap; }
     .hero-stats > div {
       padding: 16px 20px; min-width: 160px;
@@ -868,17 +876,16 @@
         <div class="hero-text">
           <h1 class="hero-name">Sandeep Midde</h1>
           <p class="hero-role">Technology &amp; Delivery Leader</p>
-          <p class="hero-tagline">Modernizing the complex, highly regulated platforms that <em>cannot</em> afford to fail.</p>
+          <p class="hero-tagline">Modernizing complex, highly regulated platforms that <em>cannot</em> afford to fail.</p>
           <p class="hero-sub">
-            Two decades leading technology and delivery for mission-critical finance platforms, from enterprise ERP programs for global clients to governing a <strong>$2.5T+ AUM</strong> financial ecosystem in regulated banking.
+            Spanning two decades leading technology and delivery for mission-critical finance platforms, from enterprise ERP programs for global clients to governing a <strong>$2.5T+ AUM</strong> financial ecosystem in regulated banking.
           </p>
           <p class="hero-sub">
-            Specializing in enterprise platform modernization, resilient architecture governance and pragmatic AI integration. Converts architectural ambiguity into execution-ready, predictable delivery while staying hands-on with technical validation.
+            Specializing in enterprise platform modernization, resilient architecture governance, and pragmatic AI integration. This experience converts architectural ambiguity into execution-ready, predictable delivery while maintaining hands-on technical validation.
           </p>
           <div class="hero-actions">
-            <a href="#impact" class="btn btn-primary">Review portfolio <i class="fas fa-arrow-down" aria-hidden="true"></i></a>
-            <a href="Resume/SandeepMidde.pdf" class="btn btn-ghost" target="_blank" rel="noopener"><i class="fas fa-file-lines" aria-hidden="true"></i> Resume</a>
-            <a href="#contact" class="btn btn-ghost"><i class="fas fa-envelope" aria-hidden="true"></i> Get in touch</a>
+            <a href="#impact" class="btn btn-outline">View featured work <i class="fas fa-arrow-down" aria-hidden="true"></i></a>
+            <a href="Resume/SandeepMidde.pdf" class="hero-resume" download="SandeepMidde-Resume.pdf"><i class="fas fa-file-arrow-down" aria-hidden="true"></i> Download Resume</a>
           </div>
           <div class="hero-stats" role="list" aria-label="Career highlights">
             <div role="listitem">
