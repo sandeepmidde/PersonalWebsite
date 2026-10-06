@@ -1,8 +1,8 @@
 # Kṛṣṇa Uvāca: Grounded Cosmic Counsel
-Subtitle: An AI-powered Bhagavad Gita guide built to stop hallucinations. It answers only from the source text and cites every verse.
+Subtitle: An immersive AI conversational interface enabling direct dialogue with the persona of Lord Kṛṣṇa. Dynamically synthesizes queries against authenticated Bhagavad Gītā scriptures, blending precise textual citations with contextualized philosophical interpretations.
 Tags: Projects, AI
 Date: 2026-09-30
-Summary: An AI-powered Bhagavad Gita guide built to stop hallucinations. It answers only from the source text and cites every verse.
+Summary: An immersive AI conversational interface enabling direct dialogue with the persona of Lord Kṛṣṇa. Dynamically synthesizes queries against authenticated Bhagavad Gītā scriptures, blending precise textual citations with contextualized philosophical interpretations.
 
 The idea came from a simple moment at home. A conversation needed the exact reference to a particular piece of wisdom in the Bhagavad Gita, and finding the precise wording meant digging back through the text by hand.
 
