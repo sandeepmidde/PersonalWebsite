@@ -7,6 +7,8 @@ Summary: A local-first job-search assistant that finds, scores and prepares, whi
 
 A serious job search is a second job. Roles are scattered across a dozen sites. The same posting shows up three times under different names. Every application wants a tailored resume and a cover letter, and every conversation needs a follow-up that is easy to forget.
 
+Done by hand, one round took me 4 to 5 hours. Searching across tabs, checking each posting, updating the resume, and writing to the right people.
+
 Most automation tools answer this by applying to hundreds of jobs on your behalf. That gets accounts restricted, and it throws away the one thing that matters most in a job search, judgment.
 
 So I built **AutoPilot** around a different split. The software does the searching, sorting and drafting. I make every decision that leaves my hands.
@@ -58,7 +60,9 @@ The line between automation and judgment is drawn on purpose.
 
 ## Results
 
-The first build day fixed a search that looked frozen.
+The 4 to 5 hours of manual work now comes down to minutes of review. The search, sorting and first drafts run on their own, and my time goes to the short list.
+
+Getting there took some tuning. The first build day fixed the tool's own search, which looked frozen.
 
 | Check | Before | After |
 |---|---|---|
