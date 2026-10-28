@@ -246,6 +246,7 @@ different readers. The nav link stays "Blogs" so visitors know what's behind it.
    | `Subtitle:` | no | Shown under the title. Without it, the text after the title's first comma is the subtitle |
    | `Tags:` | no | Comma-separated topics. Drives the filter pills and Continue reading |
    | `Series:` | no | `Tarang Tales`, `Surabhi's Slate` or `Lab Reports`. Sets the URL folder, the look, the stamp and the cross-links. Without it the post lives at `/posts/<slug>/` with the plain look |
+   | `Card:` | no | An image file in the post folder (e.g. `architecture.svg`) shown on the blog card instead of the cover. Link previews still use `cover.png`. Kṛṣṇa Uvāca uses it so its Lab card shows the system architecture |
    | `Date:` | no | `YYYY-MM-DD`. Without it, the date of the file's first git commit is used |
    | `Summary:` | no | Link-preview description and card text. Without it, the first ~160 characters are used |
 

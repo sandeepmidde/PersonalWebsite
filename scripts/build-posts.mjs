@@ -14,6 +14,9 @@
 //   - excerpt     <- computed from the first ~160 characters
 //   - tags        <- an optional "Tags: AI, Project Management" line near
 //                     the top. Omit it if you don't want the post grouped.
+//   - card        <- an optional "Card: architecture.svg" line naming an image in
+//                     the post folder to show on the blog card instead of the
+//                     cover (link previews still use cover.png).
 //   - series      <- an optional "Series: Tarang Tales" line naming the Tarang
 //                     series (Tarang Tales, Surabhi's Slate or Lab Reports, see
 //                     assets/tarang-series.json). It decides the post's address
@@ -148,6 +151,7 @@ function extractMetaLines(rawText) {
   let summary = null;
   let subtitle = null;
   let series = null;
+  let card = null;
   const drop = new Set();
 
   for (let i = 0; i < Math.min(lines.length, 8); i++) {
@@ -171,6 +175,13 @@ function extractMetaLines(rawText) {
       drop.add(i);
       continue;
     }
+    // Optional "Card: file.svg", the blog card image when it should differ from the cover
+    const cardMatch = lines[i].match(/^\s*card\s*:\s*(.+)$/i);
+    if (cardMatch) {
+      card = cardMatch[1].trim();
+      drop.add(i);
+      continue;
+    }
     // Optional "Series: Tarang Tales" placing the post in a Tarang series
     const seriesMatch = lines[i].match(/^\s*series\s*:\s*(.+)$/i);
     if (seriesMatch) {
@@ -187,7 +198,7 @@ function extractMetaLines(rawText) {
   }
 
   const rest = lines.filter((_, i) => !drop.has(i)).join('\n');
-  return { tags, date, summary, subtitle, series, rest };
+  return { tags, date, summary, subtitle, series, card, rest };
 }
 
 // Same idea, applied to already-converted HTML (used for .docx, since mammoth
@@ -429,6 +440,7 @@ async function buildPost(postFolderName, postDir, template) {
   let summary;
   let subtitle;
   let seriesName;
+  let cardFile;
   let sourceFile;
 
   if (fs.existsSync(mdPath)) {
@@ -440,6 +452,7 @@ async function buildPost(postFolderName, postDir, template) {
     summary = extracted.summary;
     subtitle = extracted.subtitle;
     seriesName = extracted.series;
+    cardFile = extracted.card;
     html = marked.parse(extracted.rest);
     html = processMarkdownImages(html, postDir, slug);
   } else if (fs.existsSync(docxPath)) {
@@ -458,6 +471,11 @@ async function buildPost(postFolderName, postDir, template) {
 
   html = addImageHints(html);
   const cover = findCover(postDir, postFolderName);
+  let card = null;
+  if (cardFile) {
+    if (fs.existsSync(path.join(postDir, cardFile))) card = versioned(`blog/${encodeURIComponent(postFolderName)}/${encodeURIComponent(cardFile)}`);
+    else console.warn(`/blog/${postFolderName}: Card image "${cardFile}" not found, using the cover`);
+  }
   const title = extractTitleFromHtml(html, titleCaseFromSlug(slug));
   html = removeFirstH1(html);
   const date = explicitDate || gitFirstCommitDate(sourceFile);
@@ -475,6 +493,7 @@ async function buildPost(postFolderName, postDir, template) {
     ...(summary ? { summary } : {}),
     ...(subtitle ? { subtitle } : {}),
     ...(cover ? { cover } : {}),
+    ...(card ? { card } : {}),
     body: [html],
   };
   return { post, socialImage: pickSocialImage(postDir, slug, html) };

@@ -18,7 +18,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Baloo+2:wght@700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Baloo+2:wght@700;800&family=Caveat:wght@600;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <!--
@@ -244,12 +244,22 @@
     .card-slate .meta { color: #6B7280; }
     .card-slate .read-link { color: #F9FAFB; }
     .card-slate .read-link i, .card-slate:hover .read-link { color: #5EEAD4; }
-    .scratch { aspect-ratio: 1200 / 627; margin: 10px 10px 0; padding: 0.9rem 1rem; border-radius: 10px; border: 1px solid #1F2937; background: #0B0F17; font-family: var(--ff-mono); font-size: 0.74rem; line-height: 1.7; color: #9CA3AF; overflow: hidden; position: relative; }
-    .scratch::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 40%; background: linear-gradient(transparent, #0B0F17); }
-    .scratch .file { display: block; color: #6B7280; margin-bottom: 0.4rem; }
-    .scratch .hl { color: #5EEAD4; }
-    .scratch .tape { position: absolute; top: 8px; right: 10px; z-index: 1; font-size: 0.6rem; color: #422006; background: #FEF08A; padding: 1px 8px; transform: rotate(3deg); }
-    .featured.card-slate .scratch { aspect-ratio: auto; height: calc(100% - 20px); min-height: 280px; margin: 10px; font-size: 0.85rem; }
+    /* Slate thumbnail: a notebook page with a hand-drawn sketch, like an Excalidraw doodle */
+    .scratch {
+      aspect-ratio: 1200 / 627; margin: 10px 10px 0; padding: 0.75rem 0.9rem; border-radius: 10px; position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      background: radial-gradient(#CFCBC2 1px, transparent 1.2px) 0 0 / 14px 14px, #FBFAF6; color: #1F2937;
+    }
+    .scratch .doodle { position: absolute; top: 12%; right: 5%; width: 64%; height: auto; }
+    .scratch .when { position: absolute; top: 0.6rem; left: 0.85rem; font-family: var(--ff-mono); font-size: 0.62rem; color: #78716C; }
+    .scratch .scrawl { font-family: 'Caveat', cursive; font-weight: 700; font-size: 1.5rem; line-height: 1.05; color: #111827; position: relative; }
+    .scratch .scrawl-line { font-family: 'Caveat', cursive; font-weight: 600; font-size: 1.05rem; line-height: 1.15; color: #57534E; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; position: relative; }
+    .scratch .tape { position: absolute; top: -2px; right: 10%; z-index: 1; width: 56px; height: 16px; background: rgba(254,240,138,0.85); transform: rotate(-4deg); box-shadow: 0 1px 2px rgba(0,0,0,0.15); }
+    .featured.card-slate .scratch { aspect-ratio: auto; height: calc(100% - 20px); min-height: 280px; margin: 10px; padding: 1.25rem 1.4rem; }
+    .featured.card-slate .scratch .scrawl { font-size: 2.1rem; }
+    .featured.card-slate .scratch .scrawl-line { font-size: 1.3rem; -webkit-line-clamp: 2; }
+    /* A chosen card image (Card: line), usually a diagram, shown whole on a dark field */
+    .cover img.card-art { object-fit: contain; background: #0B1120; padding: 4px; }
 
     /* Lab Reports: sharp, geometric, stark tag */
     :is(.post-card, .featured).card-lab { border-radius: 6px; border-top: 3px solid #0B1F44; }
@@ -524,19 +534,38 @@
       if (post.series === 'slate') {
         return `
         <div class="scratch" aria-hidden="true">
-          <span class="tape">raw</span>
-          <span class="file">~/slate/${esc(post.slug)}.md</span>
-          <span class="hl">## </span>${esc(splitTitle(post.title, post.subtitle).name)}<br>
-          ${esc(post.excerpt)}
+          <span class="tape"></span>
+          <span class="when">${formatDate(post.date)} · raw note</span>
+          ${DOODLE}
+          <span class="scrawl">${esc(splitTitle(post.title, post.subtitle).name)}</span>
+          <span class="scrawl-line">${esc(post.excerpt)}</span>
         </div>`;
       }
       const tag = (post.tags || [])[0] || 'Article';
       return `
         <div class="cover">
           <div class="cover-fallback" aria-hidden="true"><span class="cf-tag">${post.series ? '' : esc(tag)}</span><span class="cf-title">${esc(splitTitle(post.title, post.subtitle).name)}</span></div>
-          ${post.cover ? `<img src="${post.cover}" alt="" loading="lazy" style="position:relative" onerror="this.remove()">` : ''}
+          ${post.card || post.cover ? `<img src="${post.card || post.cover}" alt="" loading="lazy" style="position:relative"${post.card ? ' class="card-art"' : ''} onerror="this.remove()">` : ''}
         </div>`;
     }
+
+    // Hand-drawn "read, try, note" sketch on every Slate card. Doubled strokes give the sketchy look.
+    const DOODLE = `
+          <svg class="doodle" viewBox="0 0 232 64" aria-hidden="true">
+            <g fill="none" stroke="#334155" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 14 Q5 6 13 6 L58 5 Q66 6 66 14 L67 42 Q66 50 58 50 L14 51 Q6 50 6 42 Z"/>
+              <path d="M8 12 Q8 8 14 8 L57 7 Q64 8 64 15 L65 41 Q64 48 57 49 L14 49 Q8 49 8 42 Z" stroke-opacity="0.4"/>
+              <path d="M71 28 Q84 25 95 28"/><path d="M89 23 L96 28 L89 33"/>
+              <path d="M100 14 Q99 6 107 6 L150 5 Q158 6 158 14 L159 42 Q158 50 150 50 L108 51 Q100 50 100 42 Z"/>
+              <path d="M102 12 Q102 8 108 8 L149 7 Q156 8 156 15 L157 41 Q156 48 149 49 L108 49 Q102 49 102 42 Z" stroke-opacity="0.4"/>
+              <path d="M163 28 Q175 25 185 28"/><path d="M179 23 L186 28 L179 33"/>
+              <path d="M208 6 C222 6 229 16 228 28 C227 41 217 50 206 49 C194 48 188 39 189 28 C190 16 198 7 211 8"/>
+              <path d="M193 54 Q210 60 228 52" stroke="#F59E0B" stroke-width="2.4"/>
+            </g>
+            <g font-family="Caveat, cursive" font-weight="700" font-size="17" fill="#1F2937" text-anchor="middle">
+              <text x="36" y="34">read</text><text x="129" y="34">try</text><text x="208" y="34">note</text>
+            </g>
+          </svg>`;
 
     // The label above a title: the series name on cards, the signature stamp on the featured card
     function cardTag(post, featured) {
