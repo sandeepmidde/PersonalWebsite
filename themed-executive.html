@@ -426,7 +426,7 @@
     .exp-bullets li strong { color: var(--text); font-weight: 600; }
 
     /* ============ PROJECTS ============ */
-    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }   /* four projects, two by two */
     .proj-card {
       background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
       display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: transform 0.25s var(--ease), box-shadow 0.25s, border-color 0.25s;
@@ -1080,6 +1080,17 @@
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Low-overhead data architecture</p>
             <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Validated with live sign-in and AI calls</p>
             <div class="proj-links"><a class="proj-link proj-main" href="lab/project-elara/">Product case study <i class="fas fa-arrow-right" aria-hidden="true"></i></a><a class="proj-link proj-launch" href="https://elara.sandeepmidde.com/" target="_blank" rel="noopener">Launch live application <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
+          </div>
+        </article>
+        <article class="proj-card anim">
+          <div class="proj-cover"><span class="proj-status" data-status="beta">Live Beta</span><img src="blog/autopilot/cover.webp?v=cdfa9d90" alt="AutoPilot cover" loading="lazy" width="1200" height="627"></div>
+          <div class="proj-body">
+            <p class="proj-kind">AI job-search assistant</p>
+            <h3>AutoPilot: <span class="proj-title-rest">An AI Assistant for the Job Hunt</span></h3>
+            <p>A local-first assistant that finds, scores and prepares job applications, while every submit and send stays with me.</p>
+            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Job search cut from 30+ minutes to 58 seconds</p>
+            <p class="proj-proof"><i class="fas fa-check" aria-hidden="true"></i> Every submit and send stays a human click</p>
+            <div class="proj-links"><a class="proj-link proj-main" href="lab/autopilot/">Product case study <i class="fas fa-arrow-right" aria-hidden="true"></i></a><a class="proj-link proj-launch" href="https://autopilot.sandeepmidde.com/" target="_blank" rel="noopener">Launch live application <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
           </div>
         </article>
       </div>

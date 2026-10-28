@@ -155,7 +155,7 @@ The slugs never change, even when a title does, so shared links keep working.
   "Resume" link that opens the PDF in a new tab), three stats (20+ Yrs,
   $2.5T+ AUM, 99.8% availability). The nav's Connect button is the only solid
   button on screen.
-- **AI R&D Lab:** three project cards that link to their Build Logs at
+- **AI R&D Lab:** four project cards, two by two, that link to their Build Logs at
   `lab/<slug>/` ("Product case study"), with "All Build Logs" below. Each
   cover shows a build status badge (Shipped, Beta or In Progress). Kṛṣṇa Uvāca and Project Elara also link to their live apps
   (`krsna.sandeepmidde.com`, `elara.sandeepmidde.com`). The cards use CSS
