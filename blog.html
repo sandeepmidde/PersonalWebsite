@@ -2,6 +2,8 @@
 <html lang="en-US" class="no-js">
 <head>
   <meta charset="UTF-8">
+  <!-- Paths resolve from the site root, also after the format toggle changes the address to /tales/ etc. -->
+  <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tarang, stories, scribbles and lab reports · Sandeep Midde</title>
   <meta name="description" content="Tarang by Sandeep Midde. AI and technology explained three ways: Tarang Tales told through mythology, Surabhi's Slate raw notes, and Lab Reports on real AI products.">
@@ -199,6 +201,15 @@
     .channel-slate[aria-pressed="true"] { background: linear-gradient(rgba(148,163,184,0.18) 1px, transparent 1px) 0 0 / 14px 14px, linear-gradient(90deg, rgba(148,163,184,0.18) 1px, transparent 1px) 0 0 / 14px 14px, #111827; }
     .channel-lab[aria-pressed="true"] { background: linear-gradient(135deg, #0B1F44, #1E3A8A); }
 
+    /* Tier 2: topic filter, quieter than the format toggle */
+    .topics { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 6px 1.75rem; }
+    .topics-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-4); margin-right: 4px; }
+    .topic { font-size: 0.8rem; font-weight: 500; padding: 6px 14px; border-radius: 100px; border: 1px solid var(--border); background: transparent; color: var(--text-3); cursor: pointer; white-space: nowrap; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+    .topic:hover:not(:disabled):not([aria-pressed="true"]) { border-color: var(--accent-line); color: var(--text); }
+    .topic[aria-pressed="true"] { background: var(--text); border-color: var(--text); color: #fff; }
+    .topic:disabled { opacity: 0.4; cursor: default; }
+    .topic .count { margin-left: 5px; opacity: 0.6; font-size: 0.72rem; }
+
     /* Intro strip for the chosen channel */
     .channel-intro[hidden] { display: none; }
     .channel-intro { display: flex; align-items: center; gap: 1rem 1.5rem; flex-wrap: wrap; padding: 1.1rem 1.4rem; margin-bottom: 2.25rem; border-radius: var(--r-lg); border: 1px solid var(--border); background: var(--surface); }
@@ -217,13 +228,19 @@
     .intro-lab .stamp { color: #fff; background: #0B1F44; border-radius: 2px; }
 
     /* ============ SERIES CARDS: each series has its own card look ============ */
-    .card-tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 0.7rem; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+    /* Dual badges: the format stamp (left, brand colour) and topic chips (right, flat and muted) */
+    .card-meta { display: flex; align-items: center; justify-content: space-between; gap: 6px 10px; flex-wrap: wrap; margin-bottom: 0.7rem; }
+    .card-meta .post-kind { margin-bottom: 0; }
+    .card-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; border: 1.5px solid currentColor; }
+    .topic-chips { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+    .topic-chip { font-size: 0.66rem; font-weight: 600; color: #475569; background: #EEF1F5; padding: 3px 8px; border-radius: 100px; white-space: nowrap; }
 
     /* Tarang Tales: warm parchment, framed comic-panel art, bold coloured stamp */
     :is(.post-card, .featured).card-tales { background: #FFF7E6; border-color: #F1D9A8; }
     :is(.post-card, .featured).card-tales:hover { border-color: #E9B867; }
     .card-tales .cover { margin: 10px 10px 0; border: 2.5px solid #1F1147; border-radius: 12px; box-shadow: 4px 4px 0 #1F1147; }
-    .card-tales .card-tag { background: linear-gradient(90deg, #F59E0B, #EC4899); color: #fff; }
+    .card-tales .card-tag { background: #FEF3C7; color: #B45309; }
+    .card-tales .topic-chip { background: rgba(31,17,71,0.06); color: #4B3F63; }
     :is(.post-card, .featured).card-tales :is(h2, h3) { font-family: 'Baloo 2', var(--ff-display); font-weight: 800; color: #1F1147; letter-spacing: -0.005em; line-height: 1.2; }
     .post-card.card-tales h3 { font-size: 1.32rem; }
     .card-tales .card-foot { border-top-color: #F1D9A8; }
@@ -234,7 +251,8 @@
       border-color: #1F2937; color: #E5E7EB;
     }
     :is(.post-card, .featured).card-slate:hover { border-color: #374151; }
-    .card-slate .card-tag { background: transparent; border: 1px solid #374151; color: #9CA3AF; font-family: var(--ff-mono); font-weight: 500; letter-spacing: 0.04em; text-transform: none; border-radius: 6px; }
+    .card-slate .card-tag { background: rgba(56,189,248,0.08); color: #38BDF8; border-width: 1px; font-family: var(--ff-mono); font-weight: 500; letter-spacing: 0.08em; border-radius: 6px; }
+    .card-slate .topic-chip { background: rgba(255,255,255,0.07); color: #CBD5E1; }
     :is(.post-card, .featured).card-slate :is(h2, h3) { font-family: var(--ff-mono); font-weight: 500; color: #F9FAFB; letter-spacing: -0.02em; }
     .card-slate .post-tagline { color: #9CA3AF; }
     .post-card.card-slate p.excerpt { display: none; }   /* the scratchpad preview already shows it */
@@ -264,7 +282,7 @@
     /* Lab Reports: sharp, geometric, stark tag */
     :is(.post-card, .featured).card-lab { border-radius: 6px; border-top: 3px solid #0B1F44; }
     .card-lab .cover { border-radius: 0; }
-    .card-lab .card-tag { background: #0B1F44; color: #fff; border-radius: 2px; font-family: var(--ff-mono); font-weight: 500; letter-spacing: 0.14em; }
+    .card-lab .card-tag { background: #ECFDF5; color: #047857; border-radius: 2px; font-family: var(--ff-mono); font-weight: 500; letter-spacing: 0.14em; }
     :is(.post-card, .featured).card-lab :is(h2, h3) { color: #0B1F44; }
 
     /* Featured card: the latest post, in its series' look, with the series stamp */
@@ -375,6 +393,8 @@
       .featured-body { padding: 1.5rem; }
       .post-grid, .post-grid.two-up { grid-template-columns: 1fr; }
       .channels { grid-template-columns: 1fr; border-radius: 18px; }
+      .topics { flex-wrap: nowrap; overflow-x: auto; margin: 0 -16px 1.5rem; padding: 2px 16px 6px; scrollbar-width: none; }
+      .topics::-webkit-scrollbar { display: none; }
       .channel-all { grid-column: auto; }
       .footer-inner { flex-direction: column-reverse; align-items: flex-start; }
       .footer-nav { gap: 0.6rem 1.25rem; }
@@ -430,6 +450,7 @@
     <section class="section">
       <div class="container">
         <nav class="channels" id="channels" aria-label="Choose a reading format"></nav>
+        <div class="topics" id="topics" role="toolbar" aria-label="Filter by topic"></div>
         <div class="channel-intro" id="channelIntro" hidden></div>
 
         <div id="featured"></div>
@@ -567,12 +588,20 @@
             </g>
           </svg>`;
 
-    // The label above a title: the series name on cards, the signature stamp on the featured card
+    // Topic filter (tier 2). A post's topics are the tags it has from this list. Other
+    // tags, like RAG, stay on the post page and drive its cross-links.
+    const TOPICS = ['AI', 'Project Management', 'Technical', 'Governance'];
+    const SHORT_TOPIC = { 'Project Management': 'PM' };
+    const topicsOf = post => TOPICS.filter(t => (post.tags || []).includes(t));
+
+    // Above a title: the format stamp on the left (series name on cards, signature stamp
+    // on the featured card) and the post's topics as muted chips on the right
     function cardTag(post, featured) {
       const s = seriesOf(post);
-      if (!s) return `<p class="post-kind">${esc((post.tags || []).slice(0, 2).join(' · ') || 'Article')}</p>`;
+      const chips = `<span class="topic-chips">${topicsOf(post).map(t => `<span class="topic-chip" title="${esc(t)}">${esc(SHORT_TOPIC[t] || t)}</span>`).join('')}</span>`;
+      if (!s) return `<div class="card-meta"><p class="post-kind">Article</p>${chips}</div>`;
       const label = featured ? s.stamp : s.key === 'lab' ? 'Lab Report' : s.name;
-      return `<span class="card-tag"><span aria-hidden="true">${EMOJI[s.key] || ''}</span>${esc(label)}</span>`;
+      return `<div class="card-meta"><span class="card-tag"><span aria-hidden="true">${EMOJI[s.key] || ''}</span>${esc(label)}</span>${chips}</div>`;
     }
 
     function cardFoot(post) {
@@ -618,6 +647,7 @@
     // (/tales/ etc.), so the toggle also updates the address for sharing and Back.
     let allPosts = [];
     let current = null;   // a SERIES entry, or null for All
+    let topic = 'all';    // one of TOPICS, combined with the format: (series AND topic)
     const pathFor = s => s ? `/${s.key}/` : '/blog';
     const seriesFromPath = () => SERIES.find(s => location.pathname.replace(/\/+$/, '') === `/${s.key}`) || null;
 
@@ -639,8 +669,22 @@
       }));
     }
 
+    // Tier 2 row. Counts follow the chosen format, so empty pairs show as disabled
+    function renderTopics() {
+      const inFormat = allPosts.filter(p => !current || p.series === current.key);
+      const el = document.getElementById('topics');
+      el.innerHTML = '<span class="topics-label">Topics</span>' + [['all', 'All Topics', inFormat.length], ...TOPICS.map(t => [t, t, inFormat.filter(p => topicsOf(p).includes(t)).length])]
+        .map(([key, label, n]) =>
+          `<button class="topic" type="button" data-topic="${esc(key)}" aria-pressed="${key === topic}"${n || key === topic ? '' : ' disabled'}>${esc(label)}<span class="count">${n}</span></button>`).join('');
+      el.querySelectorAll('.topic').forEach(btn => btn.addEventListener('click', () => {
+        topic = btn.dataset.topic;
+        show(current);
+      }));
+    }
+
     function show(s) {
       current = s;
+      renderTopics();
       document.querySelectorAll('.channel').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.key === (s ? s.key : ''))));
       const intro = document.getElementById('channelIntro');
       intro.hidden = !s;
@@ -648,14 +692,19 @@
         intro.className = `channel-intro intro-${s.key}`;
         intro.innerHTML = `<h2>${esc(s.name)}</h2><p>${esc(s.blurb)} ${esc(s.audience)}.</p><span class="stamp">${esc(s.stamp)}</span>`;
       }
-      const featured = s ? null : allPosts[0];
+      const featured = !s && topic === 'all' ? allPosts[0] : null;
       if (featured) renderFeatured(featured);
       document.getElementById('featured').hidden = !featured;
-      const pool = allPosts.filter(p => p !== featured && (!s || p.series === s.key));
-      document.getElementById('listTitle').textContent = s ? s.name : 'More from Tarang';
-      document.getElementById('listCount').textContent = s ? `${pool.length} ${pool.length === 1 ? 'post' : 'posts'}` : '';
+      const pool = allPosts.filter(p => p !== featured && (!s || p.series === s.key) && (topic === 'all' || topicsOf(p).includes(topic)));
+      document.getElementById('listTitle').textContent =
+        [s ? s.name : '', topic === 'all' ? '' : topic].filter(Boolean).join(' · ') || 'More from Tarang';
+      document.getElementById('listCount').textContent = featured ? '' : `${pool.length} ${pool.length === 1 ? 'post' : 'posts'}`;
       renderGrid(pool);
-      document.getElementById('emptyState').hidden = pool.length > 0 || !!featured;
+      const empty = document.getElementById('emptyState');
+      empty.hidden = pool.length > 0 || !!featured;
+      empty.innerHTML = s || topic !== 'all'
+        ? `<strong>Nothing here yet.</strong>No ${esc(s ? s.name : 'posts')} on ${esc(topic === 'all' ? 'this' : topic)} so far. Try another topic.`
+        : '<strong>No posts yet.</strong>The first article is on its way.';
       if (s) document.title = `${s.seoTitle} · Tarang by Sandeep Midde`;
       else document.title = 'Tarang, stories, scribbles and lab reports · Sandeep Midde';
     }

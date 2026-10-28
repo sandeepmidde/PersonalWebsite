@@ -513,7 +513,6 @@ function writeSeriesHubs(hubTemplate) {
     const pagePath = `${series.key}/`;
     const title = `${series.seoTitle} · ${BRAND} by ${AUTHOR}`;
     const page = hubTemplate
-      .replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n  <base href="/">')
       .replace(/<title>.*?<\/title>/s, () => `<title>${escapeAttr(title)}</title>`)
       .replace(/(<meta (?:name="description"|property="og:description") content=")[^"]*(")/g, (m, a, b) => a + escapeAttr(series.seoDescription) + b)
       .replace(/(<meta property="og:title" content=")[^"]*(")/, (m, a, b) => a + escapeAttr(title) + b)

@@ -775,7 +775,8 @@
     function buildAcross(post, posts) {
       if (!post.series) return;
       const everywhere = t => posts.every(p => (p.tags || []).includes(t));
-      const topics = new Set((post.tags || []).filter(t => !everywhere(t)));
+      const BROAD = new Set(['AI', 'Technical']);   // on most posts, too wide to pair on
+      const topics = new Set((post.tags || []).filter(t => !everywhere(t) && !BROAD.has(t)));
       if (!topics.size) return;
       const items = SERIES.filter(s => s.key !== post.series).map(s => {
         const best = posts

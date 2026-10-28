@@ -1,6 +1,6 @@
 # The Archer's Target: Decoding RAG
 Subtitle: Understanding AI accuracy, retrieval pipelines, and focus through the lens of a legendary archery test.
-Tags: AI, RAG
+Tags: AI, Technical, RAG
 Series: Tarang Tales
 Date: 2026-10-01
 Summary: Understanding AI accuracy, retrieval pipelines, and focus through the lens of a legendary archery test.

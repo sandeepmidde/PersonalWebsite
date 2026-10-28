@@ -163,10 +163,17 @@ different readers. The nav link stays "Blogs" so visitors know what's behind it.
 - **Title canvas:** "The Tarang Project" label, "Tarang" with an animated
   wave, "An Ecosystem of Stories, Scribbles & Lab Reports" and the line "One
   roof. Three ways of looking at complex systems...".
-- **Format toggle** (replaces topic filters): All, 🌊 Tarang Tales, 📝 Surabhi's
-  Slate, 🧪 Lab Reports. Choosing a channel shows an intro strip (blurb,
-  audience, stamp), filters the grid and changes the address to `/tales/` etc.
-  (Back works).
+- **Two-tier filter.** Tier 1, the format toggle: All, 🌊 Tarang Tales, 📝
+  Surabhi's Slate, 🧪 Lab Reports. Choosing a channel shows an intro strip
+  (blurb, audience, stamp) and changes the address to `/tales/` etc. (Back
+  works). Tier 2, a quieter topic row: All Topics, AI, Project Management,
+  Technical, Governance. The two combine (series AND topic), counts follow the
+  chosen format, and empty pairs are disabled. Topics are the post's `Tags:`
+  that appear in `TOPICS` in `blog.html`. Other tags (RAG, Learning) only show
+  on the post page and drive the cross-links.
+- **Dual badges on cards:** the format stamp on the left in its brand colour
+  (amber Tales, neon blue Slate, green Lab) and the topics as flat grey chips
+  on the right ("PM" for Project Management).
 
   | Series | Folder | For | Stamp |
   |---|---|---|---|
@@ -244,7 +251,7 @@ different readers. The nav link stays "Blogs" so visitors know what's behind it.
    |---|---|---|
    | `# Title` | yes | First heading becomes the title. It's removed from the body |
    | `Subtitle:` | no | Shown under the title. Without it, the text after the title's first comma is the subtitle |
-   | `Tags:` | no | Comma-separated topics. Drives the filter pills and Continue reading |
+   | `Tags:` | no | Comma-separated. Any of `AI`, `Project Management`, `Technical`, `Governance` become the blog topic filter and card chips. Every tag drives Continue reading and the cross-links (except `AI` and `Technical`, too broad to pair on) |
    | `Series:` | no | `Tarang Tales`, `Surabhi's Slate` or `Lab Reports`. Sets the URL folder, the look, the stamp and the cross-links. Without it the post lives at `/posts/<slug>/` with the plain look |
    | `Card:` | no | An image file in the post folder (e.g. `architecture.svg`) shown on the blog card instead of the cover. Link previews still use `cover.png`. Kṛṣṇa Uvāca uses it so its Lab card shows the system architecture |
    | `Date:` | no | `YYYY-MM-DD`. Without it, the date of the file's first git commit is used |

@@ -1,5 +1,5 @@
 # AI Agents Move Into Production
-Tags: AI
+Tags: AI, Technical
 Series: Surabhi's Slate
 
 Date: 2026-08-08

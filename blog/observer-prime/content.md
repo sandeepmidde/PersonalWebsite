@@ -1,6 +1,6 @@
 # Observer Prime: Unified Agentic Orchestration
 Subtitle: A multi-agent orchestration product that automates complex, multi-step workflows, with human checkpoints that preserve strategic judgment.
-Tags: Projects, AI
+Tags: AI, Technical, Governance
 Series: Lab Reports
 Date: 2026-09-23
 Summary: A multi-agent orchestration product that automates complex, multi-step workflows, with human checkpoints that preserve strategic judgment.

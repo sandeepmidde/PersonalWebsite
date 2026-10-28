@@ -1,6 +1,6 @@
 # Project Elara: Contextual Knowledge OS
 Subtitle: A personal workspace that turns PDFs, articles and digital clutter into a structured, searchable library.
-Tags: Projects, AI, Learning
+Tags: AI, Technical, Learning
 Series: Lab Reports
 Date: 2026-09-23
 Summary: A personal workspace that turns PDFs, articles and digital clutter into a structured, searchable library.
