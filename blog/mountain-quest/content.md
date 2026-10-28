@@ -4,63 +4,109 @@ Story: 🏔️ The Mountain Quest · Hanuman
 Tags: AI, Technical, RAG
 Series: Tarang Tales
 Date: 2026-10-02
-Summary: Decoding chunking, data retrieval and LLM generation through a legendary rescue mission.
+Summary: How a RAG pipeline stores knowledge, fetches the right pieces and writes an answer from them, told through a race against dawn.
 
-## Race Against Dawn
+## Guessing Problem
 
-Artificial Intelligence can now write about almost anything, yet one problem refuses to go away. Left to themselves, large language models guess, and a confident guess is called a **hallucination**. To stop the guessing, engineers build an engine called **RAG**, or Retrieval-Augmented Generation.
+Ask a language model about your company's leave policy. It has never read it.
 
-To see how a RAG pipeline works, we go back to the **Ramayana** and a race against dawn.
+So it guesses. The answer sounds right. It is wrong. This is a **hallucination**.
 
-During a great battle, the prince **Lakshmana** lies unconscious on the battlefield. The royal physician, **Sushena**, gives a clear ultimatum. A rare medicinal herb called **Sanjeevani** grows on a distant Himalayan mountain. Bring it before dawn, or the prince will not survive.
+**RAG**, or Retrieval-Augmented Generation, stops the guessing. It finds the right facts first, then lets the model answer from them.
 
-There is no time for trial and error and no room for mistakes. This rescue mission maps closely onto the path a RAG pipeline follows when it answers a question from verified facts.
+To see each step, we go to a battlefield in the **Ramayana**.
 
-New to the series? Start with [why RAG stops AI from guessing](posts/the-arjuna-algorithm/) and [how vector databases map meaning](posts/ultimate-cosmic-race/).
+New to the series? Start with [how semantic search works](posts/the-arjuna-algorithm/) and [how vector databases find things fast](posts/ultimate-cosmic-race/).
 
-## Quest at a Glance
+## Night on the Battlefield
 
-1. **Ingestion.** Hanuman reads the mountain patch by patch, the way a pipeline breaks files into chunks and stores them in a vector database.
-2. **Retrieval.** He lifts the whole ridge that holds the herb, the way a retriever pulls the closest matching passages with a little context to spare.
-3. **Generation.** The physician prepares the exact cure from that material, the way a language model writes an answer from the passages it was given.
+Night falls on Lanka. **Lakshmana** lies still, struck down by a powerful weapon.
 
-![RAG pipeline told through the Sanjeevani quest](blueprint.svg)
+**Rama** kneels beside his brother. He turns to the royal physician, **Sushena**.
 
-## 1. Ingestion and Vector Storage
+"Can he be saved?"
 
-The warrior **Hanuman** flies to **Mount Dronagiri** and finds a sprawling wilderness covered in thousands of plants, trees and roots. The medicine is there, but it is surrounded by background noise.
+Sushena checks the prince's pulse. "Only one herb can heal him. **Sanjeevani**. It grows on **Mount Dronagiri**, far to the north, in the Himalayas."
 
-Before an AI can answer a question, it faces the same challenge with its raw data.
+"How long do we have?"
 
-- **Chunking.** Hanuman can't take in the whole mountain as one massive object. He reads the terrain patch by patch. In the same way, a RAG system slices large documents and files into small, manageable passages called **chunks**.
-- **Vector embeddings.** Every plant on the mountain has its own properties, altitude and location. In AI, each chunk is converted into a list of numbers called a **vector embedding** and stored in a **vector database**, where passages with similar meanings sit right next to each other.
+"Until dawn. Not a moment more."
+
+Every eye turns to **Hanuman**.
+
+## Mountain of Thousands
+
+Hanuman flies through the night and lands on Dronagiri.
+
+He stares. The mountain is covered in plants. Thousands of them. Shrubs, vines, roots, flowers. Many glow faintly in the dark.
+
+Which one is Sanjeevani?
+
+He does not wander the whole slope. He remembers what the physician said, and looks only for plants that match that description.
+
+The search is slow. Dawn is coming. So Hanuman makes a choice.
+
+He grips the ridge where the matching herbs grow, tears it free, and lifts it into the sky.
+
+![The pipeline from mountain to medicine](blueprint.svg)
+
+## Back at the Tent
+
+Hanuman lands before the medical tent and sets the ridge down. Rock, mud and roots spill everywhere.
+
+Sushena does not look at the whole heap. He kneels, sorts through it and picks out the exact leaves he needs. He grinds them, prepares the medicine and gives it to Lakshmana.
+
+Before sunrise, the prince opens his eyes.
+
+## Three Steps of the Quest
+
+Look again at who did what.
+
+- **The mountain held the knowledge.** It was there all along, mixed with thousands of other things.
+- **Hanuman fetched.** He did not heal anyone. He found the right part of the mountain and carried it back.
+- **Sushena healed.** He never left the tent. He worked only from what was brought to him.
+
+A RAG pipeline splits the work the same way.
+
+1. **Store the knowledge.** Documents are cut into small pieces called **chunks**. Each chunk gets an **embedding**, its meaning as numbers. All of it goes into a **vector database**. This is the mountain.
+2. **Retrieve.** A question arrives. The **retriever** turns it into an embedding and fetches the closest chunks. Like the ridge, it brings back a few extra, so the right one is surely inside. This is Hanuman.
+3. **Generate.** The chunks are placed in front of the language model with the question. It writes the answer from them, not from memory. This is Sushena.
 
 ![Ingestion turns raw files into a map of meaning](ingestion.svg "aside")
 
-## 2. Semantic Retrieval
+## Story to System
 
-Standing on the mountain, Hanuman holds on to the physician's instruction. Find the Sanjeevani herb. That instruction is the **user query**.
+| In the story | In a RAG pipeline |
+|---|---|
+| Mount Dronagiri and its plants | Documents, chunked and stored in a vector database |
+| "Find the Sanjeevani herb" | The user's question |
+| Looking only for plants that match | Retrieval by meaning, not keywords |
+| Lifting the ridge, not one leaf | Fetching the top few chunks, with spare context |
+| Sushena picking the right leaves | The language model using only what is relevant |
+| Lakshmana wakes before dawn | A grounded answer, in seconds |
 
-He doesn't scan the mountain for any green plant. He looks for the specific properties of the medicine, matching the intent and meaning of the request rather than the surface.
+## See It Work
 
-When the herb proves hard to isolate in time, Hanuman makes a strategic call so he won't return empty-handed. He lifts the entire ridge that holds the medicinal plants, which makes sure the right herb is inside his payload before dawn.
+An employee asks, *"How many weeks of parental leave do I get?"*
 
-In an AI system, this is **retrieval**. The retriever turns the question into a vector embedding, searches the vector database for the nearest matches and pulls the top few passages out of the background noise. Like the ridge, that payload deliberately holds a little more than the exact answer, so nothing important is left behind.
+1. **Store.** The 400-page HR handbook was cut into 1,200 chunks last month. Each one was embedded and stored.
+2. **Retrieve.** The question is embedded. The five closest chunks come back. One is the parental leave section. Two are its neighbours, about eligibility. Two are about sick leave.
+3. **Generate.** The model reads all five. It ignores the sick leave chunks. It answers, *"You get 26 weeks of paid parental leave after six months of service (HR Handbook, section 7.2)."*
 
 ![The retriever lifts the closest matches](retrieval.svg "aside")
 
-## 3. LLM Generation
+## Where the Story Stops
 
-Hanuman returns and sets the ridge down in front of the medical tent. A raw mass of rock, mud and unrefined plants can't heal the prince on its own. The material is still too raw to use.
+Hanuman lifted a whole ridge. A language model cannot read a whole mountain. It has a limit on how much text it can take in at once, its **context window**. So retrievers bring back a handful of chunks, not everything. That limit has [its own story](posts/context-window-limits/).
 
-This is where the physician steps in. He represents the **Large Language Model**, or LLM, also called the **generator**.
-
-The physician no longer needs to guess at a cure, because the source material is right in front of him. He picks out the exact leaves, prepares the medicine and gives it to the prince, who recovers.
-
-In the final phase of RAG, the LLM reads the retrieved passages, sets aside what is irrelevant and uses its language skills to write a clear, natural answer grounded in that evidence. When you ask a data-backed AI tool a question, this whole journey usually runs in a second or two.
+And if the herb is not on the mountain, no retriever can find it. RAG is only as good as the documents behind it.
 
 ![The LLM turns retrieved passages into an answer](generation.svg "aside")
 
-Building a reliable AI isn't about giving a model a bigger brain. It's about building the engine that knows how to bring the mountain to the physician.
+## Takeaway
+
+The physician never climbed the mountain. The messenger never healed anyone. Each did one job well.
+
+That is RAG. One part finds. One part answers.
 
 > Map the mountain, lift what matters, and let the physician do the healing.

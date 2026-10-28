@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="400" height="450" rx="18" fill="#FFF7E6" stroke="#1F1147" stroke-width="4"/>
+  <text x="24" y="40" fill="#D97706" font-size="13" font-weight="700" letter-spacing="1.5">WHAT DO YOU SEE?</text>
+  <rect x="24" y="56" width="352" height="46" rx="10" fill="#FFFFFF" stroke="#1F1147" stroke-width="1.5"/>
+  <text x="200" y="85" text-anchor="middle" fill="#1F1147" font-size="14" font-style="italic">"money back for a broken blender"</text>
+  <!-- keyword -->
+  <rect x="24" y="118" width="352" height="148" rx="12" fill="#FFFFFF" stroke="#DC2626" stroke-width="2"/>
+  <text x="44" y="144" fill="#DC2626" font-size="15" font-weight="700">Keyword search</text>
+  <text x="356" y="144" text-anchor="end" fill="#5B4B73" font-size="12">sees every word</text>
+  <g font-size="12.5" fill="#1F1147">
+    <rect x="44" y="156" width="54" height="24" rx="12" fill="#FEE2E2"/><text x="71" y="173" text-anchor="middle">money</text>
+    <rect x="104" y="156" width="46" height="24" rx="12" fill="#FEE2E2"/><text x="127" y="173" text-anchor="middle">back</text>
+    <rect x="156" y="156" width="58" height="24" rx="12" fill="#FEE2E2"/><text x="185" y="173" text-anchor="middle">broken</text>
+    <rect x="220" y="156" width="64" height="24" rx="12" fill="#FEE2E2"/><text x="252" y="173" text-anchor="middle">blender</text>
+  </g>
+  <text x="44" y="204" fill="#5B4B73" font-size="13">finds money-back subscriptions,</text>
+  <text x="44" y="224" fill="#5B4B73" font-size="13">back pain, blender recipes</text>
+  <text x="44" y="250" fill="#DC2626" font-size="12.5" font-style="italic">the tree, the branches, the brothers</text>
+  <!-- semantic -->
+  <rect x="24" y="282" width="352" height="144" rx="12" fill="#FFF1D6" stroke="#15803D" stroke-width="2"/>
+  <text x="44" y="308" fill="#15803D" font-size="15" font-weight="700">Semantic search</text>
+  <text x="356" y="308" text-anchor="end" fill="#5B4B73" font-size="12">sees the intent</text>
+  <g stroke="#1F1147" stroke-width="2"><circle cx="64" cy="346" r="16" fill="#FFFFFF"/><circle cx="64" cy="346" r="9" fill="#DB2777"/><circle cx="64" cy="346" r="3" fill="#1F1147"/></g>
+  <text x="92" y="341" fill="#1F1147" font-size="14" font-weight="700">a refund for a</text>
+  <text x="92" y="359" fill="#1F1147" font-size="14" font-weight="700">damaged product</text>
+  <text x="44" y="390" fill="#5B4B73" font-size="13">finds "Returns and refunds for damaged items"</text>
+  <text x="44" y="412" fill="#15803D" font-size="12.5" font-style="italic">only the eye of the bird</text>
+</svg>

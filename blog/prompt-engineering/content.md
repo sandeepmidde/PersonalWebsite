@@ -1,44 +1,142 @@
 # Prompt Engineering Explained
-Subtitle: Every riddle Betal tells comes with rules, and one wrong move sends the journey back to the start.
+Subtitle: Twenty-four times King Vikram answers Betal's riddle and loses his prize. The twenty-fifth time, silence sets him free.
 Story: 🌙 Vikram and Betal · King Vikram
 Tags: AI, Technical
 Series: Tarang Tales
 Date: 2026-10-28
-Summary: How clear roles, rules and examples turn an unpredictable model into a reliable one.
+Summary: How standing rules, clear questions and a safe way to say "I don't know" make a language model reliable.
 
-## Journey Through the Forest
+## Loose Question, Loose Answer
 
-In the old Indian tales of **Vikram and Betal**, the brave King **Vikram** must carry the spirit **Betal** down from a tree and across a dark forest, in silence.
+Ask a language model a loose question. You get a loose answer.
 
-Betal is clever and restless. As they walk, he tells a story that ends in a riddle. Then he sets the rules. If Vikram knows the answer and stays silent, his head will burst into pieces. If he speaks, Betal flies back to his tree and the journey begins again.
+Too long when you wanted short. Confident when it should be careful. Chatty when you needed formal.
 
-Again and again, Vikram answers wisely, and again and again, Betal escapes. The tales are remembered for the riddles, but what drives every one of them is the set of rules.
+The model is not broken. It did its best with what you gave it.
 
-![Rules shape every turn of the journey](rules-loop.svg "aside")
+**Prompt engineering** is the craft of giving it better instructions. And an old Indian tale teaches it well, including the most common mistake.
 
-## Clever but Unpredictable
+## Night in the Cremation Ground
 
-A large language model is a lot like Betal. It is brilliant with words, it can tell any story and it will happily go wherever the conversation leads. Left without direction, that brilliance turns into rambling answers, the wrong tone or a format no one can use.
+Midnight. A cremation ground, lit by a thin moon.
 
-**Prompt engineering** is the craft of giving the model clear direction before it starts. The most important part is the **system prompt**, the standing instructions that sit above every user message.
+King **Vikram** has made a promise to a sage. Bring me the corpse that hangs from the old tree.
 
-## Rules of the Road
+Vikram climbs the tree, cuts the body down and lifts it onto his shoulder. Then the corpse laughs.
 
-Betal's journey works because the rules are explicit and never change. A good system prompt works the same way.
+It is possessed by **Betal**, a clever spirit.
 
-- **A clear role.** Tell the model who it is and who it serves. Vikram knows exactly what he is carrying and why.
-- **Firm constraints.** State what must and must not happen, such as length, tone, sources to use and topics to refuse. The rule of silence is never left vague.
-- **Consequences for bad answers.** Ask the model to say "I don't know" when it lacks the facts, rather than guess.
-- **Examples.** Show two or three sample questions with ideal answers, called **few-shot examples**. Each of Betal's tales follows the same pattern of story, riddle and answer, so the shape is never in doubt.
+"It is a long walk, King," says Betal. "I will tell you stories on the way. But first, two rules."
+
+"Speak."
+
+"One. You will walk in silence. Say a single word, and I fly back to my tree."
+
+"And two?"
+
+"At the end of each story, I will ask a riddle. If you know the answer and keep quiet, your head will burst into a thousand pieces."
+
+Vikram nods and begins to walk.
+
+## First Riddle
+
+Betal tells of a woman whose husband and brother both lose their heads. A goddess lets her join the heads back on. In her hurry, she swaps them.
+
+"So tell me, King. Which man is now her husband?"
+
+Vikram thinks. He knows.
+
+"The one with the husband's head," he says. "The head rules the body."
+
+"Correct!" cries Betal. "And you spoke."
+
+With a shriek, he flies back to the tree.
+
+## Story to System
+
+| In the story | In a prompt |
+|---|---|
+| Vikram, wise and willing | The language model |
+| Two rules set before the walk | The **system prompt**, standing rules for every turn |
+| Each tale and its riddle | The **user prompt**, context plus one clear question |
+| Vikram answers only from the tale | Grounding, answering from the context given |
+| Betal flies back | A failed answer, so you fix the prompt and try again |
+
+## Trap in the Rules
+
+Look closely at Betal's rules.
+
+*Stay silent.* *Answer if you know.*
+
+If Vikram knows the answer, he cannot obey both. And he is wise, so he almost always knows.
+
+He is trapped. Twenty-four times the walk ends at the tree. Not because the king is weak. Because the rules fight each other.
+
+Models fall into the same trap. Imagine a prompt with these two lines.
+
+- *Always give a complete answer.*
+- *Never state anything you are not sure of.*
+
+When the model is unsure, it must break one. It usually breaks the second. That is how a confident guess is born.
+
+![Two rules, one trap](rules-loop.svg "aside")
+
+## Twenty-Fifth Night
+
+Betal tells one last tale. A father and son marry a mother and her daughter. The father marries the daughter. The son marries the mother. Both couples have children.
+
+"How are those children related to each other?"
+
+Vikram thinks. And thinks.
+
+He truly does not know. So he says nothing.
+
+His silence breaks neither rule. The walk is finally complete. Betal, pleased, warns him of the sage's wicked plan.
+
+The fix was never a smarter king. It was a **safe way to not know**.
+
+## See It Work
+
+A bank builds a support assistant. Here is the first prompt.
+
+```text
+Help customers with their savings account questions.
+```
+
+A customer asks, "Can I withdraw early from my fixed deposit?" The model invents a penalty. Or rambles about deposits in general.
+
+Now the prompt is written like Betal's rules, but rules that can all be kept.
+
+```text
+You are the support guide for Acme Bank savings and fixed deposit accounts.
+Answer only from the policy passages given with the question.
+Keep answers under 80 words, in plain English, and name the policy you used.
+If the passages do not answer the question, say "I don't have that detail,
+here is how to reach an advisor" and stop.
+Example question. What is the minimum balance for a savings account?
+Example answer. The minimum balance is 1,000 rupees (Savings Account Policy).
+```
+
+Each line does one job.
+
+- **Role.** Who the model is, and who it serves.
+- **Grounding.** Answer only from what was given, as Vikram did.
+- **Format.** Length, tone and a source, so the answer is usable.
+- **A way out.** Permission to say "I don't know". The lesson of the twenty-fifth night.
+- **An example.** One sample reply shows the shape. This is called **few-shot prompting**.
 
 ![A system prompt in four parts](prompt-parts.svg "aside")
 
-## Why Rules Beat Hope
+## Where the Story Stops
 
-A vague prompt hopes the model guesses what you meant. A structured prompt removes the guessing. The model is still the same clever, unpredictable storyteller, but now it walks a path you have drawn, and the answers come back in the shape you need.
+Vikram needed twenty-four failures. You can learn faster.
+
+Test your prompt on a set of real questions. Include ones it should refuse. Each wrong answer is a flight back to the tree. It tells you which rule to fix.
 
 ## Takeaway
 
-You cannot make a language model less creative, and you would not want to. You can give that creativity a road to travel on.
+A model follows your rules as faithfully as Vikram followed Betal's. If the rules clash, it fails faithfully too.
 
-> Set the rules before the story begins.
+Write rules that can all be kept at once. And always leave a door marked "I don't know".
+
+> Set the rules before the story begins, and make sure they can all be kept.

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 470" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="400" height="470" rx="18" fill="#FFF7E6" stroke="#1F1147" stroke-width="4"/>
+  <text x="24" y="40" fill="#D97706" font-size="13" font-weight="700" letter-spacing="1.5">AIM AT THE REFLECTION</text>
+  <!-- real passages -->
+  <rect x="24" y="56" width="352" height="104" rx="12" fill="#FFFFFF" stroke="#1F1147" stroke-width="1.5"/>
+  <text x="44" y="80" fill="#1F1147" font-size="14" font-weight="700">Real passages, the fish</text>
+  <g fill="#FDE68A" stroke="#1F1147" stroke-width="1.5"><rect x="44" y="92" width="96" height="52" rx="6" fill="#FCE7F3" stroke="#DB2777" stroke-width="2"/><rect x="152" y="92" width="96" height="52" rx="6"/><rect x="260" y="92" width="96" height="52" rx="6"/></g>
+  <text x="92" y="114" text-anchor="middle" fill="#1F1147" font-size="11.5">Refunds for</text><text x="92" y="130" text-anchor="middle" fill="#1F1147" font-size="11.5">damaged items</text>
+  <text x="200" y="114" text-anchor="middle" fill="#1F1147" font-size="11.5">Money-back</text><text x="200" y="130" text-anchor="middle" fill="#1F1147" font-size="11.5">subscriptions</text>
+  <text x="308" y="114" text-anchor="middle" fill="#1F1147" font-size="11.5">Blender</text><text x="308" y="130" text-anchor="middle" fill="#1F1147" font-size="11.5">cleaning tips</text>
+  <line x1="200" y1="164" x2="200" y2="186" stroke="#1F1147" stroke-width="2"/><path d="M193,180 L200,190 L207,180" fill="none" stroke="#1F1147" stroke-width="2"/>
+  <text x="212" y="182" fill="#5B4B73" font-size="12">embed each one, once</text>
+  <!-- pool -->
+  <rect x="24" y="196" width="352" height="170" rx="12" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
+  <text x="44" y="220" fill="#0369A1" font-size="14" font-weight="700">Vector index, the pool</text>
+  <circle cx="104" cy="296" r="9" fill="#DB2777" stroke="#1F1147" stroke-width="2"/>
+  <circle cx="206" cy="262" r="9" fill="#FDE68A" stroke="#1F1147" stroke-width="2"/>
+  <circle cx="318" cy="324" r="9" fill="#FDE68A" stroke="#1F1147" stroke-width="2"/>
+  <path d="M140,312 l9,-16 l9,16 l-9,-5 Z" fill="#7C3AED" stroke="#1F1147" stroke-width="1.5"/>
+  <text x="166" y="330" fill="#7C3AED" font-size="12" font-weight="700">your question</text>
+  <line x1="144" y1="304" x2="114" y2="298" stroke="#15803D" stroke-width="2.5" stroke-dasharray="4 3"/>
+  <text x="62" y="352" fill="#15803D" font-size="12" font-weight="700">nearest, 0.89</text>
+  <line x1="152" y1="302" x2="198" y2="266" stroke="#5B4B73" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="160" y1="310" x2="308" y2="324" stroke="#5B4B73" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="200" y1="370" x2="200" y2="392" stroke="#1F1147" stroke-width="2"/><path d="M193,386 L200,396 L207,386" fill="none" stroke="#1F1147" stroke-width="2"/>
+  <rect x="24" y="402" width="352" height="46" rx="12" fill="#FFFFFF" stroke="#15803D" stroke-width="2"/>
+  <text x="200" y="430" text-anchor="middle" fill="#15803D" font-size="13.5" font-weight="700">return the real refunds page</text>
+</svg>
