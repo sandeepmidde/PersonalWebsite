@@ -3,29 +3,29 @@
   <text x="24" y="40" fill="#D97706" font-size="13" font-weight="700" letter-spacing="1.5">ONE PAGE AT A TIME</text>
   <!-- storage -->
   <rect x="24" y="58" width="352" height="84" rx="12" fill="#FFFFFF" stroke="#1F1147" stroke-width="1.5"/>
-  <text x="44" y="86" fill="#1F1147" font-size="15" font-weight="700">Storage tier</text>
-  <text x="44" y="108" fill="#5B4B73" font-size="13">the whole archive, in chunks</text>
+  <text x="44" y="86" fill="#1F1147" font-size="15" font-weight="700">The store</text>
+  <text x="44" y="108" fill="#5B4B73" font-size="13">everything, cut into small pieces</text>
   <g fill="#FDE68A" stroke="#1F1147" stroke-width="1.5">
     <rect x="44" y="118" width="40" height="14" rx="3"/><rect x="90" y="118" width="40" height="14" rx="3"/><rect x="136" y="118" width="40" height="14" rx="3" fill="#DB2777"/><rect x="182" y="118" width="40" height="14" rx="3"/><rect x="228" y="118" width="40" height="14" rx="3"/><rect x="274" y="118" width="40" height="14" rx="3"/><rect x="320" y="118" width="36" height="14" rx="3"/>
   </g>
   <line x1="200" y1="146" x2="200" y2="170" stroke="#1F1147" stroke-width="2"/>
   <path d="M193,164 L200,174 L207,164" fill="none" stroke="#1F1147" stroke-width="2"/>
-  <text x="212" y="164" fill="#5B4B73" font-size="12">page in</text>
+  <text x="212" y="164" fill="#5B4B73" font-size="12">fetch one piece</text>
   <!-- window -->
   <rect x="24" y="180" width="352" height="120" rx="12" fill="#FFF1D6" stroke="#D97706" stroke-width="2"/>
-  <text x="44" y="208" fill="#1F1147" font-size="15" font-weight="700">Context window</text>
+  <text x="44" y="208" fill="#1F1147" font-size="15" font-weight="700">What the AI holds right now</text>
   <rect x="44" y="222" width="150" height="58" rx="8" fill="#FFFFFF" stroke="#DB2777" stroke-width="2"/>
-  <text x="119" y="246" text-anchor="middle" fill="#DB2777" font-size="13" font-weight="700">current page</text>
-  <text x="119" y="266" text-anchor="middle" fill="#5B4B73" font-size="12">plus overlap</text>
+  <text x="119" y="246" text-anchor="middle" fill="#DB2777" font-size="13" font-weight="700">this piece</text>
+  <text x="119" y="266" text-anchor="middle" fill="#5B4B73" font-size="12">plus a bit of the last</text>
   <rect x="206" y="222" width="150" height="58" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
-  <text x="281" y="246" text-anchor="middle" fill="#7C3AED" font-size="13" font-weight="700">running notes</text>
+  <text x="281" y="246" text-anchor="middle" fill="#7C3AED" font-size="13" font-weight="700">notes so far</text>
   <text x="281" y="266" text-anchor="middle" fill="#5B4B73" font-size="12">what came before</text>
   <line x1="200" y1="304" x2="200" y2="328" stroke="#1F1147" stroke-width="2"/>
   <path d="M193,322 L200,332 L207,322" fill="none" stroke="#1F1147" stroke-width="2"/>
   <!-- output -->
   <rect x="24" y="338" width="352" height="74" rx="12" fill="#FFFFFF" stroke="#15803D" stroke-width="2"/>
-  <text x="44" y="366" fill="#15803D" font-size="15" font-weight="700">Keep the result</text>
-  <text x="44" y="390" fill="#5B4B73" font-size="13">update the notes, clear the page</text>
+  <text x="44" y="366" fill="#15803D" font-size="15" font-weight="700">Write a short note</text>
+  <text x="44" y="390" fill="#5B4B73" font-size="13">then make room for the next piece</text>
   <path d="M376,375 C396,375 396,240 380,240" fill="none" stroke="#7C3AED" stroke-width="2" stroke-dasharray="5 4"/>
-  <text x="200" y="444" text-anchor="middle" fill="#1F1147" font-size="13.5" font-weight="700">repeat until the archive is read</text>
+  <text x="200" y="444" text-anchor="middle" fill="#1F1147" font-size="13.5" font-weight="700">repeat until everything is read</text>
 </svg>
