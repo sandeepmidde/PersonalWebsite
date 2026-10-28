@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 430" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="400" height="430" rx="18" fill="#FFF7E6" stroke="#1F1147" stroke-width="4"/>
+  <text x="24" y="40" fill="#D97706" font-size="13" font-weight="700" letter-spacing="1.5">LOOKS RIGHT, CHECK FIRST</text>
+  <rect x="24" y="60" width="352" height="120" rx="12" fill="#FFFFFF" stroke="#1F1147" stroke-width="1.5"/>
+  <text x="44" y="90" fill="#1F1147" font-size="16" font-weight="700">The golden deer</text>
+  <text x="44" y="112" fill="#5B4B73" font-size="13.5">A fluent, confident answer</text>
+  <g fill="#D97706"><circle cx="300" cy="110" r="5"/><circle cx="322" cy="96" r="3.5"/><circle cx="330" cy="124" r="4"/><circle cx="312" cy="138" r="3"/></g>
+  <text x="44" y="152" fill="#DB2777" font-size="13" font-style="italic">"Revenue grew 42% in 2019," with a citation</text>
+  <line x1="200" y1="184" x2="200" y2="214" stroke="#1F1147" stroke-width="2"/>
+  <path d="M193,208 L200,218 L207,208" fill="none" stroke="#1F1147" stroke-width="2"/>
+  <rect x="24" y="222" width="352" height="100" rx="12" fill="#FFF1D6" stroke="#D97706" stroke-width="2"/>
+  <text x="44" y="252" fill="#1F1147" font-size="16" font-weight="700">Lakshmana asks</text>
+  <text x="44" y="276" fill="#5B4B73" font-size="13.5">Does the source say this?</text>
+  <text x="44" y="298" fill="#5B4B73" font-size="13.5">Does it match what we know?</text>
+  <rect x="24" y="338" width="168" height="70" rx="12" fill="#FFFFFF" stroke="#15803D" stroke-width="2"/>
+  <text x="108" y="368" text-anchor="middle" fill="#15803D" font-size="15" font-weight="700">Supported</text>
+  <text x="108" y="390" text-anchor="middle" fill="#5B4B73" font-size="12.5">answer goes ahead</text>
+  <rect x="208" y="338" width="168" height="70" rx="12" fill="#FFFFFF" stroke="#DC2626" stroke-width="2"/>
+  <text x="292" y="364" text-anchor="middle" fill="#DC2626" font-size="15" font-weight="700">Unsupported</text>
+  <text x="292" y="388" text-anchor="middle" fill="#5B4B73" font-size="12.5">stop, flag or</text>
+  <text x="292" y="403" text-anchor="middle" fill="#5B4B73" font-size="12.5">say "I don't know"</text>
+</svg>

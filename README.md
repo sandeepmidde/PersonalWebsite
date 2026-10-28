@@ -116,6 +116,10 @@ Design rule: **`/blog` is the only post content you edit.** Everything in
 
 | Slug | Title | Tags | Series |
 |---|---|---|---|
+| `distributed-compute` | Distributed Computing for AI | AI, Technical | Tarang Tales |
+| `fine-tuning-vs-rag` | Fine-Tuning vs RAG | AI, Technical | Tarang Tales |
+| `mitigating-hallucinations` | Mitigating AI Hallucinations | AI, Technical, Governance | Tarang Tales |
+| `prompt-engineering` | Prompt Engineering Explained | AI, Technical | Tarang Tales |
 | `mountain-quest` | Understanding RAG Pipelines | AI, Technical, RAG | Tarang Tales |
 | `ultimate-cosmic-race` | Demystifying Vector Databases | AI, Technical, RAG | Tarang Tales |
 | `the-arjuna-algorithm` | Mechanics of Semantic Search | AI, Technical, RAG | Tarang Tales |
