@@ -4,17 +4,19 @@ Story: 🌙 Vikram and Betal · King Vikram
 Tags: AI, Technical
 Series: Tarang Tales
 Date: 2026-10-28
-Summary: How standing rules, clear questions and a safe way to say "I don't know" make a language model reliable.
+Summary: How clear instructions, with rules that never clash and a safe way to say "I don't know", make an AI reliable.
 
-## Loose Question, Loose Answer
+## Wrong Ticket
 
-Ask a language model a loose question. You get a loose answer.
+You ask a new assistant, "Book me a train ticket to Pune."
 
-Too long when you wanted short. Confident when it should be careful. Chatty when you needed formal.
+They come back proudly. A first-class ticket, for tomorrow at 5 am, with three changes on the way.
 
-The model is not broken. It did its best with what you gave it.
+They did exactly what you said. You just did not say enough.
 
-**Prompt engineering** is the craft of giving it better instructions. And an old Indian tale teaches it well, including the most common mistake.
+An AI is the same. It does its best with the instructions it gets. Vague instructions, vague answers. And instructions that fight each other? Something worse.
+
+An old tale of a king and a spirit shows exactly how that goes wrong.
 
 ## Night in the Cremation Ground
 
@@ -52,32 +54,15 @@ Vikram thinks. He knows.
 
 With a shriek, he flies back to the tree.
 
-## Story to System
+Vikram sighs, turns around, and walks back to fetch him.
 
-| In the story | In a prompt |
-|---|---|
-| Vikram, wise and willing | The language model |
-| Two rules set before the walk | The **system prompt**, standing rules for every turn |
-| Each tale and its riddle | The **user prompt**, context plus one clear question |
-| Vikram answers only from the tale | Grounding, answering from the context given |
-| Betal flies back | A failed answer, so you fix the prompt and try again |
+## Twenty-Four Nights
 
-## Trap in the Rules
+It happens again. And again.
 
-Look closely at Betal's rules.
+Every night, a new tale. Every night, a riddle. Vikram is wise, so every night he knows the answer. He must speak, or his head will burst. And the moment he speaks, Betal is gone.
 
-*Stay silent.* *Answer if you know.*
-
-If Vikram knows the answer, he cannot obey both. And he is wise, so he almost always knows.
-
-He is trapped. Twenty-four times the walk ends at the tree. Not because the king is weak. Because the rules fight each other.
-
-Models fall into the same trap. Imagine a prompt with these two lines.
-
-- *Always give a complete answer.*
-- *Never state anything you are not sure of.*
-
-When the model is unsure, it must break one. It usually breaks the second. That is how a confident guess is born.
+Twenty-four times, the walk ends at the tree.
 
 ![Two rules, one trap](rules-loop.svg "aside")
 
@@ -91,52 +76,84 @@ Vikram thinks. And thinks.
 
 He truly does not know. So he says nothing.
 
-His silence breaks neither rule. The walk is finally complete. Betal, pleased, warns him of the sage's wicked plan.
+Betal waits. Silence.
 
-The fix was never a smarter king. It was a **safe way to not know**.
+Then the spirit laughs, delighted. "At last, King. You have kept both rules."
+
+The walk is finally complete.
+
+## What Betal's Rules Teach
+
+**Vikram** is the AI. Wise, willing, and bound to follow whatever rules he is given.
+
+**Betal's two rules** are the instructions given to the AI before any question arrives. Engineers call these instructions a **prompt**, and the craft of writing them well **prompt engineering**.
+
+**The trap** is in the rules themselves. *Stay silent* and *answer if you know* cannot both be kept by someone who knows. Vikram failed twenty-four times, not because he was foolish, but because the rules fought each other. An AI given clashing rules fails the same way. Told "always give a full answer" and "never say anything you are unsure of", it usually breaks the second rule. That is how a confident guess is born.
+
+**The twenty-fifth night** is the way out. When Vikram truly did not know, silence kept both rules. An AI needs the same door. A rule that says, *if you are not sure, say so.*
+
+Just as your assistant needed the date, the time and the class, not just "Pune".
+
+## Writing Rules That Work
+
+So engineers write instructions the way Betal should have.
+
+They tell the AI who it is and who it is helping.
+
+They tell it what to work from, such as the documents it is given, and nothing else.
+
+They tell it the shape of a good answer. How long, what tone, what to include.
+
+They give it a way out. If the answer is not in front of it, say so, and point to a person who can help.
+
+And they show one or two examples of a perfect answer. Examples teach faster than rules.
+
+![Instructions in four parts](prompt-parts.svg "aside")
+
+## Story to System
+
+| In the story | In an AI system |
+|---|---|
+| Vikram, wise and willing | The AI |
+| Two rules set before the walk | Instructions given before any question, the prompt |
+| Rules that cannot both be kept | Clashing instructions that force a guess |
+| Silence on the twenty-fifth night | A safe way to say "I don't know" |
+| Betal flying back | A bad answer, so the instructions get fixed |
 
 ## See It Work
 
-A bank builds a support assistant. Here is the first prompt.
+A bank builds a chat assistant. The first instruction is one line.
 
 ```text
 Help customers with their savings account questions.
 ```
 
-A customer asks, "Can I withdraw early from my fixed deposit?" The model invents a penalty. Or rambles about deposits in general.
+A customer asks, "Can I close my fixed deposit early?" The assistant invents a penalty that does not exist.
 
-Now the prompt is written like Betal's rules, but rules that can all be kept.
+The team rewrites the instructions.
 
 ```text
 You are the support guide for Acme Bank savings and fixed deposit accounts.
-Answer only from the policy passages given with the question.
+Answer only from the policy pages given with the question.
 Keep answers under 80 words, in plain English, and name the policy you used.
-If the passages do not answer the question, say "I don't have that detail,
+If the policy pages do not answer the question, say "I don't have that detail,
 here is how to reach an advisor" and stop.
 Example question. What is the minimum balance for a savings account?
 Example answer. The minimum balance is 1,000 rupees (Savings Account Policy).
 ```
 
-Each line does one job.
-
-- **Role.** Who the model is, and who it serves.
-- **Grounding.** Answer only from what was given, as Vikram did.
-- **Format.** Length, tone and a source, so the answer is usable.
-- **A way out.** Permission to say "I don't know". The lesson of the twenty-fifth night.
-- **An example.** One sample reply shows the shape. This is called **few-shot prompting**.
-
-![A system prompt in four parts](prompt-parts.svg "aside")
+The same question now gets the real rule from the policy page. And when the page is silent, the assistant says so.
 
 ## Where the Story Stops
 
 Vikram needed twenty-four failures. You can learn faster.
 
-Test your prompt on a set of real questions. Include ones it should refuse. Each wrong answer is a flight back to the tree. It tells you which rule to fix.
+Try your instructions on a set of real questions, including some the AI should not answer. Every bad answer is a flight back to the tree. It shows you which rule to fix.
 
 ## Takeaway
 
-A model follows your rules as faithfully as Vikram followed Betal's. If the rules clash, it fails faithfully too.
+Your assistant booked the wrong ticket because you said too little.
 
-Write rules that can all be kept at once. And always leave a door marked "I don't know".
+Say enough, never let your rules clash, and always leave room for "I don't know".
 
-> Set the rules before the story begins, and make sure they can all be kept.
+> Clear rules that never clash, and a safe way to say "I don't know".

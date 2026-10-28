@@ -9,7 +9,7 @@
     <marker id="aW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker>
   </defs>
   <rect width="400" height="450" rx="18" fill="url(#bg)" stroke="#1F1147" stroke-width="4"/>
-  <text x="28" y="40" text-anchor="start" fill="#DC2626" font-size="11.5" font-weight="800" letter-spacing="1.6">BRUTE-FORCE SEARCH</text>
+  <text x="28" y="40" text-anchor="start" fill="#DC2626" font-size="11.5" font-weight="800" letter-spacing="1.6">CHECK EVERYTHING</text>
   <path d="M40,64 h25 l9,9 v33 h-34 z" fill="#FFFFFF" stroke="#5B4B73" stroke-opacity="0.9" stroke-width="2" stroke-linejoin="round"/><line x1="46" y1="79" x2="66" y2="79" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/><line x1="46" y1="87" x2="66" y2="87" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/><line x1="46" y1="95" x2="58" y2="95" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/>
   <path d="M108,64 h25 l9,9 v33 h-34 z" fill="#FFFFFF" stroke="#5B4B73" stroke-opacity="0.9" stroke-width="2" stroke-linejoin="round"/><line x1="114" y1="79" x2="134" y2="79" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/><line x1="114" y1="87" x2="134" y2="87" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/><line x1="114" y1="95" x2="126" y2="95" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/>
   <path d="M176,64 h25 l9,9 v33 h-34 z" fill="#FFFFFF" stroke="#5B4B73" stroke-opacity="0.9" stroke-width="2" stroke-linejoin="round"/><line x1="182" y1="79" x2="202" y2="79" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/><line x1="182" y1="87" x2="202" y2="87" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/><line x1="182" y1="95" x2="194" y2="95" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/>
@@ -32,6 +32,6 @@
   <path d="M312,274 h25 l9,9 v33 h-34 z" fill="#FFFFFF" stroke="#5B4B73" stroke-opacity="0.9" stroke-width="2" stroke-linejoin="round"/><line x1="318" y1="289" x2="338" y2="289" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/><line x1="318" y1="297" x2="338" y2="297" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/><line x1="318" y1="305" x2="330" y2="305" stroke="#5B4B73" stroke-opacity="0.54" stroke-width="2"/>
   <path d="M57,85 L57,85 L125,85 L193,85 L261,85 L329,85 L329,155 L329,155 L261,155 L193,155 L125,155 L57,155 L57,225 L57,225 L125,225 L193,225 L261,225 L329,225 L329,295 L329,295 L261,295 L193,295 L125,295 L57,295 " fill="none" stroke="#DC2626" stroke-width="3" stroke-opacity="0.85" stroke-dasharray="7 6" marker-end="url(#aW)"/>
   <rect x="28" y="352" width="344" height="74" rx="16" fill="url(#tile)" stroke="#DC2626" stroke-width="1.5"/>
-  <text x="200" y="382" text-anchor="middle" fill="#1F1147" font-size="16" font-weight="700">Reads every document</text>
+  <text x="200" y="382" text-anchor="middle" fill="#1F1147" font-size="16" font-weight="700">Reads every page</text>
   <text x="200" y="405" text-anchor="middle" fill="#5B4B73" font-size="13.5" font-weight="400">for every single question</text>
 </svg>

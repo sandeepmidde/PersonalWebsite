@@ -3,16 +3,16 @@
   <text x="24" y="40" fill="#D97706" font-size="13" font-weight="700" letter-spacing="1.5">AIM AT THE REFLECTION</text>
   <!-- real passages -->
   <rect x="24" y="56" width="352" height="104" rx="12" fill="#FFFFFF" stroke="#1F1147" stroke-width="1.5"/>
-  <text x="44" y="80" fill="#1F1147" font-size="14" font-weight="700">Real passages, the fish</text>
+  <text x="44" y="80" fill="#1F1147" font-size="14" font-weight="700">Help pages</text>
   <g fill="#FDE68A" stroke="#1F1147" stroke-width="1.5"><rect x="44" y="92" width="96" height="52" rx="6" fill="#FCE7F3" stroke="#DB2777" stroke-width="2"/><rect x="152" y="92" width="96" height="52" rx="6"/><rect x="260" y="92" width="96" height="52" rx="6"/></g>
   <text x="92" y="114" text-anchor="middle" fill="#1F1147" font-size="11.5">Refunds for</text><text x="92" y="130" text-anchor="middle" fill="#1F1147" font-size="11.5">damaged items</text>
   <text x="200" y="114" text-anchor="middle" fill="#1F1147" font-size="11.5">Money-back</text><text x="200" y="130" text-anchor="middle" fill="#1F1147" font-size="11.5">subscriptions</text>
   <text x="308" y="114" text-anchor="middle" fill="#1F1147" font-size="11.5">Blender</text><text x="308" y="130" text-anchor="middle" fill="#1F1147" font-size="11.5">cleaning tips</text>
   <line x1="200" y1="164" x2="200" y2="186" stroke="#1F1147" stroke-width="2"/><path d="M193,180 L200,190 L207,180" fill="none" stroke="#1F1147" stroke-width="2"/>
-  <text x="212" y="182" fill="#5B4B73" font-size="12">embed each one, once</text>
+  <text x="212" y="182" fill="#5B4B73" font-size="12">turned into numbers</text>
   <!-- pool -->
   <rect x="24" y="196" width="352" height="170" rx="12" fill="#E0F2FE" stroke="#0EA5E9" stroke-width="2"/>
-  <text x="44" y="220" fill="#0369A1" font-size="14" font-weight="700">Vector index, the pool</text>
+  <text x="44" y="220" fill="#0369A1" font-size="14" font-weight="700">Pages placed by meaning</text>
   <circle cx="104" cy="296" r="9" fill="#DB2777" stroke="#1F1147" stroke-width="2"/>
   <circle cx="206" cy="262" r="9" fill="#FDE68A" stroke="#1F1147" stroke-width="2"/>
   <circle cx="318" cy="324" r="9" fill="#FDE68A" stroke="#1F1147" stroke-width="2"/>
@@ -24,5 +24,5 @@
   <line x1="160" y1="310" x2="308" y2="324" stroke="#5B4B73" stroke-width="1.5" stroke-dasharray="3 4"/>
   <line x1="200" y1="370" x2="200" y2="392" stroke="#1F1147" stroke-width="2"/><path d="M193,386 L200,396 L207,386" fill="none" stroke="#1F1147" stroke-width="2"/>
   <rect x="24" y="402" width="352" height="46" rx="12" fill="#FFFFFF" stroke="#15803D" stroke-width="2"/>
-  <text x="200" y="430" text-anchor="middle" fill="#15803D" font-size="13.5" font-weight="700">return the real refunds page</text>
+  <text x="200" y="430" text-anchor="middle" fill="#15803D" font-size="13.5" font-weight="700">show the refunds page</text>
 </svg>

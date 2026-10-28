@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 470" font-family="Segoe UI, Helvetica, Arial, sans-serif">
   <rect width="400" height="470" rx="18" fill="#FFF7E6" stroke="#1F1147" stroke-width="4"/>
-  <text x="24" y="40" fill="#D97706" font-size="13" font-weight="700" letter-spacing="1.5">A SYSTEM PROMPT IN FOUR PARTS</text>
+  <text x="24" y="40" fill="#D97706" font-size="13" font-weight="700" letter-spacing="1.5">INSTRUCTIONS IN FOUR PARTS</text>
   <g font-size="15" font-weight="700" fill="#1F1147">
     <rect x="24" y="60" width="352" height="86" rx="12" fill="#FFFFFF" stroke="#1F1147" stroke-width="1.5"/>
     <circle cx="56" cy="103" r="17" fill="#D97706"/><text x="56" y="109" text-anchor="middle" fill="#FFF7E6">1</text>
     <text x="88" y="96">Role</text>
     <rect x="24" y="158" width="352" height="86" rx="12" fill="#FFFFFF" stroke="#1F1147" stroke-width="1.5"/>
     <circle cx="56" cy="201" r="17" fill="#DB2777"/><text x="56" y="207" text-anchor="middle" fill="#FFF7E6">2</text>
-    <text x="88" y="194">Constraints</text>
+    <text x="88" y="194">Rules</text>
     <rect x="24" y="256" width="352" height="86" rx="12" fill="#FFFFFF" stroke="#1F1147" stroke-width="1.5"/>
     <circle cx="56" cy="299" r="17" fill="#7C3AED"/><text x="56" y="305" text-anchor="middle" fill="#FFF7E6">3</text>
     <text x="88" y="292">When unsure</text>
@@ -19,6 +19,6 @@
     <text x="88" y="118">"You are a support guide for our product."</text>
     <text x="88" y="216">Length, tone, sources, topics to refuse</text>
     <text x="88" y="314">"If the facts are missing, say I don't know."</text>
-    <text x="88" y="414">Two or three ideal question and answer pairs</text>
+    <text x="88" y="414">One or two perfect sample answers</text>
   </g>
 </svg>

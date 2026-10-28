@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 470" font-family="Segoe UI, Helvetica, Arial, sans-serif">
   <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#D97706"/></marker></defs>
   <rect width="400" height="470" rx="18" fill="#FFF7E6" stroke="#1F1147" stroke-width="4"/>
-  <text x="24" y="40" fill="#D97706" font-size="13" font-weight="700" letter-spacing="1.5">THE CHECK SITS IN THE PATH</text>
+  <text x="24" y="40" fill="#D97706" font-size="13" font-weight="700" letter-spacing="1.5">CHECK BEFORE IT IS USED</text>
   <g font-size="15" font-weight="700" fill="#1F1147">
     <rect x="24" y="60" width="352" height="56" rx="12" fill="#FFFFFF" stroke="#1F1147" stroke-width="1.5"/>
-    <text x="44" y="84">Model drafts an answer</text>
+    <text x="44" y="84">The AI drafts an answer</text>
     <text x="44" y="104" font-size="12.5" font-weight="400" fill="#5B4B73">fluent, confident, unverified</text>
     <rect x="24" y="140" width="352" height="150" rx="12" fill="#FFF1D6" stroke="#D97706" stroke-width="2"/>
-    <text x="44" y="166">Guardrails</text>
+    <text x="44" y="166">Checks</text>
   </g>
   <g font-size="13" fill="#1F1147">
-    <circle cx="52" cy="190" r="6" fill="#DB2777"/><text x="68" y="195">Grounding check (faithfulness)</text>
-    <circle cx="52" cy="216" r="6" fill="#7C3AED"/><text x="68" y="221">Evaluation set (known answers)</text>
-    <circle cx="52" cy="242" r="6" fill="#D97706"/><text x="68" y="247">Safety classifier (unsafe content)</text>
-    <circle cx="52" cy="268" r="6" fill="#15803D"/><text x="68" y="273">Human review for high stakes</text>
+    <circle cx="52" cy="190" r="6" fill="#DB2777"/><text x="68" y="195">Does the source say this?</text>
+    <circle cx="52" cy="216" r="6" fill="#7C3AED"/><text x="68" y="221">Practice questions with known answers</text>
+    <circle cx="52" cy="242" r="6" fill="#D97706"/><text x="68" y="247">Screen for harmful content</text>
+    <circle cx="52" cy="268" r="6" fill="#15803D"/><text x="68" y="273">A person signs off big decisions</text>
   </g>
   <line x1="200" y1="116" x2="200" y2="136" stroke="#D97706" stroke-width="2" marker-end="url(#arr)"/>
   <line x1="110" y1="290" x2="110" y2="330" stroke="#D97706" stroke-width="2" marker-end="url(#arr)"/>

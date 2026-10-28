@@ -6,21 +6,21 @@ Series: Tarang Tales
 Date: 2026-10-01
 Summary: How AI search finds what you mean, not just the words you typed, told through two of Arjuna's archery tests.
 
-## Problem with Words
+## Blender Problem
 
-You open a help page and type a question.
+Your new blender breaks on day two. You open the shop's help page and type.
 
 *"Money back for a broken blender."*
 
-The search box returns a money-back offer on subscriptions. An article on back pain. A blender recipe.
+Back come a page on money-back subscriptions, an article on back pain, and a blender recipe.
 
-The page you needed is called "Returns and refunds for damaged items". It never shows up. It does not share a single word with your question.
+The page you need is called "Returns and refunds for damaged items". It never shows up. It does not share a single word with what you typed.
 
-That is **keyword search**. It matches words. **Semantic search** matches meaning.
+The search box read your words. It never understood what you meant.
 
-Two archery tests from the **Mahabharata** show how it works. The first shows *what* it looks for. The second shows *how* it finds it.
+How do engineers build search that understands? Two archery tests from the **Mahabharata** show the way.
 
-## First Test
+## What Do You See?
 
 Morning in the forest school. A wooden bird sits high in a tree.
 
@@ -50,79 +50,82 @@ The arrow flies. It strikes the eye.
 
 ![What each kind of search sees](bird-test.svg "aside")
 
-## What Drona Was Testing
-
-Every question is full of words. Only one thing is the target.
-
-- **Keyword search sees like Yudhishthira.** Every word counts the same. *Money*, *back*, *broken*, *blender*. Anything containing them comes back.
-- **Semantic search sees like Arjuna.** It looks past the words to the intent. Here the intent is a refund for a damaged product. It aims only at that.
-
-## Second Test
+## Spinning Fish
 
 Years later. A royal hall, crowded with kings.
 
 High on a pole, a wooden fish spins on a wheel. Below it lies a still pool of water.
 
-The rule is simple. Pierce the fish's eye. But you may not look up. You may only look at its **reflection** in the pool.
+"Pierce the fish's eye," the herald announces. "But you may not look up. Look only at its reflection in the pool."
 
-Prince after prince tries. They glance at the water, the reflection wobbles, they shoot. They miss.
+Prince after prince kneels by the water. The reflection wobbles. They shoot. They miss. The crowd groans.
 
-Arjuna kneels by the pool. He waits for the ripples to settle. The reflection grows sharp. He draws, aims at the image below, and sends the arrow upward.
+Arjuna kneels. He waits for the ripples to settle. The reflection grows sharp and clear.
 
-It hits the eye of the real fish.
+He draws, aims at the image below, and sends the arrow upward.
+
+It hits the eye of the real fish. The hall erupts.
+
+## What Arjuna Knew
+
+**Yudhishthira saw everything** in front of him, and every part counted the same. That is how the old help page searched. It saw *money*, *back*, *broken* and *blender*, and fetched anything containing them. Engineers call this **keyword search**.
+
+**Arjuna saw only the eye.** He looked past everything else to the one thing that mattered. Good search does the same. It looks past your words to what you mean, a refund for a damaged product. This is **semantic search**, search by meaning.
+
+**Arjuna aimed at the reflection,** not the fish. Semantic search works this way too. It never compares your words with every page directly. Each page is first turned into a kind of reflection, a list of numbers that captures what it means. Engineers call this an **embedding**.
+
+**The reflection pointed to the real fish.** When search finds the closest reflection, it hands you the real page behind it.
+
+Just as Arjuna saw only the eye, the search finally sees your refund.
+
+## Searching by Reflection
+
+So engineers build search the way Arjuna aimed.
+
+Long before anyone asks anything, every page gets its reflection. All the reflections are kept together, like images in one still pool.
+
+When you type a question, it gets a reflection too.
+
+The search looks for the reflections sitting closest to yours. Pages that mean similar things sit close together, even when their words are different. "Refund", "money back" and "return my order" all land near each other, just as the spinning fish always cast the same reflection.
+
+Still water matters. Messy, overlong pages blur the reflection, the way ripples did. Clean, short pages give a sharp one.
 
 ![Searching the reflection, not the fish](reflection.svg "aside")
-
-## How Arjuna Aimed
-
-Semantic search works the same way. It never compares your question with raw text. It compares **reflections**.
-
-1. **Every passage gets a reflection.** Before anyone asks anything, each passage is turned into an **embedding**. That is a list of numbers that captures its meaning.
-2. **The reflections sit in a pool.** All the embeddings are stored together in a **vector index**.
-3. **Your question gets a reflection too.** It is turned into an embedding by the same model.
-4. **Aim at the closest reflection.** The system finds the embeddings nearest to your question's.
-5. **Hit the real fish.** Each reflection belongs to a real passage. So the system returns that passage.
-
-Two more details from the story matter.
-
-- **The fish spins, but its reflection stays put.** "Refund", "money back" and "return my order" sound different. They mean nearly the same. So their reflections land close together.
-- **Still water gives a sharp image.** Ripples blur the reflection. Messy, overlong passages do the same to search. Clean, focused passages give sharper results.
 
 ## Story to System
 
 | In the story | In semantic search |
 |---|---|
-| "What do you see?" | Working out the intent of a question |
+| "What do you see?" | Working out what a question means |
 | Tree, branches, bird, brothers | Keyword search, every word counts |
-| Only the eye | Matching meaning |
-| Reflection in the pool | An embedding in a vector index |
-| Aim at the image, hit the fish | Find the nearest embedding, return its passage |
-| Ripples on the water | Noisy passages, blurry results |
+| Only the eye | Search by meaning |
+| The fish's reflection | A page turned into numbers, its embedding |
+| Aim at the image, hit the fish | Find the closest reflection, return its page |
+| Ripples on the water | Messy pages, blurry results |
 
 ## See It Work
 
-The shopper asks, *"Money back for a broken blender."*
+The shopper types, *"Money back for a broken blender."*
 
-The help centre has three pages. Each already has its reflection. The system makes one for the question. Then it scores how close each page is. A score of 1.0 means the same meaning. These scores are illustrative.
+1. **Reflect.** The question is turned into its list of numbers.
+2. **Compare.** The search checks how close it sits to each help page's reflection.
+3. **Rank.** "Returns and refunds for damaged items" sits closest, though it shares no words. The money-back page comes second. The blender recipe comes last.
+4. **Answer.** The refund page goes to the top.
 
-| Help page | Shares words? | Closeness |
-|---|---|---|
-| Returns and refunds for damaged items | None | 0.89 |
-| Money-back guarantee on subscriptions | "money back" | 0.62 |
-| Five blender cleaning tips | "blender" | 0.48 |
-
-Keyword search ranks the refund page last. Semantic search puts it first.
+The arrow hits the eye, not the tree.
 
 ## Where the Story Stops
 
-Arjuna shoots one arrow. A search system returns a short list, usually the top few passages.
+Arjuna shot one arrow. Search usually returns a few close pages, best first.
 
-And meaning is not everything. A product code like *BL-4021* means little to an embedding model. So many real systems run keyword and semantic search together. This is called **hybrid search**.
+And meaning is not everything. A product code like *BL-4021* has no meaning to reflect. So many systems search by meaning and by exact words together.
 
-What happens to the passages next is the story of [RAG](posts/mountain-quest/). How millions of reflections are searched in a blink is the story of [vector databases](posts/ultimate-cosmic-race/).
+What happens to those pages next is the story of [RAG](posts/mountain-quest/). How millions of reflections are searched in a blink is the story of [vector databases](posts/ultimate-cosmic-race/).
 
 ## Takeaway
 
-Good search does not count your words. It works out what you are aiming at. Then it looks for it in a pool of meanings.
+The old help page read your words. It needed to understand you.
 
-> See only the eye. Aim at the reflection.
+Search by what people mean, not by the words they happen to type.
+
+> Look past the words. Aim at the meaning.

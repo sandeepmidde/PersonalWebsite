@@ -6,13 +6,19 @@ Series: Tarang Tales
 Date: 2026-10-28
 Summary: How AI systems split work too heavy for one machine across many, and add the pieces back together.
 
-## Too Big for One Machine
+## Pile of Answer Sheets
 
-A large AI model can need around 140 gigabytes of memory just to load. One of today's top graphics processors (GPUs) holds 80.
+It is exam season. A teacher has a mountain of answer sheets to mark by morning.
 
-The model does not fit. No single machine can carry it.
+Alone, she would need a week.
 
-So how does it run at all? A folk tale has the answer. It is told in India of the witty courtier **Tenali Raman**, and in China of the boy **Cao Chong**.
+So she calls nine colleagues. She splits the pile into ten stacks. Everyone marks at the same time. At midnight, they add up the marks together.
+
+Done in one evening.
+
+Big AI systems face piles like this all the time. Work so heavy that no single computer can carry it.
+
+The trick to handling it comes from an old folk tale. It is told in India of the witty courtier **Tenali Raman**, and in China of the boy **Cao Chong**.
 
 ## King's Challenge
 
@@ -48,51 +54,69 @@ Each stone is small enough for the little scale. Ten servants weigh ten stones a
 
 Tenali bows. "Your Majesty. Your elephant weighs exactly this much."
 
+The court bursts into applause.
+
 ![One huge load becomes many small ones](split-load.svg "aside")
 
-## What Tenali Did
+## What Tenali Knew
 
-He never tried to lift the elephant. He did three things.
+**The elephant** is a job too big for one computer. Some AI systems are so large that they do not even fit into one machine's memory.
 
-1. **He found an equal.** The waterline proved that the pile of stones weighed the same as the elephant.
-2. **He split it into pieces that fit.** Every stone fit the small scale.
-3. **He added it back up.** Many small results became one big answer.
+**The small scale** is a single computer. Useful, but limited.
 
-And because no stone depended on any other, many servants could weigh at once.
+**The stones** are the job, cut into small pieces. Together they equal the whole, just as the stones matched the elephant's waterline. Each piece fits one machine.
 
-Distributed computing works the same way.
+**The servants weighing side by side** are many computers working at the same time. Engineers call this **distributed computing**. Because no stone depends on another, nobody has to wait for anyone else.
 
-- **Split the work.** A model too big for one GPU is cut into parts, and each part sits on a different GPU. A mountain of training data is cut into batches.
-- **Work side by side.** Many GPUs process their pieces at the same time. This is called **parallel** processing.
-- **Combine the results.** The pieces are joined into one answer, just as the stone weights add up to the elephant.
-- **Share the load.** A **load balancer** sends each new request to whichever machine has room. No servant stands idle while another is buried in stones.
+**Adding up the numbers** is the final step. The small results are combined into one answer.
 
-![Split, process in parallel, combine](parallel-flow.svg "aside")
+Just as the teacher split the answer sheets into stacks.
+
+## Building with Stones
+
+So engineers build big AI systems the way Tenali weighed the elephant.
+
+They cut the work into pieces that fit. A model too big for one machine is split into parts, and each part lives on a different machine. A huge pile of training examples is split into stacks.
+
+They hand the pieces to many machines at once. Each one works on its own piece.
+
+They gather the results and combine them into one answer.
+
+And when thousands of people ask questions at the same moment, a traffic controller sends each new question to whichever machine has room. No servant stands idle while another is buried in stones.
+
+![Split, work side by side, combine](parallel-flow.svg "aside")
 
 ## Story to System
 
 | In the story | In distributed computing |
 |---|---|
-| The elephant | A model or job too big for one machine |
-| The small scale | One GPU, with limited memory |
-| Stones that match the waterline | Pieces that together equal the whole job |
-| Servants weighing side by side | GPUs working in parallel |
-| Adding the weights | Combining the results |
+| The elephant | A job too big for one computer |
+| The small scale | One computer, with limits |
+| Stones that match the waterline | Small pieces that add up to the whole job |
+| Servants weighing side by side | Many computers working at once |
+| Adding up the weights | Combining the results |
 
 ## See It Work
 
-**Running a big model.** It needs about 140 GB. Each GPU holds 80 GB. So the model is split across several GPUs, often four or eight, to leave room for working memory. Each GPU holds its share and passes its result to the next.
+A team is teaching an AI from a huge library of examples.
 
-**Training on a mountain of data.** A team has a billion examples. They give each of 8 GPUs one eighth of the data. All 8 learn at the same time. After each round, they share and average what they learned. The job finishes close to 8 times faster than on one GPU.
+1. **Split.** They divide the examples into eight equal stacks.
+2. **Hand out.** Each stack goes to one of eight machines.
+3. **Work together.** All eight learn from their stack at the same time.
+4. **Combine.** After each round, the machines share what they learned and agree on one update.
+
+The job finishes in about an eighth of the time.
 
 ## Where the Story Stops
 
-Stones add up perfectly. Real computing is messier.
+Stones add up perfectly. Computer work is messier.
 
-GPUs often need to talk to each other while they work, and talking takes time. Good distributed systems keep the pieces as independent as possible. The fewer messages, the closer you get to Tenali's perfect sum.
+The machines often need to talk to each other while they work, and talking takes time. The less they need to talk, the closer they get to Tenali's perfect sum.
 
 ## Takeaway
 
-Scale in AI is rarely about one bigger machine. It is about finding the waterline. The way to turn one impossible load into many ordinary ones.
+The teacher did not mark faster. She split the pile.
 
-> When the load is too heavy to lift, change its shape.
+When a job is too big for one machine, cut it into pieces and share them out.
+
+> When the load is too heavy to lift, split it into stones.

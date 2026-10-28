@@ -4,19 +4,23 @@ Story: 🏔️ The Mountain Quest · Hanuman
 Tags: AI, Technical, RAG
 Series: Tarang Tales
 Date: 2026-10-02
-Summary: How a RAG pipeline stores knowledge, fetches the right pieces and writes an answer from them, told through a race against dawn.
+Summary: How an AI finds the right facts first and then answers from them, told through a race against dawn.
 
-## Guessing Problem
+## New Joiner
 
-Ask a language model about your company's leave policy. It has never read it.
+It is your first day at a new job. A colleague stops at your desk.
 
-So it guesses. The answer sounds right. It is wrong. This is a **hallucination**.
+"Quick question. How many weeks of leave do new parents get here?"
 
-**RAG**, or Retrieval-Augmented Generation, stops the guessing. It finds the right facts first, then lets the model answer from them.
+You have never read the company handbook. You could guess. You might even sound sure.
 
-To see each step, we go to a battlefield in the **Ramayana**.
+Or you could open the handbook, find the right page, and answer from it.
 
-New to the series? Start with [how semantic search works](posts/the-arjuna-algorithm/) and [how vector databases find things fast](posts/ultimate-cosmic-race/).
+An AI on its own often guesses. To make it look things up first, engineers build a fetch-then-answer system.
+
+To see how it works, we go to a battlefield in the **Ramayana**.
+
+New to the series? Start with [how search understands meaning](posts/the-arjuna-algorithm/) and [how it finds things fast](posts/ultimate-cosmic-race/).
 
 ## Night on the Battlefield
 
@@ -42,13 +46,13 @@ He stares. The mountain is covered in plants. Thousands of them. Shrubs, vines, 
 
 Which one is Sanjeevani?
 
-He does not wander the whole slope. He remembers what the physician said, and looks only for plants that match that description.
+He does not wander the whole slope. He remembers what the physician described, and looks only for plants that match.
 
-The search is slow. Dawn is coming. So Hanuman makes a choice.
+But time is running out. The sky is turning grey.
 
-He grips the ridge where the matching herbs grow, tears it free, and lifts it into the sky.
+So Hanuman makes a choice. He grips the ridge where the matching herbs grow, tears it free, and lifts it into the sky.
 
-![The pipeline from mountain to medicine](blueprint.svg)
+![From mountain to medicine](blueprint.svg)
 
 ## Back at the Tent
 
@@ -56,57 +60,66 @@ Hanuman lands before the medical tent and sets the ridge down. Rock, mud and roo
 
 Sushena does not look at the whole heap. He kneels, sorts through it and picks out the exact leaves he needs. He grinds them, prepares the medicine and gives it to Lakshmana.
 
-Before sunrise, the prince opens his eyes.
+The first light touches the sky. The prince opens his eyes.
 
-## Three Steps of the Quest
+## Who Did What
 
-Look again at who did what.
+**The mountain held the cure** all along, hidden among thousands of plants. In an AI system, this is your company's knowledge. Handbooks, policies, manuals.
 
-- **The mountain held the knowledge.** It was there all along, mixed with thousands of other things.
-- **Hanuman fetched.** He did not heal anyone. He found the right part of the mountain and carried it back.
-- **Sushena healed.** He never left the tent. He worked only from what was brought to him.
+**Hanuman fetched, but never healed.** He found the right part of the mountain and carried it back. In an AI system, a search step does this job. It finds the few pages that match the question.
 
-A RAG pipeline splits the work the same way.
+**Sushena healed, but never left the tent.** He worked only from what was brought to him. In an AI system, this is the AI that writes the answer. It answers from the fetched pages, not from memory.
 
-1. **Store the knowledge.** Documents are cut into small pieces called **chunks**. Each chunk gets an **embedding**, its meaning as numbers. All of it goes into a **vector database**. This is the mountain.
-2. **Retrieve.** A question arrives. The **retriever** turns it into an embedding and fetches the closest chunks. Like the ridge, it brings back a few extra, so the right one is surely inside. This is Hanuman.
-3. **Generate.** The chunks are placed in front of the language model with the question. It writes the answer from them, not from memory. This is Sushena.
+Engineers call this fetch-then-answer design **RAG**, short for Retrieval-Augmented Generation. Retrieval is Hanuman. Generation is Sushena.
 
-![Ingestion turns raw files into a map of meaning](ingestion.svg "aside")
+Just as you would open the handbook before answering your colleague.
+
+## Building the Quest
+
+So engineers build the system in three steps.
+
+**First, prepare the mountain.** All the documents are cut into small pieces, a paragraph or so each, and stored so they can be searched by meaning.
+
+![Preparing the knowledge](ingestion.svg "aside")
+
+**Then, fetch.** When a question arrives, the search step brings back the few pieces closest to it. Like the ridge, it brings a little extra, so the right piece is surely inside.
+
+**Finally, answer.** The pieces are placed in front of the AI along with the question. It picks out what is relevant and writes the answer.
+
+![Fetching the closest matches](retrieval.svg "aside")
 
 ## Story to System
 
-| In the story | In a RAG pipeline |
+| In the story | In a RAG system |
 |---|---|
-| Mount Dronagiri and its plants | Documents, chunked and stored in a vector database |
+| Mount Dronagiri and its plants | The company's documents, cut into pieces |
 | "Find the Sanjeevani herb" | The user's question |
-| Looking only for plants that match | Retrieval by meaning, not keywords |
-| Lifting the ridge, not one leaf | Fetching the top few chunks, with spare context |
-| Sushena picking the right leaves | The language model using only what is relevant |
-| Lakshmana wakes before dawn | A grounded answer, in seconds |
+| Hanuman lifting the ridge | Fetching the closest pieces, with a little extra |
+| Sushena picking the right leaves | The AI using only what is relevant |
+| Lakshmana wakes at dawn | A correct answer, grounded in the documents |
 
 ## See It Work
 
-An employee asks, *"How many weeks of parental leave do I get?"*
+The colleague's question reaches the company's AI assistant. *"How many weeks of leave do new parents get?"*
 
-1. **Store.** The 400-page HR handbook was cut into 1,200 chunks last month. Each one was embedded and stored.
-2. **Retrieve.** The question is embedded. The five closest chunks come back. One is the parental leave section. Two are its neighbours, about eligibility. Two are about sick leave.
-3. **Generate.** The model reads all five. It ignores the sick leave chunks. It answers, *"You get 26 weeks of paid parental leave after six months of service (HR Handbook, section 7.2)."*
+1. **Fetch.** The search step brings back five pieces of the handbook. One is the parental leave section. Two are about who qualifies. Two are about sick leave.
+2. **Read.** The AI reads all five and sets the sick leave pieces aside.
+3. **Answer.** *"New parents get 26 weeks of paid leave after six months of service. See the HR Handbook, section 7.2."*
 
-![The retriever lifts the closest matches](retrieval.svg "aside")
+No guess. The answer came from the page.
+
+![Writing the answer from the fetched pages](generation.svg "aside")
 
 ## Where the Story Stops
 
-Hanuman lifted a whole ridge. A language model cannot read a whole mountain. It has a limit on how much text it can take in at once, its **context window**. So retrievers bring back a handful of chunks, not everything. That limit has [its own story](posts/context-window-limits/).
+Hanuman could carry a whole ridge. An AI can only read a little at a time, so the search brings a handful of pieces, not everything. That limit has [its own story](posts/context-window-limits/).
 
-And if the herb is not on the mountain, no retriever can find it. RAG is only as good as the documents behind it.
-
-![The LLM turns retrieved passages into an answer](generation.svg "aside")
+And if the herb was never on the mountain, no one can fetch it. The answers are only as good as the documents behind them.
 
 ## Takeaway
 
-The physician never climbed the mountain. The messenger never healed anyone. Each did one job well.
+On your first day, you would not guess. You would open the handbook.
 
-That is RAG. One part finds. One part answers.
+Make the AI do the same. Fetch the facts first, then answer.
 
-> Map the mountain, lift what matters, and let the physician do the healing.
+> First find the herb. Then heal.

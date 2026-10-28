@@ -4,23 +4,25 @@ Story: 🦌 The Golden Deer · Lakshmana
 Tags: AI, Technical, Governance
 Series: Tarang Tales
 Date: 2026-10-28
-Summary: Why fluent AI answers can still be false, and how checks built into the system catch them before anyone acts on them.
+Summary: Why an AI's polished answer can still be false, and how checks catch it before anyone acts on it.
 
-## Answer That Looks Perfect
+## Too-Good Answer
 
-You ask an AI assistant for last year's revenue growth.
+Your manager needs last year's growth figure for a meeting in ten minutes. You ask an AI assistant.
 
-*"Revenue grew 42% in 2019, according to the annual report."*
+*"Revenue grew 42% last year, according to the annual report."*
 
-Clean sentence. A number. A source. You paste it into your slides.
+A clean sentence. A number. A source. You paste it into the slides.
 
-The report actually says 24%.
+In the meeting, someone opens the report. It says 24%.
 
-This is a **hallucination**. The model wrote something that sounds true and is not. The danger is not that it looks broken. The danger is that it looks perfect.
+The answer looked perfect. That was the problem.
+
+To understand why this happens, and how to stop it, we go to a forest in the **Ramayana**.
 
 ## Morning in the Forest
 
-The **Ramayana**. Exile, year thirteen.
+Exile, year thirteen.
 
 **Rama**, **Sita** and **Lakshmana** live in a small hut in the Panchavati forest. One morning, Sita steps outside and gasps.
 
@@ -34,22 +36,9 @@ Lakshmana does not move. He is watching the deer closely.
 
 "Brother, wait. I have walked these forests for years. No deer looks like that. Gold does not grow on animals. This could be a trick of the demons."
 
-![A hallucination looks right until it is checked](check.svg "aside")
+![Looks right, check first](check.svg "aside")
 
-## What Lakshmana Did
-
-Lakshmana did not argue about how beautiful the deer was. He asked one question.
-
-*Does this match what I know to be real?*
-
-That is exactly what a **guardrail** does in an AI system. It checks an answer against known facts before anyone acts on it.
-
-- **Check against the source.** Compare the answer with the documents it came from. Does the source really say 42%? Tools such as RAGAS score this as **faithfulness**, the share of an answer the sources support.
-- **Test with known answers.** Keep a set of questions whose answers you already know. Run them often. If accuracy drops, you see it before users do.
-- **Screen for harm.** Models such as Llama Guard check for unsafe content. They guard against harm, not made-up facts. So they sit beside the source check, not in place of it.
-- **Ask a person.** For big decisions, a human signs off before the answer becomes an action.
-
-## When the Warning Is Ignored
+## Voice in the Forest
 
 Rama chases the deer anyway. Deep in the forest, his arrow finds it. As it falls, the deer cries out in Rama's own voice.
 
@@ -57,51 +46,75 @@ Rama chases the deer anyway. Deep in the forest, his arrow finds it. As it falls
 
 The deer was the demon **Maricha** all along.
 
-Back at the hut, Sita panics. "Go! Your brother is in danger!"
+Back at the hut, Sita turns pale. "Go! Your brother is in danger!"
 
 "It is a trick," says Lakshmana. "No one can harm Rama."
 
-But Sita insists, and Lakshmana gives in. He leaves.
+"Go!"
+
+Lakshmana gives in. He leaves.
 
 Moments later, **Ravana** arrives and carries Sita away.
 
-Lakshmana's warning was right. It was simply overruled.
+Lakshmana was right. But his warning was overruled.
 
-![Every answer passes the check before it acts](guardrail-flow.svg "aside")
+## What Lakshmana Saw
+
+**The golden deer** is an AI answer that looks perfect and is false. Smooth words, a confident tone, even a source. Engineers call this a **hallucination**. The AI is not lying on purpose. It is built to write what sounds right, and sometimes what sounds right is wrong.
+
+**Sita's delight** is how people react to a polished answer. It looks so good that nobody questions it.
+
+**Lakshmana's question** was simple. *Does this match what I know is real?* In an AI system, a **check** asks the same thing before the answer is used. Does the source really say 42%?
+
+**The overruled warning** is a check that only warns. If someone can wave it aside in a hurry, it will be waved aside.
+
+Just as you would have been saved by opening the report before pasting the number.
+
+## Building Lakshmana In
+
+So engineers place checks between the AI and the people who use its answers.
+
+The first check compares the answer with the documents it came from. If the source says 24%, an answer of 42% fails.
+
+The second keeps a set of practice questions with known answers. The AI is tested on them often. If it starts getting more wrong, the team sees it early.
+
+For big decisions, the last check is a person. Someone signs off before the answer turns into an action.
+
+And the checks are placed *in the path*. A failed check does not just warn. It stops the answer.
+
+![The check sits in the path](guardrail-flow.svg "aside")
 
 ## Story to System
 
 | In the story | In an AI system |
 |---|---|
-| The golden deer | A fluent, confident, false answer |
-| Sita's delight | Users trusting what looks polished |
-| "No deer looks like that" | Checking the answer against known facts |
-| The warning that was overruled | A check that only warns and can be skipped |
+| The golden deer | A polished, confident, false answer |
+| Sita's delight | Trusting what looks perfect |
+| "No deer looks like that" | Checking the answer against the source |
+| The overruled warning | A check that can be skipped |
 | Ravana at the hut | Real harm from acting on a false answer |
 
 ## See It Work
 
-Back to the revenue answer. This time a check sits in the path.
+Back to the growth figure. This time a check sits in the path.
 
-1. **The model answers.** *"Revenue grew 42% in 2019."*
-2. **The check reads the source.** The annual report says 24%.
-3. **The claim fails.** Its faithfulness score is low.
-4. **The system acts on it.** It does not show the answer. It says, *"I could not confirm this figure. Here is the passage from the report."*
+1. **The AI answers.** *"Revenue grew 42% last year."*
+2. **The check reads the report.** The report says 24%.
+3. **The check fails.** The answer does not match its source.
+4. **The answer is stopped.** Instead, you see, *"I could not confirm this figure. Here is the passage from the report."*
 
-The slide is never made. The mistake never leaves the building.
+The wrong number never reaches the slides.
 
 ## Where the Story Stops
 
-Lakshmana only warned. Sita could overrule him, and she did.
+Lakshmana could only warn. A real system can do more, and stop the answer itself.
 
-In production, the check cannot be a polite warning. It has to sit in the path of the answer. A failed check stops the next step. No debate.
-
-No check catches everything. But each one lowers the risk, and together they lower it a lot.
+Still, no check catches every mistake. Each one makes mistakes rarer, and together they make them much rarer.
 
 ## Takeaway
 
-Hallucinations will not go away. Fluent writing is what these models are built for.
+The 42% looked perfect. One look at the report would have caught it.
 
-What you control is whether a beautiful answer gets checked before it is trusted.
+Never let a polished answer skip the check.
 
 > The more perfect it looks, the more carefully you check it.

@@ -21,9 +21,9 @@
     <rect x="50" y="410" width="50" height="10" rx="3"/>
   </g>
   <g font-size="13" fill="#5B4B73">
-    <text x="124" y="346">Practises on many examples</text>
-    <text x="124" y="366">until the skill is in its</text>
-    <text x="124" y="386">weights</text>
+    <text x="124" y="346">Trained on many examples</text>
+    <text x="124" y="366">until the skill</text>
+    <text x="124" y="386">is built in</text>
     <text x="124" y="412">Best for skills that stay</text>
   </g>
 </svg>

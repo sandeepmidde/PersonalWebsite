@@ -9,7 +9,7 @@
     <marker id="aW" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker>
   </defs>
   <rect width="400" height="474" rx="18" fill="url(#bg)" stroke="#1F1147" stroke-width="4"/>
-  <text x="28" y="40" text-anchor="start" fill="#DB2777" font-size="11.5" font-weight="800" letter-spacing="1.6">VECTOR DATABASE</text>
+  <text x="28" y="40" text-anchor="start" fill="#DB2777" font-size="11.5" font-weight="800" letter-spacing="1.6">GROUPS OF MEANING</text>
   <rect x="28" y="56" width="344" height="372" rx="16" fill="url(#tile)" stroke="#1F1147"/>
 <line x1="85" y1="64" x2="85" y2="420" stroke="#1F1147" stroke-opacity="0.6"/><line x1="142" y1="64" x2="142" y2="420" stroke="#1F1147" stroke-opacity="0.6"/><line x1="199" y1="64" x2="199" y2="420" stroke="#1F1147" stroke-opacity="0.6"/><line x1="256" y1="64" x2="256" y2="420" stroke="#1F1147" stroke-opacity="0.6"/><line x1="313" y1="64" x2="313" y2="420" stroke="#1F1147" stroke-opacity="0.6"/><line x1="36" y1="118" x2="364" y2="118" stroke="#1F1147" stroke-opacity="0.6"/><line x1="36" y1="180" x2="364" y2="180" stroke="#1F1147" stroke-opacity="0.6"/><line x1="36" y1="242" x2="364" y2="242" stroke="#1F1147" stroke-opacity="0.6"/><line x1="36" y1="304" x2="364" y2="304" stroke="#1F1147" stroke-opacity="0.6"/><line x1="36" y1="366" x2="364" y2="366" stroke="#1F1147" stroke-opacity="0.6"/>
   <circle cx="120" cy="140" r="58" fill="#D97706" fill-opacity="0.08" stroke="#D97706" stroke-opacity="0.45" stroke-dasharray="4 5"/>
