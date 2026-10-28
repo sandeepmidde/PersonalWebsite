@@ -5,6 +5,12 @@
 /readme.md  /  301
 /README  /  301
 
+# Posts removed on 2026-10-28 (to be rewritten): send old links to the Slate
+/slate/ai-agents-move-into-production/  /slate/  302
+/posts/ai-agents-move-into-production/  /slate/  302
+/slate/agentic-ai-in-project-management/  /slate/  302
+/posts/agentic-ai-in-project-management/  /slate/  302
+
 # Other names for the Tarang hub at /blog
 /blogs  /blog  301
 /tarang  /blog  301
@@ -44,8 +50,20 @@
 /posts/observer-prime  /lab/observer-prime/  301
 /posts/project-elara/  /lab/project-elara/  301
 /posts/project-elara  /lab/project-elara/  301
-/posts/agentic-ai-in-project-management/  /slate/agentic-ai-in-project-management/  301
-/posts/agentic-ai-in-project-management  /slate/agentic-ai-in-project-management/  301
-/posts/ai-agents-move-into-production/  /slate/ai-agents-move-into-production/  301
-/posts/ai-agents-move-into-production  /slate/ai-agents-move-into-production/  301
+/posts/ai-where-users-already-are/  /slate/ai-where-users-already-are/  301
+/posts/ai-where-users-already-are  /slate/ai-where-users-already-are/  301
+/posts/strategy-meets-reality/  /slate/strategy-meets-reality/  301
+/posts/strategy-meets-reality  /slate/strategy-meets-reality/  301
+/posts/clarity-is-a-product-feature/  /slate/clarity-is-a-product-feature/  301
+/posts/clarity-is-a-product-feature  /slate/clarity-is-a-product-feature/  301
+/posts/definition-of-success/  /slate/definition-of-success/  301
+/posts/definition-of-success  /slate/definition-of-success/  301
+/posts/architecture-rarely-fails/  /slate/architecture-rarely-fails/  301
+/posts/architecture-rarely-fails  /slate/architecture-rarely-fails/  301
+/posts/architecture-of-omission/  /slate/architecture-of-omission/  301
+/posts/architecture-of-omission  /slate/architecture-of-omission/  301
+/posts/mvp-begins-with-saying-no/  /slate/mvp-begins-with-saying-no/  301
+/posts/mvp-begins-with-saying-no  /slate/mvp-begins-with-saying-no/  301
+/posts/the-question-i-couldnt-answer/  /slate/the-question-i-couldnt-answer/  301
+/posts/the-question-i-couldnt-answer  /slate/the-question-i-couldnt-answer/  301
 # END generated

@@ -150,6 +150,7 @@
     @media (min-width: 1181px) { .prose .in-track { display: none; } }
     .prose .aside-only { display: none; }   /* figures that only add value beside the text */
     .prose img.tall { max-width: min(100%, 420px); }   /* portrait diagrams stay readable without filling the column */
+    .prose img.inline-fig { max-width: min(100%, 520px); cursor: zoom-in; }   /* "inline" images: kept in the text, smaller, click to enlarge */
 
     .lightbox { border: none; padding: 0; background: transparent; max-width: 92vw; max-height: 92vh; margin: auto; cursor: zoom-out; overflow: visible; }
     .lightbox::backdrop { background: rgba(11,17,32,0.82); }
@@ -681,6 +682,13 @@
       track.heads = [...body.querySelectorAll('h2')];
       if (coverSrc) addTrackItem(0, coverSrc, '', 1200, 627);
       body.querySelectorAll('img').forEach(img => {
+        // Images titled "inline" (![alt](file.jpg "inline")) stay in the text at a reduced size
+        if (img.title === 'inline') {
+          img.removeAttribute('title');
+          img.classList.add('inline-fig');
+          img.addEventListener('click', () => openLightbox(img));
+          return;
+        }
         const block = img.closest('p') && img.closest('p').textContent.trim() === '' ? img.closest('p') : img;
         if (img.title === 'aside') { block.classList.add('aside-only'); img.removeAttribute('title'); }
         block.classList.add('in-track');

@@ -560,7 +560,7 @@
           <span class="when">${formatDate(post.date)} · raw note</span>
           ${DOODLE}
           <span class="scrawl">${esc(splitTitle(post.title, post.subtitle).name)}</span>
-          <span class="scrawl-line">${esc(post.excerpt)}</span>
+          <span class="scrawl-line">${esc(post.summary || post.excerpt)}</span>
         </div>`;
       }
       const tag = (post.tags || [])[0] || 'Article';
