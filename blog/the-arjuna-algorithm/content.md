@@ -1,9 +1,9 @@
-# The Archer's Target: Decoding RAG
-Subtitle: Understanding AI accuracy, retrieval pipelines, and focus through the lens of a legendary archery test.
+# Why RAG Stops AI From Guessing
+Subtitle: Hallucination, precision matching and context retrieval through the lens of Arjuna's legendary archery test.
 Tags: AI, Technical, RAG
 Series: Tarang Tales
 Date: 2026-10-01
-Summary: Understanding AI accuracy, retrieval pipelines, and focus through the lens of a legendary archery test.
+Summary: Hallucination, precision matching and context retrieval through the lens of Arjuna's legendary archery test.
 
 ## Why RAG Matters
 

@@ -116,14 +116,20 @@ Design rule: **`/blog` is the only post content you edit.** Everything in
 
 | Slug | Title | Tags | Series |
 |---|---|---|---|
-| `mountain-quest` | The Mountain Quest: Decoding RAG Components | AI, RAG | Tarang Tales |
-| `ultimate-cosmic-race` | Ultimate Cosmic Race: Decoding Vector Databases | AI, RAG | Tarang Tales |
-| `the-arjuna-algorithm` | The Archer's Target: Decoding RAG | AI, RAG | Tarang Tales |
-| `krishna-uvaca` | Kṛṣṇa Uvāca: Grounded Cosmic Counsel | Projects, AI, RAG | Lab Reports |
-| `observer-prime` | Observer Prime: Unified Agentic Orchestration | Projects, AI | Lab Reports |
-| `project-elara` | Project Elara: Contextual Knowledge OS | Projects, AI, Learning | Lab Reports |
-| `agentic-ai-in-project-management` | Agentic AI Is Rewriting the PMO Playbook (Word source, not yet reviewed) | AI, Project Management | none yet |
-| `ai-agents-move-into-production` | AI Agents Move Into Production (not yet reviewed) | AI | Surabhi's Slate |
+| `mountain-quest` | Understanding RAG Pipelines | AI, Technical, RAG | Tarang Tales |
+| `ultimate-cosmic-race` | Demystifying Vector Databases | AI, Technical, RAG | Tarang Tales |
+| `the-arjuna-algorithm` | Why RAG Stops AI From Guessing | AI, Technical, RAG | Tarang Tales |
+| `krishna-uvaca` | Kṛṣṇa Uvāca: Grounded Cosmic Counsel | AI, Technical, Governance, RAG, Krishna Uvaca | Lab Reports |
+| `observer-prime` | Observer Prime: Unified Agentic Orchestration | AI, Technical, Governance | Lab Reports |
+| `project-elara` | Project Elara: Contextual Knowledge OS | AI, Technical, Learning | Lab Reports |
+| `ai-where-users-already-are` | Not Every AI Investment Needs Another Product | AI | Surabhi's Slate |
+| `strategy-meets-reality` | Strategy Sets the Direction. Reality Draws the Map | AI, Project Management | Surabhi's Slate |
+| `clarity-is-a-product-feature` | Clarity Is a Product Feature | AI, Krishna Uvaca | Surabhi's Slate |
+| `definition-of-success` | Every Product Chooses Its Definition of Success | AI, Governance, Krishna Uvaca | Surabhi's Slate |
+| `architecture-rarely-fails` | Architecture Rarely Fails. Assumptions Do | Technical, Krishna Uvaca | Surabhi's Slate |
+| `architecture-of-omission` | Why I Deliberately Didn't Build Half the System | AI, Technical, Krishna Uvaca | Surabhi's Slate |
+| `mvp-begins-with-saying-no` | Why Every Great MVP Begins With Saying "No" | AI, Project Management, Krishna Uvaca | Surabhi's Slate |
+| `the-question-i-couldnt-answer` | The Question I Couldn't Answer | AI, Krishna Uvaca | Surabhi's Slate |
 
 The slugs never change, even when a title does, so shared links keep working.
 
