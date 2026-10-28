@@ -4,25 +4,19 @@ Story: ⛰️ Lifting Govardhan · Krishna
 Tags: AI, Technical
 Series: Tarang Tales
 Date: 2026-10-28
-Summary: Why an AI cannot read everything at once, and how it is fed just the right part, told through Krishna and the great storm.
+Summary: Why an AI cannot read everything at once, and how it is handed just the right part, told through Krishna and the great storm.
 
 ## One Small Question
 
-Someone asks you a simple question.
+Someone asks you, *"Who built the bridge to Lanka?"*
 
-*"Who built the bridge to Lanka?"*
+The whole **Ramayana** lies open in front of you. Would you read it aloud from page one until you reach the bridge?
 
-The whole **Ramayana** sits open on the table in front of you. All seven books.
+Of course not. You would turn to the right chapter, read a few lines and answer.
 
-Would you start reading from the very first page, out loud, and keep going until you reach the bridge?
+An AI has the same problem. It can only keep a little text in mind at a time. Pour a whole library over it, and it gets lost.
 
-Of course not. By the time you got there, you would be exhausted. You might even forget what you were asked.
-
-You would turn straight to the right chapter, read a few lines and answer. *Nala and the vanara army built it.*
-
-An AI faces this same problem every day. It can only keep a small amount of text in mind at one time. Pour a whole library over it at once, and it either refuses, cuts the text off, or loses track of the details in the middle.
-
-So how do engineers stop an AI from drowning in words? The answer is in a story about a storm.
+So how do engineers keep an AI from drowning in words? The answer is in a story about a storm.
 
 ## Boy Who Questioned the Sky
 
@@ -52,7 +46,7 @@ Huts collapsed. Lanes became rivers. Calves bawled in the rising flood. Mothers 
 
 "Krishna!" the villagers cried. "Save us!"
 
-## Hill in the Sky
+## Krishna Lifts Govardhan
 
 Krishna walked calmly through the storm to the foot of Govardhan.
 
@@ -72,31 +66,29 @@ For seven days and seven nights, they lived under the hill. No one fought the st
 
 On the eighth morning, Indra gave up. The clouds parted. The sun came out.
 
-![Everything at once, or a shield overhead](storm-shield.svg "aside")
+![Too much at once, or only what is needed](storm-shield.svg "aside")
 
 ## What Krishna Really Did
 
-Here is the secret of the story.
+Krishna did not stop the rain. He put the hill **between the rain and the people**.
 
-Krishna never stopped the rain. He did not make the village bigger. He did one thing. He decided **where the water would land**.
+Now think of the AI.
 
-Now think of the AI again.
+**The rain** is all the information there is. Every report, every email, every page. Far too much to take in at once.
 
-The storm is all the information in the world. Every report, every email, every page. Far too much for any AI to take in at once.
+**The dry space under the hill** is how much the AI can hold at one time. Engineers call this its **context window**. Like the space under the hill, it has edges.
 
-The small dry space under the hill is how much the AI can keep in mind at one time. Engineers call this the **context window**. It is like a desk. Big or small, it has edges.
+**The hill** is a search step that stands between all that information and the AI. Everything lands on it first. It lets through only the few pieces the question needs.
 
-The hill is a separate **store** that holds everything. It takes the weight of the storm, so the AI never has to.
-
-And the streams running off the slopes? That is what actually reaches the AI. A small, steady flow. Only the part that is needed, a little at a time.
+Just as you turned to the one chapter about the bridge, and left the rest of the Ramayana closed.
 
 ## Living Under the Hill
 
 So engineers build AI systems the way Krishna sheltered Vrindavan.
 
-Everything is kept in the store, cut into small pieces, like pages of a book.
+Everything is kept in a store, cut into small pieces, like pages of a book.
 
-When a question comes in, the system fetches only the few pieces that matter. Just as you turned straight to the chapter about the bridge. This step is the heart of [RAG](posts/mountain-quest/).
+When a question comes in, the system fetches only the few pieces that matter. This step is the heart of [RAG](posts/mountain-quest/).
 
 For a really big job, the AI works one piece at a time, like the villagers living one day at a time. It reads a piece, writes a short note about it, then moves to the next. The notes travel forward, so it never loses the thread.
 
@@ -106,10 +98,10 @@ For a really big job, the AI works one piece at a time, like the villagers livin
 
 | In the story | In an AI system |
 |---|---|
-| Seven days of endless rain | More information than the AI can take in at once |
-| Dry space under the hill | How much the AI can keep in mind, its context window |
-| The hill taking the storm | A store that holds everything |
-| Streams running off the slopes | Only the needed pieces, fed in a little at a time |
+| Seven days of endless rain | More information than the AI can take in |
+| Dry space under the hill | What the AI can hold at once, its context window |
+| The hill between rain and people | A search step that lets only the needed pieces through |
+| Streams running off the slopes | The few pieces that reach the AI |
 | One day at a time | Working piece by piece, with notes carried forward |
 
 ## See It Work
@@ -127,16 +119,16 @@ The AI never had to swallow the flood. It drank one cup at a time.
 
 ## Where the Story Stops
 
-Krishna's shelter was perfect. This method is not.
+Krishna's hill kept out every drop. Reading one piece at a time has a small gap.
 
-When the AI reads one month at a time, it can miss a link between something in the third month and something years later. Good notes and smart searching make that rare. But the question engineers ask is always the same.
+The AI sees only one month at a time. So it may not notice that a problem from January came back in December.
 
-*What does the AI need to see right now?*
+Good notes help it remember. Smart searching helps it find the link.
 
 ## Takeaway
 
 You did not need the whole Ramayana to answer one question. You needed the right page.
 
-AI is the same. The answer is not a bigger desk. It is a store that holds everything, and a steady stream that brings the AI just what it needs.
+Give the AI the right page, not the whole book.
 
-> You cannot stop the storm. You can decide where it lands.
+> The window is small. Fill it with what matters.
