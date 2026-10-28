@@ -517,7 +517,8 @@ function writePostRedirects(index) {
     `/posts/${p.slug}  /${p.url}  301`,
   ]);
   const block = [BEGIN, ...rules, END].join('\n');
-  const current = fs.existsSync(REDIRECTS_FILE) ? fs.readFileSync(REDIRECTS_FILE, 'utf8') : '';
+  // Compare with LF endings, so a Windows checkout (CRLF) isn't rewritten for nothing
+  const current = fs.existsSync(REDIRECTS_FILE) ? fs.readFileSync(REDIRECTS_FILE, 'utf8').replace(/\r\n/g, '\n') : '';
   const start = current.indexOf(BEGIN);
   const stop = start === -1 ? -1 : current.indexOf(END, start);
   const next = stop === -1
@@ -556,7 +557,10 @@ async function main() {
     }
   }
   // The series folders (/tales, /slate, /lab) are build output too
-  for (const s of SERIES) fs.rmSync(path.join(ROOT, s.key), { recursive: true, force: true });
+  for (const s of SERIES) {
+    const dir = path.join(ROOT, s.key);
+    if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true });
+  }
   fs.mkdirSync(POSTS_DIR, { recursive: true });
   ensureFullGitHistory();
 
