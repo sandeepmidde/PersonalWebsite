@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 440" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <rect width="400" height="440" rx="18" fill="#FFF7E6" stroke="#1F1147" stroke-width="4"/>
+  <text x="24" y="40" fill="#D97706" font-size="13" font-weight="700" letter-spacing="1.5">STORM OR SHIELD</text>
+  <!-- unmanaged storm -->
+  <rect x="24" y="58" width="352" height="160" rx="12" fill="#FFFFFF" stroke="#DC2626" stroke-width="2"/>
+  <text x="44" y="86" fill="#DC2626" font-size="15" font-weight="700">Everything at once</text>
+  <g stroke="#0EA5E9" stroke-width="2.5" stroke-linecap="round">
+    <line x1="232" y1="76" x2="224" y2="96"/><line x1="256" y1="74" x2="248" y2="94"/><line x1="280" y1="76" x2="272" y2="96"/><line x1="304" y1="74" x2="296" y2="94"/><line x1="328" y1="76" x2="320" y2="96"/><line x1="352" y1="74" x2="344" y2="94"/>
+    <line x1="240" y1="102" x2="232" y2="122"/><line x1="264" y1="100" x2="256" y2="120"/><line x1="288" y1="102" x2="280" y2="122"/><line x1="312" y1="100" x2="304" y2="120"/><line x1="336" y1="102" x2="328" y2="122"/>
+  </g>
+  <rect x="236" y="130" width="112" height="44" rx="6" fill="#FEE2E2" stroke="#1F1147" stroke-width="1.5"/>
+  <text x="292" y="157" text-anchor="middle" fill="#1F1147" font-size="12.5" font-weight="700">context window</text>
+  <text x="44" y="116" fill="#5B4B73" font-size="13">The whole archive</text>
+  <text x="44" y="134" fill="#5B4B73" font-size="13">goes in the prompt</text>
+  <text x="44" y="166" fill="#5B4B73" font-size="12.5">rejected, cut off, or</text>
+  <text x="44" y="184" fill="#5B4B73" font-size="12.5">lost in the middle</text>
+  <!-- shield -->
+  <rect x="24" y="234" width="352" height="186" rx="12" fill="#FFF1D6" stroke="#15803D" stroke-width="2"/>
+  <text x="44" y="262" fill="#15803D" font-size="15" font-weight="700">Hill overhead</text>
+  <g stroke="#0EA5E9" stroke-width="2.5" stroke-linecap="round">
+    <line x1="240" y1="248" x2="232" y2="266"/><line x1="268" y1="246" x2="260" y2="264"/><line x1="296" y1="248" x2="288" y2="266"/><line x1="324" y1="246" x2="316" y2="264"/><line x1="350" y1="248" x2="342" y2="266"/>
+  </g>
+  <path d="M214,300 C240,266 340,266 364,300 Z" fill="#B45309" stroke="#1F1147" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="289" y1="300" x2="289" y2="336" stroke="#1F1147" stroke-width="3"/>
+  <rect x="252" y="340" width="74" height="34" rx="6" fill="#DCFCE7" stroke="#1F1147" stroke-width="1.5"/>
+  <text x="289" y="362" text-anchor="middle" fill="#1F1147" font-size="12" font-weight="700">one page</text>
+  <text x="44" y="292" fill="#5B4B73" font-size="13">Bulk stays in storage</text>
+  <text x="44" y="314" fill="#5B4B73" font-size="13">Only what matters</text>
+  <text x="44" y="332" fill="#5B4B73" font-size="13">reaches the window</text>
+  <text x="200" y="402" text-anchor="middle" fill="#1F1147" font-size="13.5" font-weight="700">same storm, nobody drowns</text>
+</svg>
