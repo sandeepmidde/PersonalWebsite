@@ -248,3 +248,8 @@ relevant section above.
   - Narration must be a real story with short lines and dialogue.
   - Hooks for newcomers. No tokens, page counts or context-window talk up front. Example hook, the Ramayana bridge question.
   - Govardhan review. Rename vague scene headings ("Hill in the Sky" became "Krishna Lifts Govardhan"). Diagrams must not use decode-the-metaphor labels ("Hill overhead"). The hill maps to a search step, not a store. "Where the Story Stops" names the gap simply, without "this method is not". Takeaway drops meta lines ("AI is the same") and new metaphors ("a bigger desk"). Moral must be about the concept.
+- **2026-10-28** Guide applied to the other seven Tales.
+  - New hooks from everyday life: a broken blender refund, a library's aisle signs, a first-day colleague's question, a wrong growth figure, open-book versus closed-book exams, a pile of answer sheets, a badly booked train ticket.
+  - Hooks no longer name the concept ("RAG", "language model", "hallucination"). The term first appears in the reveal.
+  - Diagram labels were rewritten to drop jargon. Machine, not GPU. AI, not LLM. Turn into numbers, not embed. Cut into pieces, not chunk.
+  - Scenes that are not in the source myth are framed as imagination ("Now imagine this"), for example Drona's new technique in Fine-Tuning vs RAG.
