@@ -5,14 +5,14 @@
   <!-- Paths resolve from the site root, also after the format toggle changes the address to /tales/ etc. -->
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tarang, stories, scribbles and lab reports · Sandeep Midde</title>
-  <meta name="description" content="Tarang by Sandeep Midde. AI and technology explained three ways: Tarang Tales told through mythology, Surabhi's Slate raw notes, and Lab Reports on real AI products.">
+  <title>Tarang, stories, scribbles and build logs · Sandeep Midde</title>
+  <meta name="description" content="Tarang by Sandeep Midde. AI and technology explained three ways: Tarang Tales told through mythology, Surabhi's Slate raw notes, and Build Logs on real AI products.">
   <meta name="author" content="Sandeep Midde">
   <link rel="canonical" href="https://sandeepmidde.com/blog">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sandeep Midde">
   <meta property="og:title" content="Tarang by Sandeep Midde">
-  <meta property="og:description" content="AI and technology explained three ways: stories from mythology, raw notebook scribbles and product lab reports.">
+  <meta property="og:description" content="AI and technology explained three ways: stories from mythology, raw notebook scribbles and product build logs.">
   <meta property="og:url" content="https://sandeepmidde.com/blog">
   <meta property="og:image" content="https://sandeepmidde.com/assets/img/og-sandeep-midde.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -49,7 +49,7 @@
      - Optional: a line reading "Tags: AI, Project Management" anywhere in
        the first few lines — becomes the topics this post is grouped under.
      - Optional: a line reading "Series: Tarang Tales" (or Surabhi's Slate,
-       or Lab Reports) placing the post in a Tarang series. It sets the post's
+       or Build Logs) placing the post in a Tarang series. It sets the post's
        address (/tales/<slug>/, /slate/<slug>/, /lab/<slug>/), its look and
        its stamp. The series are defined in assets/tarang-series.json.
      - Optional: a line reading "Date: 2026-01-15" (YYYY-MM-DD) anywhere in
@@ -231,6 +231,7 @@
     /* Dual badges: the format stamp (left, brand colour) and topic chips (right, flat and muted) */
     .card-meta { display: flex; align-items: center; justify-content: space-between; gap: 6px 10px; flex-wrap: wrap; margin-bottom: 0.7rem; }
     .card-meta .post-kind { margin-bottom: 0; }
+    .card-meta-topics .topic-chips { justify-content: flex-start; }
     .card-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; border: 1.5px solid currentColor; }
     .topic-chips { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
     .topic-chip { font-size: 0.66rem; font-weight: 600; color: #475569; background: #EEF1F5; padding: 3px 8px; border-radius: 100px; white-space: nowrap; }
@@ -280,7 +281,9 @@
     /* A chosen card image (Card: line), usually a diagram, shown whole on a dark field */
     .cover img.card-art { object-fit: contain; background: #0B1120; padding: 4px; }
 
-    /* Lab Reports: sharp, geometric, stark tag */
+    /* Build Logs: sharp, geometric, stark tag, topics on their own line below it */
+    .card-lab .card-meta { flex-direction: column; align-items: flex-start; }
+    .card-lab .topic-chips { justify-content: flex-start; }
     :is(.post-card, .featured).card-lab { border-radius: 6px; border-top: 3px solid #0B1F44; }
     .card-lab .cover { border-radius: 0; }
     .card-lab .card-tag { background: #ECFDF5; color: #047857; border-radius: 2px; font-family: var(--ff-mono); font-weight: 500; letter-spacing: 0.14em; }
@@ -443,7 +446,7 @@
           <path d="M0 11 q10 -9 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/>
           <path d="M0 13 q10 -6 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/>
         </svg>
-        <p class="tarang-kicker">An Ecosystem of Stories, Scribbles &amp; Lab Reports</p>
+        <p class="tarang-kicker">An Ecosystem of Stories, Scribbles &amp; Build Logs</p>
         <p class="page-sub">One roof. Three ways of looking at complex systems, through timeless <em>fables</em>, raw <em>notebooks</em> and deep-tech <em>case studies</em>.</p>
       </div>
     </header>
@@ -598,12 +601,14 @@
     const topicsOf = post => TOPICS.filter(t => (post.tags || []).includes(t));
 
     // Above a title: the format stamp on the left (series name on cards, signature stamp
-    // on the featured card) and the post's topics as muted chips on the right
+    // on the featured card) and the post's topics as muted chips on the right. Inside one
+    // series the toggle already names it, so grid cards show only their topics.
     function cardTag(post, featured) {
       const s = seriesOf(post);
       const chips = `<span class="topic-chips">${topicsOf(post).map(t => `<span class="topic-chip" title="${esc(t)}">${esc(SHORT_TOPIC[t] || t)}</span>`).join('')}</span>`;
       if (!s) return `<div class="card-meta"><p class="post-kind">Article</p>${chips}</div>`;
-      const label = featured ? s.stamp : s.key === 'lab' ? 'Lab Report' : s.name;
+      if (!featured && current) return `<div class="card-meta card-meta-topics">${chips}</div>`;
+      const label = featured ? s.stamp : s.key === 'lab' ? 'Build Log' : s.name;
       return `<div class="card-meta"><span class="card-tag"><span aria-hidden="true">${EMOJI[s.key] || ''}</span>${esc(label)}</span>${chips}</div>`;
     }
 
@@ -693,14 +698,14 @@
       intro.hidden = !s;
       if (s) {
         intro.className = `channel-intro intro-${s.key}`;
-        intro.innerHTML = `<h2>${esc(s.name)}</h2><p>${esc(s.blurb)} ${esc(s.audience)}.</p><span class="stamp">${esc(s.stamp)}</span>`;
+        intro.innerHTML = `<p>${esc(s.blurb)} ${esc(s.audience)}.</p><span class="stamp">${esc(s.stamp)}</span>`;   // the pressed toggle already names the series
       }
       const featured = !s && topic === 'all' ? allPosts[0] : null;
       if (featured) renderFeatured(featured);
       document.getElementById('featured').hidden = !featured;
       const pool = allPosts.filter(p => p !== featured && (!s || p.series === s.key) && (topic === 'all' || topicsOf(p).includes(topic)));
       document.getElementById('listTitle').textContent =
-        [s ? s.name : '', topic === 'all' ? '' : topic].filter(Boolean).join(' · ') || 'More from Tarang';
+        topic !== 'all' ? topic : s ? 'All posts' : 'More from Tarang';
       document.getElementById('listCount').textContent = featured ? '' : `${pool.length} ${pool.length === 1 ? 'post' : 'posts'}`;
       renderGrid(pool);
       const empty = document.getElementById('emptyState');
@@ -709,7 +714,7 @@
         ? `<strong>Nothing here yet.</strong>No ${esc(s ? s.name : 'posts')} on ${esc(topic === 'all' ? 'this' : topic)} so far. Try another topic.`
         : '<strong>No posts yet.</strong>The first article is on its way.';
       if (s) document.title = `${s.seoTitle} · Tarang by Sandeep Midde`;
-      else document.title = 'Tarang, stories, scribbles and lab reports · Sandeep Midde';
+      else document.title = 'Tarang, stories, scribbles and build logs · Sandeep Midde';
     }
     window.addEventListener('popstate', () => show(seriesFromPath()));
 

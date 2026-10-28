@@ -25,14 +25,14 @@
   },
   {
     "key": "lab",
-    "name": "Lab Reports",
+    "name": "Build Logs",
     "kind": "Product Case Studies",
-    "stamp": "A Product Lab Deep-Dive",
+    "stamp": "A Product Build Deep-Dive",
     "crossLabel": "See it shipped in a product",
     "icon": "fa-flask",
     "audience": "For engineers, founders and recruiters",
     "blurb": "Long-form write-ups of the products I build, with the architecture, the trade-offs and the results.",
-    "seoTitle": "Lab Reports, AI product case studies",
-    "seoDescription": "Tarang Lab Reports by Sandeep Midde are long-form case studies of AI products, covering architecture, design decisions and results."
+    "seoTitle": "Build Logs, how I build AI products",
+    "seoDescription": "Build Logs by Sandeep Midde are long-form write-ups of the AI products he builds, covering architecture, design decisions and results."
   }
 ]

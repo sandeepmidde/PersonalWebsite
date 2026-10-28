@@ -20,7 +20,7 @@
 //                     the post folder to show on the blog card instead of the
 //                     cover (link previews still use cover.png).
 //   - series      <- an optional "Series: Tarang Tales" line naming the Tarang
-//                     series (Tarang Tales, Surabhi's Slate or Lab Reports, see
+//                     series (Tarang Tales, Surabhi's Slate or Build Logs, see
 //                     assets/tarang-series.json). It decides the post's address
 //                     (/tales/<slug>/, /slate/<slug>/, /lab/<slug>/), its stamp and
 //                     its stylesheet (assets/css/series-<key>.css).

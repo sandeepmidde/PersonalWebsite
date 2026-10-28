@@ -124,9 +124,10 @@ Design rule: **`/blog` is the only post content you edit.** Everything in
 | `mountain-quest` | Understanding RAG Pipelines | AI, Technical, RAG | Tarang Tales |
 | `ultimate-cosmic-race` | Demystifying Vector Databases | AI, Technical, RAG | Tarang Tales |
 | `the-arjuna-algorithm` | Mechanics of Semantic Search | AI, Technical, RAG | Tarang Tales |
-| `krishna-uvaca` | Kṛṣṇa Uvāca: Grounded Cosmic Counsel | AI, Technical, Governance, RAG, Krishna Uvaca | Lab Reports |
-| `observer-prime` | Observer Prime: Unified Agentic Orchestration | AI, Technical, Governance | Lab Reports |
-| `project-elara` | Project Elara: Contextual Knowledge OS | AI, Technical, Learning | Lab Reports |
+| `autopilot` | AutoPilot: An AI Assistant for the Job Hunt | AI, Technical, Governance | Build Logs |
+| `krishna-uvaca` | Kṛṣṇa Uvāca: Grounded Cosmic Counsel | AI, Technical, Governance, RAG, Krishna Uvaca | Build Logs |
+| `observer-prime` | Observer Prime: Unified Agentic Orchestration | AI, Technical, Governance | Build Logs |
+| `project-elara` | Project Elara: Contextual Knowledge OS | AI, Technical, Learning | Build Logs |
 | `ai-where-users-already-are` | Not Every AI Investment Needs Another Product | AI | Surabhi's Slate |
 | `strategy-meets-reality` | Strategy Sets the Direction. Reality Draws the Map | AI, Project Management | Surabhi's Slate |
 | `clarity-is-a-product-feature` | Clarity Is a Product Feature | AI, Krishna Uvaca | Surabhi's Slate |
@@ -154,8 +155,8 @@ The slugs never change, even when a title does, so shared links keep working.
   "Resume" link that opens the PDF in a new tab), three stats (20+ Yrs,
   $2.5T+ AUM, 99.8% availability). The nav's Connect button is the only solid
   button on screen.
-- **AI R&D Lab:** three project cards that link to their Lab Reports at
-  `lab/<slug>/` ("Product case study"), with "All Lab Reports" below. Each
+- **AI R&D Lab:** three project cards that link to their Build Logs at
+  `lab/<slug>/` ("Product case study"), with "All Build Logs" below. Each
   cover shows a build status badge (Shipped, Beta or In Progress). Kṛṣṇa Uvāca and Project Elara also link to their live apps
   (`krsna.sandeepmidde.com`, `elara.sandeepmidde.com`). The cards use CSS
   subgrid (`grid-row: span 7` per card, `span 6` for the body), so labels,
@@ -172,10 +173,10 @@ The blog is branded **Tarang** ("wave"): one idea, told in different shapes for
 different readers. The nav link stays "Blogs" so visitors know what's behind it.
 `/blogs` and `/tarang` redirect here.
 - **Title canvas:** "The Tarang Project" label, "Tarang" with an animated
-  wave, "An Ecosystem of Stories, Scribbles & Lab Reports" and the line "One
+  wave, "An Ecosystem of Stories, Scribbles & Build Logs" and the line "One
   roof. Three ways of looking at complex systems...".
 - **Two-tier filter.** Tier 1, the format toggle: All, 🌊 Tarang Tales, 📝
-  Surabhi's Slate, 🧪 Lab Reports. Choosing a channel shows an intro strip
+  Surabhi's Slate, 🧪 Build Logs. Choosing a channel shows an intro strip
   (blurb, audience, stamp) and changes the address to `/tales/` etc. (Back
   works). Tier 2, a quieter topic row: All Topics, AI, Project Management,
   Technical, Governance. The two combine (series AND topic), counts follow the
@@ -190,15 +191,19 @@ different readers. The nav link stays "Blogs" so visitors know what's behind it.
   |---|---|---|---|
   | Tarang Tales (Mythology & Fables) | `/tales/` | Laymen, children, enthusiasts | A Fable-Framed Breakdown |
   | Surabhi's Slate (Notebook Scribbles) | `/slate/` | Busy professionals and developers | A Raw-Slate Insight |
-  | Lab Reports (Product Case Studies) | `/lab/` | Engineers, founders, recruiters | A Product Lab Deep-Dive |
+  | Build Logs (Product Case Studies) | `/lab/` | Engineers, founders, recruiters | A Product Build Deep-Dive |
 
   Names, stamps, blurbs and SEO text live in `assets/tarang-series.json`.
 - **Featured card** (All only): the newest post in its series' look, with the
   series stamp above the title.
+- **Series named once:** on a series page the pressed toggle names it, so the
+  intro strip has no title, the list heading reads "All posts" and grid cards
+  show only their topic chips. The "All" view keeps each card's format stamp.
+  Build Log cards put the topics on their own line below the stamp.
 - **Cards look different per series** (`card-<key>` classes in `blog.html`):
   Tales on cream parchment with comic-framed art and a coloured stamp, Slate
   as clean white cards in soft slate blue-grey with the note's own image shown
-  whole (no literal notebook styling, at the owner's request), Lab sharp-cornered with a navy top rule and a stark "Lab Report" tag.
+  whole (no literal notebook styling, at the owner's request), Lab sharp-cornered with a navy top rule and a stark "Build Log" tag.
 - **Series pages** (`/tales/`, `/slate/`, `/lab/`): the build copies
   `blog.html` with that series' title, description and canonical URL, and the
   page opens on that channel. Locally, `/blog` itself doesn't resolve (it's
@@ -218,7 +223,7 @@ different readers. The nav link stays "Blogs" so visitors know what's behind it.
   the title. The back link reads the series name.
 - **Same idea, other shapes:** after the article, the closest post from each
   other series, matched on topic tags (tags every post has, like "AI", don't
-  count). The Lab Report link is styled as the call to action. Example: a
+  count). The Build Log link is styled as the call to action. Example: a
   RAG tale links to the RAG note in the Slate and to Kṛṣṇa Uvāca in the Lab.
 - **Code blocks** get a Copy button, and Prism highlighting loads only on
   posts that have code.
@@ -263,7 +268,7 @@ different readers. The nav link stays "Blogs" so visitors know what's behind it.
    | `# Title` | yes | First heading becomes the title. It's removed from the body |
    | `Subtitle:` | no | Shown under the title. Without it, the text after the title's first comma is the subtitle |
    | `Tags:` | no | Comma-separated. Any of `AI`, `Project Management`, `Technical`, `Governance` become the blog topic filter and card chips. Every tag drives Continue reading and the cross-links (except `AI` and `Technical`, too broad to pair on) |
-   | `Series:` | no | `Tarang Tales`, `Surabhi's Slate` or `Lab Reports`. Sets the URL folder, the look, the stamp and the cross-links. Without it the post lives at `/posts/<slug>/` with the plain look |
+   | `Series:` | no | `Tarang Tales`, `Surabhi's Slate` or `Build Logs`. Sets the URL folder, the look, the stamp and the cross-links. Without it the post lives at `/posts/<slug>/` with the plain look |
    | `Card:` | no | An image file in the post folder (e.g. `architecture.svg`) shown on the blog card instead of the cover. Link previews still use `cover.png`. Kṛṣṇa Uvāca uses it so its Lab card shows the system architecture |
    | `Story:` | no | Tarang Tales only. The story behind the concept, e.g. `🏔️ The Mountain Quest · Hanuman`. Shown on the blog card between the concept title and the `Subtitle:` line, which for Tales is a one-line glimpse of the story. `Summary:` then says what the reader learns |
    | `Date:` | no | `YYYY-MM-DD`. Without it, the date of the file's first git commit is used |
