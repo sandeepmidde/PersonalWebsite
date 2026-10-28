@@ -14,6 +14,8 @@
 //   - excerpt     <- computed from the first ~160 characters
 //   - tags        <- an optional "Tags: AI, Project Management" line near
 //                     the top. Omit it if you don't want the post grouped.
+//   - story       <- an optional "Story: The Mountain Quest · Hanuman" line, the
+//                     story behind a Tarang Tale, shown on its blog card.
 //   - card        <- an optional "Card: architecture.svg" line naming an image in
 //                     the post folder to show on the blog card instead of the
 //                     cover (link previews still use cover.png).
@@ -152,6 +154,7 @@ function extractMetaLines(rawText) {
   let subtitle = null;
   let series = null;
   let card = null;
+  let story = null;
   const drop = new Set();
 
   for (let i = 0; i < Math.min(lines.length, 8); i++) {
@@ -172,6 +175,13 @@ function extractMetaLines(rawText) {
     const tagsMatch = lines[i].match(/^\s*tags\s*:\s*(.+)$/i);
     if (tagsMatch) {
       tags = tagsMatch[1].split(',').map(t => t.trim()).filter(Boolean);
+      drop.add(i);
+      continue;
+    }
+    // Optional "Story: The Mountain Quest · Hanuman", the story behind a Tarang Tale
+    const storyMatch = lines[i].match(/^\s*story\s*:\s*(.+)$/i);
+    if (storyMatch) {
+      story = storyMatch[1].trim();
       drop.add(i);
       continue;
     }
@@ -198,7 +208,7 @@ function extractMetaLines(rawText) {
   }
 
   const rest = lines.filter((_, i) => !drop.has(i)).join('\n');
-  return { tags, date, summary, subtitle, series, card, rest };
+  return { tags, date, summary, subtitle, series, card, story, rest };
 }
 
 // Same idea, applied to already-converted HTML (used for .docx, since mammoth
@@ -441,6 +451,7 @@ async function buildPost(postFolderName, postDir, template) {
   let subtitle;
   let seriesName;
   let cardFile;
+  let story;
   let sourceFile;
 
   if (fs.existsSync(mdPath)) {
@@ -453,6 +464,7 @@ async function buildPost(postFolderName, postDir, template) {
     subtitle = extracted.subtitle;
     seriesName = extracted.series;
     cardFile = extracted.card;
+    story = extracted.story;
     html = marked.parse(extracted.rest);
     html = processMarkdownImages(html, postDir, slug);
   } else if (fs.existsSync(docxPath)) {
@@ -492,6 +504,7 @@ async function buildPost(postFolderName, postDir, template) {
     excerpt: computeExcerpt(html),
     ...(summary ? { summary } : {}),
     ...(subtitle ? { subtitle } : {}),
+    ...(story ? { story } : {}),
     ...(cover ? { cover } : {}),
     ...(card ? { card } : {}),
     body: [html],

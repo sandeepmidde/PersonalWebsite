@@ -1,9 +1,10 @@
 # Understanding RAG Pipelines
-Subtitle: Decoding chunking, data retrieval and LLM generation through Hanuman's legendary rescue mission.
+Subtitle: Hanuman has until dawn to find one healing herb on a mountain of thousands.
+Story: 🏔️ The Mountain Quest · Hanuman
 Tags: AI, Technical, RAG
 Series: Tarang Tales
 Date: 2026-10-02
-Summary: Decoding chunking, data retrieval and LLM generation through Hanuman's legendary rescue mission.
+Summary: Decoding chunking, data retrieval and LLM generation through a legendary rescue mission.
 
 ## Race Against Dawn
 

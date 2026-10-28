@@ -1,9 +1,10 @@
-# Why RAG Stops AI From Guessing
-Subtitle: Hallucination, precision matching and context retrieval through the lens of Arjuna's legendary archery test.
+# The Mechanics of Semantic Search
+Subtitle: Looking only at its reflection in the water, Arjuna pierces the eye of a spinning fish.
+Story: 🏹 The Archer's Target · Arjuna
 Tags: AI, Technical, RAG
 Series: Tarang Tales
 Date: 2026-10-01
-Summary: Hallucination, precision matching and context retrieval through the lens of Arjuna's legendary archery test.
+Summary: Hallucination, precision matching and context retrieval through a legendary archery test.
 
 ## Why RAG Matters
 

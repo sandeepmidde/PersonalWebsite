@@ -1,9 +1,10 @@
 # Demystifying Vector Databases
-Subtitle: Unpacking data fragmentation, semantic search and AI indexing through Ganesha's cosmic journey.
+Subtitle: Kartikeya races across the cosmos. Ganesha circles his parents and wins.
+Story: 🪐 The Cosmic Race · Ganesha
 Tags: AI, Technical, RAG
 Series: Tarang Tales
 Date: 2026-10-02
-Summary: Unpacking data fragmentation, semantic search and AI indexing through Ganesha's cosmic journey.
+Summary: Unpacking data fragmentation, semantic search and AI indexing through a race around the universe.
 
 ## From Target to Map
 

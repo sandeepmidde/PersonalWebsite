@@ -118,7 +118,7 @@ Design rule: **`/blog` is the only post content you edit.** Everything in
 |---|---|---|---|
 | `mountain-quest` | Understanding RAG Pipelines | AI, Technical, RAG | Tarang Tales |
 | `ultimate-cosmic-race` | Demystifying Vector Databases | AI, Technical, RAG | Tarang Tales |
-| `the-arjuna-algorithm` | Why RAG Stops AI From Guessing | AI, Technical, RAG | Tarang Tales |
+| `the-arjuna-algorithm` | The Mechanics of Semantic Search | AI, Technical, RAG | Tarang Tales |
 | `krishna-uvaca` | Kṛṣṇa Uvāca: Grounded Cosmic Counsel | AI, Technical, Governance, RAG, Krishna Uvaca | Lab Reports |
 | `observer-prime` | Observer Prime: Unified Agentic Orchestration | AI, Technical, Governance | Lab Reports |
 | `project-elara` | Project Elara: Contextual Knowledge OS | AI, Technical, Learning | Lab Reports |
@@ -260,6 +260,7 @@ different readers. The nav link stays "Blogs" so visitors know what's behind it.
    | `Tags:` | no | Comma-separated. Any of `AI`, `Project Management`, `Technical`, `Governance` become the blog topic filter and card chips. Every tag drives Continue reading and the cross-links (except `AI` and `Technical`, too broad to pair on) |
    | `Series:` | no | `Tarang Tales`, `Surabhi's Slate` or `Lab Reports`. Sets the URL folder, the look, the stamp and the cross-links. Without it the post lives at `/posts/<slug>/` with the plain look |
    | `Card:` | no | An image file in the post folder (e.g. `architecture.svg`) shown on the blog card instead of the cover. Link previews still use `cover.png`. Kṛṣṇa Uvāca uses it so its Lab card shows the system architecture |
+   | `Story:` | no | Tarang Tales only. The story behind the concept, e.g. `🏔️ The Mountain Quest · Hanuman`. Shown on the blog card between the concept title and the `Subtitle:` line, which for Tales is a one-line glimpse of the story. `Summary:` then says what the reader learns |
    | `Date:` | no | `YYYY-MM-DD`. Without it, the date of the file's first git commit is used |
    | `Summary:` | no | Link-preview description and card text. Without it, the first ~160 characters are used |
 

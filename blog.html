@@ -243,6 +243,8 @@
     .card-tales .topic-chip { background: rgba(31,17,71,0.06); color: #4B3F63; }
     :is(.post-card, .featured).card-tales :is(h2, h3) { font-family: 'Baloo 2', var(--ff-display); font-weight: 800; color: #1F1147; letter-spacing: -0.005em; line-height: 1.2; }
     .post-card.card-tales h3 { font-size: 1.32rem; }
+    .story-line { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #B45309; margin: 0.15rem 0 0.3rem; }
+    .card-tales .post-tagline { font-style: italic; color: #4B3F63; }
     .card-tales .card-foot { border-top-color: #F1D9A8; }
 
     /* Surabhi's Slate: dark grid paper, a scratchpad preview instead of artwork */
@@ -546,7 +548,9 @@
       const { name, tagline } = splitTitle(post.title, post.subtitle);
       // Skip the tagline line when the summary below already says the same thing
       const showTagline = tagline && tagline !== (post.summary || '');
-      return `<${tag}>${esc(name)}</${tag}>${showTagline ? `<p class="post-tagline">${esc(tagline)}</p>` : ''}`;
+      // Tarang Tales: the concept is the headline, then the story behind it and a one-line glimpse of it
+      const story = post.story ? `<p class="story-line">${esc(post.story)}</p>` : '';
+      return `<${tag}>${esc(name)}</${tag}>${story}${showTagline ? `<p class="post-tagline">${esc(tagline)}</p>` : ''}`;
     };
 
     // Tarang series (assets/tarang-series.json). On /tales/, /slate/ and /lab/ the
