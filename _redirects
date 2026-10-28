@@ -22,6 +22,7 @@
 /package-lock.json  /  301
 /.gitignore  /  301
 /scripts/*  /  301
+/docs/*  /  301
 
 # Old homepage designs, kept in git for reference only
 /themed-aurora  /  301

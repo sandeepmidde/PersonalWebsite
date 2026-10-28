@@ -402,6 +402,9 @@ any new copy.
 - **Every figure explains itself:** icon-led SVGs with a short caps label,
   readable at 300 px.
 - **Links have no underline** in card proof points.
+- **Tarang Tales** follow [docs/tarang-tales-guide.md](docs/tarang-tales-guide.md):
+  layout, narration, what to include and omit, with examples. Append new
+  rules to its change log after each review.
 
 ---
 
