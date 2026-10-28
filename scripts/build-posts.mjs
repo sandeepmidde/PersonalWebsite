@@ -14,14 +14,24 @@
 //   - excerpt     <- computed from the first ~160 characters
 //   - tags        <- an optional "Tags: AI, Project Management" line near
 //                     the top. Omit it if you don't want the post grouped.
+//   - series      <- an optional "Series: Tarang Tales" line naming the Tarang
+//                     series (Tarang Tales, Surabhi's Slate or Lab Reports, see
+//                     assets/tarang-series.json). It decides the post's address
+//                     (/tales/<slug>/, /slate/<slug>/, /lab/<slug>/), its stamp and
+//                     its stylesheet (assets/css/series-<key>.css).
 //   - share image <- a cover.png/.jpg in the post folder if present (1200x627
 //                     is ideal for LinkedIn), else the first PNG/JPG in the
 //                     post, else the site-wide social-card.png.
 //
-// It also writes a real page per post at /posts/<slug>/index.html (a copy of
-// post.html with that post's title, description and preview image baked into
-// <head>), so LinkedIn, WhatsApp, X etc. show a proper link preview. Those
-// crawlers don't run JavaScript, so post.html?slug=... alone can't do this.
+// It also writes a real page per post at /<series>/<slug>/index.html, or
+// /posts/<slug>/index.html for a post with no series (a copy of post.html with
+// that post's title, description and preview image baked into <head>), so
+// LinkedIn, WhatsApp, X etc. show a proper link preview. Those crawlers don't
+// run JavaScript, so post.html?slug=... alone can't do this.
+//
+// Each series also gets a landing page at /<series>/ (a copy of blog.html), and
+// the old /posts/<slug>/ address of every series post redirects to the new one
+// through a generated block in _redirects.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -37,6 +47,27 @@ const BLOG_DIR = path.join(ROOT, 'blog');
 const POSTS_DIR = path.join(ROOT, 'posts');
 const IMAGES_DIR = path.join(POSTS_DIR, 'images');
 const POST_TEMPLATE = path.join(ROOT, 'post.html');
+const HUB_TEMPLATE = path.join(ROOT, 'blog.html');
+const REDIRECTS_FILE = path.join(ROOT, '_redirects');
+
+// The Tarang series. Each key is also a top-level folder the build owns
+// (/tales, /slate, /lab), so it is wiped and regenerated on every build.
+const SERIES = JSON.parse(fs.readFileSync(path.join(ROOT, 'assets', 'tarang-series.json'), 'utf8'));
+const RESERVED_DIRS = new Set(['blog', 'posts', 'assets', 'scripts', 'functions', 'resume', 'ref', 'node_modules']);
+for (const s of SERIES) {
+  if (!/^[a-z0-9-]+$/.test(s.key) || RESERVED_DIRS.has(s.key)) throw new Error(`Bad series key "${s.key}" in assets/tarang-series.json`);
+}
+const BRAND = 'Tarang';
+
+// "Tarang Tales", "tales" or "TARANG TALES" -> the series entry
+function findSeries(value) {
+  if (!value) return null;
+  const v = value.trim().toLowerCase();
+  const found = SERIES.find(s => s.key === v || s.name.toLowerCase() === v);
+  if (!found) console.warn(`Unknown series "${value}". Use one of: ${SERIES.map(s => s.name).join(', ')}`);
+  return found || null;
+}
+const seriesOf = post => SERIES.find(s => s.key === post.series) || null;
 
 // The site's public address, used for canonical links and absolute preview-image
 // URLs in the generated post pages. A SITE_URL environment variable (e.g. in
@@ -116,6 +147,7 @@ function extractMetaLines(rawText) {
   let date = null;
   let summary = null;
   let subtitle = null;
+  let series = null;
   const drop = new Set();
 
   for (let i = 0; i < Math.min(lines.length, 8); i++) {
@@ -139,6 +171,13 @@ function extractMetaLines(rawText) {
       drop.add(i);
       continue;
     }
+    // Optional "Series: Tarang Tales" placing the post in a Tarang series
+    const seriesMatch = lines[i].match(/^\s*series\s*:\s*(.+)$/i);
+    if (seriesMatch) {
+      series = seriesMatch[1].trim();
+      drop.add(i);
+      continue;
+    }
     const dateMatch = lines[i].match(/^\s*date\s*:\s*(.+)$/i);
     if (dateMatch) {
       const candidate = dateMatch[1].trim();
@@ -148,7 +187,7 @@ function extractMetaLines(rawText) {
   }
 
   const rest = lines.filter((_, i) => !drop.has(i)).join('\n');
-  return { tags, date, summary, subtitle, rest };
+  return { tags, date, summary, subtitle, series, rest };
 }
 
 // Same idea, applied to already-converted HTML (used for .docx, since mammoth
@@ -157,6 +196,7 @@ function extractMetaLinesFromHtml(html) {
   let tags = [];
   let date = null;
   let summary = null;
+  let series = null;
 
   const summaryMatch = html.match(/<p>\s*summary\s*:\s*([^<]+)<\/p>/i);
   if (summaryMatch) {
@@ -170,6 +210,12 @@ function extractMetaLinesFromHtml(html) {
     html = html.replace(tagsMatch[0], '');
   }
 
+  const seriesMatch = html.match(/<p>\s*series\s*:\s*([^<]+)<\/p>/i);
+  if (seriesMatch) {
+    series = decodeEntities(seriesMatch[1].trim());
+    html = html.replace(seriesMatch[0], '');
+  }
+
   const dateMatch = html.match(/<p>\s*date\s*:\s*([^<]+)<\/p>/i);
   if (dateMatch) {
     const candidate = dateMatch[1].trim();
@@ -177,7 +223,7 @@ function extractMetaLinesFromHtml(html) {
     html = html.replace(dateMatch[0], '');
   }
 
-  return { tags, date, summary, html };
+  return { tags, date, summary, series, html };
 }
 
 function extractTitleFromHtml(html, fallback) {
@@ -306,8 +352,9 @@ function pickSocialImage(postDir, slug, html) {
   return DEFAULT_SOCIAL_IMAGE;
 }
 
-// Writes /posts/<slug>/index.html: post.html with this post's metadata baked
-// into <head>, plus a <base> so the template's relative links still resolve.
+// Writes <post.url>index.html: post.html with this post's metadata baked into
+// <head>, a <base> so the template's relative links still resolve, and the
+// series stylesheet plus a body class (series-tales etc.) for the series look.
 function writePostPage(template, post, socialImage) {
   // Link previews read "<Short title> by Sandeep Midde" plus a one-line summary.
   // The short title is the part before the first comma, "|" or colon
@@ -317,15 +364,17 @@ function writePostPage(template, post, socialImage) {
   const shortTitle = post.subtitle ? fullTitle : fullTitle.split(/[|:]|, /)[0].trim();
   const title = `${shortTitle} by ${AUTHOR}`;
   const description = post.summary || decodeEntities(post.excerpt);
-  const pagePath = `posts/${post.slug}/`;
+  const pagePath = post.url;
+  const series = seriesOf(post);
   const image = escapeAttr(absoluteUrl(socialImage));
   const tags = [
-    `<title>${escapeAttr(fullTitle)} · ${AUTHOR}</title>`,
+    `<title>${escapeAttr(fullTitle)} · ${series ? `${escapeAttr(series.name)} · ` : ''}${BRAND} by ${AUTHOR}</title>`,
     `<meta name="description" content="${escapeAttr(description)}" />`,
     `<meta property="og:type" content="article" />`,
-    `<meta property="og:site_name" content="${AUTHOR}" />`,
+    `<meta property="og:site_name" content="${BRAND} by ${AUTHOR}" />`,
     `<meta name="author" content="${AUTHOR}" />`,
     `<meta property="article:author" content="${AUTHOR}" />`,
+    ...(series ? [`<meta property="article:section" content="${escapeAttr(series.name)}" />`] : []),
     `<meta property="og:title" content="${escapeAttr(title)}" />`,
     `<meta property="og:description" content="${escapeAttr(description)}" />`,
     `<meta property="og:image" content="${image}" />`,
@@ -349,6 +398,9 @@ function writePostPage(template, post, socialImage) {
       url: `${SITE_URL}/${pagePath}`,
       mainEntityOfPage: `${SITE_URL}/${pagePath}`,
       author: { '@type': 'Person', '@id': `${SITE_URL}/#person`, name: AUTHOR, url: `${SITE_URL}/` },
+      ...(series ? { articleSection: series.name } : {}),
+      isPartOf: { '@type': 'Blog', name: BRAND, url: `${SITE_URL}/blog` },
+      keywords: [BRAND, ...(series ? [series.name] : []), ...post.tags].join(', '),
     };
     tags.push(`<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`);
   }
@@ -356,9 +408,12 @@ function writePostPage(template, post, socialImage) {
   const page = template
     .replace('<meta charset="UTF-8" />', '<meta charset="UTF-8" />\n<base href="/" />')
     .replace(/<title[^>]*>.*?<\/title>\s*<meta name="description"[^>]*\/>/s, () => tags.join('\n'))
-    .replace('</head>', () => `<script>window.POST_SLUG = ${JSON.stringify(post.slug)};</script>\n</head>`);
+    .replace('</head>', () =>
+      (series ? `<link rel="stylesheet" href="assets/css/series-${series.key}.css" />\n` : '') +
+      `<script>window.POST_SLUG = ${JSON.stringify(post.slug)};</script>\n</head>`)
+    .replace('<body>', series ? `<body class="series-${series.key}">` : '<body>');
 
-  const dir = path.join(POSTS_DIR, post.slug);
+  const dir = path.join(ROOT, post.url);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), page);
 }
@@ -373,6 +428,7 @@ async function buildPost(postFolderName, postDir, template) {
   let explicitDate;
   let summary;
   let subtitle;
+  let seriesName;
   let sourceFile;
 
   if (fs.existsSync(mdPath)) {
@@ -383,6 +439,7 @@ async function buildPost(postFolderName, postDir, template) {
     explicitDate = extracted.date;
     summary = extracted.summary;
     subtitle = extracted.subtitle;
+    seriesName = extracted.series;
     html = marked.parse(extracted.rest);
     html = processMarkdownImages(html, postDir, slug);
   } else if (fs.existsSync(docxPath)) {
@@ -392,6 +449,7 @@ async function buildPost(postFolderName, postDir, template) {
     tags = extracted.tags;
     explicitDate = extracted.date;
     summary = extracted.summary;
+    seriesName = extracted.series;
     html = extracted.html;
   } else {
     console.warn(`Skipping /blog/${postFolderName} — no content.md or content.docx found`);
@@ -403,12 +461,15 @@ async function buildPost(postFolderName, postDir, template) {
   const title = extractTitleFromHtml(html, titleCaseFromSlug(slug));
   html = removeFirstH1(html);
   const date = explicitDate || gitFirstCommitDate(sourceFile);
+  const series = findSeries(seriesName);
 
   const post = {
     slug,
+    url: series ? `${series.key}/${slug}/` : `posts/${slug}/`,
     title,
     date,
     tags,
+    ...(series ? { series: series.key } : {}),
     readTime: computeReadTime(html),
     excerpt: computeExcerpt(html),
     ...(summary ? { summary } : {}),
@@ -416,12 +477,53 @@ async function buildPost(postFolderName, postDir, template) {
     ...(cover ? { cover } : {}),
     body: [html],
   };
+  return { post, socialImage: pickSocialImage(postDir, slug, html) };
+}
 
-  fs.writeFileSync(path.join(POSTS_DIR, `${slug}.json`), JSON.stringify(post, null, 2));
-  writePostPage(template, post, pickSocialImage(postDir, slug, html));
+// Posts link to each other as posts/<slug>/ in their source. Point those links
+// at the post's real address, so readers skip the redirect.
+function rewritePostLinks(html, urlBySlug) {
+  return html.replace(/href="\/?posts\/([a-z0-9-]+)\/?(#[^"]*)?"/g, (m, slug, hash = '') =>
+    urlBySlug.has(slug) ? `href="${urlBySlug.get(slug)}${hash}"` : m);
+}
 
-  const { body, ...indexEntry } = post;
-  return indexEntry;
+// Writes /<series>/index.html for each series: blog.html with that series'
+// title, description and canonical address, opened on that series.
+function writeSeriesHubs(hubTemplate) {
+  for (const series of SERIES) {
+    const pagePath = `${series.key}/`;
+    const title = `${series.seoTitle} · ${BRAND} by ${AUTHOR}`;
+    const page = hubTemplate
+      .replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n  <base href="/">')
+      .replace(/<title>.*?<\/title>/s, () => `<title>${escapeAttr(title)}</title>`)
+      .replace(/(<meta (?:name="description"|property="og:description") content=")[^"]*(")/g, (m, a, b) => a + escapeAttr(series.seoDescription) + b)
+      .replace(/(<meta property="og:title" content=")[^"]*(")/, (m, a, b) => a + escapeAttr(title) + b)
+      .replace(/(<link rel="canonical" href=")[^"]*(")/, (m, a, b) => `${a}${SITE_URL}/${pagePath}${b}`)
+      .replace(/(<meta property="og:url" content=")[^"]*(")/, (m, a, b) => `${a}${SITE_URL}/${pagePath}${b}`)
+      .replace('</head>', () => `<script>window.TARANG_SERIES_KEY = ${JSON.stringify(series.key)};</script>\n</head>`);
+    const dir = path.join(ROOT, series.key);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(path.join(dir, 'index.html'), page);
+  }
+}
+
+// Rewrites the generated block at the end of _redirects: the old /posts/<slug>/
+// address of every series post sends readers (and search engines) to the new one.
+function writePostRedirects(index) {
+  const BEGIN = '# BEGIN generated by scripts/build-posts.mjs: old post addresses';
+  const END = '# END generated';
+  const rules = index.filter(p => p.series).flatMap(p => [
+    `/posts/${p.slug}/  /${p.url}  301`,
+    `/posts/${p.slug}  /${p.url}  301`,
+  ]);
+  const block = [BEGIN, ...rules, END].join('\n');
+  const current = fs.existsSync(REDIRECTS_FILE) ? fs.readFileSync(REDIRECTS_FILE, 'utf8') : '';
+  const start = current.indexOf(BEGIN);
+  const stop = start === -1 ? -1 : current.indexOf(END, start);
+  const next = stop === -1
+    ? `${current.trimEnd()}\n\n${block}\n`
+    : current.slice(0, start) + block + current.slice(stop + END.length);
+  if (next !== current) fs.writeFileSync(REDIRECTS_FILE, next);
 }
 
 // Writes /sitemap.xml (homepage, blog listing, every post) so search engines
@@ -431,7 +533,8 @@ function writeSitemap(index) {
   const urls = [
     { loc: `${SITE_URL}/`, priority: '1.0' },
     { loc: `${SITE_URL}/blog`, lastmod: newest, priority: '0.8' },
-    ...index.map(p => ({ loc: `${SITE_URL}/posts/${p.slug}/`, lastmod: p.date, priority: '0.6' })),
+    ...SERIES.map(s => ({ loc: `${SITE_URL}/${s.key}/`, lastmod: index.find(p => p.series === s.key)?.date, priority: '0.7' })),
+    ...index.map(p => ({ loc: `${SITE_URL}/${p.url}`, lastmod: p.date, priority: '0.6' })),
   ];
   const body = urls.map(u =>
     `  <url>\n    <loc>${u.loc}</loc>\n` +
@@ -452,10 +555,12 @@ async function main() {
       else if (entry.name.endsWith('.json')) fs.unlinkSync(entryPath);
     }
   }
+  // The series folders (/tales, /slate, /lab) are build output too
+  for (const s of SERIES) fs.rmSync(path.join(ROOT, s.key), { recursive: true, force: true });
   fs.mkdirSync(POSTS_DIR, { recursive: true });
   ensureFullGitHistory();
 
-  const index = [];
+  const built = [];
   const template = fs.readFileSync(POST_TEMPLATE, 'utf8');
 
   if (!fs.existsSync(BLOG_DIR)) {
@@ -467,13 +572,26 @@ async function main() {
 
     for (const postFolderName of postFolders) {
       const postDir = path.join(BLOG_DIR, postFolderName);
-      const entry = await buildPost(postFolderName, postDir, template);
-      if (entry) index.push(entry);
+      const result = await buildPost(postFolderName, postDir, template);
+      if (result) built.push(result);
     }
+  }
+
+  // Second pass, once every post's address is known
+  const urlBySlug = new Map(built.map(({ post }) => [post.slug, post.url]));
+  const index = [];
+  for (const { post, socialImage } of built) {
+    post.body = post.body.map(html => rewritePostLinks(html, urlBySlug));
+    fs.writeFileSync(path.join(POSTS_DIR, `${post.slug}.json`), JSON.stringify(post, null, 2));
+    writePostPage(template, post, socialImage);
+    const { body, ...indexEntry } = post;
+    index.push(indexEntry);
   }
 
   index.sort((a, b) => b.date.localeCompare(a.date));
   fs.writeFileSync(path.join(POSTS_DIR, 'posts-index.json'), JSON.stringify(index, null, 2));
+  writeSeriesHubs(fs.readFileSync(HUB_TEMPLATE, 'utf8'));
+  writePostRedirects(index);
   writeSitemap(index);
 
   console.log(`Built ${index.length} post(s).`);

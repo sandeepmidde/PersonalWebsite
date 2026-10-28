@@ -1,6 +1,7 @@
 # Kṛṣṇa Uvāca: Grounded Cosmic Counsel
 Subtitle: A conversational interface enabling direct dialogue with the persona of Lord Kṛṣṇa. Grounded in authenticated Bhagavad Gītā scriptures, it pairs precise textual citations with philosophical interpretations.
-Tags: Projects, AI
+Tags: Projects, AI, RAG
+Series: Lab Reports
 Date: 2026-09-30
 Summary: A conversational interface enabling direct dialogue with the persona of Lord Kṛṣṇa. Grounded in authenticated Bhagavad Gītā scriptures, it pairs precise textual citations with philosophical interpretations.
 

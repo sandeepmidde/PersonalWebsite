@@ -1,6 +1,7 @@
 # The Mountain Quest: Decoding RAG Components
 Subtitle: Viewing data indexing, vector retrieval, and LLM generation through the lens of a legendary rescue mission.
-Tags: AI, RAG, Stories
+Tags: AI, RAG
+Series: Tarang Tales
 Date: 2026-10-02
 Summary: Viewing data indexing, vector retrieval, and LLM generation through the lens of a legendary rescue mission.
 

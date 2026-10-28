@@ -16,9 +16,12 @@
 
 <!--
   Article page template. Never edited per post: scripts/build-posts.mjs copies
-  it to /posts/<slug>/index.html for every post, bakes that post's title,
-  description and preview image into <head>, adds <base href="/"> and sets
-  window.POST_SLUG. The article itself loads from posts/<slug>.json at runtime.
+  it to /<series>/<slug>/index.html for every post (/posts/<slug>/ without a
+  series), bakes that post's title, description and preview image into <head>,
+  adds <base href="/"> and sets window.POST_SLUG. A series post also gets
+  assets/css/series-<key>.css and <body class="series-<key>">, which hold all of
+  that series' look. Keep series styling out of this file, so the three looks
+  stay independent. The article itself loads from posts/<slug>.json at runtime.
   Views and likes use /api (Cloudflare Functions), comments use giscus.
 -->
 
@@ -107,6 +110,12 @@
     .post-meta-line { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 0.5rem; font-family: var(--ff-mono); font-size: 0.75rem; color: #64748B; }
     .post-meta-line i { font-size: 0.7rem; margin-right: 4px; }
     .post-title { font-family: var(--ff-display); font-size: 1.875rem; font-weight: 800; color: #0F172A; line-height: 1.25; letter-spacing: -0.025em; }
+    /* Tarang series mark above the title: series link + signature stamp. Neutral here,
+       each assets/css/series-<key>.css gives it that series' look */
+    .series-mark { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px 10px; margin-bottom: 0.9rem; }
+    .series-name { display: inline-flex; align-items: center; gap: 7px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; background: var(--accent-soft); color: var(--accent-text); }
+    .series-name i { font-size: 0.72rem; }
+    .series-stamp { font-family: var(--ff-mono); font-size: 0.7rem; letter-spacing: 0.04em; color: var(--text-3); }
     .post-subtitle { font-size: 1.125rem; font-weight: 500; color: #64748B; line-height: 1.5; margin: 0.5rem 0 0; text-align: center; }
     .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .byline { display: flex; align-items: center; gap: 12px; }
@@ -179,6 +188,32 @@
     .prose td { padding: 0.85em 1em; border-bottom: 1px solid var(--line); vertical-align: top; }
     .prose tr:last-child td { border-bottom: none; }
     .prose td:first-child { white-space: nowrap; }
+
+    /* ============ ACROSS TARANG (same topic in the other series) ============ */
+    .across { max-width: 740px; margin-top: 3rem; padding: 1.4rem 1.5rem; border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--shadow-sm); }
+    .across .block-label { margin-bottom: 0.4rem; }
+    .across-lead { font-size: 0.92rem; color: var(--text-3); margin-bottom: 1rem; text-align: left; }
+    .across-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .across-item { display: flex; align-items: center; gap: 0.9rem; padding: 0.85rem 1rem; border: 1px solid var(--border); border-radius: var(--r-md); transition: border-color 0.2s, background 0.2s; }
+    .across-item:hover { border-color: var(--accent-line); background: var(--accent-soft); }
+    .across-icon { flex: none; width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-text); }
+    .across-text { flex: 1; min-width: 0; }
+    .across-kicker { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-4); }
+    .across-title { display: block; font-family: var(--ff-display); font-weight: 700; color: var(--text); line-height: 1.35; }
+    .across-item > i { color: var(--accent-text); transition: transform 0.2s; }
+    .across-item:hover > i { transform: translateX(4px); }
+    /* The product case study is the call to action */
+    .across-item.cta { background: var(--band-bg); border-color: var(--band-bg); }
+    .across-item.cta .across-kicker { color: var(--band-accent); }
+    .across-item.cta .across-title { color: var(--band-text); }
+    .across-item.cta .across-icon { background: rgba(96,165,250,0.15); color: var(--band-accent); }
+    .across-item.cta > i { color: var(--band-accent); }
+    .across-item.cta:hover { background: #1E293B; }
+
+    /* Copy button on code blocks */
+    .code-wrap { position: relative; }
+    .code-copy { position: absolute; top: 8px; right: 8px; font-family: var(--ff-body); font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(148,163,184,0.35); background: rgba(15,23,42,0.6); color: #E2E8F0; cursor: pointer; opacity: 0.75; transition: opacity 0.2s; }
+    .code-wrap:hover .code-copy, .code-copy:focus-visible { opacity: 1; }
 
     /* ============ ENGAGE ROW ============ */
     .engage { max-width: 740px; margin-top: 3rem; padding: 1.1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
@@ -336,7 +371,7 @@
           <li><a href="/#ai">AI Lab</a></li>
           <li><a href="/#principles">Principles</a></li>
           <li><a href="/#experience">Journey</a></li>
-          <li><a href="blog.html" class="active">Blog</a></li>
+          <li><a href="blog.html" class="active">Blogs</a></li>
           <li><a href="/#contact" class="nav-cta">Connect</a></li>
         </ul>
         <button class="mobile-menu" id="mobileMenuBtn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
@@ -353,7 +388,11 @@
       <header class="post-head">
         <div class="container">
           <div class="head-inner">
-            <div class="head-back"><a href="blog.html" class="back-link"><i class="fas fa-arrow-left" aria-hidden="true"></i> Blogs</a></div>
+            <div class="head-back"><a href="blog.html" class="back-link" id="backLink"><i class="fas fa-arrow-left" aria-hidden="true"></i> <span>Blogs</span></a></div>
+            <div class="series-mark" id="seriesMark" hidden>
+              <a class="series-name" id="seriesName" href="blog.html"></a>
+              <span class="series-stamp" id="seriesStamp"></span>
+            </div>
             <h1 class="post-title" id="postTitle"></h1>
             <div class="post-subtitle" id="postSubtitle" hidden></div>
             <div class="post-meta-line"><time class="js-date"></time><span aria-hidden="true">·</span><span><i class="far fa-clock" aria-hidden="true"></i><span class="js-read"></span></span></div>
@@ -378,6 +417,12 @@
 
           <article>
             <div class="prose" id="postBody"></div>
+
+            <section class="across" id="across" aria-labelledby="acrossTitle" hidden>
+              <p class="block-label" id="acrossTitle">Same idea, other shapes</p>
+              <p class="across-lead">Tarang tells each idea more than one way. Pick the shape that suits you.</p>
+              <div class="across-list" id="acrossList"></div>
+            </section>
 
             <div class="engage">
               <button id="likeBtn" class="chip-btn" type="button" aria-label="Like this article"><i class="far fa-heart" aria-hidden="true"></i><span id="likeCount">0</span></button>
@@ -453,7 +498,7 @@
           <li><a href="/#ai">AI Lab</a></li>
           <li><a href="/#principles">Principles</a></li>
           <li><a href="/#experience">Journey</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li><a href="blog.html">Blogs</a></li>
           <li><a href="/#contact">Connect</a></li>
         </ul>
       </div>
@@ -498,7 +543,7 @@
       location.replace(`posts/${encodeURIComponent(querySlug)}/`);
     }
     const slug = window.POST_SLUG || querySlug;
-    const postUrl = s => `posts/${encodeURIComponent(s)}/`;
+    const postUrl = p => p.url || `posts/${encodeURIComponent(p.slug)}/`;
     // Same split as the blog cards: "Name, catchphrase" -> headline + tagline
     function splitTitle(title, subtitle) {
       if (subtitle) return { name: title, tagline: subtitle };   // explicit "Subtitle:" line in the post
@@ -513,10 +558,16 @@
         '<strong>Post not found</strong><a href="blog.html">Back to all blogs</a>';
     }
 
+    // Tarang series (assets/tarang-series.json): name, stamp and icon for the header
+    let SERIES = [];
+    const seriesOf = post => SERIES.find(s => s.key === post.series);
+
     if (!slug) showNotFound();
-    else fetch(`posts/${encodeURIComponent(slug)}.json`)
-      .then(res => { if (!res.ok) throw new Error('not found'); return res.json(); })
-      .then(renderPost)
+    else Promise.all([
+      fetch(`posts/${encodeURIComponent(slug)}.json`).then(res => { if (!res.ok) throw new Error('not found'); return res.json(); }),
+      fetch('assets/tarang-series.json').then(res => res.json()).catch(() => []),
+    ])
+      .then(([post, series]) => { SERIES = series; renderPost(post); })
       .catch(showNotFound);
 
     // Titles arrive HTML-escaped from the build ("Archer&#39;s"), so decode before using them as plain text
@@ -524,7 +575,6 @@
 
     function renderPost(post) {
       const plainTitle = decodeHtml(post.title);
-      document.title = `${plainTitle} · Sandeep Midde`;
       const { name, tagline } = splitTitle(post.title, post.subtitle);
       document.getElementById('postTitle').innerHTML = esc(name);
       const subEl = document.getElementById('postSubtitle');
@@ -533,6 +583,18 @@
       document.getElementById('postTags').innerHTML = (post.tags || [])
         .map(t => `<a class="pill" href="blog.html">${esc(t)}</a>`).join('');
       document.getElementById('tagsCard').hidden = !(post.tags || []).length;
+      const series = seriesOf(post);
+      document.title = `${plainTitle} · ${series ? series.name + ' · ' : ''}Tarang by Sandeep Midde`;   // same as the build's <title>
+      if (series) {
+        const nameEl = document.getElementById('seriesName');
+        nameEl.href = `${series.key}/`;
+        nameEl.innerHTML = `<i class="fas ${series.icon}" aria-hidden="true"></i>${esc(series.name)}`;
+        document.getElementById('seriesStamp').textContent = series.stamp;
+        document.getElementById('seriesMark').hidden = false;
+        const back = document.getElementById('backLink');
+        back.href = `${series.key}/`;
+        back.querySelector('span').textContent = series.name;
+      }
       document.querySelectorAll('.js-date').forEach(el => {
         el.setAttribute('datetime', post.date);
         el.textContent = formatDate(post.date);
@@ -554,6 +616,7 @@
       document.getElementById('loadingState').hidden = true;
       document.getElementById('postView').hidden = false;
 
+      setupCode(body);
       buildToc(body);
       buildTrack(body, post.cover);
       loadMore(post);
@@ -679,21 +742,24 @@
             const name = splitTitle(p.title, p.subtitle).name;
             const i = name.indexOf(': ');
             const label = i > 0 ? `${esc(name.slice(0, i + 1))} <span class="browse-rest">${esc(name.slice(i + 2))}</span>` : esc(name);
-            return `<li><a href="${postUrl(p.slug)}"><span class="browse-name">${label}</span></a></li>`;
+            return `<li><a href="${postUrl(p)}"><span class="browse-name">${label}</span></a></li>`;
           }).join('')}</ul>`;
         document.getElementById('browseCard').hidden = false;
 
 
-        // Same-topic posts first, then newest
+        buildAcross(post, posts);
+
+        // Same-series and same-topic posts first, then newest
         const tags = new Set(post.tags || []);
+        const sameSeries = p => post.series && p.series === post.series ? 2 : 0;
         const next = others
-          .map(p => ({ p, score: (p.tags || []).filter(t => tags.has(t)).length }))
+          .map(p => ({ p, score: sameSeries(p) + (p.tags || []).filter(t => tags.has(t)).length }))
           .sort((a, b) => b.score - a.score || b.p.date.localeCompare(a.p.date))
           .slice(0, 2).map(x => x.p);
         document.getElementById('moreGrid').innerHTML = next.map(p => `
           <article class="more-card">
             <p class="post-kind">${topicLabel(p)}</p>
-            <h3><a href="${postUrl(p.slug)}">${esc(splitTitle(p.title, p.subtitle).name)}</a></h3>
+            <h3><a href="${postUrl(p)}">${esc(splitTitle(p.title, p.subtitle).name)}</a></h3>
             <p class="more-snippet">${esc(p.summary || p.excerpt)}</p>
             <span class="text-link" aria-hidden="true">Read article <i class="fas fa-arrow-right"></i></span>
           </article>`).join('');
@@ -701,6 +767,65 @@
         window.hyphenate?.(document.getElementById('moreGrid'));
         fitSidebar();
       }).catch(() => {});
+    }
+
+    // ---- Same idea, other shapes: the closest post in each other Tarang series ----
+    // Matches on topic tags, ignoring tags every post has (like "AI"), so a RAG story
+    // links to the RAG note and to the product where RAG shipped.
+    function buildAcross(post, posts) {
+      if (!post.series) return;
+      const everywhere = t => posts.every(p => (p.tags || []).includes(t));
+      const topics = new Set((post.tags || []).filter(t => !everywhere(t)));
+      if (!topics.size) return;
+      const items = SERIES.filter(s => s.key !== post.series).map(s => {
+        const best = posts
+          .filter(p => p.series === s.key)
+          .map(p => ({ p, score: (p.tags || []).filter(t => topics.has(t)).length }))
+          .filter(x => x.score > 0)
+          .sort((a, b) => b.score - a.score || b.p.date.localeCompare(a.p.date))[0];
+        return best && { s, p: best.p };
+      }).filter(Boolean);
+      if (!items.length) return;
+      document.getElementById('acrossList').innerHTML = items.map(({ s, p }) => `
+        <a class="across-item${s.key === 'lab' ? ' cta' : ''}" href="${postUrl(p)}">
+          <span class="across-icon"><i class="fas ${s.icon}" aria-hidden="true"></i></span>
+          <span class="across-text">
+            <span class="across-kicker">${esc(s.crossLabel)} · ${esc(s.name)}</span>
+            <span class="across-title">${esc(splitTitle(p.title, p.subtitle).name)}</span>
+          </span>
+          <i class="fas fa-arrow-right" aria-hidden="true"></i>
+        </a>`).join('');
+      document.getElementById('across').hidden = false;
+    }
+
+    // ---- Code blocks: copy button, plus Prism highlighting loaded only when a post has code ----
+    function setupCode(body) {
+      const blocks = [...body.querySelectorAll('pre > code')];
+      if (!blocks.length) return;
+      blocks.forEach(code => {
+        const pre = code.parentElement;
+        const wrap = document.createElement('div');
+        wrap.className = 'code-wrap';
+        pre.replaceWith(wrap); wrap.appendChild(pre);
+        const btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'code-copy'; btn.textContent = 'Copy';
+        btn.addEventListener('click', async () => {
+          try { await navigator.clipboard.writeText(code.textContent); btn.textContent = 'Copied'; }
+          catch (e) { btn.textContent = 'Press Ctrl+C'; }
+          setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+        });
+        wrap.appendChild(btn);
+      });
+      const PRISM = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/';
+      const css = document.createElement('link');
+      css.rel = 'stylesheet'; css.href = PRISM + 'themes/prism-tomorrow.min.css';
+      document.head.appendChild(css);
+      window.Prism = { manual: true };
+      const load = src => new Promise((ok, fail) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
+      load(PRISM + 'components/prism-core.min.js')
+        .then(() => load(PRISM + 'plugins/autoloader/prism-autoloader.min.js'))
+        .then(() => { Prism.plugins.autoloader.languages_path = PRISM + 'components/'; Prism.highlightAllUnder(body); })
+        .catch(() => {});
     }
 
     // Keep the sidebar sticky even when it is taller than the window: a negative top lets

@@ -1,0 +1,50 @@
+/* ==========================================================================
+   LAB REPORTS: the look of every product case study.
+   Loaded only on /lab/<slug>/ pages (the build adds it with
+   <body class="series-lab">). Professional white-paper layout: numbered
+   sections, formal tables, quiet figures. No other series uses this file.
+   ========================================================================== */
+
+body.series-lab {
+  --navy: #0B1F44;
+  --bg: #FFFFFF; --bg-alt: #F3F6FA;
+  --accent: #1D4ED8; --accent-text: #1D4ED8; --accent-soft: #EEF3FD; --accent-line: #C7D7F8; --kicker: #1E40AF;
+  --hero-bg: #FFFFFF;
+  background: var(--bg);
+}
+
+/* Header: a document cover with a classification-style stamp */
+.series-lab .post-head { background: linear-gradient(180deg, #F6F8FC 0%, #FFFFFF 100%); border-top: 4px solid var(--navy); border-bottom: 1px solid var(--border); }
+.series-lab .post-head::before { opacity: 0.5; }
+.series-lab .post-title { color: var(--navy); font-size: clamp(1.9rem, 3.6vw, 2.35rem); letter-spacing: -0.03em; }
+.series-lab .series-name { background: var(--navy); color: #fff; border-radius: 4px; }
+.series-lab .series-stamp {
+  font-family: var(--ff-mono); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--navy); border: 1px solid var(--navy); border-left-width: 4px; border-radius: 2px; padding: 3px 10px; background: #fff;
+}
+
+/* Numbered sections, like a white paper */
+.series-lab .prose { counter-reset: lab-section; }
+.series-lab .prose h2 { counter-increment: lab-section; color: var(--navy); border-top: 1px solid var(--border); padding-top: 1.1em; }
+.series-lab .prose h2::before {
+  content: counter(lab-section, decimal-leading-zero); display: block; margin-bottom: 0.35em;
+  font-family: var(--ff-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; color: var(--accent-text);
+}
+.series-lab .prose h3 { color: var(--navy); }
+.series-lab .prose ul > li::before { content: '▪'; color: var(--navy); }
+.series-lab .prose ol > li::before { background: var(--navy); color: #fff; border-radius: 3px; }
+
+/* Key statements as a formal callout */
+.series-lab .prose blockquote {
+  border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 8px 8px 0;
+  padding: 1em 1.25em; font-size: 1.05em; color: var(--navy);
+}
+
+/* Tables as clear matrices */
+.series-lab .table-wrap { border-radius: 6px; box-shadow: none; }
+.series-lab .prose th { background: var(--navy); color: #fff; border-bottom: none; }
+.series-lab .prose tbody tr:nth-child(even) td { background: #F7F9FC; }
+
+/* Quiet, precise figures */
+.series-lab .vzoom, .series-lab .prose img, .series-lab .post-cover { border-radius: 6px; box-shadow: none; border-color: #D6DEEA; }
+.series-lab .prose pre { border-radius: 6px; border: 1px solid #1E293B; }

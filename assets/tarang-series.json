@@ -1,0 +1,38 @@
+[
+  {
+    "key": "tales",
+    "name": "Tarang Tales",
+    "kind": "Mythology & Fables",
+    "stamp": "A Fable-Framed Breakdown",
+    "crossLabel": "Read it as a story",
+    "icon": "fa-book-open",
+    "audience": "For curious minds of every age",
+    "blurb": "Big tech ideas told through stories from the epics. The aha moment, without the jargon.",
+    "seoTitle": "Tarang Tales, tech explained through mythology",
+    "seoDescription": "Tarang Tales by Sandeep Midde explains AI and computer science through stories from Indian mythology, for readers of every age."
+  },
+  {
+    "key": "slate",
+    "name": "Surabhi's Slate",
+    "kind": "Notebook Scribbles",
+    "stamp": "A Raw-Slate Insight",
+    "crossLabel": "Read the quick note",
+    "icon": "fa-pen-nib",
+    "audience": "For busy builders and peers",
+    "blurb": "Quick notes, rough sketches and code snippets. Raw insights without the grand narrative.",
+    "seoTitle": "Surabhi's Slate, raw notes on AI and engineering",
+    "seoDescription": "Surabhi's Slate by Sandeep Midde holds short, raw notes on AI and engineering, with bullet points, sketches and code."
+  },
+  {
+    "key": "lab",
+    "name": "Lab Reports",
+    "kind": "Product Case Studies",
+    "stamp": "A Product Lab Deep-Dive",
+    "crossLabel": "See it shipped in a product",
+    "icon": "fa-flask",
+    "audience": "For engineers, founders and recruiters",
+    "blurb": "Long-form write-ups of the products I build, with the architecture, the trade-offs and the results.",
+    "seoTitle": "Lab Reports, AI product case studies",
+    "seoDescription": "Tarang Lab Reports by Sandeep Midde are long-form case studies of AI products, covering architecture, design decisions and results."
+  }
+]

@@ -1,0 +1,73 @@
+/* ==========================================================================
+   SURABHI'S SLATE: the look of every post in the Surabhi's Slate series.
+   Loaded only on /slate/<slug>/ pages (the build adds it with
+   <body class="series-slate">). Minimal and utilitarian, like a page from a
+   digital notebook, and dark-mode aware. No other series uses this file.
+   ========================================================================== */
+
+body.series-slate {
+  --paper-line: rgba(15, 23, 42, 0.06);
+  --margin-line: rgba(239, 68, 68, 0.35);
+  --tape: #FEF08A;
+  --bg: #F7F7F5; --bg-alt: #EFEFEC;
+  --accent: #0F766E; --accent-hover: #115E59; --accent-text: #0F766E;
+  --accent-soft: #E6F4F2; --accent-line: #99D5CD; --kicker: #0F766E;
+  --hero-bg: #F7F7F5;
+  background: var(--bg);
+}
+
+/* Header: plain, no gradients, a strip of masking tape for the stamp */
+.series-slate .post-head { background: var(--hero-bg); border-bottom: 1px dashed var(--border); }
+.series-slate .post-head::before { display: none; }
+.series-slate .post-title { font-family: var(--ff-mono); font-weight: 500; font-size: 1.7rem; letter-spacing: -0.02em; color: var(--text); }
+.series-slate .post-subtitle { color: var(--text-3); }
+.series-slate .back-link { color: var(--text-3); }
+.series-slate .series-name { font-family: var(--ff-mono); font-weight: 500; letter-spacing: 0.02em; text-transform: none; background: transparent; border: 1px solid var(--border); border-radius: 6px; color: var(--text-2); }
+.series-slate .series-stamp {
+  font-family: var(--ff-mono); font-size: 0.72rem; color: #422006; background: var(--tape);
+  padding: 3px 12px; transform: rotate(-1.5deg); box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+}
+
+/* The article as a notebook page: grid paper with a red margin line */
+.series-slate .prose {
+  position: relative; padding: 2rem 2rem 2rem 3.25rem; border: 1px solid var(--border); border-radius: 10px;
+  background:
+    linear-gradient(var(--paper-line) 1px, transparent 1px) 0 0 / 22px 22px,
+    linear-gradient(90deg, var(--paper-line) 1px, transparent 1px) 0 0 / 22px 22px,
+    var(--surface);
+  font-size: 1rem; line-height: 1.75;
+}
+.series-slate .prose::before { content: ''; position: absolute; top: 0; bottom: 0; left: 2.25rem; width: 1px; background: var(--margin-line); }
+.series-slate .prose h2 { font-family: var(--ff-mono); font-weight: 500; font-size: 1.25rem; letter-spacing: -0.01em; margin-top: 2em; }
+.series-slate .prose h2::before { content: '## '; color: var(--text-4); }
+.series-slate .prose h3 { font-family: var(--ff-mono); font-weight: 500; font-size: 1.05rem; }
+.series-slate .prose h3::before { content: '### '; color: var(--text-4); }
+.series-slate .prose ul > li::before { content: '-'; font-family: var(--ff-mono); color: var(--text-4); }
+.series-slate .prose blockquote { font-family: var(--ff-mono); font-size: 0.95em; border-left: 3px solid var(--tape); background: rgba(254, 240, 138, 0.18); padding: 0.6em 1em; }
+.series-slate .prose pre { border-radius: 8px; font-size: 0.85em; }
+.series-slate .prose img, .series-slate .vzoom, .series-slate .post-cover { border-radius: 8px; box-shadow: none; }
+@media (max-width: 768px) {
+  .series-slate .prose { padding: 1.25rem 1rem 1.25rem 1.75rem; }
+  .series-slate .prose::before { left: 1rem; }
+}
+
+/* Dark mode follows the reader's system setting */
+@media (prefers-color-scheme: dark) {
+  html:has(> body.series-slate) { background: #0C0F14; color-scheme: dark; }
+  body.series-slate {
+    --paper-line: rgba(255, 255, 255, 0.045);
+    --margin-line: rgba(248, 113, 113, 0.3);
+    --bg: #0C0F14; --bg-alt: #151A22; --surface: #12161D; --surface-2: #1B212B;
+    --border: #262E3A; --line: rgba(255, 255, 255, 0.07);
+    --text: #E5E7EB; --text-2: #C7CED9; --text-3: #94A3B8; --text-4: #7C8796;
+    --accent: #2DD4BF; --accent-hover: #5EEAD4; --accent-text: #5EEAD4; --on-accent: #042F2E;
+    --accent-soft: rgba(45, 212, 191, 0.12); --accent-line: rgba(45, 212, 191, 0.35); --kicker: #5EEAD4;
+    --hero-bg: #0C0F14;
+    --nav-bg: rgba(12, 15, 20, 0.86); --nav-border: #262E3A; --nav-text: #A3AAB8; --nav-strong: #F1F5F9;
+    --shadow-sm: none; --shadow-lg: 0 16px 36px -14px rgba(0, 0, 0, 0.6);
+  }
+  .series-slate .series-stamp { color: #1C1917; }
+  .series-slate .prose blockquote { background: rgba(254, 240, 138, 0.06); }
+  .series-slate .across-item.cta { background: #1B212B; border-color: #262E3A; }
+  .series-slate .lightbox::backdrop { background: rgba(0, 0, 0, 0.85); }
+}

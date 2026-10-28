@@ -1,0 +1,78 @@
+/* ==========================================================================
+   TARANG TALES: the look of every post in the Tarang Tales series.
+   Loaded only on /tales/<slug>/ pages (the build adds it with
+   <body class="series-tales">). Vibrant and comic-book inspired, in the spirit
+   of Tinkle and Jataka Tales. Edit freely: no other series uses this file.
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&display=swap');
+
+body.series-tales {
+  --ff-display: 'Baloo 2', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --ink: #1F1147;                 /* comic outline colour */
+  --saffron: #F59E0B; --pink: #EC4899; --violet: #7C3AED; --sun: #FDE68A;
+  --bg: #FFF8EC; --bg-alt: #FFF1D6;
+  --accent: #DB2777; --accent-hover: #BE185D; --accent-text: #BE185D;
+  --accent-soft: #FDE7F3; --accent-line: #F9A8D4; --kicker: #C2410C;
+  background: var(--bg);
+}
+
+/* Header: a colourful comic cover with halftone dots */
+.series-tales .progress { background: linear-gradient(90deg, var(--saffron), var(--pink), var(--violet)); }
+.series-tales .post-head {
+  background:
+    radial-gradient(rgba(255,255,255,0.22) 1.3px, transparent 1.4px) 0 0 / 12px 12px,
+    linear-gradient(125deg, var(--saffron) 0%, var(--pink) 55%, var(--violet) 100%);
+  border-bottom: 4px solid var(--ink);
+  padding-bottom: 36px;
+}
+.series-tales .post-head::before { display: none; }
+.series-tales .back-link { color: #fff; }
+.series-tales .back-link:hover { color: var(--sun); }
+.series-tales .post-title {
+  font-size: clamp(2rem, 4.4vw, 2.75rem); color: #fff; letter-spacing: -0.01em; line-height: 1.12;
+  text-shadow: 3px 3px 0 var(--ink);
+}
+.series-tales .post-subtitle { color: #FFF7ED; font-weight: 600; }
+.series-tales .post-meta-line { color: #FFE4F1; }
+
+/* Series name as a comic badge, the signature stamp as a rubber stamp */
+.series-tales .series-name { background: var(--sun); color: var(--ink); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); font-family: var(--ff-display); font-size: 0.85rem; letter-spacing: 0.04em; }
+.series-tales .series-stamp {
+  font-family: var(--ff-display); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #fff; border: 2px dashed rgba(255,255,255,0.85); border-radius: 6px; padding: 2px 10px;
+  transform: rotate(-3deg); animation: talesStamp 0.6s cubic-bezier(0.2, 1.6, 0.4, 1) 0.2s both;
+}
+@keyframes talesStamp { from { opacity: 0; transform: rotate(-12deg) scale(1.6); } to { opacity: 1; transform: rotate(-3deg) scale(1); } }
+
+/* Story text */
+.series-tales .prose { color: #3B2F55; }
+.series-tales .prose h2 { color: var(--ink); font-size: 1.85rem; font-weight: 800; letter-spacing: 0; word-spacing: 0; }
+.series-tales .prose h2::after { content: ''; display: block; width: 64px; height: 6px; margin-top: 0.3em; border-radius: 6px; background: linear-gradient(90deg, var(--saffron), var(--pink)); }
+.series-tales .prose h3 { color: var(--ink); font-weight: 800; }
+.series-tales .prose strong { color: var(--accent-text); font-weight: 700; }
+.series-tales .prose ul > li::before { content: '★'; color: var(--saffron); }
+.series-tales .prose ol > li::before { background: var(--sun); color: var(--ink); border: 1.5px solid var(--ink); }
+
+/* Blockquotes close each tale with its moral, in a comic caption panel */
+.series-tales .prose blockquote {
+  position: relative; margin-top: 2.2em; padding: 1.5em 1.4em 1.1em; border: 3px solid var(--ink); border-radius: 6px;
+  background: var(--sun); box-shadow: 6px 6px 0 var(--ink); color: var(--ink); font-size: 1.2em; font-weight: 700; line-height: 1.45;
+}
+.series-tales .prose blockquote::before {
+  content: 'Moral of the story'; position: absolute; top: -0.85em; left: 1em; padding: 0.1em 0.7em;
+  font-family: var(--ff-display); font-size: 0.62em; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--pink); color: #fff; border: 2px solid var(--ink); border-radius: 4px;
+}
+.series-tales .prose blockquote p { text-align: left; }
+
+/* Figures as comic panels */
+.series-tales .vzoom, .series-tales .prose img, .series-tales .post-cover {
+  border: 3px solid var(--ink); border-radius: 8px; box-shadow: 5px 5px 0 var(--ink);
+}
+.series-tales .vfig.seen .vzoom { animation: talesPop 0.5s cubic-bezier(0.2, 1.5, 0.4, 1) both; }
+@keyframes talesPop { from { transform: scale(0.94) rotate(-1deg); } to { transform: none; } }
+
+/* Cards and panels pick up the palette */
+.series-tales .across { border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); background: #fff; }
+.series-tales .side-card:not(.author-card) { border-color: #F5D9B8; }
+.series-tales .toc a.active { border-left-color: var(--pink); }

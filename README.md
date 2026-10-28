@@ -13,7 +13,8 @@ counters.
   Cloudflare. Root and `www` are attached to the Pages project, and `www`
   redirects to the root.
 - **Email:** `hi@sandeepmidde.com`, forwarded to Gmail by Cloudflare Email Routing.
-- **Status (as of 2026-10-06):** live. Homepage, blog, 8 posts, counters,
+- **Status (as of 2026-10-28):** live. The blog is the Tarang hub with three
+  series (section 3). Homepage, blog, 8 posts, counters,
   comments, analytics, link previews, sitemap and structured data all work.
 
 > `_redirects` sends `/README.md` to the homepage, so the site doesn't serve
@@ -46,10 +47,11 @@ counters.
  You write                     Cloudflare Pages build                 Browser at runtime
  ---------                     ----------------------                 ------------------
  blog/<slug>/content.md   -->  npm run build                    -->   blog.html   fetches posts/posts-index.json
- blog/<slug>/content.docx      (scripts/build-posts.mjs)              /posts/<slug>/  fetches posts/<slug>.json
+ blog/<slug>/content.docx      (scripts/build-posts.mjs)              /<series>/<slug>/  fetches posts/<slug>.json
  blog/<slug>/cover.*, *.svg      posts/posts-index.json                 /api/view, /api/like  -->  Workers KV (BLOG_KV)
                                  posts/<slug>.json                      giscus iframe  -->  GitHub Discussions
-                                 posts/<slug>/index.html                Cloudflare Web Analytics beacon
+                                 <series>/<slug>/index.html             Cloudflare Web Analytics beacon
+                                 <series>/index.html (tales, slate, lab)
                                  posts/images/<slug>/*
                                  sitemap.xml
  git push origin main  ------>  deploys static files + /functions
@@ -80,11 +82,14 @@ Design rule: **`/blog` is the only post content you edit.** Everything in
 ├── themed-executive.html    # THE HOMEPAGE. Edit only this file for homepage changes
 ├── themed-*.html            # Older theme variants and themed-compare.html (noindex, unlisted)
 ├── index-backup.html        # Previous homepage, kept for reference (noindex)
-├── blog.html                # Blog index, served at /blog
+├── blog.html                # Tarang hub, served at /blog. The build copies it to /tales/, /slate/, /lab/
 ├── post.html                # Template the build copies for every post
 ├── robots.txt               # Allows everything, points to the sitemap
 ├── social-card.png          # Fallback link-preview image (1200x627)
 ├── assets/img/              # Portrait (webp, two sizes) and homepage preview image
+├── assets/tarang-series.json  # The three Tarang series: name, stamp, icon, blurbs, SEO text
+├── assets/css/series-*.css  # One stylesheet per series (tales, slate, lab). Independent of each other
+├── tales/ slate/ lab/       # BUILD OUTPUT, gitignored: series landing pages and post pages
 │
 ├── blog/                    # SOURCE OF TRUTH for posts (hand-edited)
 │   └── <slug>/content.md or content.docx, cover.png, cover.webp, diagrams (*.svg)
@@ -109,16 +114,16 @@ Design rule: **`/blog` is the only post content you edit.** Everything in
 
 ### Current posts
 
-| Slug | Title | Tags |
-|---|---|---|
-| `mountain-quest` | The Mountain Quest: Decoding RAG Components | AI, RAG, Stories |
-| `ultimate-cosmic-race` | Ultimate Cosmic Race: Decoding Vector Databases | AI, RAG, Stories |
-| `the-arjuna-algorithm` | The Archer's Target: Decoding RAG | AI, RAG, Stories |
-| `krishna-uvaca` | Kṛṣṇa Uvāca: Grounded Cosmic Counsel | Projects, AI |
-| `observer-prime` | Observer Prime: Unified Agentic Orchestration | Projects, AI |
-| `project-elara` | Project Elara: Contextual Knowledge OS | Projects, AI, Learning |
-| `agentic-ai-in-project-management` | Agentic AI Is Rewriting the PMO Playbook (Word source, not yet reviewed) | |
-| `ai-agents-move-into-production` | AI Agents Move Into Production (not yet reviewed) | AI |
+| Slug | Title | Tags | Series |
+|---|---|---|---|
+| `mountain-quest` | The Mountain Quest: Decoding RAG Components | AI, RAG | Tarang Tales |
+| `ultimate-cosmic-race` | Ultimate Cosmic Race: Decoding Vector Databases | AI, RAG | Tarang Tales |
+| `the-arjuna-algorithm` | The Archer's Target: Decoding RAG | AI, RAG | Tarang Tales |
+| `krishna-uvaca` | Kṛṣṇa Uvāca: Grounded Cosmic Counsel | Projects, AI, RAG | Lab Reports |
+| `observer-prime` | Observer Prime: Unified Agentic Orchestration | Projects, AI | Lab Reports |
+| `project-elara` | Project Elara: Contextual Knowledge OS | Projects, AI, Learning | Lab Reports |
+| `agentic-ai-in-project-management` | Agentic AI Is Rewriting the PMO Playbook (Word source, not yet reviewed) | AI, Project Management | none yet |
+| `ai-agents-move-into-production` | AI Agents Move Into Production (not yet reviewed) | AI | Surabhi's Slate |
 
 The slugs never change, even when a title does, so shared links keep working.
 
@@ -138,8 +143,9 @@ The slugs never change, even when a title does, so shared links keep working.
   "Resume" link that opens the PDF in a new tab), three stats (20+ Yrs,
   $2.5T+ AUM, 99.8% availability). The nav's Connect button is the only solid
   button on screen.
-- **AI R&D Lab:** three project cards that link to their posts ("Product case
-  study"). Kṛṣṇa Uvāca and Project Elara also link to their live apps
+- **AI R&D Lab:** three project cards that link to their Lab Reports at
+  `lab/<slug>/` ("Product case study"), with "All Lab Reports" below. Each
+  cover shows a build status badge (Shipped, Beta or In Progress). Kṛṣṇa Uvāca and Project Elara also link to their live apps
   (`krsna.sandeepmidde.com`, `elara.sandeepmidde.com`). The cards use CSS
   subgrid (`grid-row: span 7` per card, `span 6` for the body), so labels,
   titles, descriptions, proof points and links line up across cards. If you
@@ -150,14 +156,54 @@ The slugs never change, even when a title does, so shared links keep working.
   to the matching milestone card and briefly highlight it.
 - **Journey:** role timeline with "Key highlights" in a collapsible block.
 
-### Blog index: `blog.html` (served at `/blog`)
-- Loads `posts/posts-index.json`. The newest post is the featured card, and
-  the rest are cards with cover, tags, title, subtitle, date and read time.
-- Tag filter pills are built from all post tags, so a new tag appears as
-  soon as a post uses it.
+### Tarang hub: `blog.html` (served at `/blog`, nav label "Blogs")
+The blog is branded **Tarang** ("wave"): one idea, told in different shapes for
+different readers. The nav link stays "Blogs" so visitors know what's behind it.
+`/blogs` and `/tarang` redirect here.
+- **Title canvas:** "The Tarang Project" label, "Tarang" with an animated
+  wave, "An Ecosystem of Stories, Scribbles & Lab Reports" and the line "One
+  roof. Three ways of looking at complex systems...".
+- **Format toggle** (replaces topic filters): All, 🌊 Tarang Tales, 📝 Surabhi's
+  Slate, 🧪 Lab Reports. Choosing a channel shows an intro strip (blurb,
+  audience, stamp), filters the grid and changes the address to `/tales/` etc.
+  (Back works).
+
+  | Series | Folder | For | Stamp |
+  |---|---|---|---|
+  | Tarang Tales (Mythology & Fables) | `/tales/` | Laymen, children, enthusiasts | A Fable-Framed Breakdown |
+  | Surabhi's Slate (Notebook Scribbles) | `/slate/` | Busy professionals and developers | A Raw-Slate Insight |
+  | Lab Reports (Product Case Studies) | `/lab/` | Engineers, founders, recruiters | A Product Lab Deep-Dive |
+
+  Names, stamps, blurbs and SEO text live in `assets/tarang-series.json`.
+- **Featured card** (All only): the newest post in its series' look, with the
+  series stamp above the title.
+- **Cards look different per series** (`card-<key>` classes in `blog.html`):
+  Tales on cream parchment with comic-framed art and a coloured stamp, Slate
+  on dark grid paper with a scratchpad preview of the note instead of a cover,
+  Lab sharp-cornered with a navy top rule and a stark "Lab Report" tag.
+- **Series pages** (`/tales/`, `/slate/`, `/lab/`): the build copies
+  `blog.html` with that series' title, description and canonical URL, and the
+  page opens on that channel. Locally, `/blog` itself doesn't resolve (it's
+  the source folder), so preview `blog.html`.
 - Posts without a cover get a navy title panel.
 
-### Post page: `post.html`, copied to `/posts/<slug>/index.html`
+### Post page: `post.html`, copied to `/<series>/<slug>/index.html`
+- **Series look:** each series has its own stylesheet, added only to that
+  series' pages, so one can change without touching the others.
+  - `series-tales.css`: vibrant comic cover, Baloo 2 headings, figures as comic
+    panels, and blockquotes shown as a "Moral of the story" panel.
+  - `series-slate.css`: notebook page with grid paper and a margin line, mono
+    headings, masking-tape stamp, dark mode that follows the system setting.
+  - `series-lab.css`: white-paper layout, numbered sections, navy table
+    headers, formal callouts.
+- **Series mark:** series name (links to its page) and signature stamp above
+  the title. The back link reads the series name.
+- **Same idea, other shapes:** after the article, the closest post from each
+  other series, matched on topic tags (tags every post has, like "AI", don't
+  count). The Lab Report link is styled as the call to action. Example: a
+  RAG tale links to the RAG note in the Slate and to Kṛṣṇa Uvāca in the Lab.
+- **Code blocks** get a Copy button, and Prism highlighting loads only on
+  posts that have code.
 - **Header:** "← Blogs" at top left, centred title and subtitle, then date and
   read time on one line.
 - **Left rail (wide screens):** the "visual track". Each figure in the article
@@ -174,14 +220,16 @@ The slugs never change, even when a title does, so shared links keep working.
 
 ## 4. Writing a blog post
 
-1. Create `blog/<slug>/`. The folder name becomes the URL, `/posts/<slug>/`.
+1. Create `blog/<slug>/`. The folder name becomes the slug in the URL,
+   `/<series>/<slug>/` (or `/posts/<slug>/` for a post with no series).
 2. Add `content.md` (or `content.docx`). If both exist, the Markdown wins.
 3. Start the file like this:
 
    ```markdown
    # The Post Title: With Its Hook
    Subtitle: One sentence shown under the title, on the card and in previews.
-   Tags: AI, RAG, Stories
+   Tags: AI, RAG
+   Series: Tarang Tales
    Date: 2026-10-02
    Summary: One sentence for link previews and the blog card.
 
@@ -196,7 +244,8 @@ The slugs never change, even when a title does, so shared links keep working.
    |---|---|---|
    | `# Title` | yes | First heading becomes the title. It's removed from the body |
    | `Subtitle:` | no | Shown under the title. Without it, the text after the title's first comma is the subtitle |
-   | `Tags:` | no | Comma-separated. Drives the filter pills and Continue reading |
+   | `Tags:` | no | Comma-separated topics. Drives the filter pills and Continue reading |
+   | `Series:` | no | `Tarang Tales`, `Surabhi's Slate` or `Lab Reports`. Sets the URL folder, the look, the stamp and the cross-links. Without it the post lives at `/posts/<slug>/` with the plain look |
    | `Date:` | no | `YYYY-MM-DD`. Without it, the date of the file's first git commit is used |
    | `Summary:` | no | Link-preview description and card text. Without it, the first ~160 characters are used |
 
@@ -213,7 +262,7 @@ The slugs never change, even when a title does, so shared links keep working.
 5. Run `npm run build` and preview locally (section 9), then commit and push.
 
 For Word files, use the Heading 1 style for the title and put `Tags:`,
-`Date:` and `Summary:` in their own paragraphs. Paste images straight into
+`Series:`, `Date:` and `Summary:` in their own paragraphs. Paste images straight into
 the document. `Subtitle:` only works in Markdown.
 
 ---
@@ -240,8 +289,14 @@ the document. `Subtitle:` only works in Markdown.
    | `excerpt` | First ~160 characters of plain text |
    | `cover` | `cover.webp`, else `cover.png` or `.jpg` |
 
-4. Writes `posts/<slug>.json` and `posts/<slug>/index.html` (section 7).
-5. Writes `posts/posts-index.json`, sorted newest first, and `sitemap.xml`.
+4. Once every post's address is known, rewrites links between posts
+   (`posts/<slug>/` in the source) to the real address, then writes
+   `posts/<slug>.json` and `<series>/<slug>/index.html` (section 7).
+5. Writes `posts/posts-index.json`, sorted newest first, the series pages
+   `tales/`, `slate/`, `lab/`, and `sitemap.xml`.
+6. Rewrites the generated block at the end of `_redirects`, so each series
+   post's old `/posts/<slug>/` address redirects (301) to its new one. Commit
+   `_redirects` when this block changes.
 
 It handles Windows (CRLF) line endings from Word and Notepad.
 
@@ -288,7 +343,10 @@ It handles Windows (CRLF) line endings from Word and Notepad.
   The `Person` entry holds the job title, "20+ years" description,
   LinkedIn and GitHub links, education and areas of expertise.
 - **Blog:** canonical `/blog`, description and preview tags.
-- **Posts:** the build writes `/posts/<slug>/index.html` with the title, description,
+- **Tarang branding:** tab titles read `<title> · <Series> · Tarang by Sandeep
+  Midde`, `og:site_name` is "Tarang by Sandeep Midde", and the `BlogPosting`
+  JSON-LD carries `articleSection`, `isPartOf` (the Tarang blog) and keywords.
+- **Posts:** the build writes `/<series>/<slug>/index.html` with the title, description,
   preview image, canonical URL and `BlogPosting` JSON-LD that credits the
   homepage's `Person`. It adds `<base href="/">`, so links inside posts are
   written from the site root (`posts/the-arjuna-algorithm/`, not
@@ -299,7 +357,8 @@ It handles Windows (CRLF) line endings from Word and Notepad.
   - Preview image: `cover.*`, else the first raster image, else `social-card.png`
 - **`sitemap.xml`:** homepage, blog and every post, with dates. `robots.txt`
   points to it. Search Console is set up for the domain.
-- Old `post.html?slug=...` links redirect to `/posts/<slug>/`.
+- Old `post.html?slug=...` links go to `/posts/<slug>/`, which redirects to the
+  post's series address.
 
 ---
 
@@ -335,7 +394,9 @@ python -m http.server 8765
 ```
 
 Then open `http://localhost:8765/themed-executive.html` (homepage),
-`http://localhost:8765/blog.html` or `http://localhost:8765/posts/<slug>/`.
+`http://localhost:8765/blog.html`, `http://localhost:8765/tales/` or
+`http://localhost:8765/tales/<slug>/`. The `_redirects` rules only run on
+Cloudflare, so old `/posts/<slug>/` links 404 locally.
 
 - `fetch()` doesn't work over `file://`, so always use a server.
 - The counters return nothing on a plain static server, and the page shows
@@ -383,6 +444,10 @@ out of git.
 | Add a post | New folder in `/blog`, then build, preview, push (section 4) |
 | Rename a post | Change its `#` title line. Keep the folder name so the URL stays |
 | Change a post's tags | Edit its `Tags:` line |
+| Move a post to another series | Edit its `Series:` line. The build moves it and redirects the old address |
+| Rename a series or change its stamp | `assets/tarang-series.json` (keep `key`, it is the URL folder) |
+| Restyle one series | `assets/css/series-<key>.css` only |
+| Change a lab card's status badge | `themed-executive.html`, `EDIT: AI R&D LAB`: `data-status` (shipped, beta, progress) and its label |
 | Remove a post | Delete its `/blog/<slug>` folder, then push |
 | Change hero text or stats | `themed-executive.html`, `EDIT: HERO` |
 | Change a milestone card | `EDIT: IMPACT` |
