@@ -197,8 +197,8 @@ different readers. The nav link stays "Blogs" so visitors know what's behind it.
   series stamp above the title.
 - **Cards look different per series** (`card-<key>` classes in `blog.html`):
   Tales on cream parchment with comic-framed art and a coloured stamp, Slate
-  on dark grid paper with a scratchpad preview of the note instead of a cover,
-  Lab sharp-cornered with a navy top rule and a stark "Lab Report" tag.
+  as clean white cards in soft slate blue-grey with the note's own image shown
+  whole (no literal notebook styling, at the owner's request), Lab sharp-cornered with a navy top rule and a stark "Lab Report" tag.
 - **Series pages** (`/tales/`, `/slate/`, `/lab/`): the build copies
   `blog.html` with that series' title, description and canonical URL, and the
   page opens on that channel. Locally, `/blog` itself doesn't resolve (it's
@@ -210,8 +210,8 @@ different readers. The nav link stays "Blogs" so visitors know what's behind it.
   series' pages, so one can change without touching the others.
   - `series-tales.css`: vibrant comic cover, Baloo 2 headings, figures as comic
     panels, and blockquotes shown as a "Moral of the story" panel.
-  - `series-slate.css`: notebook page with grid paper and a margin line, mono
-    headings, masking-tape stamp, dark mode that follows the system setting.
+  - `series-slate.css`: clean white article sheet on a soft slate background,
+    sky-blue stamp chip and blockquote rule. Light only, like the hub cards.
   - `series-lab.css`: white-paper layout, numbered sections, navy table
     headers, formal callouts.
 - **Series mark:** series name (links to its page) and signature stamp above
