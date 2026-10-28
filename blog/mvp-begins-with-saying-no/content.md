@@ -1,6 +1,7 @@
 # Why Every Great MVP Begins With Saying "No"
 Tags: AI, Project Management, Krishna Uvaca
 Series: Surabhi's Slate
+Card: linkedin.jpg
 Date: 2026-07-23
 Summary: Most people judge an MVP by what it includes. I've come to believe the real measure of an MVP is what you deliberately leave out.
 
@@ -47,7 +48,7 @@ Whether you're building a small AI application or an Enterprise platform, the fi
 
 Every successful platform eventually reaches a point where saying 'No' creates more value than saying 'Yes'.
 
-🌿 Try Krishna Uvacha: 🔗 https://krsna.softr.app  
+🌿 Try Krishna Uvacha: 🔗 https://krsna.sandeepmidde.com  
 I'd love your feedback on the MVP.
 
 As you try it, ask yourself:  

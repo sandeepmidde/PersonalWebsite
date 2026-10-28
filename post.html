@@ -131,6 +131,12 @@
       column-gap: var(--col-gap); padding: 40px 0 72px; align-items: start;
     }
     .post-layout > article { grid-area: main; min-width: 0; }
+    /* Posts with nothing in the left rail (set by buildTrack): article and right rail only, wider text */
+    @media (min-width: 1181px) {
+      .post-layout.no-rail { grid-template-columns: minmax(0, 1fr) var(--rail-r); grid-template-areas: "main right"; }
+      .post-layout.no-rail .rail-left { display: none; }
+      .post-layout.no-rail :is(.prose, .engage, .across, .comments) { max-width: 900px; }
+    }
     .rail-left { grid-area: left; align-self: stretch; position: relative; }
     .post-strip { display: none; }   /* cover + byline strip, medium and small screens only */
     .post-cover { border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-sm); background: var(--bg-alt); }
@@ -700,6 +706,8 @@
         addTrackItem(section, img.getAttribute('src'), img.alt, img.getAttribute('width'), img.getAttribute('height'));
       });
       document.getElementById('vtrack').hidden = !track.items.length;
+      // Nothing for the left rail (no cover, no diagrams): drop it so the text gets the width
+      document.querySelector('.post-layout').classList.toggle('no-rail', !track.items.length);
       new ResizeObserver(layoutTrack).observe(body);
       window.addEventListener('resize', layoutTrack);
       document.fonts?.ready.then(layoutTrack);

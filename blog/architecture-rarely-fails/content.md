@@ -2,6 +2,7 @@
 Subtitle: Behind Every Technology Leadership Decision – Part 4
 Tags: Technical, Krishna Uvaca
 Series: Surabhi's Slate
+Card: linkedin.jpg
 Date: 2026-07-27
 Summary: When I started building Krishna Uvacha, the architecture looked beautifully simple. Browser → Workflow → AI → Response Minimal. Composable. Easy to explain.
 
@@ -39,7 +40,7 @@ One lesson has stayed with me throughout my career.
 **Production validates architecture**.  
 Everything before production is an assumption. Everything after production is evidence.  
 ━━━━━━━━━━━━  
-🌿 Try Krishna Uvacha: https://krsna.softr.app
+🌿 Try Krishna Uvacha: https://krsna.sandeepmidde.com
 
 If you use it today, you probably won't notice these decisions.  
 That's the point. The best architecture is invisible. The experience isn't.  

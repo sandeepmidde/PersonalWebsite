@@ -1,6 +1,7 @@
 # The Question I Couldn't Answer
 Tags: AI, Krishna Uvaca
 Series: Surabhi's Slate
+Card: linkedin.jpg
 Date: 2026-07-20
 Summary: Some questions stay with you long after they've been asked. This was one of them. One evening, my child asked me something about a friendship.
 
@@ -41,7 +42,7 @@ And that reminded me of something I'll carry into every product I build: "Buildi
 Today, that unanswered question has taken shape as Kṛṣṇā Uvāca - Inspired by ancient wisdom, Built for modern questions.
 
 If you have a few minutes, I'd genuinely love your feedback.  
-👉 https://lnkd.in/guE5HJKG
+👉 https://krsna.sandeepmidde.com
 
 This is Part 1 of a series documenting the journey behind Krishna Uvaca - from idea to MVP, and the product thinking, architecture, trade-offs, and lessons that shaped it
 

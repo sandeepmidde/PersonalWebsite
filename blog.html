@@ -277,6 +277,12 @@
     .featured.card-slate .scratch { aspect-ratio: auto; height: calc(100% - 28px); min-height: 280px; margin: 14px; padding: 1.25rem 1.4rem; }
     .featured.card-slate .scratch .scrawl { font-size: 2.1rem; }
     .featured.card-slate .scratch .scrawl-line { font-size: 1.3rem; -webkit-line-clamp: 2; }
+    /* Slate notes with their own image (a LinkedIn graphic): framed like the notebook page, shown whole */
+    .card-slate .cover { margin: 14px 14px 0; border-radius: 8px; border: 1px solid #E7E5E0; outline: 1px solid rgba(255,255,255,0.16); outline-offset: 4px; background: #fff; }
+    .card-slate .cover img { object-fit: contain; }
+    .card-slate .cover .cover-fallback { display: none; }   /* the image fills the frame, no title panel behind it */
+    .card-slate .cover { background: #F3F4F6; }
+    .featured.card-slate .cover { margin: 14px; height: calc(100% - 28px); }
     /* A chosen card image (Card: line), usually a diagram, shown whole on a dark field */
     .cover img.card-art { object-fit: contain; background: #0B1120; padding: 4px; }
 
@@ -553,7 +559,7 @@
     // Card artwork. Slate notes show a scratchpad preview of their opening lines
     // instead of a cover; every other post shows its cover, else the navy title panel.
     function cover(post) {
-      if (post.series === 'slate') {
+      if (post.series === 'slate' && !(post.card || post.cover)) {   // notes without an image of their own
         return `
         <div class="scratch" aria-hidden="true">
           <span class="tape"></span>
@@ -567,7 +573,7 @@
       return `
         <div class="cover">
           <div class="cover-fallback" aria-hidden="true"><span class="cf-tag">${post.series ? '' : esc(tag)}</span><span class="cf-title">${esc(splitTitle(post.title, post.subtitle).name)}</span></div>
-          ${post.card || post.cover ? `<img src="${post.card || post.cover}" alt="" loading="lazy" style="position:relative"${post.card ? ' class="card-art"' : ''} onerror="this.remove()">` : ''}
+          ${post.card || post.cover ? `<img src="${post.card || post.cover}" alt="" loading="lazy" style="position:relative"${post.card && post.series === 'lab' ? ' class="card-art"' : ''} onerror="this.remove()">` : ''}
         </div>`;
     }
 

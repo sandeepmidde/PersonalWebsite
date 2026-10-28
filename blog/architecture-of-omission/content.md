@@ -2,6 +2,7 @@
 Subtitle: Behind Every Technology Leadership Decision – Part 3
 Tags: AI, Technical, Krishna Uvaca
 Series: Surabhi's Slate
+Card: linkedin.jpg
 Date: 2026-07-25
 Summary: One question kept coming up after I shared Krishna Uvacha. "How much did this MVP cost to build?" The answer surprised most people. ₹0 in software investment.
 
@@ -55,7 +56,7 @@ Architecture isn't measured by how much you build. It's measured by how much unn
 
 Technology evolves. Leadership adapts.  
 ━━━━━━━━━━━━━━  
-🌿 Try Krishna Uvaca: https://krsna.softr.app
+🌿 Try Krishna Uvaca: https://krsna.sandeepmidde.com
 
 As you explore it, don't evaluate the tech stack. Ask yourself one question. Did the experience create value without making you think about the technology behind it?  
 ━━━━━━━━━━━━━━  

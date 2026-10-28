@@ -1,6 +1,7 @@
 # Strategy Sets the Direction. Reality Draws the Map
 Tags: AI, Project Management
 Series: Surabhi's Slate
+Card: linkedin.jpg
 Date: 2026-08-11
 Summary: Strategy is a commitment to the outcome, not the original path. Every strategy starts with assumptions. What customers will value?
 

@@ -1,6 +1,7 @@
 # Every Product Chooses Its Definition of Success
 Tags: AI, Governance, Krishna Uvaca
 Series: Surabhi's Slate
+Card: linkedin.jpg
 Date: 2026-07-29
 Summary: The most dangerous mistake a technology leader can make is confusing a strategic risk with a simple design choice.
 
@@ -35,7 +36,7 @@ This philosophy guided how Krishna Uvacha was built, but the mandate extends acr
 
 **Market leadership isn't won by shipping features faster. It is won by ensuring your customers can rely on your judgment**.  
 ━━━━━━━━━  
-🌿 **Explore Krishna Uvacha: https://krsna.softr.app**/
+🌿 **Explore Krishna Uvacha: https://krsna.sandeepmidde.com**
 
 Don't judge it by the volume of answers. Judge it by whether its judgment aligns with the standards you require to make your next strategic move.  
 ━━━━━━━━  

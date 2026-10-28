@@ -1,6 +1,7 @@
 # Clarity Is a Product Feature
 Tags: AI, Krishna Uvaca
 Series: Surabhi's Slate
+Card: linkedin.jpg
 Date: 2026-08-01
 Summary: The first version of a product often focuses on one question: Does it work? Once that answer becomes "yes," a better question emerges. Does it feel effortless?
 
@@ -31,7 +32,7 @@ Three ideas have stayed with me:
 Every update to Krishna Uvacha reinforced the same principle. The goal wasn't to make the product say more. It was to help people absorb more from what was already there. Sometimes the biggest product improvement isn't another feature.  
 **It's a clearer experience**.
 
-🌿 Explore Krishna Uvacha : https://krsna.softr.app  
+🌿 Explore Krishna Uvacha : https://krsna.sandeepmidde.com  
 As you explore it, notice not only the wisdom being shared but how naturally the conversation unfolds.
 
 💬 **Question to Ponder**  

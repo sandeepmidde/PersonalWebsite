@@ -2,6 +2,7 @@
 Subtitle: Sometimes the better strategy is to bring the capability to where the user already is.
 Tags: AI
 Series: Surabhi's Slate
+Card: linkedin.jpg
 Date: 2026-08-14
 Summary: A decision from Google AI Studio caught my attention recently. The team had around 800k people pre-order its mobile app.
 
