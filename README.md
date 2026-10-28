@@ -118,7 +118,7 @@ Design rule: **`/blog` is the only post content you edit.** Everything in
 |---|---|---|---|
 | `mountain-quest` | Understanding RAG Pipelines | AI, Technical, RAG | Tarang Tales |
 | `ultimate-cosmic-race` | Demystifying Vector Databases | AI, Technical, RAG | Tarang Tales |
-| `the-arjuna-algorithm` | The Mechanics of Semantic Search | AI, Technical, RAG | Tarang Tales |
+| `the-arjuna-algorithm` | Mechanics of Semantic Search | AI, Technical, RAG | Tarang Tales |
 | `krishna-uvaca` | Kṛṣṇa Uvāca: Grounded Cosmic Counsel | AI, Technical, Governance, RAG, Krishna Uvaca | Lab Reports |
 | `observer-prime` | Observer Prime: Unified Agentic Orchestration | AI, Technical, Governance | Lab Reports |
 | `project-elara` | Project Elara: Contextual Knowledge OS | AI, Technical, Learning | Lab Reports |

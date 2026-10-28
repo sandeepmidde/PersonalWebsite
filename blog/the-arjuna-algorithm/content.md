@@ -1,4 +1,4 @@
-# The Mechanics of Semantic Search
+# Mechanics of Semantic Search
 Subtitle: Looking only at its reflection in the water, Arjuna pierces the eye of a spinning fish.
 Story: 🏹 The Archer's Target · Arjuna
 Tags: AI, Technical, RAG
