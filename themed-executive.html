@@ -641,7 +641,7 @@
     }
 
     /* Applied AI: project proof + practice strip */
-    .proj-card .proj-proof { margin-top: 0.9rem; font-size: 0.8rem; font-weight: 600; color: var(--result); display: flex; gap: 8px; align-items: baseline; flex: 0 !important; }
+    .proj-card .proj-proof { margin-top: 0.9rem; font-size: 0.8rem; font-weight: 600; color: var(--result); display: flex; gap: 8px; align-items: baseline; flex: none !important; }
     .ai-practices {
       list-style: none; margin-top: 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
       background: var(--border); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden;
@@ -689,7 +689,7 @@
     .hands-on-grid .tool-col { padding: 1.25rem 1.4rem; box-shadow: none; }
     .hands-on-grid h4 { font-size: 0.85rem; font-weight: 600; color: var(--text-2); margin-bottom: 0.8rem; }
     .chips-sm .chip { font-size: 0.75rem; padding: 4px 10px; }
-    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0 0 0.9rem; padding: 0; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0.9rem 0 0; padding: 0; }
     .proj-tags li { font-size: 0.72rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; background: var(--accent-soft); color: var(--accent-text); }
 
     @media (max-width: 1080px) {
@@ -850,11 +850,11 @@
     .proj-title-rest { font-weight: 500; color: var(--text-3); }
 
     /* AI Lab cards share row lines (subgrid), so label, title, description, both proof
-       points and the links start at the same height in every card. Each card has 7 rows:
-       cover, then 6 body rows. */
+       points and the links start at the same height in every card. Each card has 8 rows:
+       cover, then 7 body rows. */
     @supports (grid-template-rows: subgrid) {
-      .proj-grid > .proj-card { display: grid; grid-row: span 7; grid-template-rows: subgrid; row-gap: 0; }
-      .proj-card > .proj-body { display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; }
+      .proj-grid > .proj-card { display: grid; grid-row: span 8; grid-template-rows: subgrid; row-gap: 0; }
+      .proj-card > .proj-body { display: grid; grid-row: span 7; grid-template-rows: subgrid; row-gap: 0; }
       .proj-card .proj-links { align-self: start; }
     }
   </style>
