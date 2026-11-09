@@ -147,19 +147,24 @@ The slugs never change, even when a title does, so shared links keep working.
 - There is no `index.html`. `_redirects` rewrites `/` to this file (status
   200, so the address bar stays on `/`).
 - A comment block at the top lists every section, and each section starts with
-  an `EDIT:` comment: NAV, HERO, ABOUT, IMPACT (Executive Milestones), AI R&D
-  LAB, HOW I WORK (Principles), CAREER (Journey), TOOLKIT, CREDENTIALS,
-  CONTACT, FOOTER.
+  an `EDIT:` comment. Page order: HERO, ABOUT, IMPACT (Achievements), CAREER
+  (Experience), HOW I WORK (Leadership), AI R&D LAB (Applied AI), TOOLKIT,
+  CREDENTIALS, CONTACT, FOOTER. Nav and footer labels (About, Achievements,
+  Experience, Leadership, Applied AI, Blogs, Connect) are repeated in
+  `blog.html` and `post.html`, so change all three and run `npm run build`.
+- **Voice:** the homepage is written for a VP-level profile. The resume PDF is
+  the single source of truth, so nothing on the page may claim more than it.
+  The hero summary names no AUM and no team size.
 - **Hero:** name, role, tagline, two paragraphs, two calls to action (an
   outlined "View featured work" button that scrolls to the milestones, and a
-  "Resume" link that opens the PDF in a new tab), three stats (20+ Yrs,
-  $2.5T+ AUM, 99.8% availability). The nav's Connect button is the only solid
+  "Resume" link that opens the PDF in a new tab), three stats (20+ Yrs
+  Experience, $2.5T+ AUM, 99.8% availability). The nav's Connect button is the only solid
   button on screen.
-- **AI R&D Lab:** four project cards, two by two, that link to their Build Logs at
+- **AI R&D Lab:** four project cards, two by two, each with a row of tech badges, that link to their Build Logs at
   `lab/<slug>/` ("Product case study"), with "All Build Logs" below. Each
   cover shows a build status badge (Shipped, Beta or In Progress). Kṛṣṇa Uvāca and Project Elara also link to their live apps
   (`krsna.sandeepmidde.com`, `elara.sandeepmidde.com`). The cards use CSS
-  subgrid (`grid-row: span 7` per card, `span 6` for the body), so labels,
+  subgrid (`grid-row: span 8` per card, `span 7` for the body), so labels,
   titles, descriptions, proof points and links line up across cards. If you
   add or remove a row in a card, change both spans. Cover images carry a
   `?v=` value, the first 8 characters of the file's md5. Update it when a
@@ -402,8 +407,10 @@ any new copy.
 - **Claims must match the evidence.** Proof points and summaries can't
   claim more than the milestone cards and posts support. For example, avoid
   "zero hallucination", "deterministic", "guarantee" and "dependency-free".
-- **Homepage project cards** show no development tools (no Next.js, React
-  and so on) and keep each proof point to one line.
+- **Homepage project cards** keep each proof point to one line. Tech badges
+  list only capabilities the build logs support (no frameworks, no
+  "zero hallucination"). Keep projected and realized savings distinct, and
+  keep the Wells Fargo RAG figure (~80%) apart from Krishna's own (~88%).
 - **Every figure explains itself:** icon-led SVGs with a short caps label,
   readable at 300 px.
 - **Links have no underline** in card proof points.
@@ -480,10 +487,10 @@ out of git.
 | Change hero text or stats | `themed-executive.html`, `EDIT: HERO` |
 | Change a milestone card | `EDIT: IMPACT` |
 | Change a project card | `EDIT: AI R&D LAB`. Keep card titles in sync with the post titles |
-| Change a principle | `EDIT: HOW I WORK` |
+| Change a principle | `EDIT: HOW I WORK` (title and proof tags) |
 | Add a role | `EDIT: CAREER`, copy an `<article class="exp-item">` |
 | Update SEO text | The `<head>` of `themed-executive.html`: meta tags and the JSON-LD block |
-| Swap the resume | Replace `Resume/SandeepMidde.pdf`, keeping the filename |
+| Swap the resume | Replace `Resume/SandeepMidde.pdf`, keeping the filename, then update the `?v=` (first 8 characters of its md5) on the homepage resume link |
 
 ---
 
@@ -521,3 +528,4 @@ Highlights only. `git log` has every commit.
 | `90ea2d1`, `0c61cac` | Hero calls to action: View featured work and Resume |
 | `00887d6` to `415bd3c` | AI Lab product framing, Elara live link, renamed project posts |
 | `f226013` | Structured data: 20+ years, AI product management |
+| `114d28d` to `bb16078` | VP-level homepage rewrite: new resume, section reorder, tech badges, card row grid |
